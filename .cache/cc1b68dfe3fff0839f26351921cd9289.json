@@ -1,1 +1,0 @@
-{"dependencies":[],"generated":{"js":"\"use strict\";function t(e,o){return new t.prototype.init(e,o)}Object.defineProperty(exports,\"__esModule\",{value:!0}),t.prototype.init=function(t,e){},t.prototype.init.prototype=t.prototype,exports.default=t;"},"hash":"25e81f6cf2e2f49c4d26058bda9556fe"}

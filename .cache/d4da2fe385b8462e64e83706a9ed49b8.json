@@ -1,1 +1,0 @@
-{"dependencies":[{"name":"../../src/pageComponent/head/index.js"}],"generated":{"js":"\"use strict\";\n\nrequire(\"../../src/pageComponent/head/index.js\");\n\nnew Vue({\n  el: '#main',\n  data: {},\n  methods: {}\n});"},"hash":"a16becea75e4a181abb4f1fe092ee62b"}
