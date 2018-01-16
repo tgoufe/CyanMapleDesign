@@ -1,0 +1,1 @@
+{"dependencies":[],"generated":{"js":"\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = new Vue();"},"hash":"e150fcce5f8d7e67bfe539e4f844a987"}

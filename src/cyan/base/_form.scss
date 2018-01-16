@@ -1,0 +1,280 @@
+input,select,textarea {
+    // font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    &:focus{
+        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+textarea {
+    height: auto;
+    resize: none;
+    -webkit-user-modify: read-write-plaintext-only;
+}
+select{
+    &[multiple],
+    &[size] {
+      height: auto;
+    }
+    &:focus {
+        -webkit-user-modify: read-only
+    }
+}
+input{
+    &[type="file"],
+    &[type="radio"],
+    &[type="checkbox"] {
+        &:focus{@include tab-focus;}
+    }
+    @at-root .form textarea,.form select,
+    &[type=color],
+    &[type=date],
+    &[type=datetime-local],
+    &[type=datetime],
+    &[type=email],
+    &[type=month],
+    &[type=number],
+    &[type=password],
+    &[type=search],
+    &[type=tel],
+    &[type=text],
+    &[type=time],
+    &[type=url],
+    &[type=week]{
+        -webkit-user-select: text;
+        outline: 0;
+        -webkit-appearance: none
+    }
+}
+.form{
+    input{
+        &[type=search] {
+            text-align: center;
+            &:focus {
+                text-align: left
+            }
+        };
+        @at-root .form textarea,.form select,
+        &[type=color],
+        &[type=date],
+        &[type=datetime-local],
+        &[type=datetime],
+        &[type=email],
+        &[type=month],
+        &[type=number],
+        &[type=password],
+        &[type=search],
+        &[type=tel],
+        &[type=text],
+        &[type=time],
+        &[type=url],
+        &[type=week]{
+            width: 100%;
+            padding: (nth(map-get($btn-size-list,'base'),1) - 26px - 2) / 2 $padding-base-horizontal;
+            font-size: $font-size-base;
+            line-height:26px;
+            background-color: #fff;
+            border: 1px solid map-get($grayList,'lighter');
+            &:focus{
+                border-color: $form-color-base;
+                outline: 0;
+            }
+            &.form-radius{
+                border-radius: $border-radius-base;
+            }
+            &:disabled{
+                background-color:map-get($grayList,'lighter');
+            }
+            &.input-reverse{
+                border-color:transparent;
+                background-color:transparent;
+                border-bottom-color:map-get($grayList,'lighter');
+            }
+            &.input-transparent{
+                border-color:transparent !important;
+                background-color:transparent !important;
+            }
+        }
+        &[type=checkbox],&[type=radio]{
+            display: inline-block;
+            position:relative;
+            width: $from-control-size;
+            height: $from-control-size;
+            border: 0;
+            outline: 0!important;
+            background-color: transparent;
+            -webkit-appearance: none;
+            &:before{
+                font-family: CMUIbaseIcon;
+                font-size: $from-control-size;
+                font-weight: 400;
+                line-height: 1;
+                text-decoration: none;
+                color: #e0e0e0;
+                border-radius: 0;
+                background: 0 0;
+                -webkit-font-smoothing: antialiased;
+                display:block;
+                // @include translateY(($from-control-size - 20) );
+            }
+            &:disabled:before{
+                color:map-get($grayList,'lighter');
+            }
+            &:checked:before{
+                color:$form-color-base;
+            }
+        }
+        &[type=radio]{
+            @extend .baseIcon-round;
+            &:checked{
+                @extend .baseIcon-radiobox;
+            }
+            &.input-reverse:checked{
+                @extend .baseIcon-radioboxfill;
+            }
+            
+        };
+        &[type=checkbox]{
+            @extend .baseIcon-round;
+            &:checked{
+                @extend .baseIcon-roundcheck;
+            }
+            &.input-reverse:checked{
+                @extend .baseIcon-roundcheckfill;
+            }
+            &.checkbox-switch{
+                position: relative;
+                width: $from-control-size + 20 ;
+                border-radius: $from-control-size / 2;
+                height: $from-control-size;
+                transition-duration: 200ms;
+                &:before{
+                    content: '';
+                    position: absolute;
+                    left: 2px;
+                    top: 2px;
+                    width: $from-control-size + 18;
+                    border-radius: $from-control-size / 2;
+                    height: $from-control-size - 2;
+                    background: map-get($grayList,'lighter');
+                    transition-duration: 200ms;
+                }
+                &:after{
+                    content: '';
+                    height: $from-control-size - 3;
+                    width: $from-control-size - 3;
+                    border-radius: $from-control-size - 3;
+                    background: #fff;
+                    position: absolute;
+                    z-index: 2;
+                    left: 2px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+                    @include translate(0px,2px);
+                    transition-duration: 300ms;
+                }
+                &:checked{
+                    &:before{
+                        content: '';
+                        background: $form-color-base;
+                    }
+                    &:after{
+                        @include translate(22px,2px );
+                    }
+                }
+            }
+        }
+    }
+    label{
+        line-height:nth(map-get($btn-size-list,'base'),1);
+    }
+    .input-reset,.input-changeType,.input-search{
+        position: absolute;
+        top:0;
+        bottom:0;
+        right:$container_padding;
+        width:nth(map-get($btn-size-list,'base'),1);
+        display:none;
+        text-align:center;
+        &:before{
+            font-family: CMUIbaseIcon;
+            font-size:nth(map-get($btn-size-list,'base'),1) / 2;
+            color:map-get($grayList,'lighter');
+            line-height:nth(map-get($btn-size-list,'base'),1);
+        }
+    }
+    .input-reset,.input-changeType{
+        -webkit-user-modify: read-write-plaintext-only;
+    }
+    .input-search{
+         @extend .baseIcon-search;
+         left:$container_padding;
+         right:auto;
+    }
+    .input-reset{
+        @extend .baseIcon-roundclosefill;
+    }
+    .input-changeType{
+        @extend .baseIcon-attentionfill;
+    }
+    .inputGroup{
+        @extend .flex-container;
+        padding-left:1px;
+        >*{
+            display: block;
+        }
+        .input_addon{
+            @extend .btn;
+            display: block;
+            min-width:nth(map-get($btn-size-list,'base'),1);
+        }
+        >*{
+            margin-left:-1px;
+        }
+        &.inputGroup-radius{
+            >*{
+                &:first-child{
+                    border-radius:$border-radius-base 0 0 $border-radius-base;
+                }
+                &:last-child{
+                    border-radius:0 $border-radius-base $border-radius-base 0;
+                }
+            }
+            input{
+                @extend .flex1;
+            }
+        }
+        &.inputGroup-reverse{
+            .input_addon{
+                @extend .btn.reverse;
+            }
+        }
+    }
+    input:not([type=password])~.input-changeType:before{
+        color:$form-color-base;
+    }
+    @each $colorName,$colorValue in $colorList{
+        &.form.#{$colorName}{
+            input{
+                &:focus{
+                    border-color:$colorValue;
+                }
+                &.input-reverse:focus{
+                    border-color:transparent;
+                    border-bottom-color:$colorValue;
+                }
+                &[type=checkbox],&[type=radio]{
+                    &:before{
+                       color:$colorValue; 
+                    }
+                }
+                &[type=checkbox]:checked{
+                    &.checkbox-switch:before{
+                        background: $colorValue;
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,59 @@
+.listGroup{
+	position: relative;
+    list-style: none;
+    overflow: hidden;
+	.listGroup_item{
+		transform-style: preserve-3d;
+		position: relative;
+		overflow: hidden;
+		&:last-child:after{
+			height:0
+		}
+		&:after{
+			position: absolute;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    height: 1px;
+		    content: '';
+		    transform: scaleY(.5);
+		    background-color: $border-color-default;
+		}
+	}
+	&.listGroup-hideLine{
+		.listGroup_item{
+			margin-top:0;
+			margin-bottom:0;
+			&:after,&:before{
+				display:none;
+			}
+		}
+	}
+	%listItemStyle{
+		float:left;
+		margin-bottom:-1px;
+		margin-top:1px;
+		&:before{
+			position: absolute;
+		    right: 0;
+		    bottom: 0;
+		    top: 0;
+		    width: 1px;
+		    content: '';
+		    transform: scaleX(.5);
+		    background-color: $border-color-default;
+		}
+	}
+	@for $i from 2 through 5{
+		&.listGroup-col#{$i} .listGroup_item{
+			@extend %listItemStyle;
+			width:1/$i * 100%;
+			&:nth-child(#{$i}n):before{
+				width:0;
+			}
+			&:nth-child(#{$i}n+1){
+				clear:both;
+			}
+		}
+	}
+}

@@ -1,0 +1,49 @@
+.popup{
+    overflow: hidden;
+    min-width: 270px;
+    width: 72%;
+    min-height: 158px;
+    padding-bottom: 44px;
+    background: #fff;
+}
+.popup_close{
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+}
+.popup_title{
+    color: #21b252;
+    text-align: center;
+}
+.popup_content{
+    color: #666;
+}
+.popup_ok,
+.popup_cancel{
+    height: 44px;
+    border: 0;
+    border-top: 1px solid #e3e3e3;
+    background: transparent;
+    color: #21b252;
+}
+.alert_ok{
+    width: 100%;
+}
+.confirm_ok{
+    right: 0;
+    width: 50%;
+}
+.confirm_cancel{
+    left: 0;
+    width: 50%;
+    border-right: 1px solid #e3e3e3;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #666;
+}

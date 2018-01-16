@@ -1,0 +1,111 @@
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body{
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+}
+/*text-Color*/
+
+@each $colorName,$colorValue in $colorList{
+	.text-#{$colorName}{
+		color:$colorValue;
+	}
+} 
+@each $colorName,$colorValue in $grayList{
+	.text-#{$colorName}{
+		color:$colorValue;
+	}
+} 
+/*text-Size*/
+@for $i from 10 through 20{
+	.fs-#{$i}{
+		font-size: $i + px;
+	}
+	.frs-#{$i * 2}{
+		font-size: $i / 37.5 + rem;
+	}
+}
+/*text-Alignment*/
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+.text-indent         { text-indent: 2em; }
+/*text-Transformation*/
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
+/*text type*/
+.text-bolder         {font-weight: bolder; }
+.text-delete {text-decoration:line-through}
+.text-vcenter{
+	display: table-cell;
+    vertical-align: middle;
+}
+.text-vtop{
+	display: table-cell;
+    vertical-align: top;
+}
+.text-vbottom{
+	display: table-cell;
+    vertical-align: bottom;
+}
+
+// text limite
+%text-limit{
+	    overflow: hidden;
+	    display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    text-overflow: ellipsis;
+}
+@for $i from 1 through $layoutNumber{
+	.text-limit#{$i}{
+		@extend %text-limit;
+		 -webkit-line-clamp: $i;
+	}
+	.text-fixed#{$i}{
+		height:$line-height-base * $i +em;
+		@extend %text-limit;
+		-webkit-line-clamp: $i;
+	}
+}
+// line-height
+.lh-1{line-height:1}
+@for $i from 3 through 15{
+	.lh-#{$i * 4}{
+		line-height:$i * 4px;
+	}
+}
+i{
+	display: inline-block;
+}
+
+@each $colorName,$colorValue in $bg_colorList{
+	.bg-#{$colorName}{
+		background-color:$colorValue;
+	}
+}
+/*title with line at left and right*/
+.lineTitle{
+	text-align:center;
+	@include display-flex();
+	@include align-items();
+	&:before{
+		display:block;
+		content:'';
+		border-top:1px solid map-get($grayList,'gray');
+		@include flex();
+		margin-right:px(30)
+	};
+	&:after{
+		display:block;
+		content:'';
+		border-top:1px solid map-get($grayList,'gray');
+		@include flex();
+		margin-left:px(30)
+	}
+}

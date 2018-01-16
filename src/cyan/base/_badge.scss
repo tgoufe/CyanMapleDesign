@@ -1,0 +1,106 @@
+@mixin badgeSize($height,$paddingh,$fontSize){
+  min-width: $height;
+  padding: ($height - $fontSize) / 2 $paddingh;
+  font-size: $fontSize;
+  &.reverse{
+    padding: (($height - $fontSize) / 2) - 1 ($paddingh - 1);
+  }
+  &.round,&.square{
+    width: $height;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .icon{
+    margin-top:-1px;
+  }
+}
+.badge{
+  display: inline-block;
+  @include badgeSize(nth(map-get($badge-size-list,'base'),1),nth(map-get($badge-size-list,'base'),2),nth(map-get($badge-size-list,'base'),3));
+  color: map-get($grayList,'darker');
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  color:white;
+  background-color: map-get($grayList,'lighter');
+  position: relative;
+  &:empty {
+    display: none;
+  }
+  &.reverse{
+    background-color: white;
+    color:map-get($grayList,'dark');
+    border:1px solid map-get($grayList,'lighter');
+  }
+  &.round{
+    border-radius:50%;
+    padding-left:0;
+    padding-right:0;
+    overflow: hidden;
+  }
+  &.round.reverse{
+    padding-left:0;
+    padding-right:0;
+  }
+  &.radius{
+    border-radius: 3px;
+  }
+  &.pill{
+    border-radius:500px;
+  }
+  &.flag{
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      left: 6px;
+      bottom: -6px;
+      height: 0;
+      width: 0;
+      border: 6px solid transparent;
+      transform: rotate(135deg);
+      margin-left: -3px;
+    }
+    &.reverse,&.round,&.radius{
+      &:before{
+        display: none;
+      }
+    }
+  }
+  @each $colorName,$colorValue in $bg_colorList{
+      &#{&-#{$colorName}},&.#{$colorName}{
+        background-color:$colorValue;
+      }
+      &#{&}-flag#{&-#{$colorName}},&.flag.#{$colorName}{
+        &:before{
+          border-right-color: darken($colorValue,10%);
+        }
+      }
+      &#{&}-reverse#{&-#{$colorName}},&.reverse.#{$colorName}{
+        background-color:white;
+        border:1px solid map-get($colorList,#{$colorName});
+        color:map-get($colorList,#{$colorName});
+      }
+  }
+}
+@each $btnSizeName,$btnSizeValue in $badge-size-list{
+  @if($btnSizeName!='base'){
+    .badge.#{$btnSizeName}{
+      @include badgeSize(nth($btnSizeValue,1),nth($btnSizeValue,2),nth($btnSizeValue,3));
+    }
+  }
+}
+.badge-group{
+  @include clearfix();
+  .badge{
+    float:left;
+    &.reverse{
+      margin-left:-1px;
+      &.round{
+        margin-left:initial;
+      }
+    }
+  }
+}
+

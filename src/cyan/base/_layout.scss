@@ -1,0 +1,322 @@
+*,*:before,*:after{
+  box-sizing: border-box;
+}
+blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre, td, textarea, th, ul{margin:0;padding:0;list-style:none;}
+/**
+ * grid
+ */
+%container{
+	position: relative;
+    @include clearfix;
+}
+%grid_item{
+	float:left;
+	position: relative;
+    min-height: 1px;
+}
+%grid_space{
+    padding-right: $container_padding;
+    padding-left: $container_padding;
+}
+%grid_space_mini{
+	padding-right: $container_padding / 2;
+    padding-left: $container_padding / 2;
+}
+%grid_space_box{
+	padding-right: 0;
+    padding-left: 0;
+}
+.container{
+	@extend %container;
+	@extend %grid_space;
+	max-width:$container_width;
+    width:100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row{
+	@extend %container;
+	margin-left:$container_padding* -1;
+	margin-right:$container_padding* -1;
+	&.mini{
+		margin-left:$container_padding* -1 / 2;
+		margin-right:$container_padding* -1 / 2;
+		
+	}
+}
+@for $i from 1 through 15{
+	@if($i<13){
+		.span#{$i}{
+			@extend .box-span#{$i};
+			@extend %grid_space;
+			&.mini{
+				@extend %grid_space_mini;
+			}
+		}
+	}
+	.col#{$i}{
+		@extend .box-col#{$i};
+		@extend %grid_space;
+		&.mini{
+			@extend %grid_space_mini;
+		}
+	}
+}
+.box-container{
+	@extend %container;
+	width:100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.box-row{
+	@extend %container
+}
+@for $i from 1 through 15{
+	@if($i<13){
+		.box-span#{$i}{
+			width:$i / 12 * 100%;
+			@extend %grid_item;
+		}
+	}
+	.box-col#{$i}{
+		width:$i /15 * 100%;
+		@extend %grid_item;
+	}
+}
+.img-container{
+	@extend .flex-container;
+	@extend .flex-container.center;
+    overflow: hidden;
+    img{
+    	max-height: 100%;
+    	max-width: 100%;
+    }
+    &.full{
+    	img{
+    		width:100%;
+    		height:100%;
+    	}
+    }
+    &.radius{
+    	border-radius:$border-radius-base;
+    }
+    &.round{
+    	border-radius:$container_width;
+    }
+    &.border{
+    	border:1px solid $border-color-default;
+    }
+}
+.hide-scrollBar{
+    -webkit-overflow-scrolling: touch;
+	&::-webkit-scrollbar {
+	    display: none;
+	}
+}
+.scroll-container-y{
+	overflow-y: scroll;
+    overflow-x: hidden;
+    @extend .hide-scrollBar;
+}
+.scroll-container{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    font-size: 0;
+    white-space: nowrap;
+	&>*{
+		display: inline-block;
+		font-size: initial;
+	}
+	@extend .hide-scrollBar;
+}
+.flex-container{
+	@include display-flex();
+	@include align-items();
+	@include justify-content();
+	&.round{@include justify-content(space-around); }
+	&.center{@include justify-content(center); }
+	&.left{@include justify-content(flex-start); }
+	&.right{@include justify-content(flex-end); }
+	&.top{@include align-items(flex-start) }
+	&.line{@include align-items(baseline) }
+	&.bottom{@include align-items(flex-end) }
+	&.vfull{@include align-items(stretch) }
+	&.hfull{&>*{@include flex(); } }
+	&.leftCenter{@include justify-content(flex-start);}
+	&.leftTop{@include justify-content(flex-start);@include align-items(flex-start);}
+	&.leftBottom{@include justify-content(flex-start);@include align-items(flex-end)}
+	&.leftLine{@include justify-content(flex-start);@include align-items(baseline);}
+	&.rightCenter{@include justify-content(flex-end);}
+	&.rightTop{@include justify-content(flex-end);@include align-items(flex-start);}
+	&.rightBottom{@include justify-content(flex-end);@include align-items(flex-end);}
+	&.rightLine{@include justify-content(flex-end);@include align-items(baseline);}
+	&.topRound{@include justify-content(space-around);@include align-items(flex-start);}
+	&.bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
+}
+.flex-container-col{
+	@extend .flex-container;
+	@include flex-direction();
+	&.round{@include justify-content(space-around); }
+	&.center{@include justify-content(center); }
+	&.left{@include align-items(flex-start); }
+	&.right{@include align-items(flex-end); }
+	&.top{@include justify-content(flex-start); }
+	&.bottom{@include justify-content(flex-end); }
+	&.vfull{&>*{@include flex(); } }
+	&.hfull{@include align-items(stretch) }
+	&.leftCenter{@include align-items(flex-start);@include justify-content(center);}
+	&.leftTop{@include align-items(flex-start);@include justify-content(flex-start);}
+	&.leftBottom{@include align-items(flex-start);@include justify-content(flex-end);}
+	&.rightCenter{@include align-items(flex-end);@include justify-content(center);}
+	&.rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
+	&.rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
+	&>span{
+		display:block;
+	}
+}
+@for $i from 1 through $layoutNumber{
+	.flex-grow#{$i}{flex-grow:$i}
+	.flex#{$i}{flex:$i}
+}
+@for $i from 0 through 20{
+	.flex-basis#{$i * 5}{flex-basis:($i * 5) * 1%}
+}
+/**
+ * ratio container
+ */
+%ratioStyle{
+	position: relative;
+	&:before{
+		content:"";
+		display:block;
+		height:0;
+		font-size: 0;
+	}
+	>*{
+		position: absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+		font:initial;
+		color:initial;
+		overflow: hidden;
+	}
+	>img{
+		width:100%;
+		height:100%;
+	}
+	@include hide-text();
+	&.ratio-container-col2{z-index: 9;>*{bottom:-100%}}
+	&.ratio-container-span2{z-index: 9;>*{right:-100%}}
+	&.ratio-container-col3{z-index: 9;>*{bottom:-200%}}
+	&.ratio-container-span3{z-index: 9;>*{right:-200%}}
+	&.ratio-container-col4{z-index: 9;>*{bottom:-300%}}
+	&.ratio-container-span4{z-index: 9;>*{right:-300%}}
+}
+.ratio-container{
+	@extend %ratioStyle;
+	&:before{
+		padding-top:100%;
+	}
+}
+@for $i from 1 through $layoutNumber{
+	@for $k from 1 through $layoutNumber{
+		@if($i != $k){
+			.ratio-container-#{$i}x#{$k}{
+				@extend %ratioStyle;
+				&:before{
+					padding-top:$k/$i *100%;
+				}
+			}
+		}
+	}
+}
+
+@for $i from 0 through $layoutNumber{
+	.margin#{$i * 10}{margin:getLayoutSize($i,1)}
+	.margint#{$i * 10}{margin-top:getLayoutSize($i,1)}
+	.marginb#{$i * 10}{margin-bottom:getLayoutSize($i,1)}
+	.marginl#{$i * 10}{margin-left:getLayoutSize($i,1)}
+	.marginr#{$i * 10}{margin-right:getLayoutSize($i,1)}
+	.margint-n#{$i * 10}{margin-top:getLayoutSize($i,-1)}
+	.marginb-n#{$i * 10}{margin-bottom:getLayoutSize($i,-1)}
+	.marginl-n#{$i * 10}{margin-left:getLayoutSize($i,-1)}
+	.marginr-n#{$i * 10}{margin-right:getLayoutSize($i,-1)}
+	.marginh#{$i * 10}{@extend .marginl#{$i * 10};@extend .marginr#{$i * 10}}
+	.marginv#{$i * 10}{@extend .margint#{$i * 10};@extend .marginb#{$i * 10}}	
+	.padding#{$i * 10}{padding:getLayoutSize($i,1)}
+	.paddingt#{$i * 10}{padding-top:getLayoutSize($i,1)}
+	.paddingb#{$i * 10}{padding-bottom:getLayoutSize($i,1)}
+	.paddingl#{$i * 10}{padding-left:getLayoutSize($i,1)}
+	.paddingr#{$i * 10}{padding-right:getLayoutSize($i,1)}
+	.paddingh#{$i * 10}{@extend .paddingl#{$i * 10};@extend .paddingr#{$i * 10}}
+	.paddingv#{$i * 10}{@extend .paddingt#{$i * 10};@extend .paddingb#{$i * 10}}
+	.top#{$i * 10}{top:getLayoutSize($i,1)}
+	.right#{$i * 10}{right:getLayoutSize($i,1)}
+	.left#{$i * 10}{left:getLayoutSize($i,1)}
+	.bottom#{$i * 10}{bottom:#{getLayoutSize($i,1)}}
+	.top-n#{$i * 10}{top:getLayoutSize($i,-1)}
+	.right-n#{$i * 10}{right:getLayoutSize($i,-1)}
+	.left-n#{$i * 10}{left:getLayoutSize($i,-1)}
+	.bottom-n#{$i * 10}{bottom:getLayoutSize($i,-1)}
+}
+.float-right{float:right}
+.float-left{float:left}
+.pos-r{position: relative}
+.pos-a{position: absolute}
+.pos-f{position: fixed}
+.vcenter{top:50%;@include translateY(-50%);@extend .pos-a}
+.hcenter{left:50%;@include translateX(-50%);@extend .pos-a}
+.clearfix{@include clearfix();}
+.abs-bottom,.abs-top,.abs-full,.abs-left,.abs-right{
+	@extend .pos-a;
+}
+.fixed-bottom, .fixed-top, .fixed-full, .fixed-left, .fixed-right,.fixed-center{
+	@extend .pos-f;
+}
+.abs-bottom,.fixed-bottom{
+	bottom:0;
+	left:0;
+	right:0;
+}
+.abs-top,.fixed-top{
+	top:0;
+	left:0;
+	right:0;
+}
+.abs-full,.fixed-full,.fixed-center{
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+.fixed-center{margin:auto}
+.abs-left,.fixed-left{
+	top:0;
+	bottom:0;
+	left:0;
+}
+.abs-right,.fixed-right{
+	top:0;
+	bottom:0;
+	right:0;
+}
+.overflow-h{
+	overflow: hidden;
+}
+.overflow-xh{
+	overflow-x: hidden;
+}
+.overflow-yh{
+	overflow-x: hidden;
+}
+.dis-b{
+	display:block;
+}
+.dis-i{
+	display:inline-block;
+}
+.dis-n{
+	display:none;
+}

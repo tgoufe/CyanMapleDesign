@@ -1,0 +1,25 @@
+{
+  "name": "CyanMapleDesigne",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "http-server -p 3003 -s --cors",
+    "cyan":"parcel build src/cyan/cmui.scss -d CMUI",
+    "maple":"parcel build src/maple/index.js -d CMUI "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-preset-env": "^1.6.1",
+    "http-server": "^0.11.1",
+    "lodash": "^4.17.4",
+    "node-sass": "^4.7.2",
+    "parcel-bundler": "^1.4.1",
+    "parcel-plugin-vue": "^1.5.0",
+    "postcss-modules": "^1.1.0",
+    "vue": "^2.5.13"
+  }
+}

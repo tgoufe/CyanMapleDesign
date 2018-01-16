@@ -1,0 +1,9 @@
+.effect{
+	transition: all .4s;
+}
+.effect-fuqi{
+	&:hover{
+		    transform: translateY(-2%);
+		    box-shadow: 1px 4px 10px 2px #CCC;
+	}
+}

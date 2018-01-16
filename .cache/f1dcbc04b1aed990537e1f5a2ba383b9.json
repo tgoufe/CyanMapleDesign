@@ -1,0 +1,1 @@
+{"dependencies":[],"generated":{"js":"\"use strict\";Object.defineProperty(exports,\"__esModule\",{value:!0}),exports.default={name:\"cmui-render\",functional:!0,props:{data:{type:Object,default:{}}},render:function(e,t){var r=_.get(t,\"props.data\");return e(r.tag,r.data,r.children)}};"},"hash":"d7a47cd33b403a80dd7cd66ef7e35b8f"}

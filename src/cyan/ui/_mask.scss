@@ -1,0 +1,50 @@
+.mask{
+	position: fixed;
+	z-index: 1000;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	background-color:rgba(#000,0.4);
+	&.mask-white{
+		background-color:rgba(#fff,0.4);
+		.mask-close{
+			background-color:rgba(#fff,0.4);
+			border-color:rgba(#000,0.4);
+			&:before{
+				color:rgba(#000,0.4);
+			}
+		}
+	}
+	@extend .flex-container;
+	&.mask-transparent{
+		background-color:transparent;
+	}
+	.mask_content{
+		position: relative;
+		max-height:100%;
+		max-width:100%;
+	}
+	.mask_close{
+		position: absolute;
+		background-color:rgba(#000,0.4);
+		top:-20px - 10;
+		right:0;
+		width:20px;
+		height:20px;
+		line-height:20px - 1;
+		border:1px solid rgba(#fff,0.8);
+		border-radius:50%;
+		text-align:center;
+		@extend .baseIcon-roundclose;
+		&:before{
+			color:rgba(#fff,0.8);
+			font-family: 'CMUIbaseIcon' !important;
+			font-size:20px / 2 ;
+		}
+	}
+	>img{
+		max-height:100%;
+		max-width:100%;
+	}
+}

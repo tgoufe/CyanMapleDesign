@@ -1,0 +1,16 @@
+.notice{
+	display:block;
+	background-color: rgba(0,0,0,0.6);
+    padding: 10px 30px;
+    border-radius: 5px;
+    color: white;
+    max-width: 80%;
+    max-height: 90%;
+    overflow: scroll;
+    text-align:center;
+}
+.notice i{
+	display: block;
+	font-size: 30px;
+	margin-bottom:5px;
+}

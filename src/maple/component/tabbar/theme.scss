@@ -1,0 +1,152 @@
+$name:cmui-tabbar;
+$baseColor:#ff6565;
+.#{$name}{
+	.#{$name}__pre{}
+	.#{$name}__next{}
+	.#{$name}__nav{
+		@at-root.#{$name}-top#{&}{}
+		@at-root.#{$name}-left#{&}{}
+		@at-root.#{$name}-right#{&}{}
+		@at-root.#{$name}-bottom#{&}{}
+	}
+	.#{$name}__head{}
+	.#{$name}__head-item{
+		&.active{
+		}
+	}
+	.#{$name}__content{}
+	.#{$name}__pane{}
+	.#{$name}__pane-item{}
+	[slot="content"]{}
+}
+.#{$name}{
+	.#{$name}__head{
+		.#{$name}__pre{}
+		.#{$name}__next{}
+		.#{$name}__nav{
+			@at-root.#{$name}-top#{&}{}
+			@at-root.#{$name}-left#{&}{}
+			@at-root.#{$name}-right#{&}{}
+			@at-root.#{$name}-bottom#{&}{}
+			.#{$name}__head-item{
+				&.active{
+
+				}
+			}
+		}
+	}
+	.#{$name}__content{
+		.#{$name}__pane{
+			.#{$name}__pane-item{
+				[slot="content"]{
+
+				}
+			}
+		}
+	}
+}
+/*theme1*/
+.#{$name}.theme1{
+	.#{$name}__pre{}
+	.#{$name}__next{}
+	.#{$name}__nav{
+		@at-root.#{$name}-top#{&}{border-bottom:1px solid #eeeeee;}
+		@at-root.#{$name}-left#{&}{border-right:1px solid #eeeeee;}
+		@at-root.#{$name}-right#{&}{border-left:1px solid #eeeeee;}
+		@at-root.#{$name}-bottom#{&}{border-top:1px solid #eeeeee;}
+	}
+	.#{$name}__head{}
+	.#{$name}__head-item{
+		@at-root.#{$name}-top#{&}{
+			border-bottom:2px solid transparent;
+			&.active{
+				border-bottom-color:$baseColor;
+			}
+		}
+		@at-root.#{$name}-left#{&}{
+			border-right:2px solid transparent;
+			&.active{
+				border-right-color:$baseColor;
+			}
+		}
+		@at-root.#{$name}-bottom#{&}{
+			border-top:2px solid transparent;
+			&.active{
+				border-top-color:$baseColor;
+			}
+		}
+		@at-root.#{$name}-right#{&}{
+			border-left:2px solid transparent;
+			&.active{
+				border-left-color:$baseColor;
+			}
+		}
+		&.active{
+			color:$baseColor;
+		}
+	}
+	.#{$name}__content{}
+	.#{$name}__pane{}
+	.#{$name}__pane-item{}
+	[slot="content"]{}
+}
+
+/*theme2*/
+.#{$name}.theme2{
+	.#{$name}__pre{}
+	.#{$name}__next{}
+	.#{$name}__nav{
+	}
+	.#{$name}__head{}
+	.#{$name}__head-item{
+		border:1px solid #eeeeee;
+		@at-root.#{$name}-top#{&}{
+			&:not(:first-child){
+				margin-left:-1px;
+			}
+		};
+		@at-root.#{$name}-bottom#{&}{
+			&:not(:first-child){
+				margin-left:-1px;
+			}
+		};
+		@at-root.#{$name}-left#{&}{
+			&:not(:first-child){
+				margin-top:-1px;
+			}
+		};
+		@at-root.#{$name}-right#{&}{
+			&:not(:first-child){
+				margin-top:-1px;
+			}
+		};
+		@at-root.#{$name}-top#{&}.active{border-bottom-color:white;}
+		@at-root.#{$name}-left#{&}.active{border-right-color:white;}
+		@at-root.#{$name}-right#{&}.active{border-left-color:white;}
+		@at-root.#{$name}-bottom#{&}.active{border-top-color:white;}
+		&.active{
+			color:$baseColor;
+		}
+	}
+	.#{$name}__content{
+		@at-root.#{$name}-top#{&}{
+			margin-top:-1px;
+			border-top:1px solid #eeeeee;
+		}
+		@at-root.#{$name}-left#{&}{
+			margin-left:-1px;
+			border-left:1px solid #eeeeee;
+		}
+		@at-root.#{$name}-right#{&}{
+			margin-right:-1px;
+			border-right:1px solid #eeeeee;
+		}
+		@at-root.#{$name}-bottom#{&}{
+			margin-bottom:-1px;
+			border-bottom:1px solid #eeeeee;
+		}
+	}
+	.#{$name}__pane{}
+	.#{$name}__pane-item{}
+	[slot="content"]{}
+}

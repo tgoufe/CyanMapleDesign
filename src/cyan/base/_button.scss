@@ -1,0 +1,172 @@
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  @if($isPC){
+    &:focus,
+    &.focus {
+      color: $color;
+      background-color: darken($background, 10%);
+          border-color: darken($border, 25%);
+    }
+    &:hover {
+      color: $color;
+      background-color: darken($background, 10%);
+          border-color: darken($border, 12%);
+    }
+    &:active,
+    &.active,
+    {
+      color: $color;
+      background-color: darken($background, 10%);
+          border-color: darken($border, 12%);
+
+      &:hover,
+      &:focus,
+      &.focus {
+        color: $color;
+        background-color: darken($background, 17%);
+            border-color: darken($border, 25%);
+      }
+    }
+    &:active,
+    &.active,
+    {
+      background-image: none;
+    }
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: $background;
+          border-color: $border;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}
+@mixin button-size($height, $padding-horizontal, $font-size) {
+  padding: ($height - 26px - 2) / 2 $padding-horizontal;
+  font-size: $font-size;
+  .badge{
+    position: relative;
+    top:-2px;
+  }
+}
+.btn {
+  display: inline-block;
+  margin-bottom: 0; 
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; 
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height:26px;
+  @include button-variant(map-get($grayList,'dark'), #eceeef, map-get($grayList,'lighter'));
+  @include button-size(nth(map-get($btn-size-list,'base'),1),nth(map-get($btn-size-list,'base'),2),nth(map-get($btn-size-list,'base'),3));
+  @include user-select(none);
+  @if($isPC){
+    &,
+    &:active,
+    &.active {
+      &:focus,
+      &.focus {
+        @include tab-focus;
+      }
+    }
+  }
+  &.radius{
+    border-radius: $border-radius-base;
+  }
+  &.reverse{
+    @include button-variant(map-get($grayList,'dark'), white, map-get($grayList,'lighter'));
+  }
+  @if($isPC){
+    &:hover,
+    &:focus,
+    &.focus {
+      color: map-get($grayList,'darker');
+      text-decoration: none;
+    }
+
+    &:active,
+    &.active {
+      outline: 0;
+      background-image: none;
+      @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    }
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    @include opacity(.55);
+    @include box-shadow(none);
+  }
+}
+@each $btnSizeName,$btnSizeValue in $btn-size-list{
+  @if(#{$btnSizeName}!='base'){
+    .btn.#{$btnSizeName}{
+      @include button-size(nth($btnSizeValue,1),nth($btnSizeValue,2),nth($btnSizeValue,3));
+    }
+  }
+}
+a.btn {
+  &.disabled,
+  fieldset[disabled] & {
+    pointer-events: none; 
+  }
+}
+@each $colorName,$colorValue in $bg_colorList{
+  .btn.#{$colorName}{
+    @include button-variant(white, $colorValue, $colorValue);
+    &.btn-reverse,&.reverse{
+      @include button-variant(map-get($colorList,#{$colorName}), white, $colorValue);
+    }
+  }
+}
+.btn.block {
+  display: block;
+  // width: 100%;
+}
+.btn.block + .btn.block{
+  margin-top: 5px;
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn.block {
+    width: 100%;
+  }
+}
+//btn-group
+.btn-group{
+  padding-left:1px;
+  @include clearfix();
+  .btn{
+    position: relative;
+    float: left;
+    margin-left:-1px;
+    &.radius{
+      border-radius:0;
+      &:first-child{
+        border-radius: $border-radius-base 0 0 $border-radius-base;
+      }
+      &:last-child{
+        border-radius: 0 $border-radius-base  $border-radius-base 0;
+      }
+    }
+  }
+}

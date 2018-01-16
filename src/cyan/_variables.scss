@@ -1,0 +1,63 @@
+$isPC:false !default;
+$colorList:(
+	'red': #ff6565,
+	'orange': #ff9800,
+	'yellow': #ff6705,
+	'green': #2eb252,
+	'coffee': #853f3a,
+	'blue': #25aaff,
+	'purple': #7000C8
+);
+$bg_colorList:(
+	'red': #ff6565,
+	'orange': #ff9800,
+	'yellow': #ff6705,
+	'green': #2eb252,
+	'coffee': #853f3a,
+	'blue': #25aaff,
+	'purple': #7000C8,
+	'black':#000000,
+	'white':#ffffff
+);
+$grayList:(
+	'black': #000,
+	'darker': #222,
+	'dark': #666,
+	'gray':#8a8a8a,
+	'light': #999,
+	'lighter': #ccc,
+	'white': #fff
+);
+$container_padding:10px;//on pc
+$container_width:800px;//on pc
+@if(not $isPC){
+	$container_padding:.133333333rem;
+	$container_width:10rem;
+};
+//layout step number
+$layoutNumber:5;
+//base padding
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+//font
+$font-family-base: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif !default;
+$font-size-base:     14px !default;
+$line-height-base:   20/14 !default;
+//border
+$border-radius-base:        4px !default;
+$border-color-default:      #eeeeee !default;
+//button
+$btn-size-list:(//$height, $padding-horizontal, $font-size
+	'base':(36px,15px,16px),
+	'small':(28px,15px,14px),
+	'big':(44px,15px,16px)
+);
+//badge
+$badge-size-list:(//$height, $padding-horizontal, $font-size
+	'base':(20px,10px,12px),
+	'small':(16px,5px,10px),
+	'big':(24px,10px,13px)
+);
+//form
+$form-color-base : map-get($grayList,'gray') !default;
+$from-control-size: 28px;
