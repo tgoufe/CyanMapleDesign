@@ -1,0 +1,36 @@
+@function rem($px){
+	@return $px/37.5+rem;
+}
+h1{
+	font-size: 30px;
+	font-weight: 600;
+	margin-bottom:0.2rem;
+	margin-top:.2rem;
+}
+pre{
+	overflow: auto;
+    word-wrap: normal;
+    margin: 0;
+    padding: .85em 1em;
+    margin-bottom: 1.275em;
+    background: #f7f7f7;
+	border-radius: 5px;
+	color:#1a6361;
+}
+blockquote{
+	padding:rem(6);
+	padding-left:rem(10);
+	border-left:2px solid #b9b7b7;
+	color:#7d7d7d
+}
+.card{
+	.head{
+		background-color: #f7f7f7;
+		border-radius: 5px 5px 0 0;
+		padding: rem(10);
+	}
+	.body{
+		border:1px solid #f7f7f7;
+		border-top:none;
+	}
+}

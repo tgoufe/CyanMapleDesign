@@ -1,6 +1,4 @@
 node_modules/
-dist/*.js
-/.cache/
+dist/
+.cache/
 .DS_Store
-.cache/*.js
-.cache/*.html

@@ -1,4 +1,5 @@
 <template>
+	<transition name="slide">
 	<div class="mask bottom hfull" :class="className" style="z-index: 1;" v-if="showCmuiDialog">
 		<div class="cmui-actionsContainer">
 			<div class="cmui-actionsGroup">
@@ -9,6 +10,7 @@
 			</div>
 		</div>
 	</div>
+	</transition>
 </template>
 <style lang="scss">
 	@import "../../../cyan/variables";
@@ -51,7 +53,8 @@
 		},
 		data:function(){
 			return {
-				showCmuiDialog:false
+				showCmuiDialog:false,
+				slide:false
 			}
 		},
 		methods: {
