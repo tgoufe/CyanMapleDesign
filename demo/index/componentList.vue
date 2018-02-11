@@ -27,7 +27,9 @@
 				'action',
 				'number',
 				'input',
-				'tabbar'
+				'tabbar',
+				'collapse',
+				'affix'
 			]
 		},
 		page:{

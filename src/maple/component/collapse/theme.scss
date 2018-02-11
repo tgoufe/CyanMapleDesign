@@ -1,0 +1,41 @@
+$name:cmui-collapse;
+//以下是平级样式接口
+.#{$name}{}
+.#{$name}-item{}
+.#{$name}-item__header{}
+.#{$name}-item__header__arrow{}
+.#{$name}-item__bodyWarp{}
+.#{$name}-item__body{}
+//以下是层级样式接口
+.#{$name}{
+  .#{$name}-item{
+    .#{$name}-item__header{
+      .#{$name}-item__header__arrow{
+
+      }
+    }
+    .#{$name}-item__bodyWarp{
+      .#{$name}-item__body{
+
+      }
+    }
+  }
+}
+.cmui-collapse-item__body,.cmui-collapse-item__header{
+  border: 1px solid #dfe6ec;
+  margin-bottom: -1px;
+}
+.cmui-collapse-item{
+  &:last-child{
+    .cmui-collapse-item__body{
+      margin-bottom:0px;
+    }
+  }
+}
+.cmui-collapse-item__bodyWarp{
+  will-change: height;
+  overflow: hidden;
+}
+.collapse-transition {
+    transition: height .3s ease-in-out;
+}

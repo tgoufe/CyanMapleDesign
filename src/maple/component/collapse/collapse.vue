@@ -3,12 +3,15 @@
     <slot></slot>
   </div>
 </template>
+<style lang="scss">
+  @import 'theme';
+</style>
 <script>
   export default {
     name: 'CMUICollapse',
     componentName: 'CMUICollapse',
     props: {
-      shoufengqin: Boolean,
+      onlyone: Boolean,
       activeIndex: {
         type: [Array, Number],
         default() {
@@ -23,20 +26,17 @@
     },
     watch: {
       activeIndex(value) {
-        this.activeNames = [].concat(activeIndex);
+        this.activeNames = [].concat(value);
       }
     },
     methods: {
       setActiveNames(activeNames) {
         activeNames = [].concat(activeNames);
-        let value = this.shoufengqin ? activeNames[0] : activeNames;
+        let value = this.onlyone ? activeNames[0] : activeNames;
         this.activeNames = activeNames;
-        // this.$emit('input', value);
-        // this.$emit('change', value);
-        console.log(value);
       },
       itemClick(item) {
-        if (this.shoufengqin) {
+        if (this.onlyone) {
           this.setActiveNames(
             (this.activeNames[0] || this.activeNames[0] === 0) &&
             this.activeNames[0] === item.name

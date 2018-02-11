@@ -1,0 +1,70 @@
+/*******************collapse*******************/
+$name:cmui-collapse;//组件前缀
+//以下是平级样式接口
+.#{$name}{}
+.#{$name}-item{}
+.#{$name}-item__header{}
+.#{$name}-item__header__arrow{}
+.#{$name}-item__bodyWarp{}
+.#{$name}-item__body{}
+//以下是层级样式接口
+.#{$name}{
+  .#{$name}-item{
+    .#{$name}-item__header{
+      .#{$name}-item__header__arrow{
+
+      }
+    }
+    .#{$name}-item__bodyWarp{
+      .#{$name}-item__body{
+
+      }
+    }
+  }
+}
+/*******************collapse*******************/
+
+
+
+
+
+/*******************tabbar*******************/
+$name:cmui-tabbar;//组件前缀
+//以下是平级样式接口
+.#{$name}{
+    [slot="content"]{}
+}
+.#{$name}__pre{}
+.#{$name}__next{}
+.#{$name}__nav{}
+.#{$name}__head{}
+.#{$name}__head-item{
+    &.active{}
+}
+.#{$name}__content{}
+.#{$name}__pane{}
+.#{$name}__pane-item{}
+//以下是层级样式接口
+.#{$name}{
+    .#{$name}__head{
+        .#{$name}__pre{}
+        .#{$name}__next{}
+        .#{$name}__nav{
+            .#{$name}__head-item{
+                &.active{
+ 
+                }
+            }
+        }
+    }
+    .#{$name}__content{
+        .#{$name}__pane{
+            .#{$name}__pane-item{
+                [slot="content"]{
+ 
+                }
+            }
+        }
+    }
+}
+/*******************tabbar*******************/

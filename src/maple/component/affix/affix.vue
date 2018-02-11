@@ -1,15 +1,12 @@
 <template>
     <div>
-        <div class="cmui-affix" :style="styles">
+        <div class="cmui-affix" :style="styles" :class="{affixActive:affix}">
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
-/**
- * 以下代码来自于饿了么组件实在不想重写了
- */
 import vm from "../../vm.js";
 function getScroll(target, top) {
     const prop = top ? 'pageYOffset' : 'pageXOffset';
@@ -57,7 +54,7 @@ export default {
             return type;
         }
     },
-    mounted () {
+    mounted(){
         window.addEventListener('scroll', this.handleScroll, false);
         window.addEventListener('resize', this.handleScroll, false);
     },

@@ -3,10 +3,16 @@ import componentList from './componentList.vue';
 import badge from './badge.vue';
 import button from './button.vue';
 import actions from './actions.vue';
+import collapse from './collapse.vue';
+import tabbar from './tabbar.vue';
+import affix from './affix.vue';
 const routes = [
   { path: '/componentList/:id', component: componentList },
   { path: '/badge/', component: badge },
   { path: '/button/', component: button },
+  { path: '/collapse/', component: collapse },
+  { path: '/tabbar/', component: tabbar },
+  { path: '/affix/', component: affix },
   { path: '/actions/', component: actions }
 ]
 const router = new VueRouter({

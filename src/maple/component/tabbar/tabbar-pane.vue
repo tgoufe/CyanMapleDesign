@@ -18,7 +18,7 @@
 						'display':index===activeIndex?'block':'none'
 					},
 					key:index
-				},item.children.filter(inner=>_.get(inner,'data.attrs.slot')==='content'))
+				},_.get(item,'data.attrs.content')||item.children.filter(inner=>_.get(inner,'data.attrs.slot')!=='title')||'')
 			})
 			return h('div',{
 				'class':{
