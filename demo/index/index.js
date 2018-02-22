@@ -6,6 +6,7 @@ import actions from './actions.vue';
 import collapse from './collapse.vue';
 import tabbar from './tabbar.vue';
 import affix from './affix.vue';
+import alert from './alert.vue';
 const routes = [
   { path: '/componentList/:id', component: componentList },
   { path: '/badge/', component: badge },
@@ -13,6 +14,7 @@ const routes = [
   { path: '/collapse/', component: collapse },
   { path: '/tabbar/', component: tabbar },
   { path: '/affix/', component: affix },
+  { path: '/alert/', component: alert },
   { path: '/actions/', component: actions }
 ]
 const router = new VueRouter({

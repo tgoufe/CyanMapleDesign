@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "http-server -p 3003 -s --cors",
+    "server": "parcel demo/index/index.html",
     "cyan":"parcel build src/cyan/cmui.scss -d CMUI",
     "maple":"parcel build src/maple/index.js -d CMUI "
   },

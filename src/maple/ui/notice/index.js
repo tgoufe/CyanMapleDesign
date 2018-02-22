@@ -1,7 +1,6 @@
 import noticeVue from "./index.vue";
 var defaults = {
-	  title: ''
-	, content: ''
+	  content: ''
 	, className: ''
 	, timeout: 3000
 	, okFn:function(){}

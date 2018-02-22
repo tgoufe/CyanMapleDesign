@@ -1,16 +1,17 @@
 <template>
-	<div class="mask center" :class="className" style="z-index: 1;" v-if="showCmuiDialog">
+	<div class="fixed-full flex-container center cmui-dialogMask cmui-confirmMask" :class="className" style="z-index: 1;" v-if="showCmuiDialog">
 		<div class="cmui-dialogContainer cmui-confirmContainer">
 			<div class="cmui-dialogTitle cmui-confirmTitle" v-html="title"></div>
 			<div class="cmui-dialogBody cmui-confirmBody" v-if="content" v-html="content" :style="bodyStyle"></div>
 			<div class="cmui-dialogButtons cmui-confirmButtons flex-container">
-				<div class="cmui-confirmButton cmui-dialogButton btn flex1" :class="{'okDisable':!okEnable}" :style="okEnable?okStyle:okDisableStyle" v-html="okText" @click="ok()"></div>
-				<div class="cmui-confirmButton cmui-dialogButton btn flex1" v-html="cancelText" :style="cancelStyle" @click="cancel()"></div>
+				<div class="cmui-confirmButton cmui-confirmButton__ok cmui-dialogButton flex1" :class="{'okDisable':!okEnable}" :style="okEnable?okStyle:okDisableStyle" v-html="okText" @click="ok()"></div>
+				<div class="cmui-confirmButton cmui-confirmButton__cancel cmui-dialogButton flex1" v-html="cancelText" :style="cancelStyle" @click="cancel()"></div>
 			</div>
 		</div>
 	</div>
 </template>
-<style>
+<style lang="scss">
+@import "theme";
 	.cmui-confirmContainer{}
 	.cmui-confirmTitle{}
 	.cmui-confirmBody{}

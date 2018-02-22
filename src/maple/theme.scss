@@ -1,19 +1,17 @@
-/*******************collapse*******************/
+// collapse
 $name:cmui-collapse;//组件前缀
-//以下是平级样式接口
+//平级样式接口
 .#{$name}{}
 .#{$name}-item{}
 .#{$name}-item__header{}
 .#{$name}-item__header__arrow{}
 .#{$name}-item__bodyWarp{}
 .#{$name}-item__body{}
-//以下是层级样式接口
+//层级样式接口
 .#{$name}{
   .#{$name}-item{
     .#{$name}-item__header{
-      .#{$name}-item__header__arrow{
-
-      }
+      .#{$name}-item__header__arrow{}
     }
     .#{$name}-item__bodyWarp{
       .#{$name}-item__body{
@@ -22,15 +20,15 @@ $name:cmui-collapse;//组件前缀
     }
   }
 }
-/*******************collapse*******************/
 
 
 
 
 
-/*******************tabbar*******************/
+
+// tabbar
 $name:cmui-tabbar;//组件前缀
-//以下是平级样式接口
+//平级样式接口
 .#{$name}{
     [slot="content"]{}
 }
@@ -44,27 +42,79 @@ $name:cmui-tabbar;//组件前缀
 .#{$name}__content{}
 .#{$name}__pane{}
 .#{$name}__pane-item{}
-//以下是层级样式接口
+//层级样式接口
 .#{$name}{
     .#{$name}__head{
         .#{$name}__pre{}
         .#{$name}__next{}
         .#{$name}__nav{
             .#{$name}__head-item{
-                &.active{
- 
-                }
+                &.active{}
             }
         }
     }
     .#{$name}__content{
         .#{$name}__pane{
             .#{$name}__pane-item{
-                [slot="content"]{
- 
-                }
+                [slot="content"]{}
             }
         }
     }
 }
-/*******************tabbar*******************/
+
+
+
+
+
+// alert
+// 层级样式接口
+.cmui-alertMask{
+    .cmui-alertContainer{
+        .cmui-alertTitle{}
+        .cmui-alertBody{}
+        .cmui-alertButtons{
+            .cmui-alertButton{}
+        }
+    }
+}
+// 平级样式接口
+.cmui-alertMask{}
+.cmui-alertContainer{}
+.cmui-alertTitle{}
+.cmui-alertBody{}
+.cmui-alertButtons{}
+.cmui-alertButton{}
+// confirm
+// 层叠样式接口
+.cmui-confirmMask{
+    .cmui-confirmContainer{
+        .cmui-confirmTitle{}
+        .cmui-confirmBody{}
+        .cmui-confirmButtons{
+            .cmui-confirmButton{
+                &.cmui-confirmButton__ok{}
+                &.cmui-confirmButton__cancel{}
+            }
+        }
+    }
+}
+// 平行样式接口
+.cmui-confirmMask{}
+.cmui-confirmContainer{}
+.cmui-confirmTitle{}
+.cmui-confirmBody{}
+.cmui-confirmButtons{}
+.cmui-confirmButton{}
+.cmui-confirmButton__ok{}
+.cmui-confirmButton__cancel{}
+// notice
+// 平行样式接口
+.cmui-noticeMask{}
+.cmui-noticeContainer{}
+.cmui-noticeBody{}
+// 层叠样式接口
+.cmui-noticeMask{
+    .cmui-noticeContainer{
+        .cmui-noticeBody{}
+    }
+}

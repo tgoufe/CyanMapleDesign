@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>CMUI</title>
+	<script src="../src/libs/flexible/flexible.js"></script>
+	<script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+	<link rel="stylesheet" href="CMUI.css">
+	<style>
+		.flip-list-move {
+		  transition: transform 1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="main" class="padding10">
+		<cmui-list :col="col" border="#0edac6">
+			<!-- <transition-group> -->
+				<cmui-list-item v-for="i in 36" :key="i">
+					<div class="ratio-container bg-white">
+						<span class="flex-container center">{{i}}</span>
+					</div>
+				</cmui-list-item>
+			<!-- </transition-group> -->
+		</cmui-list>
+		<transition-group name="flip-list" tag="div">
+			<span v-for="i in l" :key="i">{{i}}</span>
+		</transition-group>
+		
+	</div>
+	<script src="index.js"></script>
+	<script>
+		let vm=new Vue({
+			el:'#main',
+			data:{
+				col:6,
+				l:_.times(10)
+			},
+			mounted(){
+				setInterval(()=>{
+ 					this.l=_.shuffle(this.l)
+				}, 3000);
+
+			}
+		});
+	</script>
+</body>
+</html>

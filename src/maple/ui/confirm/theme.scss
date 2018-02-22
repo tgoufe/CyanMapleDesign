@@ -1,0 +1,22 @@
+// 层叠样式接口
+.cmui-confirmMask{
+	.cmui-confirmContainer{
+		.cmui-confirmTitle{}
+		.cmui-confirmBody{}
+		.cmui-confirmButtons{
+			.cmui-confirmButton{
+				&.cmui-confirmButton__ok{}
+				&.cmui-confirmButton__cancel{}
+			}
+		}
+	}
+}
+// 平行样式接口
+.cmui-confirmMask{}
+.cmui-confirmContainer{}
+.cmui-confirmTitle{}
+.cmui-confirmBody{}
+.cmui-confirmButtons{}
+.cmui-confirmButton{}
+.cmui-confirmButton__ok{}
+.cmui-confirmButton__cancel{}

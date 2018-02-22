@@ -1,0 +1,17 @@
+// 层级样式接口
+.cmui-alertMask{
+	.cmui-alertContainer{
+		.cmui-alertTitle{}
+		.cmui-alertBody{}
+		.cmui-alertButtons{
+			.cmui-alertButton{}
+		}
+	}
+}
+// 平级样式接口
+.cmui-alertMask{}
+.cmui-alertContainer{}
+.cmui-alertTitle{}
+.cmui-alertBody{}
+.cmui-alertButtons{}
+.cmui-alertButton{}
