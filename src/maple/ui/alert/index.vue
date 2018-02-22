@@ -1,15 +1,29 @@
 <template>
-	<transition name="fade">
-	<div class="fixed-full flex-container center cmui-dialogMask cmui-alertMask" :class="className" style="z-index: 1;" v-if="showCmuiDialog" @touchmove.prevent.stop="disabledTouchMove">
-		<div class="cmui-dialogContainer cmui-alertContainer">
-			<div class="cmui-dialogTitle cmui-alertTitle" v-html="title" v-if="title"></div>
-			<div class="cmui-dialogBody cmui-alertBody" v-if="content" v-html="content" :style="bodyStyle"></div>
-			<div class="cmui-dialogButtons cmui-alertButtons">
-				<div class="cmui-alertButton cmui-dialogButton" v-html="okText" :style="okStyle" @click="cancel()"></div>
+	<div>
+		<transition
+		enter-active-class="an an-in an-fade"
+    	leave-active-class="an an-out an-fade"
+    	>
+			<div
+			class="fixed-full cmui-dialogMask cmui-alertMask"
+			v-if="showCmuiDialog"
+			></div>
+		</transition>
+		<transition
+		enter-active-class="an an-in an-zoom"
+    	leave-active-class="an an-out an-zoom"
+    	>
+			<div class="mask mask-transparent center" :class="className" style="z-index: 1;" v-if="showCmuiDialog" @touchmove.prevent.stop="disabledTouchMove">
+				<div class="cmui-dialogContainer cmui-alertContainer">
+					<div class="cmui-dialogTitle cmui-alertTitle" v-html="title" v-if="title"></div>
+					<div class="cmui-dialogBody cmui-alertBody" v-if="content" v-html="content" :style="bodyStyle"></div>
+					<div class="cmui-dialogButtons cmui-alertButtons">
+						<div class="cmui-alertButton cmui-dialogButton" v-html="okText" :style="okStyle" @click="cancel()"></div>
+					</div>
+				</div>
 			</div>
-		</div>
+    	</transition>
 	</div>
-	</transition>
 </template>
 <style lang="scss">
 @import "theme";

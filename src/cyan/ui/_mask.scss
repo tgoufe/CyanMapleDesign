@@ -1,10 +1,5 @@
 .mask{
-	position: fixed;
 	z-index: 1000;
-	top:0;
-	left:0;
-	bottom:0;
-	right:0;
 	background-color:rgba(#000,0.4);
 	&.mask-white{
 		background-color:rgba(#fff,0.4);
@@ -17,6 +12,7 @@
 		}
 	}
 	@extend .flex-container;
+	@extend .fixed-full;
 	&.mask-transparent{
 		background-color:transparent;
 	}

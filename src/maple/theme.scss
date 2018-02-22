@@ -1,3 +1,4 @@
+@import "./../cyan/extend";
 // collapse
 $name:cmui-collapse;//组件前缀
 //平级样式接口
@@ -65,16 +66,32 @@ $name:cmui-tabbar;//组件前缀
 
 
 
-
+// dialog通用样式接口
+.cmui-dialogMask{
+    background-color: rgba(55, 55, 55, 0.6);
+}
+.cmui-dialogContainer{
+    background-color: #ffffff;
+    border-radius: 4px;
+    min-width: 80%;
+    .cmui-dialogTitle{padding:10px;border-bottom: 1px solid rgb(233, 234, 236);}
+    .cmui-dialogBody{padding:10px;border-bottom: 1px solid rgb(233, 234, 236);}
+    .cmui-dialogButtons{
+        @extend %padding20,%flex-container,%right;
+        .cmui-dialogButton{
+            @extend %btn,%blue,%radius,%small;
+        }
+    }
+}
 // alert
 // 层级样式接口
 .cmui-alertMask{
-    .cmui-alertContainer{
-        .cmui-alertTitle{}
-        .cmui-alertBody{}
-        .cmui-alertButtons{
-            .cmui-alertButton{}
-        }
+}
+.cmui-alertContainer{
+    .cmui-alertTitle{}
+    .cmui-alertBody{}
+    .cmui-alertButtons{
+        .cmui-alertButton{}
     }
 }
 // 平级样式接口
