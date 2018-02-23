@@ -1,5 +1,6 @@
 @import "variables";
 @import "lib/function";
+// layout
 @for $i from 0 through $layoutNumber{
 	%margin#{$i * 10}{margin:getLayoutSize($i,1)}
 	%margint#{$i * 10}{margin-top:getLayoutSize($i,1)}

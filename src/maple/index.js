@@ -1,11 +1,11 @@
 import maple from './core';
-import {cookie} from './cache/cookie';
+import { cookie } from './cache/cookie';
 //挂载cookie
 maple.cookie = cookie;
-import {sessionData} from './cache/session';
+import { sessionData } from './cache/session';
 //挂载sessionStorage
 maple.sessionData = sessionData;
-import {localData} from './cache/local';
+import { localData } from './cache/local';
 //挂载localStorage
 maple.localData = localData;
 import * as util from './util';
@@ -52,12 +52,12 @@ maple.notice = notice;
 maple.alert = alert;
 maple.confirm = confirm;
 maple.actions = actions;
-maple.mask=mask;
-maple.slider=slider;
-maple.tabbar=tabbar;
-maple.list=list;
-maple.form=form;
-maple.message=message;
+maple.mask = mask;
+maple.slider = slider;
+maple.tabbar = tabbar;
+maple.list = list;
+maple.form = form;
+maple.message = message;
 // // 初始化通用组件
-Object.keys( component ).forEach(d => Vue.component(d, component[d]));
-export default window.maple = maple;
+Object.keys(component).forEach(d => Vue.component(d, component[d]));
+export default (window.maple = maple);
