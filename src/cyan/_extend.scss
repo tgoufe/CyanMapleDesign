@@ -97,7 +97,7 @@
       background-color: darken($background, 10%);
           border-color: darken($border, 12%);
     }
-    &:active,
+    &:active
     {
       color: $color;
       background-color: darken($background, 10%);
@@ -110,7 +110,7 @@
             border-color: darken($border, 25%);
       }
     }
-    &:active,
+    &:active
     {
       background-image: none;
     }
