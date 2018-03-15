@@ -75,78 +75,80 @@
 	</div>
 </template>
 <style lang="scss">
-	#code{
-		transition:all .5s
-	}
-	.icon-container{
-		&.active{
-			background-color: white;
-			border:1px solid #EBEBEB;
-			border-radius: 4px;
-		}
-		i{
-			font-size: 24px;
-		}
-	}
+    #code {
+        transition: all .5s
+    }
+
+    .icon-container {
+        &.active {
+            background-color: white;
+            border: 1px solid #EBEBEB;
+            border-radius: 4px;
+        }
+        i {
+            font-size: 24px;
+        }
+    }
 </style>
 <script>
-	function changeCode(){
-		this.$nextTick(function(){
-			this.code=$(this.$el).find('#code')[0]
-			.outerHTML
-			.replace(/(style|id|contenteditable)=".*?"/g,'')
-			.replace('  ','')
-		})
-	}
-	export default{
-		data:function(){
-			return {
-				colors:['red','orange','yellow','green','coffee','blue','purple'],
-				radius:false,
-				reverse:false,
-				pill:false,
-				flag:false,
-				round:false,
-				square:false,
-				size:'',
-				color:'blue',
-				code:'',
-				scale:false
-			}
-		},
-		computed:{
-			demoStyle(){
-				var rs={};
-				if(this.scale){
-					rs.transform='scale(2)'
-				}
-				return rs;
-			}
-		},
-		mounted(){
-			changeCode.call(this);
-			this.$root.headTitle="badge"
-		},
-		watch:{
-			radius:changeCode,
-			reverse:changeCode,
-			pill:changeCode,
-			flag:changeCode,
-			round:changeCode,
-			square:changeCode,
-			size:changeCode,
-			color:changeCode,
-		},
-		methods:{
-			showCode(e){
-				const target=e.currentTarget;
-				this.code1=target.outerHTML
-				.replace(/(style|id|contenteditable)=".*?"/g,'')
-				.replace('  ','')
-			},
-			changeColor(color){
-				this.color=color
-			}
-		}
-	}
+    function changeCode() {
+        this.$nextTick(function () {
+            this.code = $(this.$el).find('#code')[0]
+                .outerHTML
+                .replace(/(style|id|contenteditable)=".*?"/g, '')
+                .replace('  ', '')
+        })
+    }
+
+    export default {
+        data: function () {
+            return {
+                colors: ['red', 'orange', 'yellow', 'green', 'coffee', 'blue', 'purple'],
+                radius: false,
+                reverse: false,
+                pill: false,
+                flag: false,
+                round: false,
+                square: false,
+                size: '',
+                color: 'blue',
+                code: '',
+                scale: false
+            }
+        },
+        computed: {
+            demoStyle() {
+                var rs = {};
+                if (this.scale) {
+                    rs.transform = 'scale(2)'
+                }
+                return rs;
+            }
+        },
+        mounted() {
+            changeCode.call(this);
+            this.$root.headTitle = "badge"
+        },
+        watch: {
+            radius: changeCode,
+            reverse: changeCode,
+            pill: changeCode,
+            flag: changeCode,
+            round: changeCode,
+            square: changeCode,
+            size: changeCode,
+            color: changeCode,
+        },
+        methods: {
+            showCode(e) {
+                const target = e.currentTarget;
+                this.code1 = target.outerHTML
+                    .replace(/(style|id|contenteditable)=".*?"/g, '')
+                    .replace('  ', '')
+            },
+            changeColor(color) {
+                this.color = color
+            }
+        }
+    }
 </script>
