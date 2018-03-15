@@ -5,15 +5,24 @@
 		</blockQuote>
 
 		<div class="flex-container marginb30 form">
-			<select name="" id="" v-model="color">
-				<option :value="item" class="radius" v-for="item in colors">{{item}}</option>
-			</select>
+			<div class="flex1 pos-r">
+				<i class="baseIcon baseIcon-style_color pos-a" :class="'text-'+color" style="font-size:24px;left:10px;top:0"></i>
+				<select name="" id="" v-model="color" style="padding-left:40px;">
+					<option :value="item" class="radius" v-for="item in colors">{{item}}</option>
+				</select>
+				<i class="baseIcon baseIcon-action_selectDown pos-a" style="font-size:24px;right:10px;top:0"></i>
+			</div>
 			<span class="marginh20">-</span>
-			<select name="" id="" v-model="size">
-				<option value="big" class="radius">big</option>
-				<option value="" class="radius">default</option>
-				<option value="small" class="radius">small</option>
-			</select>
+			<div class="flex1 pos-r">
+				<i class="baseIcon baseIcon-style_size pos-a" style="font-size:24px;left:10px"></i>
+				<select name="" id="" v-model="size" style="padding-left:40px;">
+					<option value="big" class="radius">big</option>
+					<option value="" class="radius">default</option>
+					<option value="small" class="radius">small</option>
+				</select>
+				<i class="baseIcon baseIcon-action_selectDown pos-a" style="font-size:24px;right:10px;top:0"></i>
+			</div>
+			
 		</div>
 		<blockQuote class="flex-container marginb30">
 			<div class="ratio-container" style="width:40px;">
