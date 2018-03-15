@@ -23,6 +23,14 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "strict": [
+            0
+        ],
+        "curly": [
+            2,
+            "all"
+        ],
+        "eqeqeq": 2
     }
 };
