@@ -2,7 +2,7 @@
 
 ![CyanMapleDesign logo](http://xuqiang.cc/wp-content/uploads/2018/03/cmlogo.png)
 
-##项目目录
+## 项目目录
 ```
 ├── CMUI                     
 ├── build
@@ -20,7 +20,7 @@
     └── pageComponent         //特殊组件库（业务定制组件）
 ```
         
-##快速开始
+## 快速开始
 ### Install
 ```console
 npm install 
