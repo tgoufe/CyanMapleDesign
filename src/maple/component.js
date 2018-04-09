@@ -7,6 +7,7 @@ import scrollboxItem from './component/scrollbox/scrollbox-item.vue';
 import collapse from './component/collapse/collapse.vue';
 import collapseItem from './component/collapse/collapse-item.vue';
 import affix from './component/affix/affix.vue';
+import maskPanel from './component/maskPanel/maskPanel.vue';
 export default {
 		'cmui-number': number
 	,	'cmui-img': img
@@ -17,4 +18,5 @@ export default {
 	,	'cmui-collapse': collapse
 	,	'cmui-collapse-item': collapseItem
 	,	'cmui-affix': affix
+	,	'cmui-mask-panel': maskPanel
 };
