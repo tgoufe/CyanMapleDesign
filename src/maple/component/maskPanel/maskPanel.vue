@@ -126,23 +126,30 @@
 				this.$el.style[prefix+'transform']=``;
 			},
 			maskStart(e){
+				function isChildren(child,parent){
+					while(child.parentNode!==parent){
+						child=child.parentNode;
+						if(child===document.body){
+							return false;
+						}
+					}
+					return true;
+				}
 				let target=e.target;
 				if(target===warpDom){
 					warpData.startPosition=e.touches["0"][`page${pos}`]
 				}else{
 					let elScroll;
 					if(target===contentDom){
-						elScroll=$(target)
-					}else if((elScroll = $(target).parents($(contentDom))).length == 0){
-						elScroll = null;
-					}
-					if (!elScroll) {
-					    return;
+						elScroll=target
+					}else if(isChildren(target,contentDom)){
+						elScroll = contentDom;
+					}else{
+						return;
 					}
 					contentData.elScroll = elScroll;
 					contentData.posY = e.touches["0"].pageY;
-					// contentData.scrollY = elScroll.scrollTop();
-					contentData.maxscroll = elScroll[0].scrollHeight - elScroll[0].clientHeight;
+					contentData.maxscroll = elScroll.scrollHeight - elScroll.clientHeight;
 				}
 			},
 			maskMove(e){
@@ -158,7 +165,7 @@
 					    e.preventDefault();
 					}
 					let elScroll = contentData.elScroll;
-					let scrollTop = elScroll.scrollTop();
+					let scrollTop = elScroll.scrollTop;
 					let events = e.touches["0"];
 					let distanceY = events.pageY - contentData.posY;
 					if (distanceY > 0 && scrollTop == 0) {
