@@ -1,14 +1,7 @@
 <template>
 	<transition
-	  v-on:before-enter="beforeEnter"
-	  v-on:enter="enter"
-	  v-on:after-enter="afterEnter"
-	  v-on:enter-cancelled="enterCancelled"
-
-	  v-on:before-leave="beforeLeave"
-	  v-on:leave="leave"
-	  v-on:after-leave="afterLeave"
-	  v-on:leave-cancelled="leaveCancelled"
+	  name="maskPanel"
+	  @after-leave="afterLeave"
 	>
 		<div class="cmui-mask-panel fixed-full"
 		@click="hide()"
@@ -16,13 +9,14 @@
 		@touchmove="maskMove($event)"
 		@touchend="maskEnd($event)"
 		v-show="show"
+		:data-position="position_c"
 		>
-			<div class="cmui-mask-panel_wrap abs-full flex-container" :class="position_c" >
+			<div class="cmui-mask-panel_wrap abs-full flex-container" :class="position_c" ref="warp">
 				<div class="cmui-mask-panel_content flex-container-col" :style="{width:width_c,height:height_c}" @click.stop>
 					<div class="cmui-mask-panel_top">
 						<slot name="top"></slot>
 					</div>
-					<div class="cmui-mask-panel_main flex1 scroll-container-y">
+					<div class="cmui-mask-panel_main flex1 scroll-container-y" ref="main">
 						<slot></slot>
 					</div>
 					<div class="cmui-mask-panel_bottom">
@@ -34,9 +28,19 @@
 	</transition>
 </template>
 <style lang="scss">
+.maskPanel-enter-active,.maskPanel-leave-active{
+	transition:transform .3s ease-in-out;
+}
+.maskPanel-enter, .maskPanel-leave-to{
+	&[data-position="right"]{transform:translateX(100%) !important;};
+	&[data-position="left"]{transform:translateX(-100%) !important;};
+	&[data-position="bottom"]{transform:translateY(100%) !important;};
+	&[data-position="top"]{transform:translateY(-100%) !important;};
+}
 .cmui-mask-panel{
 	background-color: rgba(0,0,0,.5);
 	z-index: 9;
+	transform: translateZ(0);
 }
 .cmui-mask-panel_wrap{}
 .cmui-mask-panel_content{
@@ -80,8 +84,8 @@
 			show:{type:Boolean,default:false}
 		},
 		mounted(){
-			warpDom=$(this.$el).find('.cmui-mask-panel_wrap')[0];
-			contentDom=$(this.$el).find('.cmui-mask-panel_main')[0];
+			warpDom=this.$refs.warp;
+			contentDom=this.$refs.main;
 			pos=/left|right/.test(this.position_c)?'X':'Y';
 			speedString=/right|bottom/.test(this.position_c)?'':'-';
 		},
@@ -95,7 +99,7 @@
 				if(this.width&&_.isString(this.width)){
 					return this.width;
 				}else{
-					return _.includes(this.position_c,['bottom','top'])
+					return /top|bottom/.test(this.position_c)
 					?'100%'
 					:'80%'
 				}
@@ -104,7 +108,7 @@
 				if(this.height&&_.isString(this.height)){
 					return this.height;
 				}else{
-					return _.includes(this.position_c,['bottom','top'])
+					return /top|bottom/.test(this.position_c)
 					?'60%'
 					:'100%'
 				}
@@ -117,6 +121,9 @@
 			hide(){
 				this.show=false;
 				this.$emit('update:show', false);
+			},
+			afterLeave(){
+				this.$el.style[prefix+'transform']=``;
 			},
 			maskStart(e){
 				let target=e.target;
@@ -134,7 +141,7 @@
 					}
 					contentData.elScroll = elScroll;
 					contentData.posY = e.touches["0"].pageY;
-					contentData.scrollY = elScroll.scrollTop();
+					// contentData.scrollY = elScroll.scrollTop();
 					contentData.maxscroll = elScroll[0].scrollHeight - elScroll[0].clientHeight;
 				}
 			},
@@ -172,7 +179,7 @@
 						this.hide();
 					}else{
 						let timer=requestAnimationFrame(function fn(){
-							warpData.dis-=8;
+							warpData.dis-=16;
 							_this.$el.style[prefix+'transform']=`translate${pos}(${speedString}${warpData.dis}px)`;
 							if(warpData.dis>0){
 								requestAnimationFrame(fn)
@@ -185,9 +192,6 @@
 				}else{
 					contentData.maxscroll = 0;
 				}
-			},
-			enter(e){
-				console.log(e);
 			}
 		}
 	}
