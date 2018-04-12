@@ -2,13 +2,14 @@
 	<transition
 	  name="maskPanel"
 	  @after-leave="afterLeave"
+	  @after-enter="afterEnter"
 	>
 		<div class="cmui-mask-panel fixed-full"
 		@click="hide()"
 		@touchstart="maskStart($event)"
 		@touchmove="maskMove($event)"
 		@touchend="maskEnd($event)"
-		v-show="show"
+		v-show="visible"
 		:data-position="position_c"
 		>
 			<div class="cmui-mask-panel_wrap abs-full flex-container" :class="position_c" ref="warp">
@@ -81,7 +82,7 @@
 			position:{type:String,default:'right'},
 			width:{type:String,default:''},
 			height:{type:String,default:''},
-			show:{type:Boolean,default:false}
+			visible:{type:Boolean,default:false}
 		},
 		mounted(){
 			warpDom=this.$refs.warp;
@@ -119,11 +120,15 @@
 		},
 		methods:{
 			hide(){
-				this.show=false;
-				this.$emit('update:show', false);
+				this.visible=false;
+				this.$emit('update:visible', false);
+			},
+			afterEnter(){
+				this.$emit('show',this,this.$el)
 			},
 			afterLeave(){
 				this.$el.style[prefix+'transform']=``;
+				this.$emit('hide',this,this.$el)
 			},
 			maskStart(e){
 				function isChildren(child,parent){

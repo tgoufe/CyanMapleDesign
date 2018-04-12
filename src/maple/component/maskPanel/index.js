@@ -8,6 +8,7 @@ let defaultOptions={
 	contentHeight:'100%',
 	position:'right'
 }
+let vm;
 function MaskPanel(options={}){
 	let {
 		parent,
@@ -19,28 +20,38 @@ function MaskPanel(options={}){
 		contentHeight,
 		position,
 	}=_.defaults(options,defaultOptions);
-	$(function(){
-		let template=$(`
-			<cmui-mask-panel position="${position}" :style="style" :width="width" :height="height">
-				<div slot="top">${topContent}</div>
-				${content}
-				<div slot="bottom">${bottomContent}</div>
-			</cmui-mask-panel>
-		`);
-		parent=$(parent);
-		if(parent.length){
-			parent.append(template);
-			new Vue({
-				el:template[0],
-				data:function(){
-					return {
-						style:style,
-						width:contentWidth,
-						height:contentHeight
-					}
+	let template=$(`
+		<cmui-mask-panel position="${position}"
+		:visible.sync="visible"
+		:style="style"
+		:width="width"
+		:height="height"
+		@hide="hide"
+		>
+			<div slot="top">${topContent}</div>
+			${content}
+			<div slot="bottom">${bottomContent}</div>
+		</cmui-mask-panel>
+	`);
+	parent=$(parent);
+	if(parent.length){
+		parent.append(template);
+		return new Vue({
+			el:template[0],
+			data:function(){
+				return {
+					style:style,
+					width:contentWidth,
+					height:contentHeight,
+					visible:true
 				}
-			})
-		}
-	})
+			},
+			methods:{
+				hide(){
+					$(this.$el).remove();
+				}
+			}
+		})
+	}
 }
 export default MaskPanel
