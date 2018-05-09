@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel demo/index/index.html",
     "cyan": "parcel build src/cyan/cmui.scss -d CMUI",
-    "maple": "parcel build src/maple/index.js -d CMUI "
+    "maple": "parcel build src/maple/index.js -d CMUI ",
+    "theme": "parcel build src/maple/theme.scss -d CMUI "
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
   "devDependencies": {
     "autoprefixer": "^7.2.5",
     "babel-preset-env": "^1.6.1",
+    "dayjs": "^1.5.16",
     "eslint": "^4.18.1",
     "http-server": "^0.11.1",
     "lodash": "^4.17.4",

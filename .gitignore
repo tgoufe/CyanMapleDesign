@@ -10,3 +10,4 @@ npm-debug.log*
 *.ntvs*
 *.njsproj
 *.sln
+src/.DS_Store
