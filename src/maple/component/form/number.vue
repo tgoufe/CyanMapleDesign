@@ -1,52 +1,63 @@
 <template>
-<div class="cmui-number form">
-    <div class="inputGroup" :class="{'inputGroup-reverse':reverse,'inputGroup-radius':radius}">
-        <div class="input_addon" @click="changeNumber(-1)" :class="{'disabled':!canMin}">-</div>
-        <input
-        type="number"
-        ref="number"
-        :name="name"
-        :value="value"
-        :readonly="readonly"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :class="[{'form-radius':radius,'input-reverse':reverse},size,className]"
-        @input="handleInput"
-    	@focus="handleFocus"
-    	@blur="handleBlur"
-    	@change="handleChange"
-        >
-        <div class="input_addon" @click="changeNumber(1)" :class="{'disabled':!canMax}">+</div>
-    </div>
-</div>
+	<cmui-input type="number"
+	ref="input"
+	:name="name"
+	:value="value"
+    :readonly="readonly"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :target-class="targetClass"
+    :label="label"
+    :align="align"
+    :reset="false"
+    :prepend-disabled="!canSub"
+	:append-disabled="!canAdd"
+    @input="handleInput"
+	@focus="handleFocus"
+	@blur="handleBlur"
+	@change="handleChange"
+	>
+		<span slot="prepend" @click="changeNumber(-1)">-</span>
+		<span slot="append" @click="changeNumber(1)">+</span>
+		<slot></slot>
+	</cmui-input>
 </template>
 <script>
-import vm from "../../vm.js";
+import cmuiInput from './input.vue';
 import mixin from "./mixin.js";
 export default {
-	methods:{
-	    changeNumber:function(num){
-	        this.value=+this.value+num;
-	        if(this.max||this.max===0){
-	            this.value=this.value>=this.max?this.max:this.value;
-	        }
-	        if(this.min||this.min===0){
-	            this.value=this.value<=this.min?this.min:this.value;
-	        }
-	        vm.$emit('numChange', this, this.value)
-	        if(this.value===this.max){
-	        	vm.$emit('numMax', this, this.value);
-	        }
-	        if(this.value===this.min){
-	        	vm.$emit('numMin', this, this.value)
-	        }
-	    }
+	components:{
+		cmuiInput
 	},
 	mixins: [mixin],
+	methods:{
+	    changeNumber:function(num){
+	    	if((!this.canAdd&&num===1)||(!this.canSub&&num===-1)){
+	    		return
+	    	}
+	    	const innerThis=this.$children[0];
+	    	const target=this.$children[0].$refs.input;
+	    	const value = this.value;
+	        this.value=+value+num;
+        	this.value=_.min([this.max,this.value]);
+        	this.value=_.max([this.min,this.value]);
+	        if(+this.value===this.max){
+	        	this.$emit('max',this.value,target,innerThis);
+	        	this.canAdd=false;
+	        }
+	        if(+this.value===this.min){
+	        	this.$emit('min',this.value,target,innerThis);
+	        	this.canSub=false;
+	        }
+	        this.$emit('input',this.value,target,innerThis);
+	    }
+	},
 	props:{
-	    max:{type:Number},
-	    min:{type:Number},
-        readonly:{type:Boolean,default:false}
+	    max:Number,
+	    min:Number,
+	    rule:RegExp,
+	    canAdd:{type:Boolean,default:true},
+	    canSub:{type:Boolean,default:true}
 	},
 	computed:{
 		canMax(){

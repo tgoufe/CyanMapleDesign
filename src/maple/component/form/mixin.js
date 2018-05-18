@@ -14,7 +14,7 @@ export default{
 		handleChange(){
 			const target=event.target;
 	    	const value = target.value;
-			this.$emit('change',value,target,this)
+			this.$emit('change',value,target,this);
 		},
 		handleBlur(){
 			const target=event.target;
@@ -29,11 +29,13 @@ export default{
 	},
 	props:{
 		disabled:{type:Boolean,default:false},
-		radius:{type:Boolean,default:true},
+		readonly:{type:Boolean,default:false},
 		placeholder:String,
-		value:String,
+		value:[String,Boolean],
 		name:String,
 		target:Object,
-		calssName:String,
+		targetClass:String,
+		label:String,
+		align:{type:String,default:'left'}
 	}
 }

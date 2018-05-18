@@ -1,11 +1,15 @@
 <template>
 <div class="pos-r cmui-input form flex-container">
+	<span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label">
+		<template v-if="align==='left'">{{label}}<slot></slot></template>
+	</span>
 	<!-- 前置 -->
-	<div class="cmui-input-prepend flex-container" :class="size" v-if="$slots.prepend">
-		<slot name="prepend"></slot>
+	<div class="cmui-input__prepend flex-container" :class="[targetClass,{disabled:prependDisabled}]" v-if="$slots.prepend||prepend">
+		<slot name="prepend" v-if="$slots.prepend"></slot>
+		<span v-if="prepend">{{prepend}}</span>
 	</div>
 	<!-- 主体 -->
-	<div class="cmui-input-main pos-r flex1">
+	<div class="cmui-input__main pos-r flex1">
 		<div v-if="type=='search'"
 		class="input-search"
 		:style="{display:type=='search'?'block':'none'}"></div>
@@ -18,7 +22,7 @@
         :readonly="readonly"
         :placeholder="placeholder"
         :disabled="disabled"
-        :class="[{'form-radius':radius,'input-reverse':reverse},size,className]"
+        :class="targetClass"
         @input="handleInput"
     	@focus="handleFocus"
     	@blur="handleBlur"
@@ -32,17 +36,29 @@
 	    ></div>
 	</div>
 	<!-- 后置 -->
-    <div class="cmui-input-append flex-container" :class="size" v-if="$slots.append">
-		<slot name="append"></slot>
+    <div class="cmui-input__append flex-container" :class="[targetClass,{disabled:appendDisabled}]" v-if="$slots.append||append">
+		<slot name="append" v-if="$slots.append"></slot>
+		<span v-if="append" v-text="append"></span>
     </div>
+    <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label">
+		<template v-if="align==='right'">{{label}}<slot></slot></template>
+	</span>
 </div>
 </template>
 <style type="text/css" lang="scss">
 @import "../../../cyan/variables";
 .cmui-input{
-	.cmui-input-prepend,.cmui-input-append{
+	.cmui-input__prepend,.cmui-input__append{
 		background-color: $border-color-default;
 		border:1px solid map-get($grayList,'lighter');
+		&.reverse{
+			border-color:transparent;
+			border-bottom-color:map-get($grayList,'lighter');
+			background-color: transparent;
+		}
+		&.disabled{
+			color:#bbbbbb;
+		}
 		&>*{
 			line-height: 26px;
 			padding: (nth(map-get($btn-size-list,'base'),1) - 26px - 2) / 2 $padding-base-horizontal;
@@ -62,24 +78,33 @@
 		  }
 		}
 	}
-	.cmui-input-prepend{
-		border-radius:$border-radius-base 0 0 $border-radius-base;
+	.cmui-input__prepend{
+		&.radius{
+			border-radius:$border-radius-base 0 0 $border-radius-base;
+			&.reverse{border-radius:0}
+		}
 		margin-right:-1px;
 	}
-	.cmui-input-append{
+	.cmui-input__append{
 		margin-left:-1px;
-		border-radius:0 $border-radius-base  $border-radius-base 0;
+		&.radius{
+			border-radius:0 $border-radius-base  $border-radius-base 0;
+			&.reverse{border-radius:0}
+		}
 	}
 }
 </style>
 <script>
-import vm from "../../vm.js";
 import mixin from "./mixin.js";
 export default {
 	props:{
 	    type:{type:String,default:'text'},
-	    size:String,
-	    reset:{type:Boolean,default:true}
+	    value:{type:String,default:''},
+	    reset:{type:Boolean,default:true},
+	    prepend:String,
+	    append:String,
+	    prependDisabled:{type:Boolean,default:false},
+		appendDisabled:{type:Boolean,default:false}
 	},
 	mixins: [mixin],
 	methods:{
@@ -98,11 +123,11 @@ export default {
 	    if(this.type==='search'){
 	        this.$refs.input.style.paddingLeft='40px';
 	    }
-	    if(this.$slots.prepend||this.reverse){
+	    if(this.$slots.prepend||this.prepend||this.reverse){
 	    	this.$refs.input.style.borderTopLeftRadius="0px"
 	    	this.$refs.input.style.borderBottomLeftRadius="0px"
 	    }
-	    if(this.$slots.prepend||this.reverse){
+	    if(this.$slots.append||this.append||this.reverse){
 	    	this.$refs.input.style.borderTopRightRadius="0px"
 	    	this.$refs.input.style.borderBottomRightRadius="0px"
 	    }
