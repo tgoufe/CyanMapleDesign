@@ -41,6 +41,7 @@ export default {
 	        this.value=+value+num;
         	this.value=_.min([this.max,this.value]);
         	this.value=_.max([this.min,this.value]);
+        	this.canAdd=this.canSub=true
 	        if(+this.value===this.max){
 	        	this.$emit('max',this.value,target,innerThis);
 	        	this.canAdd=false;

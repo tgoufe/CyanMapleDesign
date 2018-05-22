@@ -1,7 +1,7 @@
 <template>
 <div class="pos-r cmui-input form flex-container">
-	<span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label">
-		<template v-if="align==='left'">{{label}}<slot></slot></template>
+	<span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='left'&&(label||$slots.default)">
+		<template>{{label}}<slot></slot></template>
 	</span>
 	<!-- 前置 -->
 	<div class="cmui-input__prepend flex-container" :class="[targetClass,{disabled:prependDisabled}]" v-if="$slots.prepend||prepend">
@@ -9,7 +9,7 @@
 		<span v-if="prepend">{{prepend}}</span>
 	</div>
 	<!-- 主体 -->
-	<div class="cmui-input__main pos-r flex1">
+	<div class="cmui-input__main pos-r" :class="{flex1:!label||!$slots.default}">
 		<div v-if="type=='search'"
 		class="input-search"
 		:style="{display:type=='search'?'block':'none'}"></div>
@@ -40,8 +40,8 @@
 		<slot name="append" v-if="$slots.append"></slot>
 		<span v-if="append" v-text="append"></span>
     </div>
-    <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label">
-		<template v-if="align==='right'">{{label}}<slot></slot></template>
+    <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='right'&&(label||$slots.default)">
+		<template>{{label}}<slot></slot></template>
 	</span>
 </div>
 </template>

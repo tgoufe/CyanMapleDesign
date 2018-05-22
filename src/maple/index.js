@@ -40,16 +40,16 @@ import vm from './vm';
 //挂载vm控制器
 maple.vm = vm;
 import component from './component';
-import alert from './ui/alert/index.js';
-import confirm from './ui/confirm/index.js';
-import notice from './ui/notice/index.js';
-import actions from './ui/actions/index.js';
-import mask from './ui/mask/index.js';
-import message from './ui/message/index.js';
-import slider from './component/slider/index.js';
-import list from './component/list/index.js';
-import tabbar from './component/tabbar/index.js';
-import form from './component/form/index.js';
+import alert     from './component/alert/index.js';
+import confirm   from './component/confirm/index.js';
+import notice    from './component/notice/index.js';
+import actions   from './component/actions/index.js';
+import mask      from './component/mask/index.js';
+import message   from './component/message/index.js';
+import slider    from './component/slider/index.js';
+import list      from './component/list/index.js';
+import tabbar    from './component/tabbar/index.js';
+import form      from './component/form/index.js';
 import maskPanel from './component/maskPanel/index.js';
 import countdown from './component/countdown/index.js';
 

@@ -22,7 +22,7 @@ $(function(){
 	}).$children[0];
 })
 
-function Alert(){
+function confirm(){
 	var options={};
 	if(arguments){
 		if(arguments.length>1){
@@ -55,4 +55,4 @@ function Alert(){
 		CURRENT[key]=value
 	})
 };
-export default Alert;
+export default confirm;

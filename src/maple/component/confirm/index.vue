@@ -1,5 +1,6 @@
 <template>
-	<div class="fixed-full flex-container center cmui-dialogMask cmui-confirmMask" :class="className" style="z-index: 1;" v-if="showCmuiDialog">
+	<transition name="cmui-dialog-fade">
+	<div class="fixed-full flex-container center cmui-dialogMask cmui-confirmMask" :class="className" style="z-index: 1;" v-show="showCmuiDialog">
 		<div class="cmui-dialogContainer cmui-confirmContainer">
 			<div class="cmui-dialogTitle cmui-confirmTitle" v-html="title"></div>
 			<div class="cmui-dialogBody cmui-confirmBody" v-if="content" v-html="content" :style="bodyStyle"></div>
@@ -9,9 +10,10 @@
 			</div>
 		</div>
 	</div>
+	</transition>
 </template>
 <style lang="scss">
-@import "theme";
+	@import "theme";
 	.cmui-confirmContainer{}
 	.cmui-confirmTitle{}
 	.cmui-confirmBody{}
@@ -19,6 +21,24 @@
 	.cmui-confirmButton{
 		border:none;
 		background-color: transparent;
+	}
+
+	.cmui-dialog-fade-enter-active{
+		.cmui-dialogMask{
+			animation: dialog-fadein .4s
+		}
+		.cmui-dialogContainer{
+			animation: dialog-zoom .4s
+		}
+	}
+	@keyframes dialog-fadein{
+		0%{opacity: 0}
+		100%{opacity: 1}
+	}
+	@keyframes dialog-zoom{
+		0%{transform: scale(0)}
+		50%{transform: scale(1.1)}
+		100%{transform: scale(1)}
 	}
 </style>
 <script>
