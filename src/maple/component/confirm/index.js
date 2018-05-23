@@ -15,14 +15,14 @@ var defaults = {
 Vue.component('cmui-comfirm',confirmVue);
 var id='cmui-comfirm-'+_.uniqueId();
 var CURRENT=null;
-$(function(){
-	$('<cmui-comfirm id="'+id+'">').appendTo('body');
-	CURRENT=new Vue({
-		el:'#'+id
-	}).$children[0];
+let setCurrent=_.once(function(){
+  $('<cmui-comfirm id="'+id+'">').appendTo('body');
+  CURRENT=new Vue({
+    el:'#'+id
+  }).$children[0];
 })
-
 function confirm(){
+  setCurrent();
 	var options={};
 	if(arguments){
 		if(arguments.length>1){
@@ -49,7 +49,7 @@ function confirm(){
 		return CURRENT
 	}
 	options = _.defaults(_.find(arguments,_.isPlainObject),options, defaults);
-	document.body.classList.add('overflow-h');
+
 	CURRENT.showCmuiDialog=true;
 	_.each(options,(value,key)=>{
 		CURRENT[key]=value

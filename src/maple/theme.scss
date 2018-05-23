@@ -21,7 +21,46 @@ $name:cmui-collapse;//组件前缀
     }
   }
 }
+/******************* collapse doc*******************/
+$name: cmui-collapse; //组件前缀
+//以下是层级样式接口
+.#{$name} {
+    .#{$name}-item {
+        &:first-child {
+            .#{$name}-item__header {
+                border-top-left-radius: $border-radius-base;
+                border-top-right-radius: $border-radius-base;
+            }
+        }
+        &:last-child {
+            .#{$name}-item__header, .cmui-collapse-item__body {
+                border-bottom-right-radius: $border-radius-base;
+                border-bottom-left-radius: $border-radius-base;
+            }
+            .#{$name}-item__header.active {
+                border-bottom-right-radius: 0px;
+                border-bottom-left-radius: 0px;
+            }
+        }
+        .#{$name}-item__header {
+            padding:px(10) px(20);
+            background-color: #f5f5f5;
+            .#{$name}-item__header__arrow {
 
+            }
+        }
+        .#{$name}-item__bodyWarp {
+            .#{$name}-item__body {
+                padding: px(10)
+            }
+        }
+        .cmui-collapse-item__body, .cmui-collapse-item__header {
+            border-color: #ccc;
+        }
+    }
+}
+
+/******************* collapse doc*******************/
 
 
 
@@ -67,71 +106,95 @@ $name:cmui-tabbar;//组件前缀
 
 
 // dialog通用样式接口
-.cmui-dialogMask{
-    background-color: rgba(55, 55, 55, 0.6);
-}
-.cmui-dialogContainer{
+.cmui-dialog__container{
     background-color: #ffffff;
-    border-radius: 4px;
+    border-radius: $border-radius-base;
     min-width: 80%;
-    .cmui-dialogTitle{padding:10px;border-bottom: 1px solid rgb(233, 234, 236);}
-    .cmui-dialogBody{padding:10px;border-bottom: 1px solid rgb(233, 234, 236);}
-    .cmui-dialogButtons{
+    .cmui-dialog__title{padding:10px;border-bottom: 1px solid rgb(233, 234, 236);}
+    .cmui-dialog__body{padding:10px;border-bottom: 1px solid rgb(233, 234, 236);}
+    .cmui-dialog__buttons{
         @extend %padding20,%flex-container,%right;
-        .cmui-dialogButton{
+        .cmui-dialog__button{
             @extend %btn,%blue,%radius,%small;
         }
     }
 }
-// alert
+// alert__
 // 层级样式接口
-.cmui-alertMask{
-}
-.cmui-alertContainer{
-    .cmui-alertTitle{}
-    .cmui-alertBody{}
-    .cmui-alertButtons{
-        .cmui-alertButton{}
+.cmui-alert__container{
+    .cmui-alert__title{}
+    .cmui-alert__body{}
+    .cmui-alert__buttons{
+        .cmui-alert__button{}
     }
 }
 // 平级样式接口
-.cmui-alertMask{}
-.cmui-alertContainer{}
-.cmui-alertTitle{}
-.cmui-alertBody{}
-.cmui-alertButtons{}
-.cmui-alertButton{}
+.cmui-alert__container{}
+.cmui-alert__title{}
+.cmui-alert__body{}
+.cmui-alert__buttons{}
+.cmui-alert__button{}
 // confirm
 // 层叠样式接口
-.cmui-confirmMask{
-    .cmui-confirmContainer{
-        .cmui-confirmTitle{}
-        .cmui-confirmBody{}
-        .cmui-confirmButtons{
-            .cmui-confirmButton{
-                &.cmui-confirmButton__ok{}
-                &.cmui-confirmButton__cancel{}
+
+.cmui-confirm__container{
+    .cmui-confirm__title{}
+    .cmui-confirm__body{}
+    .cmui-confirm__buttons{
+        .cmui-confirm__button{
+            &.cmui-confirm__button{
+                &.ok{}
+                &.cancel{}
             }
         }
     }
 }
 // 平行样式接口
-.cmui-confirmMask{}
-.cmui-confirmContainer{}
-.cmui-confirmTitle{}
-.cmui-confirmBody{}
-.cmui-confirmButtons{}
-.cmui-confirmButton{}
-.cmui-confirmButton__ok{}
-.cmui-confirmButton__cancel{}
+
+.cmui-confirm__container{}
+.cmui-confirm__title{}
+.cmui-confirm__body{}
+.cmui-confirm__buttons{}
+.cmui-confirm__button{}
+.cmui-confirm__button.ok{}
+.cmui-confirm__button.cancel{}
 // notice
 // 平行样式接口
-.cmui-noticeMask{}
+
 .cmui-noticeContainer{}
 .cmui-noticeBody{}
 // 层叠样式接口
-.cmui-noticeMask{
-    .cmui-noticeContainer{
-        .cmui-noticeBody{}
+.cmui-notice.cmui-popup{
+    .cmui-popup__mask{
+        background-color: transparent;
+    }
+    .cmui-notice__container{
+        background-color: rgba(0,0,0,.6);
+        min-width: 100px;
+        color:white;
+    }
+    .cmui-notice__body{
+        border-bottom:none;
+    }
+}
+//actions
+.cmui-actions__group{
+    background-color: white;
+    border-radius: $border-radius-base;
+    .cmui-actions__button{
+        padding:getLayoutSize(2);
+        text-align: center;
+        border-bottom:1px solid $border-color-default;
+        &:last-child{
+            border-bottom:none;
+        };
+    }
+    .cmui-actions__cancel{
+        background-color: white;
+        border-radius: $border-radius-base;
+        .cmui-actions__button{
+            margin-top:getLayoutSize(2);
+            color:map-get($colorList,'blue');
+        }
     }
 }

@@ -1,5 +1,5 @@
 @function px($width){
-	@return $width / 40 +rem; 
+	@return $width / 37.5 +rem;
 }
 @mixin size($width, $height) {
   width: $width;

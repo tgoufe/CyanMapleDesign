@@ -11,13 +11,13 @@ var defaults = {
 Vue.component('cmui-alert',alertVue);
 var id='cmui-alert-'+_.uniqueId();
 var CURRENT=null;
-$(function(){
-	$('<cmui-alert id="'+id+'">').appendTo('body');
-	CURRENT=new Vue({
-		el:'#'+id
-	}).$children[0];
-})
 
+let setCurrent=_.once(function(){
+  $('<cmui-alert id="'+id+'">').appendTo('body');
+  CURRENT=new Vue({
+    el:'#'+id
+  }).$children[0];
+})
 function Alert(){
 	var options={};
 	if(arguments){
@@ -41,7 +41,7 @@ function Alert(){
 		return CURRENT
 	}
 	options = _.defaults(_.find(arguments,_.isPlainObject),options, defaults);
-	document.body.classList.add('overflow-h');
+  setCurrent();
 	CURRENT.showCmuiDialog=true;
 	_.each(options,(value,key)=>{
 		CURRENT[key]=value

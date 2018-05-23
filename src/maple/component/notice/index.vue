@@ -1,13 +1,18 @@
 <template>
-	<div class="fixed-full flex-container cmui-dialogMask cmui-noticeMask center" :class="className" style="z-index: 1;" v-if="showCmuiDialog" @click="cancel">
-		<div class="cmui-dialogContainer cmui-noticeContainer text-center">
-			<div class="cmui-dialogBody cmui-noticeBody" v-if="content" v-html="content" :style="bodyStyle"></div>
+	<cmui-popup
+	position="center"
+	:visible.sync="showCmuiDialog"
+	class="cmui-notice"
+	:mask-event="false"
+	target-class="cmui-notice__container cmui-dialog__container"
+	>
+		<div class="cmui-dialog__warp cmui-notice__warp text-center">
+			<div class="cmui-dialog__body cmui-notice__body" v-if="content" v-html="content" :style="bodyStyle"></div>
 		</div>
-	</div>
+	</cmui-popup>
 </template>
-<style lang="scss">
-</style>
 <script>
+	import cmuiPopup from '../popup/popup.vue';
 	export default {
 		props:{
 			content: {type:String,default:''},
@@ -23,13 +28,13 @@
 				}
 			}
 		},
+		compontents:{
+			cmuiPopup
+		},
 		methods: {
 			cancel: function(){
-				$(this.$el).fadeOut(()=>{
-					this.showCmuiDialog=false;
-					document.body.classList.remove('overflow-h');
-					(typeof this.okFn==='function')&&this.okFn()
-				})
+				this.showCmuiDialog=false;
+				(typeof this.okFn==='function')&&this.okFn()
 			}
 		}
 	}

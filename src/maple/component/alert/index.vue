@@ -1,16 +1,21 @@
 <template>
-	<cmui-popup position="center" :visible.sync="showCmuiDialog">
-			<div class="cmui-dialogTitle cmui-alertTitle" v-html="title" v-if="title" slot="top"></div>
-			<div class="cmui-dialogContainer cmui-alertContainer">
-				<div class="cmui-dialogBody cmui-alertBody" v-if="content" v-html="content" :style="bodyStyle"></div>
+	<cmui-popup
+			position="center"
+			:visible.sync="showCmuiDialog"
+			class="cmui-alert"
+			:mask-event="false"
+			target-class="cmui-dialog__container cmui-alert__container">
+			<div class="cmui-dialog__title cmui-alert__title" v-html="title" v-if="title" slot="top"></div>
+			<div class="cmui-dialog__warp cmui-alert__warp">
+				<div class="cmui-dialog__body cmui-alert__body" v-if="content" v-html="content" :style="bodyStyle"></div>
 			</div>
-			<div class="cmui-dialogButtons cmui-alertButtons">
-				<div class="cmui-alertButton cmui-dialogButton" v-html="okText" :style="okStyle" @click="cancel()" slot="bottom"></div>
+			<div class="cmui-dialog__buttons cmui-alert__buttons">
+				<div class="cmui-alert__button cmui-dialog__button" v-html="okText" :style="okStyle" @click="cancel()" slot="bottom"></div>
 			</div>
 	</cmui-popup>
 </template>
 <script>
-	import cmuiPopup from '../../component/popup/popup.vue';
+	import cmuiPopup from '../popup/popup.vue';
 	export default {
 		props:{
 			title: {type:String,default:''},
@@ -34,7 +39,6 @@
 		methods: {
 			cancel: function(){
 				this.showCmuiDialog=false;
-				document.body.classList.remove('overflow-h');
 				(typeof this.okFn==='function')&&this.okFn()
 			}
 			, disabledTouchMove(){}

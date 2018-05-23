@@ -106,7 +106,7 @@
 		name:'popup',
 		props:{
 			visible:{type:Boolean,default:false},
-			maskEvent:{type:[Boolean,Function],default:true},
+			maskEvent:{type:Boolean,default:true},
 			position:{type:String,default:'right'},
 			targetStyle:Object,
 			targetClass:Array,
@@ -114,7 +114,7 @@
 		},
 		methods:{
 			maskClick(){
-				if(_.isBoolean(this.maskEvent)&&this.maskEvent){
+				if(this.maskEvent){
 					this.visible=false;
 				}
 			}

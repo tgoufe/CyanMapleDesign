@@ -9,14 +9,14 @@ Vue.component('cmui-notice',noticeVue);
 var id='cmui-notice-'+_.uniqueId();
 var CURRENT=null;
 var timeHandle;
-$(function(){
-	$('<cmui-notice id="'+id+'">').appendTo('body');
-	CURRENT=new Vue({
-		el:'#'+id
-	}).$children[0];
-})
-
+let setCurrent=_.once(function(){
+  $('<cmui-notice id="'+id+'">').appendTo('body');
+  CURRENT=new Vue({
+    el:'#'+id
+  }).$children[0];
+});
 function Notice(){
+  setCurrent();
 	var options={};
 	if(arguments){
 		if(arguments.length>1){
@@ -39,7 +39,6 @@ function Notice(){
 		return CURRENT
 	}
 	options = _.defaults(_.find(arguments,_.isPlainObject),options, defaults);
-	document.body.classList.add('overflow-h');
 	CURRENT.showCmuiDialog=true;
 	_.each(options,(value,key)=>{
 		CURRENT[key]=value
