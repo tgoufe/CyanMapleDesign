@@ -1,4 +1,4 @@
-import Vue from 'vue';
+
 let defaultOptions={
 	parent:'body',
 	topContent:'',

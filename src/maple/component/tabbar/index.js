@@ -1,6 +1,6 @@
 import cmuiTabbar from './tabbar.vue';
 import List from '../base/list.js';
-import Vue from 'vue';
+
 Vue.component('cmui-tabbar',cmuiTabbar);
 function TabBar(){
 	// get

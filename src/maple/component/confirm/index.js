@@ -1,5 +1,5 @@
 import confirmVue from "./index.vue";
-import Vue from 'vue';
+
 var defaults = {
 	  title: ''
 	, content: ''

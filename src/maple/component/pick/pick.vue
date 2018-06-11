@@ -57,9 +57,11 @@
   import Swiper from 'swiper';
   export default {
     props:{
-      data:Array,
-      selectIndex:Array,
-      visible:false
+      data:Array
+      , selectIndex:Array
+      , visible:false
+      , rightFn:Function
+      , leftFn:Function
     },
     computed:{
       pickerData(){
@@ -152,11 +154,13 @@
       },
       _ok(){
         this.visible=false;
-        maple.alert(this._getData().map(item=>item.text).toString())
-        this.$emit('select',this._getData(),this);
+        let data=this._getData();
+        _.isFunction(this.rightFn)&&this.rightFn(data,this);
+        this.$emit('select',data,this);
       },
       _cancel(){
         this.visible=false;
+        _.isFunction(this.leftFn)&&this.leftFn(this);
         this.$emit('cancel',this);
       }
     }

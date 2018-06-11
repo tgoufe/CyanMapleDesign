@@ -1,5 +1,5 @@
 import countdown from './countdown.vue';
-import Vue from 'vue';
+
 Vue.component('cmui-countdown',countdown);
 let defaultOptions={
 	nowTime:+new Date,

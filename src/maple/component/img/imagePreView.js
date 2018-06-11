@@ -1,4 +1,4 @@
-import Vue from 'vue';
+
 function ImagePreView(...arg){
 	const id=_.uniqueId('preView_');
 	const tpl=`

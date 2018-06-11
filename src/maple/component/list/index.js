@@ -2,7 +2,7 @@ import listVue from './list.vue';
 import listItemVue from './list-item.vue';
 import listList from './listList';
 import Sortable from './Sortable.js';
-import Vue from 'vue';
+
 Vue.component('cmui-list',listVue);
 Vue.component('cmui-list-item',listItemVue);
 function getItemClassByCol(col){

@@ -1,10 +1,11 @@
-import Vue from 'vue';
 function picker(){
-  let defaultOptions={
-      visible:false,
+  let defaultOptions=_.defaults(_.find(arguments,_.isPlainObject),{
+      // visible:false,
       data:_.find(arguments,_.isArray),
-      rightButtonFn:_.find(arguments._.isFunction)
-  };
+      rightFn:_.find(arguments,_.isFunction),
+      leftFn:_.filter(arguments,_.isFunction)[1]
+  });
+  defaultOptions.visible=false;
   let pickerDom=document.createElement('cmui-picker');
   pickerDom.setAttribute('v-bind','defaultOptions');
   document.body.appendChild(pickerDom);
@@ -13,5 +14,6 @@ function picker(){
     data:{defaultOptions}
   });
   defaultOptions.visible=true;
+  return vm;
 }
 export default picker;

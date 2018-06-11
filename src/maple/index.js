@@ -1,5 +1,4 @@
-import Vue from 'vue';
-window.Vue=Vue;
+
 import maple from './core';
 import { cookie } from './cache/cookie';
 //挂载cookie

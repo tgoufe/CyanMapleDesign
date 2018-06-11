@@ -1,5 +1,5 @@
 import messageVue from "./index.vue";
-import Vue from 'vue';
+
 Vue.component('cmui-message',messageVue);
 var id='cmui-message-'+_.uniqueId();
 var CURRENT=null;

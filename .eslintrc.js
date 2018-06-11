@@ -31,6 +31,7 @@ module.exports = {
             2,
             "all"
         ],
-        "eqeqeq": 2
+        "eqeqeq": 2,
+        "no-undef":0
     }
 };
