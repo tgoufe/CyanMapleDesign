@@ -1,4 +1,5 @@
 import maskVue from './index.vue';
+import Vue from 'vue';
 Vue.component('cmui-mask',maskVue);
 var id=_.uniqueId('cmui-mask-')
 var CURRENT=null;

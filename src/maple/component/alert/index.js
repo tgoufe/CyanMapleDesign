@@ -1,4 +1,5 @@
 import alertVue from "./index.vue";
+import Vue from 'vue';
 var defaults = {
 	  title: ''
 	, content: ''

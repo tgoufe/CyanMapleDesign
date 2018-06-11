@@ -25,7 +25,6 @@
 	      </div>
 	      </div>
 	    </div>
-	</div>
 	</transition>
 </template>
 <style type="text/css" lang="scss">
@@ -90,14 +89,14 @@
 	}
 }
 @keyframes dialog-zoom-in{
-	0%{transform: scale(0)};
-    50%{transform: scale(1.1)};
-    100%{transform: scale(1)};
+	0%{transform: scale(0)}
+    50%{transform: scale(1.1)}
+    100%{transform: scale(1)}
 }
 @keyframes dialog-zoom-out{
-    0%{transform: scale(1)};
-    50%{transform: scale(1.1)};
-	100%{transform: scale(0)};
+    0%{transform: scale(1)}
+    50%{transform: scale(1.1)}
+	100%{transform: scale(0)}
 }
 </style>
 <script type="text/javascript">
@@ -129,11 +128,11 @@
 				switch(position){
 					case 'top':
 						width='100%';
-						height="60%";
+						// height="60%";
 						break;
 					case 'bottom':
 						width='100%';
-						height="60%";
+						// height="60%";
 						break;
 					case 'left':
 						height='100%';

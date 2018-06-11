@@ -1,4 +1,5 @@
 import actionsVue from "./index.vue";
+import Vue from 'vue';
 var defaults = {
 	  buttons: []
 	, className: ''

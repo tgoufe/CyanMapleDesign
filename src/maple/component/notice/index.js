@@ -1,4 +1,5 @@
 import noticeVue from "./index.vue";
+import Vue from 'vue';
 var defaults = {
 	  content: ''
 	, className: ''

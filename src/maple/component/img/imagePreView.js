@@ -1,3 +1,4 @@
+import Vue from 'vue';
 function ImagePreView(...arg){
 	const id=_.uniqueId('preView_');
 	const tpl=`
@@ -20,19 +21,19 @@ function ImagePreView(...arg){
         },
         methods:{
             preViewListClick:function(event){
-                event.stopPropagation()
+                event.stopPropagation();
                 if(!_.includes(_.get(event,'target.classList'),'swiper-pagination-bullet')){
-                    this.$children[0].$destroy()
+                    this.$children[0].$destroy();
                     vm.show=false;
                     vm.$nextTick(function(){
                 		$(this.$el).remove();
-                	})
+                	});
                 }
             }
         },
         mounted(){
-            _.defer(function(){vm.show=true})
+            _.defer(function(){vm.show=true});
         }
-    })
+    });
 }
 export default ImagePreView;

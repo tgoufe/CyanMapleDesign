@@ -1,3 +1,5 @@
+import Vue from 'vue';
+window.Vue=Vue;
 import maple from './core';
 import { cookie } from './cache/cookie';
 //挂载cookie
@@ -52,6 +54,7 @@ import tabbar    from './component/tabbar/index.js';
 import form      from './component/form/index.js';
 import maskPanel from './component/maskPanel/index.js';
 import countdown from './component/countdown/index.js';
+import picker from './component/pick/index.js';
 
 
 maple.notice = notice;
@@ -66,6 +69,7 @@ maple.form = form;
 maple.maskPanel = maskPanel;
 maple.countdown = countdown;
 maple.message = message;
+maple.picker=picker;
 // // 初始化通用组件
 Object.keys(component).forEach(d => Vue.component(d, component[d]));
 export default (window.maple = maple);

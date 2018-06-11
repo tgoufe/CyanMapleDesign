@@ -2,7 +2,8 @@ import sliderVue from './slider.vue';
 import sliderItemVue from './slider-item.vue';
 import Swiper from './swiper';
 import sliderList,{CMUI_SliderList} from './sliderList';
-import sliderThemeList from './sliderThemeList'
+import sliderThemeList from './sliderThemeList';
+import Vue from 'vue';
 Vue.component('cmui-slider',sliderVue);
 Vue.component('cmui-slider-item',sliderItemVue);
 function Slider(){
