@@ -2,7 +2,7 @@ import img from './component/img/img.vue';
 import pick from './component/pick/pick.vue';
 import scrollbox from './component/scrollbox/scrollbox.vue';
 import scrollboxItem from './component/scrollbox/scrollbox-item.vue';
-import scroll from './component/scroll/scroll.vue';
+// import scroll from './component/scroll/scroll.vue';
 import collapse from './component/collapse/collapse.vue';
 import collapseItem from './component/collapse/collapse-item.vue';
 import affix from './component/affix/affix.vue';
