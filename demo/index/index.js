@@ -21,8 +21,6 @@ const routes = [
 const router = new VueRouter({
     routes
 });
-console.log(location);
-// if(location.hash)
 window.vm = new Vue({
     el: '#main',
     router,
@@ -32,16 +30,30 @@ window.vm = new Vue({
             return {
                 title: '组件' + index, link: '###'
             };
-        })
+        }),
+        pickData:Array(2).fill([...Array(10)].map((item,index)=>index)),
+        visible:false
     },
     methods: {
         goback() {
             this.$router.go(-1);
+        },
+        change(){
+           this.visible=!this.visible;
+        },
+        changeData(){
+            this.pickData=Array(3).fill([...Array(10)].map((item,index)=>index));
+        }
+    },
+    computed:{
+        checkAll(){
+            return _.compact(this.checkedList).length===this.checkList.length;
         }
     },
     mounted() {
         if (location.hash === '#/') {
             this.$router.replace('/componentList/default');
         }
+
     }
 });

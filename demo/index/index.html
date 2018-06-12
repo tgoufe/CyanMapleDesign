@@ -12,17 +12,15 @@
     <link rel="stylesheet" href="../../src/cyan/CMUI.scss">
     <link rel="stylesheet" href="index.scss">
     <link rel="stylesheet" href="../../src/maple/theme.scss">
-    <!-- <style id="test">
-        body>div:first-child{
-            color:blue;
-        }
-    </style> -->
 </head>
 <body>
 <div id="main" class="paddingb50">
     <pc-head :title="headTitle" @left-icon-click="goback()"></pc-head>
-    <router-view>
-    </router-view>
+    <a href="###" class="btn red" @click="change">change</a>
+    <router-view></router-view>
+    <cmui-picker :data="pickData" :select-index="[1,2]" :visible.sync="visible" @cancel="changeData()" title="testDemo">
+        <cmui-picker-item></cmui-picker-item>
+    </cmui-picker>
 </div>
 <script src="../../src/maple/index.js"></script>
 <script src="./index.js"></script>
