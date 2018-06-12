@@ -1,6 +1,7 @@
 function picker(){
   let defaultOptions=_.defaults(_.find(arguments,_.isPlainObject),{
       // visible:false,
+      title:_.find(arguments,_.isString),
       data:_.find(arguments,_.isArray),
       rightFn:_.find(arguments,_.isFunction),
       leftFn:_.filter(arguments,_.isFunction)[1]

@@ -8,7 +8,7 @@
             <div class="cmui-picker__cancel">
                 <div class="btn red radius small" @click="_cancel()">取消</div>
             </div>
-            <div class="flex1 text-center">title</div>
+            <div class="flex1 text-center cmui-picker__title">{{title}}</div>
             <div class="cmui-picker__ok">
                 <div class="btn red radius small" @click="_ok()">确定</div>
             </div>
@@ -50,6 +50,7 @@
             }
         }
     }
+    .cmui-picker__title{font-size: 20px;}
 </style>
 
 <script>
@@ -62,6 +63,7 @@
       , visible:false
       , rightFn:Function
       , leftFn:Function
+      , title:String
     },
     computed:{
       pickerData(){

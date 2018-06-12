@@ -1,16 +1,25 @@
 {
   "name": "CyanMapleDesigne",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "cmui",
+  "main": "CMUI/index.js",
   "scripts": {
     "start": "parcel demo/index/index.html",
     "cyan": "parcel build src/cyan/cmui.scss -d CMUI",
     "maple": "parcel build src/maple/index.js -d CMUI ",
     "theme": "parcel build src/maple/theme.scss -d CMUI "
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "touch",
+    "ios",
+    "mobile",
+    "cmui",
+    "phonegap",
+    "app",
+    "cmui",
+    "plugin"
+  ],
+  "author": "qqkillqq",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^7.2.5",
@@ -29,5 +38,6 @@
     "dayjs": "^1.5.16",
     "swiper": "^4.2.6",
     "vue": "^2.5.16"
-  }
+  },
+  "version": "2.0.0"
 }
