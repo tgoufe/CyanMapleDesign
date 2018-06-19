@@ -45,9 +45,6 @@
         font-size:20px;
         &.swiper-slide-active{
             color: #ff8d66;
-            &~.cmui-picker__item:nth-child(1){
-                color:blue;
-            }
         }
     }
     .cmui-picker__title{font-size: 20px;}
@@ -65,26 +62,49 @@
       , leftFn:Function
       , title:String
     },
-    computed:{
-      pickerData(){
-        function formatData(data){
-          return _.map(data,col=>{
-            return _.map(col,item=>{
-              return _.isObject(item)?item:{text:item.toString(),value:item};
-            }).filter(item=>!!item.text)
-          })
-        }
-        return formatData(_.every(this.data,_.isArray)?this.data:[this.data]);
-      },
-      pickerSelectIndex(){
-        let colLen=this.pickerData.length;
-        if(_.isNumber(this.selectIndex)){
+    data:function(){
+      let _this=this;
+      function baseForm(data,index,arr){
+        return _.map(data,item=>{
+          if(_.isPlainObject(item)){
+            if(_.isArray(item.children)){
+              arr[index+1]=arr[index+1]||[];
+              item.text=String(item.text);
+              item.children=baseForm(item.children,index+1,arr);
+            }
+            return item;
+          }else{
+            return {text:item.toString(),value:item}
+          }
+        })
+      }
+      function formatData(data){
+        return _.map(data,(col,index,arr)=>{
+          return baseForm(col,index,arr);
+        })
+      }
+      let pickerData=formatData(_.every(this.data,_.isArray)?this.data:[this.data]);
+      let pickerSelectIndex=(function(){
+        let colLen=pickerData.length;
+        if(_.isNumber(_this.selectIndex)){
           return _.fill(Array(colLen),this.selectIndex);
-        }else if(_.isArray(this.selectIndex)){
-          return _.map(this.selectIndex,item=>+item);
+        }else if(_.isArray(_this.selectIndex)){
+          return _.map(_this.selectIndex,Number).concat(Array(pickerData.length-_this.selectIndex.length).fill(0));
         }else{
           return _.fill(Array(colLen),0)
         }
+      })();
+      let wheelStore=JSON.parse(JSON.stringify(pickerData));
+      // _.forEach(pickerData,(item,index)=>{
+      //   if(pickerSelectIndex[index]&&item.children){
+      //     wheelStore[index+1]=pickerData[index+1];
+      //     pickerData[index+1]=item;
+      //   }
+      // })
+      return {
+        pickerData,
+        pickerSelectIndex,
+        wheelStore
       }
     },
     components: {
@@ -96,30 +116,31 @@
         handler(value){
           this.wheels = this.wheels || [];
           let wheelWrapper = this.$refs.wheelWrapper;
-          let _this=this;
+          console.log(this.pickerData)
           if(value&&!this.wheels.length){
-            this.$nextTick(function(){
-              _.forEach(_this.pickerData,(item,index)=>{
-                _this._initWheel(wheelWrapper,index)
-              });
+            this.setData(0,this.pickerSelectIndex[0]);
+            this.$nextTick(()=>{
+              _.forEach(this.pickerData,(item,index)=>{
+                this.initWheel(wheelWrapper,index)
+              })
+              
             })
           }
           this.$emit('update:visible', value);
         }
-      },
-      pickerData(value){
-        this._resetWheel();
       }
     },
     methods:{
-      _initWheel(wheelWrapper,index){
+      initWheel(wheelWrapper,index=0){
         let _this=this;
+        let initialSlide=this.pickerSelectIndex[index]||0;
+        let tag=false;
         _this.wheels[index]=new Swiper(wheelWrapper.children[index],{
           direction : 'vertical',
           centeredSlides : true,
           slidesPerView:'auto',
           effect : 'coverflow',
-          initialSlide :_this.pickerSelectIndex[index]||0,
+          initialSlide :initialSlide,
           coverflowEffect: {
             rotate: -30,
             stretch: 0,
@@ -128,20 +149,45 @@
             slideShadows : false
           },
           on:{
-            transitionEnd(swiper){
-              _this.pickerSelectIndex[index]=this.activeIndex;
+            transitionEnd(){
+              if(tag&&index!=_this.pickerData.length-1){
+                console.log('tag',index,this.activeIndex)
+                _this.setData(index,this.activeIndex);
+                _this.updataWheels();
+              }
             }
           }
-        })
+        });
+        if(!tag){
+          tag=!tag;
+          this.updataWheels();
+        }
       },
-      _resetWheel(){
-        let _this=this;
-        let wheelWrapper = this.$refs.wheelWrapper;
-        this.wheels.forEach(wheel=>wheel.destroy());
-        this.wheels=[];
-        this.$nextTick(function(){
-          _.forEach(_this.pickerData,(item,index)=>{
-            _this._initWheel(wheelWrapper,index)
+      setData(index,active){
+        if(!_.get(this,`pickerData[${index}][${active}]`)){
+          active=0;
+        }
+        this.pickerSelectIndex[index]=active;
+        let children=_.get(this,`pickerData[${index}][${active}].children`);
+        if(children){
+          if(!_.isEqual(this.pickerData[index+1],children)){
+            this.pickerData.splice(index+1,1,children)
+          }else{
+            index++
+          }
+          this.setData(index+1,this.pickerSelectIndex[index+1]);
+        }else{
+          index++;
+          for(let len=this.pickerData.length;index<len;index++){
+            this.$set(this.pickerData[index-1],this.wheelStore[index]);
+          }
+        }
+      },
+      updataWheels(){
+        this.$nextTick(()=>{
+          this.wheels.forEach((wheel,index)=>{
+            wheel.updateSlides();
+            wheel.slideTo(this.pickerSelectIndex[index],500,false);
           });
         })
       },
@@ -157,6 +203,7 @@
       _ok(){
         this.visible=false;
         let data=this._getData();
+        console.log(data)
         _.isFunction(this.rightFn)&&this.rightFn(data,this);
         this.$emit('select',data,this);
       },
