@@ -17,9 +17,6 @@
 <div id="main" class="paddingb50">
     <pc-head :title="headTitle" @left-icon-click="goback()"></pc-head>
     <router-view></router-view>
-    <cmui-picker :data="pickData" :select-index="[0,2]" :visible.sync="visible" @cancel="changeData()" title="testDemo">
-        <cmui-picker-item></cmui-picker-item>
-    </cmui-picker>
 </div>
 <script src="../../src/maple/index.js"></script>
 <script src="./index.js"></script>

@@ -12,12 +12,32 @@
 
 </template>
 <script>
+    import cityData from './city.json';
+    function fromatCity(data){
+      return _.map(data,(value,key)=>{
+        if(_.isPlainObject(value)){
+          return{
+            text:value.name,
+            value:key,
+            children:value.child?fromatCity(value.child):undefined
+          }
+        }
+        if(_.isString(value)){
+          return{
+            text:value,
+            value:key
+          }
+        }
+      })
+    }
     let dataList={
-      baseData:[1,2,3]
+      baseData:_.times(10),
+      aloneData:[['上午','下午'],_.times(12,index=>`${index}点`)],
+      childrenData:[fromatCity(cityData)].concat([['default'],['default']])
     };
     export default{
       data:function(){
-        let buttonList=['base'];
+        let buttonList=['base','alone','children'];
         let visible=false;
         return {pickerData:[],visible,buttonList}
       },

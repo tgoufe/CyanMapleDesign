@@ -1,3 +1,4 @@
+<script src="../../../../../Puppeteer/puppeteerTest.js"></script>
 <template>
     <cmui-popup
     position="bottom"
@@ -14,15 +15,16 @@
             </div>
         </div>
         <div class="pos-r cmui-picker_content">
-            <div class="cmui-picker__linet abs-top"></div>
-            <div class="cmui-picker__lineb abs-bottom"></div>
+
             <div class="cmui-picker__wrapper flex-container vfull" ref="wheelWrapper" style="height:200px;overflow: hidden">
                 <div v-for="(data,index) in pickerData" :key="index" class="flex1 swiper-container">
                     <ul class="cmui-picker__scroll swiper-wrapper">
-                        <li v-for="(item,index) in data" class="cmui-picker__item text-center swiper-slide" :key="index">{{item.text}}</li>
+                        <li v-for="(item,index) in data" class="cmui-picker__item text-center swiper-slide text-limit1" :key="index">{{item.text}}</li>
                     </ul>
                 </div>
             </div>
+            <div class="cmui-picker__linet abs-top"></div>
+            <div class="cmui-picker__lineb abs-bottom"></div>
         </div>
     </cmui-popup>
 </template>
@@ -112,35 +114,6 @@
     },
     data:function(){
       return getInitData(this.data,this.selectIndex);
-      let _this=this;
-      let pickerData=formatData(_.every(this.data,_.isArray)?this.data:[this.data]);
-      let pickerSelectIndex=(function(){
-        let colLen=pickerData.length;
-        if(_.isNumber(_this.selectIndex)){
-          return _.fill(Array(colLen),this.selectIndex);
-        }else if(_.isArray(_this.selectIndex)){
-          return _.map(_this.selectIndex,Number);
-        }else{
-          return _.fill(Array(colLen),0)
-        }
-      })();
-      let wheelStore=[pickerData[0]];
-      for(let index=0;index<pickerData.length;index++){
-        let wheelData=pickerData[index];
-        let selectIndex=_.get(pickerSelectIndex,index,0);
-        let chiildrenData=_.get(wheelData,`[${selectIndex}].children`);
-        if(chiildrenData){
-          wheelStore[index+1]=pickerData[index+1]||[];
-          pickerData[index+1]=chiildrenData;
-        }else if(index<pickerData.length-1){
-          wheelStore[index+1]=pickerData[index+1]||[]
-        }
-      }
-      return {
-        pickerData,
-        pickerSelectIndex,
-        wheelStore
-      }
     },
     components: {
       cmuiPopup
@@ -174,10 +147,12 @@
           direction : 'vertical',
           centeredSlides : true,
           slidesPerView:'auto',
+          initialSlide:initialSlide,
+          // freeMode:true,
+          // freeModeSticky:true,
           effect : 'coverflow',
-          initialSlide :initialSlide,
           coverflowEffect: {
-            rotate: -30,
+            rotate: -25,
             stretch: 0,
             depth: 200,
             modifier: 1,
@@ -185,7 +160,7 @@
           },
           on:{
             transitionEnd(){
-              if(!isInit){
+              if(!isInit&&index!==_this.pickerData.length-1){
                 _this.updateData(index,this.activeIndex);
                 _this.updataWheels(index+1);
               }else{
