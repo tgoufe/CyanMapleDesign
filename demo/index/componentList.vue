@@ -29,7 +29,8 @@
                 'input',
                 'tabbar',
                 'collapse',
-                'affix'
+                'affix',
+                'picker'
             ]
         },
         page: {
