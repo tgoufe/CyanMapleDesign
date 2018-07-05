@@ -65,7 +65,7 @@ class CacheStorageModel extends Model{
 			url = new Request( url );
 		}
 
-		return url
+		return url;
 	}
 
 	// ---------- 公有方法 ----------

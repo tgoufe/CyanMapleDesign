@@ -32,7 +32,7 @@ function ImagePreView(...arg){
             }
         },
         mounted(){
-            _.defer(function(){vm.show=true});
+            _.defer(function(){vm.show=true;});
         }
     });
 }

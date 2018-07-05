@@ -4,7 +4,7 @@ Vue.component('cmui-message',messageVue);
 var id='cmui-message-'+_.uniqueId();
 var CURRENT=null;
 function Message(){
-	var _arg=_.chain(arguments)
+	var _arg=_.chain(arguments);
 	var defaults = {
 		content:_arg.find(item=>_.isString(item)&&!/^\.|\#[a-z]/i.test(item)).value()||'',
 		duration:_arg.find(_.isNumber).value()||1000,
@@ -40,7 +40,7 @@ function Message(){
 				break;
 		}
 	}
-	var options=_.defaults(defaults,_arg.find(_.isPlainObject).value())
+	var options=_.defaults(defaults,_arg.find(_.isPlainObject).value());
 	var containerDom=$(` <div class="cmui-message-list"> </div>`);
 	var messageTemplate=`
 		<div class="cmui-message">
@@ -50,15 +50,15 @@ function Message(){
 			</div>
 		</div>
 	`;
-	_.isFunction(options.beforeCreat)&&options.beforeCreat()
-	var messageDom=containerDom.append(messageTemplate).appendTo(options.parent)
-	_.isFunction(options.afterCreat)&&options.afterCreat(messageDom)
+	_.isFunction(options.beforeCreat)&&options.beforeCreat();
+	var messageDom=containerDom.append(messageTemplate).appendTo(options.parent);
+	_.isFunction(options.afterCreat)&&options.afterCreat(messageDom);
 	_.delay(function(){
-		_.isFunction(options.beforeClose)&&options.beforeClose(messageDom)
+		_.isFunction(options.beforeClose)&&options.beforeClose(messageDom);
 		messageDom.fadeOut('slow',function(){
-			messageDom.remove()
-			_.isFunction(options.afterClose)&&options.afterClose()
-		})
-	},options.duration)
-};
+			messageDom.remove();
+			_.isFunction(options.afterClose)&&options.afterClose();
+		});
+	},options.duration);
+}
 export default Message;

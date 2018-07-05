@@ -8,7 +8,7 @@ let defaultOptions={
 	contentWidth:'80%',
 	contentHeight:'100%',
 	position:'right'
-}
+};
 let vm;
 function MaskPanel(options={}){
 	let {
@@ -45,14 +45,14 @@ function MaskPanel(options={}){
 					width:contentWidth,
 					height:contentHeight,
 					visible:true
-				}
+				};
 			},
 			methods:{
 				hide(){
 					$(this.$el).remove();
 				}
 			}
-		})
+		});
 	}
 }
-export default MaskPanel
+export default MaskPanel;

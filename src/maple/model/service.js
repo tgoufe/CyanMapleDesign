@@ -115,7 +115,7 @@ class ServiceModel extends Model{
 
 		if( typeof topic === 'object' ){
 			options = topic;
-			topic = options.url
+			topic = options.url;
 		}
 
 		topic = this._config.baseUrl + topic;

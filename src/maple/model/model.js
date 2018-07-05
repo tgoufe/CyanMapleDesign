@@ -404,7 +404,7 @@ class Model{
 			result = Promise.resolve( true );
 		}
 
-		return result
+		return result;
 	}
 	/**
 	 * @summary 获取数据

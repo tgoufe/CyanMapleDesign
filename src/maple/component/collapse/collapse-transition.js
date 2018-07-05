@@ -5,7 +5,7 @@ export default {
       on: {
         beforeEnter(el) {
           el.classList.add('collapse-transition');
-          if (!el.dataset) el.dataset = {};
+          if (!el.dataset) {el.dataset = {};}
           el.dataset.oldPaddingTop = el.style.paddingTop;
           el.dataset.oldPaddingBottom = el.style.paddingBottom;
           el.style.height = '0';
@@ -33,7 +33,7 @@ export default {
           el.style.overflow = el.dataset.oldOverflow;
         },
         beforeLeave(el) {
-          if (!el.dataset) el.dataset = {};
+          if (!el.dataset) {el.dataset = {};}
           el.dataset.oldPaddingTop = el.style.paddingTop;
           el.dataset.oldPaddingBottom = el.style.paddingBottom;
           el.dataset.oldOverflow = el.style.overflow;

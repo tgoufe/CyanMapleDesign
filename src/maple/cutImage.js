@@ -6,8 +6,8 @@ $.fn.localResizeIMG = function(obj) {
 
         // 执行前函数
         if ($.isFunction(obj.before)) {
-            obj.before(this, blob, file)
-        };
+            obj.before(this, blob, file);
+        }
 
         _create(blob, file);
         this.value = ''; // 清空临时数据
@@ -74,4 +74,4 @@ $.fn.localResizeIMG = function(obj) {
         };
     }
 };
-export default cutImage
+export default cutImage;

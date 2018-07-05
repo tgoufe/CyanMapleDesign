@@ -10,10 +10,10 @@ export default function thememaker(){
 		// lazyLoading         : true,
 		// updateOnImagesReady : true,
 		preloadImages       : true
-	}
+	};
 	switch(theme){
 		default:
-			break
+			break;
 		case 1:
 				options.effect         = 'coverflow',
 				options.grabCursor     = true,
@@ -43,7 +43,7 @@ export default function thememaker(){
 			_this.col=0;
 			_this.auto=0;
 			options.loop=false;
-			break
+			break;
 		case 5:
 			options.effect         = 'coverflow';
 			options.centeredSlides = true;
@@ -66,22 +66,22 @@ export default function thememaker(){
 	if(this.col===0){
 		options.slidesPerView='auto';
 		this.$children.forEach(item=>{
-			item.$el.style.width='auto'
-		})
+			item.$el.style.width='auto';
+		});
 	}else{
-		options.slidesPerView=this.col||options.slidesPerView || 1
+		options.slidesPerView=this.col||options.slidesPerView || 1;
 	}
 	options.spaceBetween=this.space||options.spaceBetween || 0;
 	options.autoplay=(function(_this){
 		if(_this.auto==0){
 			return 0;
 		}else{
-			return options.autoplay  || 3000
+			return options.autoplay  || 3000;
 		}
 	})(this);
 	options.autoHeight=this.autoHeight;
 	options.slidesPerColumn=this.span||options.slidesPerColumn||1;
 	options.loop=this.loop;
 	options.autoplayDisableOnInteraction=this.autoplayDisable;
-	return _.defaults(this.options,options)
+	return _.defaults(this.options,options);
 }

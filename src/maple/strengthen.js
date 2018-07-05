@@ -2,7 +2,7 @@ var h = {};
 // 返回字符串的实际长度, 一个汉字算2个长度   
 String.prototype.strlen = function() {
         return this.replace(/[^\x00-\xff]/g, "**").length;
-    }
+    };
     //字符串超出省略  
 String.prototype.cutstr = function(len) {
         var restr = this;
@@ -16,33 +16,33 @@ String.prototype.cutstr = function(len) {
             }
         }
         return restr;
-    }
+    };
     //替换全部  
 String.prototype.replaceAll = function(s1, s2) {
-        return this.replace(new RegExp(s1, "gm"), s2)
-    }
+        return this.replace(new RegExp(s1, "gm"), s2);
+    };
     //字符串去空格  
 String.prototype.trim = function() {
     return this.replace(/(^\s*)|(\s*$)/g, "");
-}
+};
 String.prototype.trimAll = function() {
     return this.replace(/\s+/g, "");
-}
+};
 String.prototype.lTrim = function() {
     return this.replace(/(^\s*)/g, "");
-}
+};
 String.prototype.rTrim = function() {
         return this.replace(/(\s*$)/g, "");
-    }
+    };
     //判断是否以某个字符串开头  
 String.prototype.startWith = function(s) {
-        return this.indexOf(s) == 0
-    }
+        return this.indexOf(s) == 0;
+    };
     //判断是否以某个字符串结束  
 String.prototype.endWith = function(s) {
     var d = this.length - s.length;
-    return (d >= 0 && this.lastIndexOf(s) == d)
-}
+    return (d >= 0 && this.lastIndexOf(s) == d);
+};
 
 //删除数组中存在重复的元素  
 function getUnique(someArray) {
@@ -85,22 +85,22 @@ function confirmRepeat(someArray) {
 Array.prototype.in_array = function(e) {
         for (i = 0; i < this.length; i++) {
             if (this[i] == e)
-                return true;
+                {return true;}
         }
         return false;
-    }
+    };
     //判断某个值在数组中的位置  
 Array.prototype.indexOf = function(e) {
     for (i = 0; i < this.length; i++) {
         if (this[i] == e)
-            return i;
+            {return i;}
     }
     return -1;
-}
+};
 
 //转义html标签  
 function HtmlEncode(text) {
-    return text.replace(/&/g, '&').replace(/\"/g, '"').replace(/</g, '<').replace(/>/g, '>')
+    return text.replace(/&/g, '&').replace(/\"/g, '"').replace(/</g, '<').replace(/>/g, '>');
 }
 
 //格式化日期 DateFormat('yyyy_MM_dd hh:mm:ss:SS 星期w 第q季度')  
@@ -120,7 +120,7 @@ function DateFormat(format, date) {
         "q+": Math.floor((date.getMonth() + 3) / 3), //quarter   
         "S": date.getMilliseconds(), //millisecond   
         "w": Week[date.getDay()]
-    }
+    };
     if (/(y+)/.test(format)) {
         format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
@@ -140,24 +140,24 @@ function setCookie(name, value, Hours) {
     var nd = utc + (3600000 * offset);
     var exp = new Date(nd);
     exp.setTime(exp.getTime() + Hours * 60 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString() + ";domain=360doc.com;"
+    document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString() + ";domain=360doc.com;";
 }
 //获取cookie值  
 function getCookie(name) {
     var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
-    if (arr != null) return unescape(arr[2]);
-    return null
+    if (arr != null) {return unescape(arr[2]);}
+    return null;
 }
 
 //加入收藏夹  
 function AddFavorite(sURL, sTitle) {
     try {
-        window.external.addFavorite(sURL, sTitle)
+        window.external.addFavorite(sURL, sTitle);
     } catch (e) {
         try {
-            window.sidebar.addPanel(sTitle, sURL, "")
+            window.sidebar.addPanel(sTitle, sURL, "");
         } catch (e) {
-            alert("加入收藏失败，请使用Ctrl+D进行添加")
+            alert("加入收藏失败，请使用Ctrl+D进行添加");
         }
     }
 }
@@ -165,17 +165,17 @@ function AddFavorite(sURL, sTitle) {
 function setHomepage(homeurl) {
     if (document.all) {
         document.body.style.behavior = 'url(#default#homepage)';
-        document.body.setHomePage(homeurl)
+        document.body.setHomePage(homeurl);
     } else if (window.sidebar) {
         if (window.netscape) {
             try {
-                netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect")
+                netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
             } catch (e) {
                 alert("该操作被浏览器拒绝，如果想启用该功能，请在地址栏内输入about:config,然后将项 signed.applets.codebase_principal_support 值该为true");
             }
         }
         var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
-        prefs.setCharPref('browser.startup.homepage', homeurl)
+        prefs.setCharPref('browser.startup.homepage', homeurl);
     }
 }
 
@@ -274,19 +274,19 @@ function getScrollXY() {
     } : {
         x: document.documentElement.scrollLeft,
         y: document.documentElement.scrollTop
-    }
+    };
 }
 
 //匹配国内电话号码(0511-4405222 或 021-87888822)   
 function istell(str) {
     var result = str.match(/\d{3}-\d{8}|\d{4}-\d{7}/);
-    if (result == null) return false;
+    if (result == null) {return false;}
     return true;
 }
 //匹配身份证(15位或18位)   
 function isidcard(str) {
     var result = str.match(/\d{15}|\d{18}/);
-    if (result == null) return false;
+    if (result == null) {return false;}
     return true;
 }
 //移动电话  
@@ -299,13 +299,13 @@ function checkMobile(str) {
 // 判断输入是否是一个由 0-9 / A-Z / a-z 组成的字符串   
 function isalphanumber(str) {
     var result = str.match(/^[a-zA-Z0-9]+$/);
-    if (result == null) return false;
+    if (result == null) {return false;}
     return true;
 }
 // 判断输入是否是有效的电子邮件   
 function isemail(str) {
     var result = str.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
-    if (result == null) return false;
+    if (result == null) {return false;}
     return true;
 }
 
@@ -336,7 +336,7 @@ function transform(tranvalue) {
             sum = sum + Number(n);
             if (sum != 0) {
                 str = dw[Number(n)].concat(str); //取得该数字对应的大写数字，并插入到str字符串的前面  
-                if (n == '0') sum = 0;
+                if (n == '0') {sum = 0;}
             }
             if (len - i - 1 >= 0) { //在数字范围内  
                 if (k1 != 3) { //加小单位  
@@ -348,7 +348,7 @@ function transform(tranvalue) {
                     k1 = 0;
                     var temp = str.charAt(0);
                     if (temp == "万" || temp == "亿") //若大单位前没有数字则舍去大单位  
-                        str = str.substr(1, str.length - 1);
+                        {str = str.substr(1, str.length - 1);}
                     str = dw2[k2].concat(str);
                     sum = 0;
                 }

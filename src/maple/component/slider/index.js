@@ -18,9 +18,9 @@ function Slider(){
 			if(_.isString(item)){
 				if(item[0]=='.'||item[0]=='#'){
 					if(!argParent){
-						var dom=$(item)
+						var dom=$(item);
 						if(dom.length){
-							argParent=dom
+							argParent=dom;
 						}
 					}
 				}else{
@@ -40,12 +40,12 @@ function Slider(){
 				}
 				
 			}
-		})
+		});
 		
 		//只有一个选择器的情况
 		if(argParent&&arguments.length==1){
 			_.filter(sliderList,(value,key)=>argParent==_.get(value,'container'))
-			.forEach(item=>tempSliderList.add(item))
+			.forEach(item=>tempSliderList.add(item));
 			return tempSliderList;
 		}
 		var defaultOptions={
@@ -59,13 +59,13 @@ function Slider(){
 						return [];
 					}
 				}else{
-					return argStrings.length?argStrings:[]
+					return argStrings.length?argStrings:[];
 				}
 			})(),
 			id:_.uniqueId('cmui-slider_'),
 			options:{},
 			theme:''
-		}
+		};
 		var options=_.assign(defaultOptions,argObject);
 		var parent=$(options.parent).eq(0);
 		if(!parent.length){
@@ -76,25 +76,25 @@ function Slider(){
 		tpl+='	<div class="swiper-container" id="'+options.id+'" >';
 		tpl+='		<div class="swiper-wrapper">';
 		options.items.forEach(item=>{
-			tpl+='<div class="swiper-slide">'
+			tpl+='<div class="swiper-slide">';
 			tpl+=item.toString();
-			tpl+='</div>'
-		})
+			tpl+='</div>';
+		});
 		tpl+='		</div>';
 		tpl+='	    <div class="pagination"></div>';
 		tpl+='	</div>';
 		tpl+='</div>';
-		var dom =$(tpl)
+		var dom =$(tpl);
 		parent.append(dom);
 		//主题拓展
 		if(options.theme){
-			_.defaults(options.options,sliderThemeList[options.theme])
+			_.defaults(options.options,sliderThemeList[options.theme]);
 		}
-		var swiper=new Swiper($('.swiper-container',dom),options.options)
+		var swiper=new Swiper($('.swiper-container',dom),options.options);
 		sliderList.add(swiper);
 		return tempSliderList.add(swiper);
 	}else{
 		return sliderList; 
 	}
 }
-export default Slider
+export default Slider;

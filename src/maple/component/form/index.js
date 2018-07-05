@@ -14,4 +14,4 @@ import cmuiRatio from './radio.vue';
 Vue.component('cmui-radio',cmuiRatio);
 
 
-export default {}
+export default {};

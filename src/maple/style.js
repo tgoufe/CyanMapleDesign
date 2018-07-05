@@ -6,7 +6,7 @@ $(function(){
 	document.head.appendChild(cmuiStyle);
 	cssRules=_.get(cmuiStyle,'sheet.cssRules');
 	cssRulesLen=cssRules.length;
-})
+});
 function setStyle(){
 
 }
@@ -24,7 +24,7 @@ function style(){
 					matchRule.style[name]=value;
 				}else{
 					cmuiStyle.sheet.insertRule(selector+'{}', cssRulesLen);
-					cmuiStyle.sheet.cssRules[cssRulesLen++].style[name]=value
+					cmuiStyle.sheet.cssRules[cssRulesLen++].style[name]=value;
 				}
 			}
 		}else if(selector&& name){
@@ -32,27 +32,27 @@ function style(){
 				return _.chain(cssRules)
 				.findLast(item=>_.get(item,'selectorText')==selector)
 				.get('style['+name+']')
-				.value()
+				.value();
 			}else{//删除选择器下的具体样式
 				_.chain(cssRules)
 				.findLast(item=>_.get(item,'selectorText')==selector)
 				.get('style')
 				.value()
-				.removeProperty(name)
+				.removeProperty(name);
 			}
 		}else if(selector&& _.isPlainObject(value)){
 			_.forEach(value,(value,key)=>{
-				style(selector,key,value)
-			})
+				style(selector,key,value);
+			});
 		}else if(selector){//读取样式
 			if(name===''||value===''){
 
 			}else{
 				let tempStyle= _.chain(cssRules)
 				.findLast(item=>_.get(item,'selectorText')==selector)
-				.get('style')
+				.get('style');
 				let arr=tempStyle.filter(item=>item).value();
-				return tempStyle.pick(arr).value()
+				return tempStyle.pick(arr).value();
 			}
 		}
 	}

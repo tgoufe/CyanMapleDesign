@@ -138,7 +138,7 @@ class WebSocketModel extends Model{
 		return this._clinet.then((socket)=>{
 			socket.close();
 
-			return true
+			return true;
 		});
 	}
 }
