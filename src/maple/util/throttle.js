@@ -47,7 +47,7 @@ let throttle = function(func, wait, cancelCB, leading){
 					lastTriggerOpts = {
 						that
 						, argv
-					}
+					};
 				}
 			}
 		}

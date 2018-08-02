@@ -24,11 +24,11 @@ function getItemClassByCol(col){
 	}else if(_.isArray(col)&&col.every(item=>item==parseInt(item))){
 		var total=col.reduce((pre,next)=>pre+next);
 		if(total%2==0||total%3==0){
-			return col.map(item=>'box-span'+parseInt(12/total*item))
+			return col.map(item=>'box-span'+parseInt(12/total*item));
 		}else if(total%5==0){
-			return col.map(item=>'box-col'+parseInt(15/total*item))
+			return col.map(item=>'box-col'+parseInt(15/total*item));
 		}else{
-			return ['box-span12']
+			return ['box-span12'];
 		}
 	}else{
 		return 'box-span12';
@@ -36,7 +36,7 @@ function getItemClassByCol(col){
 }
 function List(){
 	if(!arguments.length){
-		return listList
+		return listList;
 	}else{
 		var defaultOptions={
 			col:_.find(arguments,item=>_.isNumber(item)||_.isArray(item)&&_.every(item,_.isNumber))||1,
@@ -47,7 +47,7 @@ function List(){
 			options:{
 				draggable:'.cmui-list-item'
 			}
-		}
+		};
 		var options=_.defaultsDeep(defaultOptions,_.find(arguments,_.isPlainObject));
 		if(_.isFunction(options.items)){
 			var rs=options.items();
@@ -56,33 +56,33 @@ function List(){
 			}
 		}
 		if(options.space%10!=0||!_.inRange(options.space, -1, 51)){
-		    options.space= 20
+		    options.space= 20;
 		}
-		var realColClass=getItemClassByCol(options.col)
+		var realColClass=getItemClassByCol(options.col);
 		var template='';
 		template+='<div class="cmui-list overflow-h">';
 		template+='	<div class="clearfix marginr-n'+options.space+' marginb-n'+options.space+'">';
 		_.forEach(options.items,(item,index)=>{
 			template+='<div class="cmui-list-item paddingr'+options.space+' paddingb'+options.space+' ';
 			if(_.isString(realColClass)){
-				template+=realColClass
+				template+=realColClass;
 			}else if(_.isArray(realColClass)){
-				template+=realColClass[index%options.col.length]
+				template+=realColClass[index%options.col.length];
 			}
 			template+='">'+item.toString()+'</div>';
-		})
+		});
 		template+='	</div>';
 		template+='</div>';
-		template=$(template)
+		template=$(template);
 		$(options.parent).append(template);
 		if(options.sortable){
-			new Sortable(template.find('>.clearfix')[0],options.options)
+			new Sortable(template.find('>.clearfix')[0],options.options);
 		}
-		listList.add(template)
+		listList.add(template);
 		return template;
 	}
 }
-export default List
+export default List;
 /**
  * maple.list(2,[],20,dom)
  * maple.list({

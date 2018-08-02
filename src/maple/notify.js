@@ -67,7 +67,7 @@ if( 'Notification' in self ){
 else{
 	notify = function(){
 		return Promise.reject( new Error('浏览器不支持 Notification 功能') );
-	}
+	};
 }
 
 export default notify;

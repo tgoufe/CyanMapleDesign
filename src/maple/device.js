@@ -146,12 +146,12 @@ if (device.statusBar) {
 }
 
 // Add html classes
-if (classNames.length > 0) $("html").addClass(classNames.join(" "));
+if (classNames.length > 0) {$("html").addClass(classNames.join(" "));}
 
 // keng..
 device.weixin = /MicroMessenger/i.test(ua);
 
-// UC ä¯ÀÀÆ÷
+// UC ï¿½ï¿½ï¿½ï¿½ï¿½
 device.uc = ua.indexOf("UCBrowser") > -1;
 
 export default device;

@@ -8,7 +8,7 @@ function TabBar(){
 		return new List('tabbar');
 	}
 	if(arguments.length==1&&arguments[0]._isVue){
-		return new List('tabbar',arguments[0])
+		return new List('tabbar',arguments[0]);
 	}
 	// set
 	let defaultOptions=_(cmuiTabbar.props).mapValues(o=>_.get(o,'default')).defaults({
@@ -18,7 +18,7 @@ function TabBar(){
 		itemClick:null,
 		extra:'',
 		extraClick:null
-	}).value()
+	}).value();
 	_.forEach(arguments,arg=>{
 		if(_.isArray(arg)){
 			if(_.every(arg,_.isBoolean)){
@@ -28,21 +28,21 @@ function TabBar(){
 			}
 		}else if(_.isString(arg)){
 			if(/^\.|\#/.test(arg)){
-				defaultOptions.parent=arg
+				defaultOptions.parent=arg;
 			}else if(_.includes(['top','right','bottom','left'],arg)){
-				defaultOptions.position=arg
+				defaultOptions.position=arg;
 			}else if(_.includes(['flex','auto'],arg)){
-				defaultOptions.col=arg
+				defaultOptions.col=arg;
 			}
 		}else if(_.isNumber(arg)){
 			defaultOptions.col=arg;
 		}else if(arg instanceof jQuery){
-			defaultOptions.parent=arg
+			defaultOptions.parent=arg;
 		}else if(_.isFunction(arg)){
-			defaultOptions.itemClick=arg
+			defaultOptions.itemClick=arg;
 		}
-	})
-	const options=_.defaults(_.find(arguments,_.isPlainObject),defaultOptions)
+	});
+	const options=_.defaults(_.find(arguments,_.isPlainObject),defaultOptions);
 	const tpl=$(`
 		<cmui-tabbar
 		class="${options.className||''}"
@@ -71,13 +71,13 @@ function TabBar(){
 					col:options.col,
 					nav:options.nav,
 					extraList:[].concat(options.extra)
-				}
+				};
 			},
 			methods:{
 				itemClick:_.isFunction(options.itemClick)?options.itemClick:null,
 				extraClick:_.isFunction(options.extraClick)?options.extraClick:null,
 			}
-		})
+		});
 	}
 }
-export default TabBar
+export default TabBar;

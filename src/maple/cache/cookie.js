@@ -103,7 +103,7 @@ const cookie = function(){
             arguments[2]['expires'] = new Date(new Date().getTime() + formatTimeStr(arguments[2]['expires']));
         }
     }
-    return $.cookie.apply(this,arguments)
+    return $.cookie.apply(this,arguments);
 };
 cookie.remove = function(){
     return $.removeCookie.apply(this,arguments);

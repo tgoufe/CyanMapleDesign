@@ -3,9 +3,9 @@ $(function(){
 	let $body=$('body');
 	$body.on('click','a',e=>{
 		e.preventDefault();
-		changePage()
+		changePage();
 		return false;
-	})
-	click增强
-	滚动监听增强
-})
+	});
+	click增强;
+	滚动监听增强;
+});

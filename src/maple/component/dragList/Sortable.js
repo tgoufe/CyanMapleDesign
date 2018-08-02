@@ -10,7 +10,7 @@
 	if (typeof define === "function" && define.amd) {
 		define(factory);
 	}
-	else if (typeof module != "undefined" && typeof module.exports != "undefined") {
+	else if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
 		module.exports = factory();
 	}
 	else {
@@ -20,7 +20,7 @@
 })(function sortableFactory() {
 	"use strict";
 
-	if (typeof window == "undefined" || !window.document) {
+	if (typeof window === "undefined" || !window.document) {
 		return function sortableError() {
 			throw new Error("Sortable.js requires a window with a document");
 		};
@@ -73,7 +73,7 @@
 		supportDraggable = !!('draggable' in document.createElement('div')),
 		supportCssPointerEvents = (function (el) {
 			// false when IE11
-			if (!!navigator.userAgent.match(/Trident.*rv[ :]?11\./)) {
+			if (navigator.userAgent.match(/Trident.*rv[ :]?11\./)) {
 				return false;
 			}
 			el = document.createElement('x');
@@ -201,7 +201,7 @@
 			var group = {};
 			var originalGroup = options.group;
 
-			if (!originalGroup || typeof originalGroup != 'object') {
+			if (!originalGroup || typeof originalGroup !== 'object') {
 				originalGroup = {name: originalGroup};
 			}
 

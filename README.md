@@ -12,7 +12,7 @@
 │   ├── index
 │   └── tabbar
 ├── dist                      //编译后文件
-├── node_modules              //一来模块
+├── node_modules              //依赖模块
 └── src                       //库文件
     ├── cyan                  //UI组件库(CyanMapleDesign)
     ├── libs                  //第三方工具库
@@ -31,6 +31,9 @@ npm start
 ```
 ## 贡献
 欢迎给我们提issue或PR。
+
+## 联系
+- [Blog](http://node.51tiangou.com/)
 
 ## LICENSE
 [MIT](LICENSE)

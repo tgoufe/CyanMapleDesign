@@ -43,7 +43,7 @@ export let formatDateByStr = (date = new Date(),format = 'YYYY-MM-DD') =>{
             case "www": return week[date.getDay()].slice(0,3);
         }
     });
-}
+};
 
 export let parseURL = (url = location.href) => {
     let a = document.createElement('a');
@@ -108,14 +108,14 @@ export let stopAllTime = key => {
             window.clearTimeout(cache[i]);
         }
     }
-    cache = {}
+    cache = {};
 };
 
 export let isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
 
 export let calculationTimeByMiniSeconds = (millisecond, notZerofill) => {
     //共多少豪秒
-    millisecond = Math.round(millisecond/100)
+    millisecond = Math.round(millisecond/100);
 
     let minisecond = millisecond % 10;
 

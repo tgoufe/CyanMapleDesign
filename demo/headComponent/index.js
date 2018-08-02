@@ -1,4 +1,4 @@
-import '../../src/pageComponent/head/index.js'
+import '../../src/pageComponent/head/index.js';
 new Vue({
 	el:'#main',
 	data:{
@@ -7,4 +7,4 @@ new Vue({
 	methods:{
 
 	}
-})
+});

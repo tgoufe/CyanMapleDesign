@@ -28,7 +28,7 @@ let sessionKey = 'tg_local_cache',
                 data = Object.assign({},data,d);
                 cache && cache.setItem(sessionKey,JSON.stringify(data));
             }else{
-                return formatData()[arguments[0]]
+                return formatData()[arguments[0]];
             }
         }else if(length === 2){
             if(isObject(arguments[0]) && isTimeStr(arguments[1])){
@@ -37,7 +37,7 @@ let sessionKey = 'tg_local_cache',
                 }
                 data = Object.assign({},data,d);
             }else{
-                data[arguments[0]] = {value:arguments[1],time:0,t:t}
+                data[arguments[0]] = {value:arguments[1],time:0,t:t};
             }
             cache && cache.setItem(sessionKey,JSON.stringify(data));
         }else if(length === 3){

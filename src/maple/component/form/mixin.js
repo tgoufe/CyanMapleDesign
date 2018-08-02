@@ -3,13 +3,13 @@ export default{
 		handleFocus(){
 			const target=event.target;
 	    	const value = target.value;
-			this.$emit('focus',value,target,this)
+			this.$emit('focus',value,target,this);
 		},
 	    handleInput(){
 	    	const target=event.target;
 	    	const value = target.value;
 	        this.$emit('input', value,target,this);
-	        this.$nextTick(this.rendered)
+	        this.$nextTick(this.rendered);
 	    },
 		handleChange(){
 			const target=event.target;
@@ -19,12 +19,12 @@ export default{
 		handleBlur(){
 			const target=event.target;
 	    	const value = target.value;
-			this.$emit('blur',value,target,this)
+			this.$emit('blur',value,target,this);
 		},
 		rendered(){
 			const target=event.target;
 	    	const value = target.value;
-			this.$emit('rendered',value,target,this)
+			this.$emit('rendered',value,target,this);
 		}
 	},
 	props:{
@@ -38,4 +38,4 @@ export default{
 		label:String,
 		align:{type:String,default:'left'}
 	}
-}
+};

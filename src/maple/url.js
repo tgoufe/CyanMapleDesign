@@ -24,7 +24,7 @@ Url.prototype.init = function(url) {
             ret[s[0]] = s[1];
             //删除微信下的?10000skip
             if(ret[s[0]] && typeof ret[s[0]]==='string'){
-                ret[s[0]]=ret[s[0]].replace(/\?10000skip(=true)?/,'')
+                ret[s[0]]=ret[s[0]].replace(/\?10000skip(=true)?/,'');
             }
         }
         return ret;
@@ -35,8 +35,8 @@ Url.prototype.init = function(url) {
     this.relative= (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1];
     this.segments= a.pathname.replace(/^\//, '').split('/');
     this.isUrl=(function (url){
-        var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i
-        return !!regular.test(url)
+        var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i;
+        return !!regular.test(url);
     })(this.source);
     return this;
 };
@@ -59,17 +59,17 @@ Url.prototype.replace=function(){
             }
             break;
         case 'object':
-            for( key in argc ) if( argc.hasOwnProperty(key) ){
+            for( key in argc ) {if( argc.hasOwnProperty(key) ){
                 this.params[key] = argc[key];
-            }
+            }}
             break;
         default:
             break;
     }
 
-    for( key in this.params ) if( this.params.hasOwnProperty(key) ){
+    for( key in this.params ) {if( this.params.hasOwnProperty(key) ){
         search.push( key +'='+ this.params[key] );
-    }
+    }}
 
     this.query = search.length ? '?'+ search.join('&') : '';
 
@@ -95,17 +95,17 @@ Url.prototype.push=function(){
             }
             break;
         case 'object':
-            for( key in argc ) if( argc.hasOwnProperty(key) ){
+            for( key in argc ) {if( argc.hasOwnProperty(key) ){
                 this.params[key] = argc[key];
-            }
+            }}
             break;
         default:
             break;
     }
 
-    for( key in this.params ) if( this.params.hasOwnProperty(key) ){
+    for( key in this.params ) {if( this.params.hasOwnProperty(key) ){
         search.push( key +'='+ this.params[key] );
-    }
+    }}
 
     this.query = search.length ? '?'+ search.join('&') : '';
 

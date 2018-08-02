@@ -7,7 +7,7 @@ let defaultOptions={
 	showMilli:false,
 	callback:null,
 	parent:'body'
-}
+};
 function countDown(...arg){
 	let $tpl=$(`<cmui-countdown
 	v-bind="options"
@@ -30,16 +30,16 @@ function countDown(...arg){
 		return new Vue({
 			el:$tpl[0],
 			data:function(){
-				return {options}
+				return {options};
 			},
 			methods:{
 				end(...arg){
 					if(_.isFunction(options.callback)){
-						options.callback(...arg)
+						options.callback(...arg);
 					}
 				}
 			}
-		})
+		});
 	}
 }
-export default countDown
+export default countDown;

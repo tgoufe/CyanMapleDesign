@@ -27,7 +27,7 @@ if( !('Promise' in window) ){
         });
 
         return defer.promise();
-    }
+    };
 }
 
 function loadIframe(src){
@@ -84,14 +84,14 @@ export default function(options={}){
     var arr = []
         , result
         ;
-    if(typeof options.url=='string'){
-        arr.push(options.url)
+    if(typeof options.url==='string'){
+        arr.push(options.url);
     }
     else if( Array.isArray( options.url ) && options.url.every(item=>typeof item === 'string') ){
-        arr = options.url
+        arr = options.url;
     }
     else{
-        return
+        return;
     }
 
     switch( options.type ){

@@ -172,4 +172,4 @@ scroll.scrollBar = function(offset, value){
 	}
 };
 
-export default scroll
+export default scroll;

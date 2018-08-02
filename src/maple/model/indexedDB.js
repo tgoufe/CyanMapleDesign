@@ -206,7 +206,7 @@ class IndexedDBModel extends Model{
 				objectStoreRequest.onerror = function(e){
 					console.log( e );
 					reject( e );
-				}
+				};
 			});
 		});
 	}

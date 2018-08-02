@@ -249,7 +249,7 @@ class CookieModel extends Model{
 			});
 		}
 
-		return result
+		return result;
 	}
 	/**
 	 * @summary 以同步的方式获取 cookie 中的数据

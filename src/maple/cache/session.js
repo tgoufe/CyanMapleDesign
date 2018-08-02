@@ -13,7 +13,7 @@ let sessionKey = 'tg_session_cache',
                 data = $.extend({},data,arguments[0]);
                 cache && cache.setItem(sessionKey,JSON.stringify(data));
             }else{
-                return data[arguments[0]]
+                return data[arguments[0]];
             }
         }else if(length === 2){
             data[arguments[0]] = arguments[1];

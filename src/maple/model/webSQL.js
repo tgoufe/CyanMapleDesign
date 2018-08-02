@@ -179,7 +179,7 @@ class WebSQLModel extends Model{
 					}, (tx, e)=>{
 						console.log( e );
 						reject( e );
-					})
+					});
 				});
 			});
 		});
