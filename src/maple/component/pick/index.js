@@ -15,6 +15,6 @@ function picker(){
     data:{defaultOptions}
   });
   defaultOptions.visible=true;
-  return vm;
+  return vm.$children[0];
 }
 export default picker;

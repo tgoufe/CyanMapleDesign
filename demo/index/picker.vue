@@ -33,7 +33,7 @@
     let dataList={
       baseData:_.times(10),
       aloneData:[['上午','下午'],_.times(12,index=>`${index}点`)],
-      childrenData:[fromatCity(cityData)].concat([['default'],['default']])
+      childrenData:[fromatCity(cityData)]
     };
     export default{
       data:function(){

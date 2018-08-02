@@ -16,6 +16,14 @@
 <body>
 <div id="main" class="paddingb50">
     <pc-head :title="headTitle" @left-icon-click="goback()"></pc-head>
+    <!--<cmui-scroll style="height: 400px" @pull="test" :watch="list" col="3" :free-mode="false" :pull-text="['123']">-->
+        <!--&lt;!&ndash;<div slot="pullDown">213</div>&ndash;&gt;-->
+        <!--<cmui-scroll-item v-for="item in list" >-->
+            <!--<div class=" margin10" style="height: 30px;">-->
+                <!--{{item}}-->
+            <!--</div>-->
+        <!--</cmui-scroll-item>-->
+    <!--</cmui-scroll>-->
     <router-view></router-view>
 </div>
 <script src="../../src/maple/index.js"></script>

@@ -27,12 +27,13 @@ window.vm = new Vue({
     el: '#main',
     router,
     data: {
-        headTitle: 'CMUI组件列表'
-        ,componentList: _.times(20, index => {
+        headTitle: 'CMUI组件列表',
+        componentList: _.times(20, index => {
             return {
                 title: '组件' + index, link: '###'
             };
-        })
+        }),
+        list:_.times(20,index=>index)
     },
     watch:{
 
@@ -40,7 +41,15 @@ window.vm = new Vue({
     methods: {
         goback() {
             this.$router.go(-1);
-        }
+        },
+      test(value){
+            // if(value>.9){
+            //   console.log(value)
+            //   this.list=this.list.concat(_.times(20,index=>index))
+            // }
+            // console.log(value)
+            // location.reload()
+      }
     },
     computed:{
 
