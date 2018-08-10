@@ -145,6 +145,7 @@
           centeredSlides : true,
           slidesPerView:'auto',
           initialSlide:initialSlide,
+          slideToClickedSlide:true,
           // freeMode:true,
           // freeModeSticky:true,
           // effect : 'coverflow',
@@ -227,20 +228,20 @@
         let data=this.getData();
         if(_.isFunction(this.rightFn)){
           if(this.rightFn(data,this)!==false){
-            this.visible=false;
+            this.$emit('update:visible',false)
           }
         }else{
-          this.visible=false;
+          this.$emit('update:visible',false)
         }
         this.$emit('select',data,this);
       },
       _cancel(){
         if(_.isFunction(this.leftFn)){
           if(this.leftFn(this)!==false){
-            this.visible=false;
+            this.$emit('update:visible',false)
           }
         }else{
-          this.visible=false;
+          this.$emit('update:visible',false)
         }
         this.$emit('cancel',this);
       }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <cmui-list>
+        <cmui-list :space="20" class="margin20">
             <cmui-list-item v-for="item in buttonList">
                 <a href="javascript:void(0)"
                    class="btn block radius reverse"

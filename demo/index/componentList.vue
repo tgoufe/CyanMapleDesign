@@ -45,11 +45,16 @@
             pageTitle: '业务组件',
             list: ['mask', 'notice', 'action', 'alert']
         },
+        form: {
+        pageTitle: '表单组件',
+        list: ['input','select']
+        },
         default: {
             pageTitle: 'CMUI组件列表',
             list: [
                 {title: '基础组件', path: '/componentList/base'},
                 {title: 'UI组件', path: '/componentList/ui'},
+                {title: '表单组件', path: '/componentList/form'},
                 {title: '页面组件', path: '/componentList/page'},
                 {title: '业务组件', path: '/componentList/business'}
             ]

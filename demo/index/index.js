@@ -8,6 +8,8 @@ import tabbar from './tabbar.vue';
 import affix from './affix.vue';
 import alert from './alert.vue';
 import picker from './picker.vue';
+import input from './form/input.vue';
+import select from './form/select.vue';
 
 const routes = [
     {path: '/componentList/:id', component: componentList},
@@ -18,7 +20,9 @@ const routes = [
     {path: '/affix/', component: affix},
     {path: '/alert/', component: alert},
     {path: '/actions/', component: actions},
-    {path: '/picker/', component: picker}
+    {path: '/picker/', component: picker},
+    {path: '/input/', component: input},
+    {path: '/select/', component: select}
 ];
 const router = new VueRouter({
     routes
@@ -41,15 +45,7 @@ window.vm = new Vue({
     methods: {
         goback() {
             this.$router.go(-1);
-        },
-      test(value){
-            // if(value>.9){
-            //   console.log(value)
-            //   this.list=this.list.concat(_.times(20,index=>index))
-            // }
-            // console.log(value)
-            // location.reload()
-      }
+        }
     },
     computed:{
 

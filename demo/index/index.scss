@@ -41,7 +41,42 @@ blockquote {
     border-top: none;
   }
 }
-
+.tag-container{
+  padding:rem(10);
+  border:1px solid #cccccc;
+  position: relative;
+  margin-top:40px;
+  border-radius:0 4px 4px;
+  &:after{
+    position: absolute;
+    left:-1px;
+    top:-30px;
+    padding:5px 10px;
+    border-radius: 4px 4px 0 0;
+    color:white;
+  }
+  &.example{
+    border-color:#57d1cb;
+    &:after{
+      content: 'example';
+      background:#57d1cb;
+    }
+  }
+  &.config{
+    border-color: #f9b65e;
+    &:after{
+      content: 'config';
+      background: #f9b65e;
+    }
+  }
+  &.otherExp{
+    border-color: #4661f9;
+    &:after{
+      content: 'other example';
+      background: #4661f9;
+    }
+  }
+}
 // table
 table {
   width: 100%;

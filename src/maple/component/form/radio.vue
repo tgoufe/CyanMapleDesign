@@ -1,28 +1,31 @@
 <template>
-	<label for="" class="cmui-radio">
-		<span :class="{checked:model}" class="cmui-radio__label">
-			<template v-if="align==='left'">{{label}}<slot></slot></template>
+	<label class="cmui-radio">
+		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='left'">
+			<slot></slot>
+			<template v-if="!$slots.default">{{label}}</template>
 		</span>
 		<input type="radio"
 		:name="name"
-		v-model="model"
+		:value="label"
 		:readonly="readonly"
 		:class="[targetClass]"
 		:disabled="disabled"
+		v-model="value"
 		@change="handleChange"
 		>
-		<span :class="{checked:model}" class="cmui-radio__label">
-			<template v-if="align==='left'">{{label}}<slot></slot></template>
+		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='right'">
+			<slot></slot>
+			<template v-if="!$slots.default">{{label}}</template>
 		</span>
 	</label>
 </template>
 <style type="text/css" lang="scss"></style>
 <script type="text/javascript">
+  import mixin from "./mixin.js";
 	export default {
+		mixins: [mixin],
 		props:{
-			targetClass:String,
-			label:String,
-			align:{type:String,default:'left'}
+
 		}
 	}
 </script>
