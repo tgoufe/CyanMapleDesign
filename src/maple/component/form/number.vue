@@ -2,7 +2,7 @@
 	<cmui-input type="number"
 	ref="input"
 	:name="name"
-	:value="value"
+	v-model="value"
     :readonly="readonly"
     :placeholder="placeholder"
     :disabled="disabled"
@@ -12,6 +12,8 @@
     :reset="false"
     :prepend-disabled="!canSub"
 	:append-disabled="!canAdd"
+	:flex="flex"
+	:width="width"
     @input="handleInput"
 	@focus="handleFocus"
 	@blur="handleBlur"
@@ -31,34 +33,57 @@ export default {
 	},
 	mixins: [mixin],
 	methods:{
-	    changeNumber:function(num){
+	    changeNumber:function(num=0){
+	    	let _this=this;
 	    	if((!this.canAdd&&num===1)||(!this.canSub&&num===-1)){
 	    		return
 	    	}
 	    	const innerThis=this.$children[0];
 	    	const target=this.$children[0].$refs.input;
 	    	const value = this.value;
-	        this.value=+value+num;
-        	this.value=_.min([this.max,this.value]);
-        	this.value=_.max([this.min,this.value]);
-        	this.canAdd=this.canSub=true
-	        if(+this.value===this.max){
-	        	this.$emit('max',this.value,target,innerThis);
-	        	this.canAdd=false;
-	        }
-	        if(+this.value===this.min){
-	        	this.$emit('min',this.value,target,innerThis);
-	        	this.canSub=false;
-	        }
-	        this.$emit('input',this.value,target,innerThis);
-	    }
+	    	let targetValue=+value+num;
+	    	targetValue=_.min([this.max,targetValue]);
+	        targetValue=_.max([this.min,targetValue]);
+	    	if(_.isFunction(this.beforeChange)){
+	    		this.canAdd=this.canSub=false;
+	    		let next=function(newValue){
+	    			_this.value=_.isUndefined(newValue)?targetValue:newValue;
+	    			_this.setBtnState();
+	    			_this.$emit('input',_this.value,target,innerThis);
+	    		}
+	    		this.beforeChange(value,next)
+	    	}else{
+	        	this.value=targetValue;
+	        	this.setBtnState();
+		        this.$emit('input',this.value,target,innerThis);
+	    	}
+	    },
+	    setBtnState(){
+	    	const innerThis=this.$children[0];
+	    	const target=this.$children[0].$refs.input;
+			this.canAdd=this.canSub=true;
+			if(+this.value===this.max){
+				this.canAdd=false;
+				this.$emit('max',this.value,target,innerThis);
+			}
+			if(+this.value===this.min){
+				this.$emit('min',this.value,target,innerThis);
+				this.canSub=false;
+			}
+		},
+		handleBlur(){
+			this.changeNumber(0);
+			this.$emit("blur", value, target, this);
+		}
 	},
 	props:{
 	    max:Number,
 	    min:Number,
 	    rule:RegExp,
 	    canAdd:{type:Boolean,default:true},
-	    canSub:{type:Boolean,default:true}
+	    canSub:{type:Boolean,default:true},
+	    beforeChange:Function,
+	    width:[Number,String],
 	},
 	computed:{
 		canMax(){

@@ -47,7 +47,7 @@
         },
         form: {
         pageTitle: '表单组件',
-        list: ['input','select']
+        list: ['input','select','number']
         },
         default: {
             pageTitle: 'CMUI组件列表',

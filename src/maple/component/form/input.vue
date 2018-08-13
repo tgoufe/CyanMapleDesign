@@ -1,50 +1,31 @@
 <template>
 <div class="pos-r cmui-input form flex-container">
-	<span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='left'&&(label||$slots.default)">
-		<slot></slot>
-		<template v-if="!$slots.default">{{label}}</template>
-	</span>
-	<!-- 前置 -->
-	<div class="cmui-input__prepend flex-container" :class="[targetClass,{disabled:prependDisabled}]" v-if="$slots.prepend||prepend">
-		<slot name="prepend" v-if="$slots.prepend"></slot>
-		<span v-if="prepend">{{prepend}}</span>
-	</div>
-	<!-- 主体 -->
-	<div class="cmui-input__main pos-r" :class="{flex1:!label||!$slots.default}">
-	    <input
-		:style="inputStyle"
-	    :type="type"
-	    ref="input"
-	    :name="name"
-		:value="value"
-        :readonly="readonly"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :class="targetClass"
-        @input="handleInput"
-    	@focus="handleFocus"
-    	@blur="handleBlur"
-    	@change="handleChange"
-	    >
-		<div v-if="type==='search'"
-			 class="input-search"
-			 :style="{display:type==='search'?'block':'none'}"></div>
-	    <div
-	    class="input-reset"
-	    :style="{display:value.length?'block':'none'}"
-	    v-if="reset===true&&!disabled"
-	    @click="resetInput()"
-	    ></div>
-	</div>
-	<!-- 后置 -->
+    <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='left'&&(label||$slots.default)">
+    <slot></slot>
+    <template v-if="!$slots.default">{{label}}</template>
+    </span>
+    <!-- 前置 -->
+    <div class="flex-container" :class="{'flex1':!flex}">
+    <div class="cmui-input__prepend flex-container" :class="[targetClass,{disabled:prependDisabled}]" v-if="$slots.prepend||prepend">
+        <slot name="prepend" v-if="$slots.prepend"></slot>
+        <span v-if="prepend">{{prepend}}</span>
+    </div>
+    <!-- 主体 -->
+    <div class="cmui-input__main pos-r" :class="{flex1:!label||!$slots.default}">
+        <input :style="inputStyle" :type="type" ref="input" :name="name" :value="value" :readonly="readonly" :placeholder="placeholder" :disabled="disabled" :class="targetClass" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
+        <div v-if="type==='search'" class="input-search" :style="{display:type==='search'?'block':'none'}"></div>
+        <div class="input-reset" :style="{display:value.length?'block':'none'}" v-if="reset===true&&!disabled" @click="resetInput()"></div>
+    </div>
+    <!-- 后置 -->
     <div class="cmui-input__append flex-container" :class="[targetClass,{disabled:appendDisabled}]" v-if="$slots.append||append">
-		<slot name="append" v-if="$slots.append"></slot>
-		<span v-if="append" v-text="append"></span>
+        <slot name="append" v-if="$slots.append"></slot>
+        <span v-if="append" v-text="append"></span>
+    </div>
     </div>
     <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='right'&&(label||$slots.default)">
-		<slot></slot>
-		<template v-if="!$slots.default">{{label}}</template>
-	</span>
+    <slot></slot>
+    <template v-if="!$slots.default">{{label}}</template>
+    </span>
 </div>
 </template>
 <style type="text/css" lang="scss">
@@ -62,26 +43,26 @@
     &.disabled {
       color: #bbbbbb;
     }
-    & >*{
-		line-height: 26px;
-		padding: (nth(map-get($btn-size-list, "base"), 1) - 26px - 2) / 2
-		$padding-base-horizontal;
-		&:not(:first-child) {
-		border-left: 1px solid map-get($grayList, "lighter");
-		padding-left: 10px;
+    & > * {
+      line-height: 26px;
+      padding: (nth(map-get($btn-size-list, "base"), 1) - 26px - 2) / 2
+        $padding-base-horizontal;
+      &:not(:first-child) {
+        border-left: 1px solid map-get($grayList, "lighter");
+        padding-left: 10px;
       }
     }
     select {
-		border: none;
+      border: none;
     }
-	  .cmui-select select{
-		  padding:0;
-		  padding-right: 16px !important;
-		  background-position-x: right;
-	  }
+    .cmui-select select {
+      padding: 0;
+      padding-right: 16px !important;
+      background-position-x: right;
+    }
     @each $btnSizeName, $btnSizeValue in $btn-size-list {
       @if (#{$btnSizeName}!="base") {
-        &.#{$btnSizeName} > *{
+        &.#{$btnSizeName} > * {
           padding: (nth($btnSizeValue, 1) - 26px - 2) / 2
             $padding-base-horizontal;
         }
@@ -117,6 +98,7 @@ export default {
     reset: { type: Boolean, default: true },
     prepend: String,
     append: String,
+    width:[Number,String],
     prependDisabled: { type: Boolean, default: false },
     appendDisabled: { type: Boolean, default: false }
   },
@@ -146,6 +128,9 @@ export default {
       }
       if (this.type === "search") {
         style.paddingLeft = "40px";
+      }
+      if(this.width){
+        style.width=this.width+'px';
       }
       return style;
     }

@@ -10,6 +10,7 @@ import alert from './alert.vue';
 import picker from './picker.vue';
 import input from './form/input.vue';
 import select from './form/select.vue';
+import number from './form/number.vue';
 
 const routes = [
     {path: '/componentList/:id', component: componentList},
@@ -22,7 +23,8 @@ const routes = [
     {path: '/actions/', component: actions},
     {path: '/picker/', component: picker},
     {path: '/input/', component: input},
-    {path: '/select/', component: select}
+    {path: '/select/', component: select},
+    {path: '/number/', component: number}
 ];
 const router = new VueRouter({
     routes
