@@ -8,9 +8,13 @@ import tabbar from './tabbar.vue';
 import affix from './affix.vue';
 import alert from './alert.vue';
 import picker from './picker.vue';
+// form
 import input from './form/input.vue';
 import select from './form/select.vue';
 import number from './form/number.vue';
+import textarea from './form/textarea.vue';
+import radio from './form/radio.vue';
+import checkbox from './form/checkbox.vue';
 
 const routes = [
     {path: '/componentList/:id', component: componentList},
@@ -24,7 +28,10 @@ const routes = [
     {path: '/picker/', component: picker},
     {path: '/input/', component: input},
     {path: '/select/', component: select},
-    {path: '/number/', component: number}
+    {path: '/number/', component: number},
+    {path: '/textarea/', component: textarea},
+    {path: '/radio/', component: radio},
+    {path: '/checkbox/', component: checkbox},
 ];
 const router = new VueRouter({
     routes

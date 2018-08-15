@@ -1,6 +1,6 @@
 <template>
-	<label class="cmui-radio">
-		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='left'">
+	<label class="cmui-radio" :class="{'flex-container':flex}">
+		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='left'" :style="labelStyle">
 			<slot></slot>
 			<template v-if="!$slots.default">{{label}}</template>
 		</span>
@@ -13,7 +13,7 @@
 		v-model="value"
 		@change="handleChange"
 		>
-		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='right'">
+		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='right'" :style="labelStyle">
 			<slot></slot>
 			<template v-if="!$slots.default">{{label}}</template>
 		</span>
@@ -24,8 +24,14 @@
   import mixin from "./mixin.js";
 	export default {
 		mixins: [mixin],
-		props:{
-
+		computed:{
+			labelStyle(){
+				let style={}
+				if(this.disabled){
+					style.color='#ccc'
+				}
+				return style
+			}
 		}
 	}
 </script>

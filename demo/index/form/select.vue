@@ -15,6 +15,11 @@
                     </cmui-checkbox>
                 </cmui-list-item>
                 <cmui-list-item>
+                    <cmui-checkbox v-model="options.flex" target-class="switch" :flex="true">
+                        是否使用flex布局
+                    </cmui-checkbox>
+                </cmui-list-item>
+                <cmui-list-item>
                     <cmui-checkbox v-model="options.prependDisabled" target-class="switch" :flex="true">
                     禁用前置文本
                     </cmui-checkbox>
@@ -78,6 +83,7 @@ export default {
         placeholder: "请输入内容",
         label: "",
         align: "left",
+        flex:false
       },
       targetClassList:['small','big','radius','reverse'].map(item=>({text:item,value:false})),
       demo1:{

@@ -1,23 +1,23 @@
 <template>
-	<label class="cmui-iput_container" :class="{'flex-container':flex}">
-		<span :class="{checked:slefValue}" class="cmui-check__label" v-if="align==='left'">
-			<slot></slot>
-			<template v-if="!$slots.default">{{label}}</template>
-		</span>
-		<input
-		type="checkbox"
-		:name="name"
-		v-model="slefValue"
-		:readonly="readonly"
-		:class="[targetClass]"
-		:disabled="disabled"
-		@change="handleChange"
-		>
-		<span :class="{checked:slefValue}" class="cmui-check__label" v-if="align==='right'">
-			<slot></slot>
-			<template v-if="!$slots.default">{{label}}</template>
-		</span>
-	</label>
+    <label class="cmui-iput_container" :class="{'flex-container':flex}">
+      <span :class="{checked:slefValue}" class="cmui-check__label" v-if="align==='left'">
+        <slot></slot>
+        <template v-if="!$slots.default">{{label}}</template>
+      </span>
+      <input
+      ref="checkbox"
+      type="checkbox"
+      :name="name"
+      v-model="slefValue"
+      :readonly="readonly"
+      :class="[targetClass]"
+      :disabled="disabled"
+      @change="handleChange">
+      <span :class="{checked:slefValue}" class="cmui-check__label" v-if="align==='right'">
+        <slot></slot>
+        <template v-if="!$slots.default">{{label}}</template>
+      </span>
+    </label>
 </template>
 <style type="text/css" lang="scss">
 @import "../../../cyan/variables";
@@ -32,17 +32,34 @@ import mixin from "./mixin.js";
 export default {
   mixins: [mixin],
   props: {
-    align: { type: String, default: "left" },
-    label: String,
-    targetClass: String,
-    rule: { type: String, default: "item" }
+    path:String
   },
   computed: {
     slefValue() {
       let value = this.value;
-      return _.isArray(value)
-        ? _.every(value, item => !!eval(this.rule))
-        : value;
+      if(_.isArray(value)){
+        let dom=this.$refs.checkbox;
+        let isEveryTrue=_.every(value,item=>{
+          if(_.isObject(item)){
+            return _.get(item,this.path)===true;
+          }else{
+            return item===true;
+          }
+        })
+        let isEveryFalse=_.every(value,item=>{
+          if(_.isObject(item)){
+            return _.get(item,this.path)===false;
+          }else{
+            return item===false;
+          }
+        })
+        if(dom){
+          dom.indeterminate=!(isEveryTrue||isEveryFalse);
+        }
+        return isEveryTrue;
+      }else{
+        return value;
+      }
     }
   },
   methods: {
@@ -55,7 +72,7 @@ export default {
           this.value = _.fill(new Array(length), value);
         } else {
           _.forEach(this.value, item => {
-            eval(this.rule + "=value");
+            _.set(item,this.path,value)
           });
         }
         this.$emit("input", this.value, target, this);

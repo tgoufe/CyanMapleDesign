@@ -4,6 +4,7 @@
 		<slot></slot>
 		<template v-if="!$slots.default">{{label}}</template>
 	</span>
+  <div class="flex-container" :class="{'flex1':!flex}">
         <!-- 前置 -->
         <div class="cmui-select__prepend flex-container" :class="[targetClass,{disabled:prependDisabled}]" v-if="$slots.prepend||prepend">
             <slot name="prepend" v-if="$slots.prepend"></slot>
@@ -33,6 +34,7 @@
         <div class="cmui-select__append flex-container" :class="[targetClass,{disabled:appendDisabled}]" v-if="$slots.append||append">
             <slot name="append" v-if="$slots.append"></slot>
             <span v-if="append" v-text="append"></span>
+        </div>
         </div>
         <span :class="{checked:slefValue}" class="cmui-select__label cmui-form__label" v-if="align==='right'&&(label||$slots.default)">
             <slot></slot>

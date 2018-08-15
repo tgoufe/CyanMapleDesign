@@ -127,9 +127,9 @@ input{
                 transition: color .2s cubic-bezier(.645,.045,.355,1);
             }
             &:disabled:before{
-                color:map-get($grayList,'lighter');
+                color:map-get($grayList,'lighter') !important;
             }
-            &:checked:before{
+            &:checked:before,&:indeterminate:before{
                 color:$form-color-base;
             }
         }
@@ -140,18 +140,36 @@ input{
             }
             &.reverse:checked{
                 @extend .baseIcon-radioboxfill;
+            }
+            &.square{
+                @extend .baseIcon-square;
+                &:checked{
+                    &.reverse{
+                        @extend .baseIcon-squarecheckfill;
+                    }
+                    @extend .baseIcon-squarecheck;
+                }
             } 
         };
         &[type=checkbox]{
             @extend .baseIcon-round;
             &:checked{
                 @extend .baseIcon-roundcheck;
-                &.fill{
+                &.reverse{
                     @extend .baseIcon-roundcheckfill;
                 }
             }
             &:indeterminate{
-                display: none;
+                @extend .baseIcon-round_sub;
+                &.reverse{
+                    @extend .baseIcon-round_sub_fill;
+                }
+                &.square{
+                    @extend .baseIcon-square_sub;
+                    &.reverse{
+                        @extend .baseIcon-square_sub_fill;
+                    }
+                }
             }
             &.reverse:checked{
                 @extend .baseIcon-roundcheckfill;
@@ -161,7 +179,7 @@ input{
                 width: ($from-control-size  - 3) * 2 - $border-radius-base + 2 ;
                 transition-duration: 200ms;
                 &:before{
-                    content: '';
+                    content: '' !important;
                     border-radius: 100px;
                     position: absolute;
                     left: 2px;
@@ -172,7 +190,7 @@ input{
                     transition-duration: 200ms;
                 }
                 &:after{
-                    content: '';
+                    content: '' !important;
                     height: $from-control-size - 3;
                     width: $from-control-size - 3;
                     border-radius: $from-control-size - 3;
@@ -198,7 +216,7 @@ input{
             &.square{
                 @extend .baseIcon-square;
                 &:checked{
-                    &.fill{
+                    &.reverse{
                         @extend .baseIcon-squarecheckfill;
                     }
                     @extend .baseIcon-squarecheck;
@@ -208,6 +226,7 @@ input{
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
           @if(#{$btnSizeName}!='base'){
               &.#{$btnSizeName}{
+                &:not([type=radio][type=checkbox]){
                   padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
                   &~{
                       .input-reset,.input-changeType,.input-search{
@@ -216,6 +235,7 @@ input{
                           }
                       }
                   }
+                }
               }
             &[type=checkbox],&[type=radio]{
                 &.#{$btnSizeName}{
@@ -348,7 +368,7 @@ input{
         color:$form-color-base;
     }
     @each $colorName,$colorValue in $colorList{
-        &.form.#{$colorName}{
+        &.#{$colorName}{
             input{
                 &:focus{
                     border-color:$colorValue;
@@ -362,9 +382,11 @@ input{
                        color:$colorValue; 
                     }
                 }
-                &[type=checkbox]:checked{
-                    &.switch:before{
-                        background: $colorValue;
+                &[type=checkbox]{
+                    &:checked{
+                        &.switch:before{
+                            background: $colorValue;
+                        }
                     }
                 }
             }

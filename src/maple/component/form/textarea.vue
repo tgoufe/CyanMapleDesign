@@ -1,24 +1,36 @@
 <template>
-	<div class="cmui-textarea pos-r form">
-		<textarea
-		:maxlength="max"
-		ref="textarea"
-		:name="name"
-        :value="value"
-        :readonly="readonly"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :class="[{'form-radius':radius,'input-reverse':reverse},size,className,'hide-scrollBar',textareaClass]"
-        @input="handleInput"
-    	@focus="handleFocus"
-    	@blur="handleBlur"
-    	@change="handleChange"
-		></textarea>
-		<div
-		v-if="max>=0"
-		class="pos-a text-light"
-		:class="maxNumberClass" v-text="value.length+'/'+max">
-		</div>
+	<div class="cmui-textarea pos-r form flex-container" :class="positionClass">
+		<span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='left'&&(label||$slots.default)">
+	    <slot></slot>
+	    <template v-if="!$slots.default">{{label}}</template>
+	    </span>
+	    <div class="pos-r" :class="{'flex1':!flex}">
+			<textarea
+			:maxlength="max"
+			ref="textarea"
+			:name="name"
+	        v-model="value"
+	        :readonly="readonly"
+	        :placeholder="placeholder"
+	        :disabled="disabled"
+	        :class="[targetClass,'hide-scrollBar']"
+	        @input="handleInput"
+	    	@focus="handleFocus"
+	    	@blur="handleBlur"
+	    	@change="handleChange"
+	    	:style="targetStyle"
+			></textarea>
+			<div
+			v-if="max>=0"
+			class="pos-a text-light"
+			style="right:12px;bottom:4px;"
+			v-text="value.length+'/'+max">
+			</div>
+	    </div>
+		<span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='right'&&(label||$slots.default)">
+		<slot></slot>
+		<template v-if="!$slots.default">{{label}}</template>
+		</span>
 	</div>
 </template>
 <style>
@@ -28,34 +40,15 @@
 </style>
 <script>
 import mixin from "./mixin.js";
-let textareaAdd;
-let hideTextareaStyle;
 export default{
 	props:{
 		auto:{type:Boolean,default:false},
 		max:{type:Number,default:-1},
-		space:{type:Number,default:20}
+		space:{type:Number,default:20},
+		width:[Number,String]
 	},
 	mixins: [mixin],
 	data:function(){
-		var space=this.space;
-		var className=this.className;
-		var textareaClass;
-		var maxNumberClass;
-		if(_.isArray(className)){
-			className=className.join(' ')
-		}
-		if(_.inRange(space,-1,50)&&space%10==0){
-			textareaClass='padding'+space;
-			maxNumberClass='right'+space+' bottom'+space;
-		}else{
-			textareaClass=this.className;
-			maxNumberClass='right20 bottom20'
-		}
-		return {
-			textareaClass,
-			maxNumberClass
-		}
 	},
 	methods:{
 		rendered(){
@@ -63,14 +56,16 @@ export default{
 	    },
 	    setTextAreaHeight(){
 			if(this.auto){
-				const target=this.$refs.textarea;
+				const target=this.$refs.textarea
+				const $target=$(target);
 				let dom=$('<textarea/>');
-				dom.css({
-					fontSize:hideTextareaStyle.getPropertyValue('font-size'),
-					lineHeight:hideTextareaStyle.getPropertyValue('line-height'),
+				let style={};
+				['fontSize','lineHeight','width','border','padding'].forEach(item=>{
+					style[item]=$target.css(item)
 				})
+				dom.css(style);
 				dom.val(target.value).appendTo('body');
-				target.style.height=dom[0].scrollHeight+textareaAdd+'px';
+				target.style.height=dom[0].scrollHeight+'px';
 				dom.remove();
 			}
 	    },
@@ -79,16 +74,26 @@ export default{
 	    	if(this.max){
 	    		target.value=target.value.slice(0,this.max)
 	    	}
+	      	this.$emit("input", target.value, target, this);
 	    }
 	},
-	mounted(){
-		const target=this.$refs.textarea;
-		hideTextareaStyle=window.getComputedStyle(target);
-		textareaAdd=parseFloat(hideTextareaStyle.getPropertyValue('padding-bottom'))
-		+parseFloat(hideTextareaStyle.getPropertyValue('padding-top'))
-		+parseFloat(hideTextareaStyle.getPropertyValue('border-bottom-width'))
-		+parseFloat(hideTextareaStyle.getPropertyValue('border-top-width'));
-		this.setTextAreaHeight();
+	computed:{
+		targetStyle(){
+			let style={};
+			if(this.width){
+				style.width=parseInt(this.width)+'px';
+			}
+			return style
+		},
+		positionClass(){
+			if(_.includes(this.targetClass.split(' '),'center')){
+				return ''
+			}else if(_.includes(this.targetClass.split(' '),'bottom')){
+				return 'bottom'
+			}else{
+				return 'top'
+			}
+		}
 	}
 }
 </script>
