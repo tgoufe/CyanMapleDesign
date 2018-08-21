@@ -179,6 +179,10 @@ $name:cmui-tabbar;//组件前缀
     }
 }
 //actions
+.cmui-actions__title{
+    padding:getLayoutSize(2);
+    text-align: center;
+}
 .cmui-actions__group{
     background-color: white;
     border-radius: $border-radius-base;
@@ -190,13 +194,14 @@ $name:cmui-tabbar;//组件前缀
             border-bottom:none;
         };
     }
-    .cmui-actions__cancel{
-        background-color: white;
-        border-radius: $border-radius-base;
-        .cmui-actions__button{
-            margin-top:getLayoutSize(2);
-            color:map-get($colorList,'blue');
-        }
+}
+.cmui-actions__cancel{
+    background-color: white;
+    border-radius: $border-radius-base;
+    .cmui-actions__button{
+        margin-top:getLayoutSize(2);
+        text-align: center;
+        color:map-get($colorList,'blue');
     }
 }
 

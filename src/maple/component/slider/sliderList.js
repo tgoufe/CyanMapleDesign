@@ -1,3 +1,4 @@
+import Swiper from 'swiper';
 var sliderMethodsList=[ 'disableMousewheelControl', 'enableMousewheelControl', 'enableKeyboardControl', 'disableKeyboardControl', 'slideNext', 'slidePrev', 'slideTo', 'startAutoplay', 'stopAutoplay', 'destroy', 'getWrapperTranslate', 'setWrapperTranslate', 'removeSlide', 'removeAllSlides', 'updateContainerSize', 'updateSlidesSize', 'updateProgress', 'updatePagination', 'updateClasses', 'update', 'onResize', 'detachEvents', 'attachEvents', 'appendSlide', 'prependSlide', 'on', 'once', 'off', 'lockSwipes', 'lockSwipeToNext', 'lockSwipeToPrev', 'reLoop', 'disableTouchControl', 'enableTouchControl', 'unsetGrabCursor', 'setGrabCursor'];
 var sliderPropsList=['activeIndex','realIndex','previousIndex','width','height','touches','params','container','wrapper','slides','bullets','translate','progress','isBeginning','isEnd','autoplaying','animating','clickedIndex','clickedSlide','prevButton','nextButton'];
 function CMUI_SliderList(){

@@ -74,7 +74,7 @@ export default {
   data: function() {
     return {
       options: {
-        data:_.times(10,index=>'选项'+index),
+        data:_.times(10,index=>({text:'选项'+index,value:{name:index}})),
         value:`选项1`,
         prepend: "前置",
         append: "后置",
@@ -90,12 +90,17 @@ export default {
         list:['http://','https://'],
         value:'http://',
         list2:['.cn','.com','.net','.org']
-      }
+      },
+      testValue:123,
     };
   },
   computed:{
     targetClass(){
       return this.targetClassList.filter(item=>item.value).map(item=>item.text).join(' ');
+    },
+    testData(){
+      console.log(this.data)
+      return this.options.data;
     }
   }
 };

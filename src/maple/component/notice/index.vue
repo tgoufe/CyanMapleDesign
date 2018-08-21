@@ -18,7 +18,7 @@
 			content: {type:String,default:''},
 			className: {type:String,default:''},
 			timeout: {type:Number,default:3000},
-			okFn:{type:Function,default:function(){}},
+			closeFn:{type:Function,default:function(){}},
 		},
 		data:function(){
 			return {
@@ -34,7 +34,7 @@
 		methods: {
 			cancel: function(){
 				this.showCmuiDialog=false;
-				(typeof this.okFn==='function')&&this.okFn()
+				(typeof this.closeFn==='function')&&this.closeFn()
 			}
 		}
 	}

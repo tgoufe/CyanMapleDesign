@@ -5,10 +5,6 @@
 </template>
 <script>
 export default{
-	data:function(){
-		return {
-			name:'cmui-slider-item'
-		}
-	}
+	name:'cmui-slider-item'
 }
 </script>

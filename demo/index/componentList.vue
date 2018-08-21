@@ -26,8 +26,6 @@
               'slider',
               'list',
               'action',
-              'number',
-              'input',
               'tabbar',
               'collapse',
               'affix',

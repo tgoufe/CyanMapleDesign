@@ -4,7 +4,8 @@ var defaults = {
 	  content: ''
 	, className: ''
 	, timeout: 3000
-	, okFn:function(){}
+	, closeFn:function(){}
+	, callback:function(){}
 };
 Vue.component('cmui-notice',noticeVue);
 var id='cmui-notice-'+_.uniqueId();
@@ -21,7 +22,7 @@ function Notice(){
 	var options={};
 	if(arguments){
 		if(arguments.length>1){
-			options.okFn=_.filter(arguments,_.isFunction)[0];
+			options.callback=_.filter(arguments,_.isFunction)[0];
 			var stringList=_.filter(arguments,item=>(typeof item).match(/string|number|boolean/)).map(item=>item.toString());
 			options.content=stringList[0];
 			if(stringList.length>1){
@@ -44,6 +45,11 @@ function Notice(){
 	_.each(options,(value,key)=>{
 		CURRENT[key]=value;
 	});
+	if(typeof options.callback==='function'){
+		CURRENT.$nextTick(function(){
+			options.callback($(CURRENT.$el));
+		});
+	}
 	timeHandle&&clearTimeout(timeHandle);
 	if(options.timeout){
 		timeHandle=setTimeout(()=>{

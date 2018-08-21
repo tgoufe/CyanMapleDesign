@@ -12,20 +12,19 @@
         </div>
         <!-- 主体 -->
         <div class="cmui-select__main pos-r" :class="{flex1:!label||!$slots.default}">
-            <select name=""
+            <select
             :style="inputStyle"
-            :type="type"
             :name="name"
-            :value="value"
             :readonly="readonly"
             :placeholder="placeholder"
             :disabled="disabled&&picker"
             :class="targetClass"
+            v-model="selfValue"
             @focus="handleFocus"
             @blur="handleBlur"
             @change="handleChange"
             >
-                <option :value="item.value" v-text="item.text" v-for="item in selfData"></option>
+                <option :value="item.value" v-for="item in selfData" v-text="item.text"></option>
             </select>
             <div class="abs-full" @click="visible=!visible" v-if="picker"></div>
             <cmui-picker :visible.sync="visible" :data="data" @select="select" v-if="picker"></cmui-picker>
@@ -122,19 +121,19 @@ function formateData(data){
 export default {
   components:{cmuiPicker},
   props: {
-    type: { type: String, default: "text" },
-    value: { type: String, default: "" },
     reset: { type: Boolean, default: true },
     prepend: String,
     append: String,
     prependDisabled: { type: Boolean, default: false },
     appendDisabled: { type: Boolean, default: false },
     data:Array,
-    picker:{type:Boolean,default:false}
+    picker:{type:Boolean,default:false},
+    width:[Number,String],
   },
   data:function(){
     return {
-      visible:false
+      visible:false,
+      selfValue:this.value
     }
   },
   mixins: [mixin],
@@ -155,6 +154,9 @@ export default {
       if (this.type === "search") {
         style.paddingLeft = "40px";
       }
+      if(this.width){
+        style.width=this.width+'px';
+      }
       return style;
     },
     selfData(){
@@ -164,6 +166,11 @@ export default {
   methods:{
     select(data){
       this.$emit("input", data[0].value);
+    },
+    handleChange(){
+      const target = event.target;
+      this.$emit("change", this.selfValue, target, this);
+      this.$emit("input", this.selfValue, target, this);
     }
   }
 };

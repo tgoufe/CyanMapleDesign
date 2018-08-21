@@ -28,19 +28,24 @@ import imagePreView from './imagePreView';
 let lazyLoadList=[];
 let windowHeight=window.screen.availHeight;
 let windowWidth=window.screen.availWidth;
+let checkFinish=true;
 const checkLazyLoadImage=_.debounce(function(){
-    for(let i=0;i<lazyLoadList.length;i++ ){
-        const dom=lazyLoadList[i].dom;
-        const pos=dom.getBoundingClientRect();
-        const canViewV=_.inRange(pos.top>0?pos.top:(pos.top+pos.height),windowHeight);
-        const canViewH=_.inRange(pos.left,windowWidth);
-        if( canViewV&&canViewH){
-            dom.src=lazyLoadList[i].imageUrl
-            lazyLoadList.splice(i--,1)
+    if(checkFinish){
+        checkFinish=false;
+        for(let i=0;i<lazyLoadList.length;i++ ){
+            const dom=lazyLoadList[i].dom;
+            const pos=dom.getBoundingClientRect();
+            const canViewV=_.inRange(pos.top>0?pos.top:(pos.top+pos.height),windowHeight);
+            const canViewH=_.inRange(pos.left,windowWidth);
+            if( canViewV&&canViewH){
+                dom.src=lazyLoadList[i].imageUrl
+                lazyLoadList.splice(i--,1)
+            }
+            if(pos.top>windowHeight){
+                break;
+            }
         }
-        if(pos.top>windowHeight){
-            break;
-        }
+        checkFinish=true;
     }
 },500)
 $(function(){

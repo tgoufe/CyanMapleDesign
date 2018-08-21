@@ -55,7 +55,6 @@ import maskPanel from './component/maskPanel/index.js';
 import countdown from './component/countdown/index.js';
 import picker from './component/pick/index.js';
 
-
 maple.notice = notice;
 maple.alert = alert;
 maple.confirm = confirm;

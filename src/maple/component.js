@@ -8,11 +8,11 @@ import affix from './component/affix/affix.vue';
 import popup from './component/popup/popup.vue';
 export default {
 		'cmui-img': img
-  ,	'cmui-picker': pick
+	,	'cmui-picker': pick
 	,	'cmui-collapse': collapse
 	,	'cmui-collapse-item': collapseItem
 	,	'cmui-affix': affix
 	,	'cmui-popup': popup
-  , 'cmui-scroll': scroll
-  , 'cmui-scroll-item': scrollItem
+	,	'cmui-scroll': scroll
+	,	'cmui-scroll-item': scrollItem
 };

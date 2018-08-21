@@ -1,63 +1,144 @@
 <template>
-	<div class="cmui-slider">
-		<div class="swiper-container" :id="id">
-			<div class="swiper-wrapper">
-				<slot></slot>
-			</div>
-		    <div class="pagination"></div>
-		</div>
-	</div>
+    <div class="cmui-slider" v-if="visible">
+        <div class="swiper-container" :id="id" ref="swiper-container" :style="containerStyle">
+            <div class="swiper-wrapper">
+                <div class="swiper-slider-prepend"></div>
+                <slot></slot>
+                <div class="swiper-slider-append"></div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next" v-if="this.nav"></div>
+            <div class="swiper-button-prev" v-if="this.nav"></div>
+            <!-- Add pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
 </template>
-<script>
-
-import Swiper from './swiper';
-import sliderList from './sliderList';
-import thememaker from './themeMaker';
-export default {
-	mounted:function(){
-		var _this=this;
-		setTimeout(function(){
-			_this.swiper=new Swiper($('.swiper-container',_this.$el), thememaker.call(_this));
-			_this.swiperIndex=sliderList.length;
-			sliderList.add(_this.swiper)
-		}, 0);
-	},
-    watch:{
-		items:function(newData,oldData){
-			var _this=this;
-			this.swiper && this.swiper.destroy(false, true);
-			if( !(newData && oldData && newData.length === oldData.length) ){
-				$(_this.$el).find('.pagination').empty();
-			}
-			setTimeout(function(){
-				if(_this.items){
-					_this.swiper=new Swiper($('.swiper-container',_this.$el), thememaker.call(_this));
-					sliderList[_this.swiperIndex]=_this.swiper;
-				}
-			}, 0);
-		}
-	},
-	props:{
-		id:{type:String,default:_.uniqueId('cmui-slider_')},
-		items: {type: Array},
-		theme:{type:Number},
-		col:{type:Number},
-		span:{type:Number},
-		space:{type:Number},
-		auto:{type:Number},
-		loop:{type:Boolean},
-		autoplayDisable:{type:Boolean},
-		target: {type:Object},
-		autoHeight:{type:Boolean,default:false},
-		options:{type:Object}
-	},
-	destroyed(){
-		this.swiper && this.swiper.destroy(true, true);
-		$(this.$el).remove()
+<style type="text/css">
+	.swiper-scrollbar:empty{
+		display: none;
 	}
-
-};
-</script>
-<style lang="scss">
-@import './swiper.css';
 </style>
+<script type="text/javascript">
+import Swiper from 'swiper';
+import themeList from './themeList.json';
+import sliderList from './sliderList';
+function optionsMaker(options, themeName) {
+    let themeOptions = _.get(themeList,themeName);
+    let propOptions = {};
+    //set slidesPerView as col
+    if (this.col === 0) {
+        propOptions.slidesPerView = 'auto';
+        this.$children.forEach(item => {
+            item.$el.style.width = 'auto';
+        });
+    }else{
+    	propOptions.slidesPerView = this.col;
+    }
+
+    //set pagination as page
+    if (this.page) {
+        let tempOption = {
+            el: '.swiper-pagination'
+        };
+        if (_.isString(this.page)) {
+            if (this.page === 'progress') {
+                tempOption.type = 'progressbar';
+            } else if (this.page === 'number') {
+                tempOption.type = 'fraction';
+            }
+        } else if (_.isNumber(this.page)) {
+        	tempOption.dynamicBullets=true;
+            tempOption.dynamicMainBullets = parseInt(this.page) || 1;
+        }
+        _.set(propOptions, 'pagination', tempOption);
+    }
+    //set navigation as nav
+    if (this.nav) {
+        _.set(propOptions, 'navigation', {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        })
+    }
+    //set spaceBetween as space
+    if(this.space){
+    	propOptions.spaceBetween=this.space;
+    }
+    //提取常用属性方便使用
+    ['loop', 'autoplay', 'direction'].forEach(item => {
+        propOptions[item] = this[item];
+    })
+    return _.defaultsDeep(options, propOptions, themeOptions);
+}
+export default {
+    watch: {
+        items: {
+            immediate: true,
+            handler(value) {
+                this.resetSwiper();
+            }
+        },
+        options: {
+            deep: true,
+            handler(newOptions, oldOptions) {
+                this.resetSwiper();
+            }
+        }
+    },
+    data: function() {
+        // console.log(this)
+        return {
+            visible: true
+        }
+    },
+    computed: {
+        containerStyle() {
+            let rs = {};
+            if (this.height) {
+                rs.height = this.height;
+            }
+            return rs;
+        }
+    },
+    props: {
+    	id:{type:String,default:_.uniqueId('cmui-slider_')},
+        items: { type: Array, default: [] },
+        theme: { type: Number, default: 0 },
+        options: { type: Object, default: null },
+        loop: { type: Boolean, default: false },
+        autoplay: { type: Boolean, default: false },
+        col: { type: Number, default: 1 },
+        page: { type: [Boolean, String, Number], default: false },
+        direction: { type: String, default: 'horizontal' },
+        height: { type: String, default: '' },
+        nav: { type: Boolean, default: false },
+        space:{type:Number,default:0},
+    },
+    methods: {
+        destroy() {
+            this.swiper && this.swiper.destroy(true, false);
+            this.visible = false;
+        },
+        resetSwiper() {
+            this.$nextTick(() => {
+            	let hasInit=!!this.swiper;
+            	if(hasInit){
+					this.swiper.destroy(false, false);
+            	}else{
+            		this.swiperIndex=sliderList.length;
+            	}
+                _.delay(() => { 
+                	this.swiper = new Swiper(this.$refs['swiper-container'], optionsMaker.call(this, this.options), this.theme);
+                	if(hasInit){
+                		sliderList[this.swiperIndex]=this.swiper;
+                	}else{
+                		sliderList.add(this.swiper);
+                	}
+                }, 0)
+            })
+        }
+    }
+}
+</script>
