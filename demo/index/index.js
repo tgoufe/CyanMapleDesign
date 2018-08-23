@@ -20,6 +20,7 @@ import alert from './ui/alert.vue';
 import confirm from './ui/confirm.vue';
 import actions from './ui/actions.vue';
 import slider from './ui/slider.vue';
+import list from './ui/list.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
@@ -40,6 +41,7 @@ const routes = [
     {path: '/mask/', component: mask},
     {path: '/notice/', component: notice},
     {path: '/slider/', component: slider},
+    {path: '/list/', component: list},
 ];
 const router = new VueRouter({
     routes

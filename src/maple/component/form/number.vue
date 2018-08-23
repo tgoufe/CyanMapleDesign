@@ -72,6 +72,8 @@ export default {
 			}
 		},
 		handleBlur(){
+          const target = event.target;
+          const value = target.value;
 			this.changeNumber(0);
 			this.$emit("blur", value, target, this);
 		}

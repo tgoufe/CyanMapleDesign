@@ -38,8 +38,8 @@ $name: cmui-collapse; //组件前缀
                 border-bottom-left-radius: $border-radius-base;
             }
             .#{$name}-item__header.active {
-                border-bottom-right-radius: 0px;
-                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
             }
         }
         .#{$name}-item__header {
@@ -206,19 +206,21 @@ $name:cmui-tabbar;//组件前缀
 }
 
 //picker
-$pickerHeight:200px;
-$pickerItemSize:20px;
-.cmui-picker__wrapper{
-    height:$pickerHeight;
-}
-.cmui-picker__linet,.cmui-picker__lineb{
-    height:($pickerHeight - $pickerItemSize * 1.5 - 1)/2;
-}
-.cmui-picker__item{
-    font-size:$pickerItemSize;
-    line-height: 1.5;
-    &.swiper-slide-active{
-        color: #ff8d66;
+.cmui-picker{
+    .cmui-picker__cancel{
+        .cmui-picker__btn{}
+    }
+    .cmui-picker__title{font-size: 20px;}
+    .cmui-picker__ok{
+        .cmui-picker__btn{}
+    }
+    .cmui-picker_content{}
+    .cmui-picker__wrapper{}
+    .cmui-picker__scroll{}
+    .cmui-picker__item{
+        &.swiper-slide-active{
+            color: #ff8d66;
+        }
     }
 }
-.cmui-picker__title{font-size: 20px;}
+

@@ -25,7 +25,6 @@
               'confirm',
               'slider',
               'list',
-              'action',
               'tabbar',
               'collapse',
               'affix',

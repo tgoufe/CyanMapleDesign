@@ -6,11 +6,11 @@
     >
         <div class="flex-container padding10">
             <div class="cmui-picker__cancel">
-                <div class="btn red radius small" @click="_cancel()">{{leftText}}</div>
+                <div class="cmui-picker__btn" @click="_cancel()">{{leftText}}</div>
             </div>
             <div class="flex1 text-center cmui-picker__title">{{title}}</div>
             <div class="cmui-picker__ok">
-                <div class="btn red radius small" @click="_ok()">{{rightText}}</div>
+                <div class="cmui-picker__btn" @click="_ok()">{{rightText}}</div>
             </div>
         </div>
         <div class="pos-r cmui-picker_content">
@@ -29,7 +29,17 @@
     </cmui-popup>
 </template>
 <style lang="scss">
+    $pickerHeight:200px;
+    $pickerItemSize:20px;
+    .cmui-picker__wrapper{
+        height:$pickerHeight;
+    }
+    .cmui-picker__item{
+        font-size:$pickerItemSize;
+        line-height: 1.5;
+    }
     .cmui-picker__linet,.cmui-picker__lineb{
+        height:($pickerHeight - $pickerItemSize * 1.5 - 1)/2;
         position: absolute;
         pointer-events: none;
         z-index: 9;
