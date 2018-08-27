@@ -1,5 +1,9 @@
 <template>
-<div class="cmui-list-item" v-bind:style="itemStyle()">
+<div class="cmui-list-item"
+     v-bind:style="itemStyle()"
+
+     ref="listItem"
+>
     <div class="cmui-list-item-container" :style="itemContainerStyle">
         <slot></slot>
     </div>
@@ -13,28 +17,34 @@
     }
 </style>
 <script>
+
 export default {
     name:'cmui-list-item',
     data:function(){
-        var itemContainerStyle
-        ,   parent=this.$parent
+        let parent=this.$parent
         ,   border
+        ,   boxShadow
         ;
-        if(parent.border&&parent.realSpace!=0){
-            border='1px solid '+parent.borderColor
+        if(parent.border&&parent.realSpace!==0){
+            // border='1px solid '+parent.borderColor;
+          boxShadow='0px 0px 0px 1px '+parent.borderColor
         }
         return {
-            itemContainerStyle:{border}
+            itemContainerStyle:{
+              border,
+              boxShadow,
+            },
+            position:{}
         }
     },
     computed:{
         itemList(){
-            return this.$parent.$children.filter(item=>item.$options._componentTag=="cmui-list-item");
+            return this.$parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
         }
     },
     methods:{
         itemStyle(){
-            var width
+            let width
             ,   clear
             ,   col=this.$parent.realCol
             ,   colCount=_.isNumber(col)?col:col.length
@@ -47,7 +57,7 @@ export default {
                 width=100/col+'%';
                 clear=index%col===0?'left':undefined;
             }else if(_.isArray(col)){
-                var total=col.reduce((pre,next)=>pre+next);
+                let total=col.reduce((pre,next)=>pre+next);
                 width=100*col[index%col.length]/total+'%';
                 clear=index%col.length===0?'left':undefined;
             }
