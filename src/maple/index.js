@@ -69,5 +69,5 @@ maple.countdown = countdown;
 maple.message = message;
 maple.picker=picker;
 // // 初始化通用组件
-Object.keys(component).forEach(d => Vue.component(d, component[d]));
+_.forEach(component,(value,key)=>Vue.component(key,value));
 export default (window.maple = maple);
