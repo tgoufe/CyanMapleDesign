@@ -21,6 +21,7 @@ import confirm from './ui/confirm.vue';
 import actions from './ui/actions.vue';
 import slider from './ui/slider.vue';
 import list from './ui/list.vue';
+import popup from './ui/popup.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
@@ -42,6 +43,7 @@ const routes = [
     {path: '/notice/', component: notice},
     {path: '/slider/', component: slider},
     {path: '/list/', component: list},
+    {path: '/popup/', component: popup},
 ];
 const router = new VueRouter({
     routes

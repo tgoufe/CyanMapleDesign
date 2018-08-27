@@ -23,6 +23,7 @@
               'actions',
               'alert',
               'confirm',
+              'popup',
               'slider',
               'list',
               'tabbar',
