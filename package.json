@@ -4,7 +4,7 @@
   "description": "cmui",
   "main": "CMUI/index.js",
   "scripts": {
-    "start": "parcel demo/index/index.html",
+    "start": "parcel build src/cyan/cmui.scss -d dist/lib && parcel demo/index/index.html",
     "cyan": "parcel build src/cyan/cmui.scss -d CMUI",
     "maple": "parcel build src/maple/index.js -d CMUI ",
     "theme": "parcel build src/maple/theme.scss -d CMUI "
@@ -22,10 +22,9 @@
   "author": "qqkillqq",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^7.2.5",
+    "autoprefixer": "^9.1.3",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.18.1",
-    "http-server": "^0.11.1",
+    "eslint": "^5.5.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.7.2",
     "parcel-bundler": "^1.4.1",

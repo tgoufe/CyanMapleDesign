@@ -12,7 +12,7 @@
     :mask-event="maskEvent"
     :stop-page-scroll="pageScroll"
     >
-        adsfsdfsdfasdfsdf
+
         <a href="javascript:void(0)" class="btn red radius" @click="visible=!visible">关闭</a>
     </cmui-popup>
 </div>

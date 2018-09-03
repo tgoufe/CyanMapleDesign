@@ -4,26 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>CMUI</title>
-    <script src="../../src/libs/flexible/flexible.js"></script>
-    <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
-    <link rel="stylesheet" href="../../src/cyan/CMUI.scss">
+    <script src="http://localhost:1234/lib/flexible.js"></script>
+    <script src="http://localhost:1234/lib/lodash.js_4.17.4_lodash.min.js"></script>
+    <script src="http://localhost:1234/lib/vue_2.5.13_vue.min.js"></script>
+    <script src="http://localhost:1234/lib/jquery_3.2.1_jquery.min.js"></script>
+    <script src="http://localhost:1234/lib/vue-router_3.0.1_vue-router.min.js"></script>
+    <link rel="stylesheet" href="http://localhost:1234/lib/cmui.css">
     <link rel="stylesheet" href="index.scss">
     <link rel="stylesheet" href="../../src/maple/theme.scss">
 </head>
 <body>
 <div id="main" class="paddingb50">
     <pc-head :title="headTitle" @left-icon-click="goback()"></pc-head>
-    <!--<cmui-scroll style="height: 400px" @pull="test" :watch="list" col="3" :free-mode="false" :pull-text="['123']">-->
-        <!--&lt;!&ndash;<div slot="pullDown">213</div>&ndash;&gt;-->
-        <!--<cmui-scroll-item v-for="item in list" >-->
-            <!--<div class=" margin10" style="height: 30px;">-->
-                <!--{{item}}-->
-            <!--</div>-->
-        <!--</cmui-scroll-item>-->
-    <!--</cmui-scroll>-->
     <router-view></router-view>
 </div>
 <script src="../../src/maple/index.js"></script>
