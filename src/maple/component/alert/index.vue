@@ -39,8 +39,11 @@
 		},
 		methods: {
 			cancel: function(){
-				this.showCmuiDialog=false;
-				(typeof this.okFn==='function')&&this.okFn()
+				if(!this.okDisable){
+					this.showCmuiDialog=false;
+					(typeof this.okFn==='function')&&this.okFn()
+				}
+				
 			}
 		}
 	}

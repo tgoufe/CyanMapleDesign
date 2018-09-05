@@ -97,6 +97,12 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
     		height:100%;
     	}
     }
+    &.flex-x img{
+    	max-width: none;
+    }
+    &.flex-y img{
+    	max-height: none;
+    }
     &.radius{
     	border-radius:$border-radius-base;
     }
@@ -268,6 +274,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 .pos-f{position: fixed}
 .vcenter{top:50%;@include translateY(-50%);@extend .pos-a}
 .hcenter{left:50%;@include translateX(-50%);@extend .pos-a}
+.fullcenter{top:50%;left:50%; @include translate(-50%, -50%);@extend .pos-a}
 .clearfix{@include clearfix();}
 .abs-bottom,.abs-top,.abs-full,.abs-left,.abs-right{
 	@extend .pos-a;

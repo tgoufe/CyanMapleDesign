@@ -29,6 +29,8 @@
               'tabbar',
               'collapse',
               'affix',
+              'swiper',
+              'progress'
             ]
         },
         page: {

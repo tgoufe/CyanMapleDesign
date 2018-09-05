@@ -22,6 +22,8 @@ import actions from './ui/actions.vue';
 import slider from './ui/slider.vue';
 import list from './ui/list.vue';
 import popup from './ui/popup.vue';
+import swiper from './ui/swiper.vue';
+import progress from './ui/progress.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
@@ -44,6 +46,8 @@ const routes = [
     {path: '/slider/', component: slider},
     {path: '/list/', component: list},
     {path: '/popup/', component: popup},
+    {path: '/swiper/', component: swiper},
+    {path: '/progress/', component: progress},
 ];
 const router = new VueRouter({
     routes

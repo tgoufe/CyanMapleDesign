@@ -2,10 +2,8 @@
 	<div class="cmui-progress" :style="warpStyle">
 		<div class="cmui-progress_bar" :style="progressStyle">
 			<div class="cmui-progress_bg" :style="bgStyle">
-				<div class="cmui-progress_info" v-text="value">
-					
-				</div>
 			</div>
+			<div class="cmui-progress_info fullcenter" v-text="text" v-if="text"></div>
 		</div>
 	</div>
 </template>
@@ -15,11 +13,12 @@
 	.cmui-progress_bar{
 		transition: width 1s;
 		overflow: hidden;
+		position: relative;
 		.cmui-progress_bg{
-			width:100vw;
-			.cmui-progress_info{
-				
-			}
+			height:100%;
+		}
+		.cmui-progress_info{
+			color:white
 		}
 	}
 }
@@ -30,7 +29,8 @@ export default {
 		value:{type:Number,default:0},
 		color:{type:[String,Array],default:'red'},
 		height:{type:Number,default:10},
-		radius:{type:Boolean,default:true}
+		radius:{type:Boolean,default:true},
+		text:String
 	},
 	computed:{
 		warpStyle(){
@@ -40,12 +40,8 @@ export default {
 			}
 		},
 		progressStyle(){
-			let width;
-			if(this.value>100 || this.value<0){
-				width=0;
-			}else{
-				width=this.value;
-			}
+			let width=Math.max(this.value,0);
+			width=Math.min(this.value,100);
 			return {
 				height:this.height+'px',
 				width:width+'%',
@@ -61,6 +57,9 @@ export default {
 				rs.backgroundColor=this.color[0];
 				rs.backgroundImage='linear-gradient(to right, ' + this.color.toString() + ')';
 			}
+			let width=Math.max(this.value,0);
+			width=Math.min(this.value,100);
+			rs.width=10000/width+'%';
 			return rs;
 		},
 	},

@@ -7,6 +7,7 @@ import collapseItem from './component/collapse/collapse-item.vue';
 import affix from './component/affix/affix.vue';
 import popup from './component/popup/popup.vue';
 import swiper from './component/swiper/swiper.vue';
+import progress from './component/progress/progress.vue';
 export default {
 		'cmui-img': img
 	,	'cmui-picker': pick
@@ -16,5 +17,6 @@ export default {
 	,	'cmui-popup': popup
 	,	'cmui-scroll': scroll
 	,	'cmui-scroll-item': scrollItem
-	, 'cmui-swiper':swiper
+	, 	'cmui-swiper':swiper
+	, 	'cmui-progress':progress
 };

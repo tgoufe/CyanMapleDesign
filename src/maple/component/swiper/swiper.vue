@@ -3,6 +3,7 @@
     @touchstart="handleTouchStart"
     @touchmove="handleTouchMove"
     @touchend="handleTouchEnd"
+    ref="swiper"
     >
         <div class="cmui-swiper__content pos-r" :style="transDis">
             <slot>
@@ -10,10 +11,10 @@
             <slot name="right"></slot>
         </div>
         <div class="cmui-swiper__left abs-left flex-container" ref="left">
-            <div v-for="(item,index) in left" @click="controlHandle('left',index)" class="cmui-swiper__control flex-container center" v-text="item"  :style="transDis"></div>
+            <div v-for="(item,index) in left" @click="controlHandle('left',index,item)" class="cmui-swiper__control flex-container center" v-text="item"  :style="transDis"></div>
         </div>
         <div class="cmui-swiper__right abs-right flex-container" ref="right">
-            <div v-for="(item,index) in right" @click="controlHandle('right',index)" class="cmui-swiper__control flex-container center" v-text="item"  :style="transDis"></div>
+            <div v-for="(item,index) in right" @click="controlHandle('right',index,item)" class="cmui-swiper__control flex-container center" v-text="item"  :style="transDis"></div>
         </div>
     </div>
 </template>
@@ -171,11 +172,10 @@ export default {
         this.$el.classList.remove("translating");
       }, 300);
     },
-    controlHandle(pos,index){
-      this.$emit('swiper',pos,index,this);
-      console.log(pos,index);
+    controlHandle(pos,index,text){
+      this.$emit('swiper',{pos,index,text,vm: this});
     },
-    close(){
+    close(callback=function(){}){
       this.hasOpened=false;
       this.handleData.currentTrans=0;
       this.handleData.dis=0;
@@ -183,6 +183,7 @@ export default {
       this.transDis.transform = `translate3d(0px, 0px, 0px)`;
       _.delay(() => {
         this.$el.classList.remove("translating");
+        callback();
       }, 300);
       _.remove(openedList,item=>item===this);
     }
