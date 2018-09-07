@@ -1,5 +1,5 @@
 <template>
-<div class="cmui-list overflow-h" :style="{boxShadow}">
+<div class="cmui-list" :style="{boxShadow}" :class="{'overflow-h':needOverHide}">
 	<div class="clearfix" :style="containerStyle">
 		<slot></slot>
 	</div>
@@ -15,6 +15,7 @@ export default{
 		target:Object
 	},
 	data:function(){
+		console.log(this.$parent.boxShadow)
 		var defaultBorderColor="#eeeeee"
 		,	isColor=/^#[a-fA-F0-9]{6}$/.test(this.border)
 		,	borderColor=isColor?this.border:defaultBorderColor
@@ -58,6 +59,10 @@ export default{
 	    		return '0px 0px 0px 1px '+this.borderColor
 	    	}
 	    	return
+	    },
+	    needOverHide(){
+	    	console.log(_.get(this,'$parent.itemContainerStyle.boxShadow'),this.border,!this.space)
+	    	return _.get(this,'$parent.itemContainerStyle.boxShadow')&&this.border&&this.space;
 	    }
 	}
 }

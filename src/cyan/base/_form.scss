@@ -226,7 +226,7 @@ input{
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
           @if(#{$btnSizeName}!='base'){
               &.#{$btnSizeName}{
-                &:not([type=radio][type=checkbox]){
+                &:not([type=checkbox]),&:not([type=radio]){
                   padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
                   &~{
                       .input-reset,.input-changeType,.input-search{
