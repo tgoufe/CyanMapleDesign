@@ -224,3 +224,23 @@ $name:cmui-tabbar;//组件前缀
     }
 }
 
+//index list
+.cmui-list-item-title{
+    background-color: white;
+    padding: 10px;
+    box-shadow: #eeeeee 0px 0px 0px 1px;
+}
+.cmui-list-index{
+    .indexWarp{
+        @extend %paddingv10;
+        background-color: #eeeeee;
+        border-radius:4px 0 0 4px;
+        span{
+          @extend %paddingh20;
+
+            &.active{
+                color:red;
+            }
+        }
+    }
+}

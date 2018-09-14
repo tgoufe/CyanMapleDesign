@@ -1,26 +1,39 @@
 <template>
-<div class="cmui-list-item"
+<div class="cmui-list-item bg-white"
      v-bind:style="itemStyle()"
-
      ref="listItem"
 >
+    <div class="cmui-list-item-title" v-if="$slots.title||title">
+        <slot name="title"></slot>
+        <template v-if="!$slots.title">{{title}}</template>
+    </div>
     <div class="cmui-list-item-container" :style="itemContainerStyle">
         <slot></slot>
     </div>
 </div>
 </template>
-<style>
+<style lang="scss">
     .cmui-list-item{
         float: left;
         position: relative;
         min-height: 1px;
     }
+    .cmui-list-item-title{
+        position: -webkit-sticky;
+        position: sticky;
+        top:0px;
+        z-index: 20;
+    }
 </style>
 <script>
-
 export default {
     name:'cmui-list-item',
+    props:{
+        title:{type:String,default:''},
+        bgcolor:{type:String,default:''}
+    },
     data:function(){
+
         let parent=this.$parent
         ,   border
         ,   boxShadow
@@ -47,11 +60,11 @@ export default {
             let width
             ,   clear
             ,   col=this.$parent.realCol
-            ,   colCount=_.isNumber(col)?col:col.length
             ,   index=_.findIndex(this.itemList,this)
             ,   paddingRight=this.$parent.realSpace+'rem'
             ,   paddingBottom=this.$parent.realSpace+'rem'
             ,   boxShadow=this.$parent.boxShadow
+            ,   backgroundColor
             ;
             if(_.isNumber(col)){
                 width=100/col+'%';
@@ -61,7 +74,10 @@ export default {
                 width=100*col[index%col.length]/total+'%';
                 clear=index%col.length===0?'left':undefined;
             }
-            return{width,clear,paddingRight,paddingBottom,boxShadow}
+            if(this.bgcolor){
+              backgroundColor=this.bgcolor;
+            }
+            return{width,clear,paddingRight,paddingBottom,boxShadow,backgroundColor}
         }
     }
 };
