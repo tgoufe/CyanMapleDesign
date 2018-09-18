@@ -30,7 +30,8 @@
               'collapse',
               'affix',
               'swiper',
-              'progress'
+              'progress',
+              'slidebar'
             ]
         },
         page: {

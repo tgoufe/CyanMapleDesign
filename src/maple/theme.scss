@@ -244,3 +244,35 @@ $name:cmui-tabbar;//组件前缀
         }
     }
 }
+//slidebar
+$lheight:1px;
+$dotsize:14px;
+.cmui-slidebar{
+    &.start{
+        .cmui-slidebar__progress,.cmui-slidebar__dot{
+            background-color: orange;
+        }
+    }
+    &.end{
+        .cmui-slidebar__progress,.cmui-slidebar__dot{
+            background-color: black;
+        }
+    }
+}
+.cmui-slidebar__warp{
+    min-height: $dotsize;
+}
+.cmui-slidebar__bar{
+    height:$lheight;
+    background-color: blue;
+}
+.cmui-slidebar__progress{
+    height:$lheight;
+    background-color: red;
+}
+.cmui-slidebar__dot {
+    width:14px;
+    height:14px;
+    border-radius:100px;
+    background-color: red;
+}
