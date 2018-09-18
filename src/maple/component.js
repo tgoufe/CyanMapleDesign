@@ -2,6 +2,9 @@ import img from './component/img/img.vue';
 import pick from './component/pick/pick.vue';
 import scroll from './component/scroll/scroll.vue';
 import scrollItem from './component/scroll/scroll-item.vue';
+
+import indexlist from './component/indexlist/indexlist.vue';
+import indexlistItem from './component/indexlist/indexlistItem.vue';
 import collapse from './component/collapse/collapse.vue';
 import collapseItem from './component/collapse/collapse-item.vue';
 import affix from './component/affix/affix.vue';
@@ -19,4 +22,6 @@ export default {
 	,	'cmui-scroll-item': scrollItem
 	, 	'cmui-swiper':swiper
 	, 	'cmui-progress':progress
+	,	'cmui-indexlist':indexlist
+	,	'cmui-indexlist-item':indexlistItem
 };

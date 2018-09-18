@@ -17,6 +17,7 @@
         float: left;
         position: relative;
         min-height: 1px;
+        width:100%;
     }
     .cmui-list-item-title{
         position: -webkit-sticky;
@@ -26,58 +27,69 @@
     }
 </style>
 <script>
+import baseMixin from '../mixin.js';
 export default {
     name:'cmui-list-item',
+    mixins:[baseMixin],
     props:{
         title:{type:String,default:''},
-        bgcolor:{type:String,default:''}
+        bgcolor:{type:String,default:''},
+        border:{type:Boolean,default:true}
     },
     data:function(){
-
-        let parent=this.$parent
-        ,   border
-        ,   boxShadow
-        ;
-        if(parent.border&&parent.realSpace!==0){
-            // border='1px solid '+parent.borderColor;
-          boxShadow='0px 0px 0px 1px '+parent.borderColor
-        }
         return {
-            itemContainerStyle:{
-              border,
-              boxShadow,
-            },
             position:{}
         }
     },
     computed:{
         itemList(){
             return this.$parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
+        },
+        itemContainerStyle(){
+            let parent=this.getParent('cmui-list')
+            ,   border
+            ,   boxShadow
+            ;
+            if(this.border&&parent.border&&parent.realSpace!==0){
+              boxShadow='0px 0px 0px 1px '+parent.borderColor
+            }
+            return {
+              border,
+              boxShadow,
+            }
         }
     },
     methods:{
         itemStyle(){
             let width
-            ,   clear
-            ,   col=this.$parent.realCol
+            ,   parent=this.getParent('cmui-list')
+            ,   col=parent.realCol
+            ,   colCount=(_.isArray(col)?col.length:col)||1
             ,   index=_.findIndex(this.itemList,this)
-            ,   paddingRight=this.$parent.realSpace+'rem'
-            ,   paddingBottom=this.$parent.realSpace+'rem'
-            ,   boxShadow=this.$parent.boxShadow
+            ,   clear=index%colCount===0?'left':undefined
+            ,   nopaddingBFrom=parent.noPaddingbFrom
+            ,   paddingRight
+            ,   paddingLeft
+            ,   paddingBottom
+            ,   boxShadow=parent.boxShadow
             ,   backgroundColor
             ;
-            if(_.isNumber(col)){
+            if(parent.realSpace){
+                if(index<nopaddingBFrom){
+                    paddingBottom=parent.realSpace+'rem';
+                }
+                paddingRight=parent.realSpace+'rem';
+            }
+            if(_.isNumber(col)&&col!==1){
                 width=100/col+'%';
-                clear=index%col===0?'left':undefined;
             }else if(_.isArray(col)){
                 let total=col.reduce((pre,next)=>pre+next);
                 width=100*col[index%col.length]/total+'%';
-                clear=index%col.length===0?'left':undefined;
             }
             if(this.bgcolor){
               backgroundColor=this.bgcolor;
             }
-            return{width,clear,paddingRight,paddingBottom,boxShadow,backgroundColor}
+            return{width,clear,paddingRight,paddingLeft,paddingBottom,boxShadow,backgroundColor}
         }
     }
 };

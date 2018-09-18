@@ -28,6 +28,16 @@ export default {
     },
     broadcast(componentName, eventName, params) {
       broadcast.call(this, componentName, eventName, params);
+    },
+    getParent(componentName){
+      let parent=this.$parent;
+      while(_.get(parent,'$options._componentTag')!==componentName){
+        parent=_.get(parent,'$parent');
+        if(!parent){
+          break;
+        }
+      }
+      return parent;
     }
   }
 };

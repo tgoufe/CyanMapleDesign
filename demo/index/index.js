@@ -21,6 +21,9 @@ import confirm from './ui/confirm.vue';
 import actions from './ui/actions.vue';
 import slider from './ui/slider.vue';
 import list from './ui/list.vue';
+    import listMusic from './ui/list/music.vue';
+    import listConfig from './ui/list/config.vue';
+    import listLoop from './ui/list/loop.vue';
 import popup from './ui/popup.vue';
 import swiper from './ui/swiper.vue';
 import progress from './ui/progress.vue';
@@ -45,6 +48,9 @@ const routes = [
     {path: '/notice/', component: notice},
     {path: '/slider/', component: slider},
     {path: '/list/', component: list},
+    {path: '/list/music', component: listMusic},
+    {path: '/list/config', component: listConfig},
+    {path: '/list/loop', component: listLoop},
     {path: '/popup/', component: popup},
     {path: '/swiper/', component: swiper},
     {path: '/progress/', component: progress},
@@ -52,17 +58,13 @@ const routes = [
 const router = new VueRouter({
     routes
 });
+import listData from './demoData/music.json';
 window.vm = new Vue({
     el: '#main',
     router,
     data: {
         headTitle: 'CMUI组件列表',
-        componentList: _.times(20, index => {
-            return {
-                title: '组件' + index, link: '###'
-            };
-        }),
-        list:_.times(20,index=>index)
+        listData
     },
     watch:{
 
