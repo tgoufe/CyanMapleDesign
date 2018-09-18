@@ -32,61 +32,62 @@ function setDisFromValue(value){
 	dis=_.min([dis,barInfo.width-dotInfo.width]);
 	this.transDisX=dis;
 }
-	export default{
-		data:function(){
+export default{
+	data:function(){
+		return{
+			transDisX:0,
+			barInfo:null,
+			dotInfo:null
+		}
+	},
+	props:{
+		value:{type:Number,default:0},
+		step:{type:Number,default:0},
+		range:{type:Number,default:100}
+	},
+	watch:{
+		value(value){
+			setDisFromValue.call(this,value);
+		}
+	},
+	mounted(){
+		setDisFromValue.call(this,this.value);
+	},
+	computed:{
+		transDis(){
 			return{
-				transDisX:0,
-				barInfo:null,
-				dotInfo:null
-			}
-		},
-		props:{
-			value:{type:Number,default:0},
-			step:{type:Number,default:0},
-			range:{type:Number,default:100}
-		},
-		watch:{
-			value(value){
-				setDisFromValue.call(this,value);
-			}
-		},
-		mounted(){
-			setDisFromValue.call(this,this.value);
-		},
-		computed:{
-			transDis(){
-				return{
-					transform:`translate3d(${this.transDisX}px, -50%, 0px)`
-				}
-			}
-		},
-		methods:{
-			startHandle(e){
-				this.barInfo=this.$refs.bar.getBoundingClientRect();
-				this.dotInfo=this.$refs.dot.getBoundingClientRect();
-			},
-			moveHandle(e){
-				let dis = e.type === "touchmove" ? e.targetTouches[0].pageX : e.pageX;
-				dis-=(this.barInfo.x+this.dotInfo.width/2);
-				dis=_.min([dis,this.barInfo.width-this.dotInfo.width]);
-				dis=_.max([dis,0]);
-				let value=dis/(this.barInfo.width-this.dotInfo.width)*this.range;
-				let step=Math.abs(this.step)%100;
-				if(step){
-					let c=value%step;
-					if(c>step/2){
-						value+=(step-c)
-					}else{
-						value-=c;
-					}
-				}
-				this.$emit('input',value)
-			},
-			endHandle(e){
-				this.barInfo=null;
-				this.dotInfo=null;
-				this.$emit('change',this.value);
+				transform:`translate3d(${this.transDisX}px, -50%, 0px)`
 			}
 		}
+	},
+	methods:{
+		startHandle(e){
+			this.barInfo=this.$refs.bar.getBoundingClientRect();
+			this.dotInfo=this.$refs.dot.getBoundingClientRect();
+		},
+		moveHandle(e){
+			let dis = e.type === "touchmove" ? e.targetTouches[0].pageX : e.pageX;
+			dis-=(this.barInfo.x+this.dotInfo.width/2);
+			dis=_.min([dis,this.barInfo.width-this.dotInfo.width]);
+			dis=_.max([dis,0]);
+			let value=dis/(this.barInfo.width-this.dotInfo.width)*this.range;
+			let step=Math.abs(this.step)%100;
+			if(step){
+				let c=value%step;
+				if(c>step/2){
+					value+=(step-c)
+				}else{
+					value-=c;
+				}
+			}
+			this.value=value;
+			this.$emit('input',value)
+		},
+		endHandle(e){
+			this.barInfo=null;
+			this.dotInfo=null;
+			this.$emit('change',this.value);
+		}
 	}
+}
 </script>
