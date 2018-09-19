@@ -13,6 +13,7 @@
 			<cmui-number v-model="height" class="marginb20" :flex="true">
 				线宽
 			</cmui-number>
+			<cmui-slidebar v-model="value" class="marginv20" :step="1"></cmui-slidebar>
 			<cmui-number v-model="value" class="marginb20" :flex="true">
 				数值
 			</cmui-number>

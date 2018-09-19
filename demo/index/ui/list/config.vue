@@ -22,23 +22,11 @@
             <cmui-number v-model="options.col">
 
             </cmui-number>
-            <cmui-number v-model="options.space">
+            <cmui-slidebar v-model="options.space" :step="1" class="margint20" :range="50"></cmui-slidebar>
+            <!-- <cmui-number v-model="options.space">
 
-            </cmui-number>
+            </cmui-number> -->
         </div>
-        <!-- <div class="otherExp tag-container">
-            <cmui-list :border="true">
-                <cmui-list-item v-for="item in 10" class="bg-white">
-                    <cmui-swiper :right="['删除','加入黑名单','测试']" :left="['标记为未读']">
-                        <div class="padding20">
-                            <div class="img-container" style="width:50px">
-                                <img src="https://avatars1.githubusercontent.com/u/3068804?s=40&v=4" alt="">
-                            </div>
-                        </div>
-                    </cmui-swiper>
-                </cmui-list-item>
-            </cmui-list>
-        </div> -->
     </div>
 </template>
 <script>

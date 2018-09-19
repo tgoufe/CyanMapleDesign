@@ -33,11 +33,33 @@
     let dataList={
       baseData:_.times(10),
       aloneData:[['上午','下午'],_.times(12,index=>`${index}点`)],
-      childrenData:[fromatCity(cityData)]
+      childrenData:[fromatCity(cityData)],
+      timeData:_.times(10,i=>{
+        return {
+          text:2010+i,
+          value:2010+i,
+          children:[]
+        }
+      }).map(item=>{
+        item.children=_.times(12,i=>{
+          let days;
+          if(i===1){
+            days=item.value%4?28:29;
+          }else{
+            days=_.includes([0,2,4,6,7,9,11],i)?31:30
+          }
+          return {
+            text:i+1,
+            value:i+1,
+            children:_.times(days,i=>i+1)
+          }
+        })
+        return item
+      })
     };
     export default{
       data:function(){
-        let buttonList=['base','alone','children'];
+        let buttonList=['base','alone','children','time'];
         let visible=false;
         return {pickerData:[],visible,buttonList}
       },

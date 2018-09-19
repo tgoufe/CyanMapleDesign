@@ -34,9 +34,9 @@ import maple from './core';
 // import style from './style';
 // //挂载style
 // maple.style = style;
-// import time from './time';
-// //挂载style
-// maple.time = time;
+import time from './time';
+//挂载time
+maple.time = time;
 import vm from './vm';
 //挂载vm控制器
 maple.vm = vm;
