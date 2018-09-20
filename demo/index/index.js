@@ -28,6 +28,7 @@ import popup from './ui/popup.vue';
 import swiper from './ui/swiper.vue';
 import progress from './ui/progress.vue';
 import slidebar from './ui/slidebar.vue';
+import scroll from './ui/scroll.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
@@ -56,6 +57,7 @@ const routes = [
     {path: '/swiper/', component: swiper},
     {path: '/progress/', component: progress},
     {path: '/slidebar/', component: slidebar},
+    {path: '/scroll/', component: scroll},
 ];
 const router = new VueRouter({
     routes

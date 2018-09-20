@@ -157,8 +157,8 @@
           initialSlide:initialSlide,
           freeModeSticky:true,//自动贴合
           freeMode:true,
-          freeModeMomentumRatio:.3,//当释放slide时的滑动时间
-          freeModeMomentumVelocityRatio:1,//释放后滑动速度
+          freeModeMomentumRatio:.7,//当释放slide时的滑动时间
+          freeModeMomentumVelocityRatio:.3,//释放后滑动速度
           freeModeMomentumBounceRatio:2,//边界反弹效果
           on:{
             transitionEnd(){

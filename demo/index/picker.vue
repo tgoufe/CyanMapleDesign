@@ -30,11 +30,7 @@
         }
       })
     }
-    let dataList={
-      baseData:_.times(10),
-      aloneData:[['上午','下午'],_.times(12,index=>`${index}点`)],
-      childrenData:[fromatCity(cityData)],
-      timeData:_.times(10,i=>{
+    let timeData=_.times(10,i=>{
         return {
           text:2010+i,
           value:2010+i,
@@ -56,10 +52,17 @@
         })
         return item
       })
+    let fullTimeData=[timeData,[],[],_.times(24),_.times(60)];
+    let dataList={
+      baseData:_.times(10),
+      aloneData:[['上午','下午'],_.times(12,index=>`${index}点`)],
+      childrenData:[fromatCity(cityData)],
+      timeData,
+      fullTimeData
     };
     export default{
       data:function(){
-        let buttonList=['base','alone','children','time'];
+        let buttonList=['base','alone','children','time','fullTime'];
         let visible=false;
         return {pickerData:[],visible,buttonList}
       },

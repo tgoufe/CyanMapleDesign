@@ -72,10 +72,39 @@ function optionsMaker(options, themeName) {
     })
     return _.defaultsDeep(options, propOptions, themeOptions);
 }
+const DEFAULT_EVENTS = [
+    'beforeDestroy',
+    'slideChange',
+    'slideChangeTransitionStart',
+    'slideChangeTransitionEnd',
+    'slideNextTransitionStart',
+    'slideNextTransitionEnd',
+    'slidePrevTransitionStart',
+    'slidePrevTransitionEnd',
+    'transitionStart',
+    'transitionEnd',
+    'touchStart',
+    'touchMove',
+    'touchMoveOpposite',
+    'sliderMove',
+    'touchEnd',
+    'click',
+    'tap',
+    'doubleTap',
+    'imagesReady',
+    'progress',
+    'reachBeginning',
+    'reachEnd',
+    'fromEdge',
+    'setTranslate',
+    'setTransition',
+    'resize'
+]
+
 export default {
     watch: {
-        items: {
-            immediate: true,
+        watch: {
+            immediate: false,
             handler(value) {
                 this.resetSwiper();
             }
@@ -88,10 +117,12 @@ export default {
         }
     },
     data: function() {
-        // console.log(this)
         return {
             visible: true
         }
+    },
+    mounted(){
+        this.resetSwiper();
     },
     computed: {
         containerStyle() {
@@ -104,7 +135,7 @@ export default {
     },
     props: {
     	id:{type:String,default:_.uniqueId('cmui-slider_')},
-        items: { type: Array, default: [] },
+        watch: { type: Object, default: {} },
         theme: { type: Number, default: 0 },
         options: { type: Object, default: null },
         loop: { type: Boolean, default: false },
@@ -136,7 +167,26 @@ export default {
                 	}else{
                 		sliderList.add(this.swiper);
                 	}
+                    this.bindEvents();
+                    this.$emit('rendered', this);
                 }, 0)
+            })
+        },
+        update() {
+            if (this.swiper) {
+                this.swiper.update && this.swiper.update()
+                this.swiper.navigation && this.swiper.navigation.update()
+                this.swiper.pagination && this.swiper.pagination.render()
+                this.swiper.pagination && this.swiper.pagination.update()
+            }
+        },
+        bindEvents(){
+            const vm = this;
+            DEFAULT_EVENTS.forEach(eventName => {
+              this.swiper.on(eventName, function() {
+                vm.$emit(eventName, ...arguments)
+                vm.$emit(eventName.replace(/([A-Z])/g, '-$1').toLowerCase(), ...arguments)
+              })
             })
         }
     }

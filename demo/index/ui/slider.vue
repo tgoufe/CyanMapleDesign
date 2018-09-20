@@ -1,7 +1,7 @@
 <template>
 	<div class="padding20">
 		<div class="tag-container example">
-			<cmui-slider :items="imgList" ref="slider"
+			<cmui-slider :watch="imgList" ref="slider"
 				:loop="optionsLoop"
 				:autoplay="optionsAutoplay"
 				:col="optionsCol"
