@@ -31,7 +31,7 @@ if( !('Promise' in window) ){
 }
 
 function loadIframe(src){
-    return new Promise(function(resolve, reject){
+    return new Promise(function(resolve){
         let dom = document.createElement('iframe');
         dom.onload = function(){
             // var obj = {};
@@ -53,7 +53,7 @@ function loadIframe(src){
 }
 
 function loadImg(src){
-    return new Promise(function(resolve, reject){
+    return new Promise(function(resolve){
         let dom = document.createElement('img');
         dom.onload = function(){
             // var obj = {};
@@ -107,9 +107,7 @@ export default function(options={}){
     }
 
     result.then(function(rs){
-        var succ = rs.filter(d=>d!==null)
-            , fail = rs.filter(d=>d===null)
-            ;
+
         options.success && options.success( rs.length > 1 ? rs : rs[0] );
         // options.error && options.error(  )
     }, function(){

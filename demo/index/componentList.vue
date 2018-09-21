@@ -1,15 +1,13 @@
 <template>
     <div class="padding30">
-        <cmui-list :col="3" :border="true">
-            <cmui-list-item v-for="item in list" class="bg-white">
-                <div class="ratio-container">
-                   <router-link :to="item.path" class="flex-container padding30 text-dark ratio-container center">
-                    <span>{{item.title}}</span>
-                    
-                </router-link>  
-                </div>
-            </cmui-list-item>
-        </cmui-list>
+        <cmui-list :col="1" :border="true">
+        <cmui-list-item v-for="item in list" class="bg-white">
+            <router-link :to="item.path" class="flex-container padding30 text-dark">
+                <span>{{item.title}}</span>
+                <i class="baseIcon baseIcon-right"></i>
+            </router-link>
+        </cmui-list-item>
+    </cmui-list>
     </div>
 </template>
 <script>
