@@ -1,13 +1,18 @@
 <template>
 	<cmui-popup
 			position="center"
-			:visible.sync="showCmuiDialog"
+			:visible.sync="selfVisible"
 			class="cmui-alert"
 			:mask-event="false"
 			target-class="cmui-dialog__container cmui-alert__container">
 			<div class="cmui-dialog__title cmui-alert__title" v-html="title" v-if="title" slot="top"></div>
 			<div class="cmui-dialog__warp cmui-alert__warp">
-				<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="content" v-html="content" :style="bodyStyle"></div>
+				<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="!content||$slots.default" :style="bodyStyle">
+					<slot v-if="$slots.default"></slot>
+				</div>
+				<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="content||!$slots.default" :style="bodyStyle" v-html="content">
+					
+				</div>
 			</div>
 			<div class="cmui-dialog__buttons cmui-alert__buttons" slot="bottom">
 				<div class="cmui-alert__button cmui-dialog__button" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" v-html="okText" @click="cancel()" slot="bottom"></div>
@@ -25,22 +30,29 @@
 			okStyle:{type:Object,default:null},
 			okDisable:{type:Boolean,default:false},
 			okDisableStyle:{type:Object,default:null},
+			visible:{type:Boolean,default:false}
 		},
 		compontents:{
 			cmuiPopup
 		},
 		data:function(){
 			return {
-				showCmuiDialog:false,
 				bodyStyle:{
 					'max-height':$(window).height()*.72-69-parseInt($('html').css('fontSize'))+'px'
 				}
 			}
 		},
+		computed:{
+			selfVisible(){
+				let value=!!this.visible;
+				this.$emit('update:visible', value);
+				return value;
+			}
+		},
 		methods: {
 			cancel: function(){
 				if(!this.okDisable){
-					this.showCmuiDialog=false;
+					this.visible=false;
 					(typeof this.okFn==='function')&&this.okFn()
 				}
 				

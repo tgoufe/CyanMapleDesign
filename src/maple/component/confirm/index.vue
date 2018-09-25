@@ -3,13 +3,17 @@
 	position="center"
 	class="cmui-confirm"
 	:mask-event="false"
-	:visible.sync="showCmuiDialog"
+	:visible.sync="selfVisible"
 	target-class="cmui-dialog__container cmui-confirm__container"
 	>
 		<div class="cmui-dialog__title cmui-confirm__title" slot="top" v-html="title" v-if="title"></div>
 		<div class="cmui-dialog__warp cmui-confirm__warp">
-			<div class="cmui-dialog__body cmui-confirm__body scroll-container-y" v-if="content" v-html="content" :style="bodyStyle">
-		</div>
+			<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="!content||$slots.default" :style="bodyStyle">
+				<slot v-if="$slots.default"></slot>
+			</div>
+			<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="content||!$slots.default" :style="bodyStyle" v-html="content">
+				
+			</div>
 		</div>
 		<div class="cmui-dialog__buttons cmui-confirm__buttons flex-container" slot="bottom">
 			<div class="cmui-confirm__button ok cmui-dialog__button flex1" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" v-html="okText" @click="!okDisable&&ok()"></div>
@@ -33,25 +37,32 @@
 			okDisableStyle:{type:Object,default:null},
 			cancelDisable:{type:Boolean,default:false},
 			cancelDisableStyle:{type:Object,default:null},
+			visible:{type:Boolean,default:false},
 		},
 		compontents:{
 			cmuiPopup
 		},
 		data:function(){
 			return {
-				showCmuiDialog:false,
 				bodyStyle:{
 					'max-height':$(window).height()*.72-69-parseInt($('html').css('fontSize'))+'px'
 				}
 			}
 		},
+		computed:{
+			selfVisible(){
+				let value=!!this.visible;
+				this.$emit('update:visible', value);
+				return value;
+			}
+		},
 		methods: {
 			cancel: function(){
-				this.showCmuiDialog=false;
+				this.visible=false;
 				(typeof this.cancelFn==='function')&&this.cancelFn()
 			},
 			ok:function(){
-				this.showCmuiDialog=false;
+				this.visible=false;
 				(typeof this.okFn==='function')&&this.okFn()
 			}
 		}

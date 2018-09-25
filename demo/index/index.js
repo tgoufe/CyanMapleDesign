@@ -20,6 +20,8 @@ import alert from './ui/alert.vue';
 import confirm from './ui/confirm.vue';
 import actions from './ui/actions.vue';
 import slider from './ui/slider.vue';
+    import sliderConfig from './ui/slider/config.vue'
+    import sliderExample from './ui/slider/example.vue'
 import list from './ui/list.vue';
     import listMusic from './ui/list/music.vue';
     import listConfig from './ui/list/config.vue';
@@ -49,6 +51,8 @@ const routes = [
     {path: '/mask/', component: mask},
     {path: '/notice/', component: notice},
     {path: '/slider/', component: slider},
+    {path: '/slider/config',component:sliderConfig},
+    {path: '/slider/example',component:sliderExample},
     {path: '/list/', component: list},
     {path: '/list/music', component: listMusic},
     {path: '/list/config', component: listConfig},
@@ -68,7 +72,8 @@ window.vm = new Vue({
     router,
     data: {
         headTitle: 'CMUI组件列表',
-        listData
+        listData,
+        show:true
     },
     watch:{
 
@@ -79,11 +84,11 @@ window.vm = new Vue({
         }
     },
     computed:{
-
     },
     mounted() {
         if (location.hash === '#/') {
             this.$router.replace('/componentList/default');
         }
+        
     }
 });

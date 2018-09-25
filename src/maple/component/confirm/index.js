@@ -1,10 +1,10 @@
 import confirmVue from "./index.vue";
 let defaults = _.mapValues(confirmVue.props,item=>item.default);
-Vue.component('cmui-comfirm', confirmVue);
-let id = 'cmui-comfirm-' + _.uniqueId();
+Vue.component('cmui-confirm', confirmVue);
+let id = 'cmui-confirm-' + _.uniqueId();
 let CURRENT = null;
 let setCurrent = _.once(function() {
-    window && $('<cmui-comfirm id="' + id + '">').appendTo('body');
+    window && $('<cmui-confirm id="' + id + '">').appendTo('body');
     CURRENT = new Vue({
         el: '#' + id
     }).$children[0];
@@ -37,11 +37,10 @@ function confirm() {
         return CURRENT;
     }
     options = _.defaults(_.find(arguments, _.isPlainObject), options, defaults);
-
-    CURRENT.showCmuiDialog = true;
     _.each(options, (value, key) => {
         CURRENT[key] = value;
     });
+    CURRENT.visible = true;
     if (typeof options.callback === 'function') {
         CURRENT.$nextTick(function() {
             options.callback($(CURRENT.$el));

@@ -40,15 +40,13 @@
         page: {
             pageTitle: '页面组件',
             list: [
-                'head',
-                'foot',
-                'tabbar'
+                
             ]
         },
-        business: {
-            pageTitle: '业务组件',
-            list: ['mask', 'notice', 'action', 'alert']
-        },
+        // business: {
+        //     pageTitle: '业务组件',
+        //     list: ['mask', 'notice', 'action', 'alert']
+        // },
         form: {
         pageTitle: '表单组件',
         list: ['input','select','number','radio','textarea','checkbox']
@@ -60,7 +58,7 @@
                 {title: 'UI组件', path: '/componentList/ui'},
                 {title: '表单组件', path: '/componentList/form'},
                 {title: '页面组件', path: '/componentList/page'},
-                {title: '业务组件', path: '/componentList/business'}
+                // {title: '业务组件', path: '/componentList/business'}
             ]
         }
     }

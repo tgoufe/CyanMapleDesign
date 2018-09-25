@@ -31,13 +31,19 @@ function optionsMaker(options, themeName) {
     //set slidesPerView as col
     if (this.col === 0) {
         propOptions.slidesPerView = 'auto';
+        let pos=(this.direction==='vertical'||_.get(this,'options.direction')==='vertical')?'height':'width'
         this.$children.forEach(item => {
-            item.$el.style.width = 'auto';
+            item.$el.style[pos] = 'auto';
         });
     }else{
     	propOptions.slidesPerView = this.col;
     }
-
+    //set scrollbar
+    if(this.scrollbar){
+        propOptions.scrollbar={
+            el:'.swiper-scrollbar'
+        }
+    }
     //set pagination as page
     if (this.page) {
         let tempOption = {
@@ -67,7 +73,7 @@ function optionsMaker(options, themeName) {
     	propOptions.spaceBetween=this.space;
     }
     //提取常用属性方便使用
-    ['loop', 'autoplay', 'direction'].forEach(item => {
+    ['loop', 'autoplay', 'direction','freeMode'].forEach(item => {
         propOptions[item] = this[item];
     })
     return _.defaultsDeep(options, propOptions, themeOptions);
@@ -146,6 +152,8 @@ export default {
         height: { type: String, default: '' },
         nav: { type: Boolean, default: false },
         space:{type:Number,default:0},
+        freeMode:{type:Boolean,default:false},
+        scrollbar:{type:Boolean,default:false}
     },
     methods: {
         destroy() {

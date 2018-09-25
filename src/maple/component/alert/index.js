@@ -4,7 +4,7 @@ Vue.component('cmui-alert', alertVue);
 let id = 'cmui-alert-' + _.uniqueId();
 let CURRENT = null;
 let setCurrent = _.once(function() {
-    window && $('<cmui-alert id="' + id + '">').appendTo('body');
+    window && $('<cmui-alert id="' + id + '" >').appendTo('body');
     CURRENT = new Vue({
         el: '#' + id
     }).$children[0];
@@ -34,10 +34,10 @@ function Alert() {
     }
     options = _.defaults(_.find(arguments, _.isPlainObject), options, defaults);
     setCurrent();
-    CURRENT.showCmuiDialog = true;
     _.each(options, (value, key) => {
         CURRENT[key] = value;
     });
+    CURRENT.visible = true;
     if (typeof options.callback === 'function') {
         CURRENT.$nextTick(function() {
             options.callback($(CURRENT.$el));
