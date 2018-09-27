@@ -31,10 +31,6 @@ function optionsMaker(options, themeName) {
     //set slidesPerView as col
     if (this.col === 0) {
         propOptions.slidesPerView = 'auto';
-        let pos=(this.direction==='vertical'||_.get(this,'options.direction')==='vertical')?'height':'width'
-        this.$children.forEach(item => {
-            item.$el.style[pos] = 'auto';
-        });
     }else{
     	propOptions.slidesPerView = this.col;
     }
@@ -76,7 +72,14 @@ function optionsMaker(options, themeName) {
     ['loop', 'autoplay', 'direction','freeMode'].forEach(item => {
         propOptions[item] = this[item];
     })
-    return _.defaultsDeep(options, propOptions, themeOptions);
+    let rsOptions=_.defaultsDeep(options, propOptions, themeOptions);
+    if(rsOptions.slidesPerView === 'auto'){
+        let pos=(rsOptions.direction==='vertical')?'height':'width'
+        this.$children.forEach(item => {
+            item.$el.style[pos] =item.$el.style[pos]|| 'auto';
+        });
+    }
+    return rsOptions;
 }
 const DEFAULT_EVENTS = [
     'beforeDestroy',
@@ -106,7 +109,41 @@ const DEFAULT_EVENTS = [
     'setTransition',
     'resize'
 ]
-
+let sliderObserve=new class {
+    constructor(){
+        this.controlList={};
+        this.refList=[];
+        this.subscribeList=[];
+    }
+    observeControl(vm){
+        let _this=this;
+        let controlName=vm.control;
+        if(controlName&&_.isString(controlName)){
+            this.refList.forEach(item=>{
+                if(item.name===controlName){
+                    this.bindControl(vm.swiper,item.vm.swiper)
+                }
+            })
+            this.controlList[controlName]=vm.swiper;
+            this.subscribeList.push((swiper,ref)=>{
+                if(this.controlList[ref]){
+                    this.bindControl(this.controlList[ref],swiper)
+                }
+            })
+        }
+        let refName=_.get(vm,'$vnode.data.ref');
+        if(refName){
+            this.refList.push({vm,name:refName});
+            this.publish(vm.swiper,refName)
+        }
+    }
+    bindControl(controlSwiper,targetSwiper){
+        targetSwiper.controller.control=controlSwiper;
+    }
+    publish(swiper,refName){
+        this.subscribeList.forEach(item=>item(swiper,refName));
+    }
+}
 export default {
     watch: {
         watch: {
@@ -143,7 +180,7 @@ export default {
     	id:{type:String,default:_.uniqueId('cmui-slider_')},
         watch: { type: Object, default: {} },
         theme: { type: Number, default: 0 },
-        options: { type: Object, default: null },
+        options: { type: Object, default: null},
         loop: { type: Boolean, default: false },
         autoplay: { type: Boolean, default: false },
         col: { type: Number, default: 1 },
@@ -153,7 +190,8 @@ export default {
         nav: { type: Boolean, default: false },
         space:{type:Number,default:0},
         freeMode:{type:Boolean,default:false},
-        scrollbar:{type:Boolean,default:false}
+        scrollbar:{type:Boolean,default:false},
+        control:{type:String,default:''}
     },
     methods: {
         destroy() {
@@ -162,14 +200,16 @@ export default {
         },
         resetSwiper() {
             this.$nextTick(() => {
-            	let hasInit=!!this.swiper;
-            	if(hasInit){
-					this.swiper.destroy(false, false);
-            	}else{
-            		this.swiperIndex=sliderList.length;
-            	}
-                _.delay(() => { 
+                let hasInit=!!this.swiper;
+                if(hasInit){
+                    this.swiper.destroy(false, false);
+                }else{
+                    this.swiperIndex=sliderList.length;
+                }
+                _.delay(() => {
                 	this.swiper = new Swiper(this.$refs['swiper-container'], optionsMaker.call(this, this.options), this.theme);
+                    sliderObserve.observeControl(this)
+                    
                 	if(hasInit){
                 		sliderList[this.swiperIndex]=this.swiper;
                 	}else{
