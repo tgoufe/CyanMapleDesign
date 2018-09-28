@@ -2,9 +2,9 @@
     <div class="cmui-slider" v-if="visible">
         <div class="swiper-container" :id="id" ref="swiper-container" :style="containerStyle">
             <div class="swiper-wrapper">
-                <div class="swiper-slider-prepend"></div>
+                <!-- <div class="swiper-slider-prepend"></div> todo-->
                 <slot></slot>
-                <div class="swiper-slider-append"></div>
+                <!-- <div class="swiper-slider-append"></div> todo-->
             </div>
             <!-- Add Arrows -->
             <div class="swiper-button-next" v-if="this.nav"></div>

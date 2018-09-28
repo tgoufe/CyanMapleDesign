@@ -1,5 +1,10 @@
 <template>
 	<div>
+		<cmui-slider :col="4" :options="{slideToClickedSlide: true}">
+	    	<cmui-slider-item v-for="i in imageList">
+	    		<img :src="i">
+	    	</cmui-slider-item>
+	    </cmui-slider>
 		<div class="example margin10 tag-container">
 			<p>默认的滚动</p>
 	        <cmui-slider>
@@ -141,8 +146,45 @@
 	        	</cmui-slider-item>
 	        </cmui-slider>
 	    </div>
+	    <div class="example margin10 tag-container" id="controlDemo">
+			<p>控制关联：将control属性指向一个固定的ref即可关联两个slider</p>
+	        <cmui-slider class="bigSlider" ref="big" control="small">
+	        	<cmui-slider-item v-for="i in imageList">
+	        		<img :src="i">
+	        	</cmui-slider-item>
+	        </cmui-slider>
+	        <cmui-slider class="smallSlider" ref="small" control="big" :col="0" :options="{centeredSlides: true,slideToClickedSlide: true}">
+	        	<cmui-slider-item v-for="i in imageList" style="width:25%">
+	        		<img :src="i">
+	        	</cmui-slider-item>
+	        </cmui-slider>
+	    </div>
 	</div>
 </template>
+<style type="text/css" lang="scss">
+#controlDemo{
+	.bigSlider{
+		border-radius:8px 8px 0 0 ;
+		overflow: hidden;
+		.swiper-slide{
+
+		}
+	}
+	.smallSlider{
+		background-color: #484848;
+		border-radius:0 0 8px 8px;
+		overflow: hidden;
+		.swiper-slide{
+			opacity: .5;
+			width:25%;
+			transition: opacity .5s;
+			&.swiper-slide-active{
+				opacity: 1;
+			}
+		}
+	}
+}
+</style>
 <script type="text/javascript">
 	export default{
 		data:function(){
@@ -154,9 +196,11 @@
 				{text:'分页',value:true},
 				{text:'分页',value:true},
 			]
+			let imageList=_.times(6,i=>location.origin+'/image/white'+i+'.jpg')
 			return {
 				pageData,
 				pageValue,
+				imageList
 			}
 		},
 		methods:{
