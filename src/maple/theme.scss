@@ -276,3 +276,36 @@ $dotsize:14px;
     border-radius:100px;
     background-color: red;
 }
+
+
+
+//captcha
+@keyframes md-codebox-flash{
+    0%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0) }
+    to{opacity:1;-ms-filter:none;-webkit-filter:none;filter:none }
+}
+.cmui-captcha{}
+.cmui-captcha__warp{
+}
+.cmui-captcha__item{
+    display: inline-block;
+    width:40px;
+    border:1px solid #d9d9d9;
+    border-radius:4px;
+    &:not(:last-child){
+        margin-right: 10px;
+    }
+    &.active{
+        border-color:#fc9153;
+        .cmui-captcha__line{
+            background-color: #fc9153;
+            animation: md-codebox-flash steps(2) 1s infinite;
+        }
+    }
+}
+.cmui-captcha__dot{
+    width:10px;
+    height:10px;
+    border-radius:100px;
+    background-color: black;
+}

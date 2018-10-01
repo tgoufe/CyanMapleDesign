@@ -12,6 +12,7 @@ import popup from './component/popup/popup.vue';
 import swiper from './component/swiper/swiper.vue';
 import progress from './component/progress/progress.vue';
 import slidebar from './component/slidebar/slidebar.vue';
+import captcha from './component/captcha/captcha.vue';
 export default {
 		'cmui-img': img
 	,	'cmui-picker': pick
@@ -26,4 +27,5 @@ export default {
 	,	'cmui-indexlist':indexlist
 	,	'cmui-indexlist-item':indexlistItem
 	,	'cmui-slidebar':slidebar
+	,	'cmui-captcha':captcha
 };

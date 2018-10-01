@@ -1,10 +1,5 @@
 <template>
 	<div>
-		<cmui-slider :col="4" :options="{slideToClickedSlide: true}">
-	    	<cmui-slider-item v-for="i in imageList">
-	    		<img :src="i">
-	    	</cmui-slider-item>
-	    </cmui-slider>
 		<div class="example margin10 tag-container">
 			<p>默认的滚动</p>
 	        <cmui-slider>
