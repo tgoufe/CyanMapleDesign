@@ -31,6 +31,7 @@
 			nowTime:{type:Number,default:+new Date},
 			endTime:{type:Number,default:0},
 			showMilli:{type:Boolean,default:false}, //是否显示毫秒数，默认不显示
+			showDay:{type:Boolean,default:false},
 		},
 		data(){
 			return {

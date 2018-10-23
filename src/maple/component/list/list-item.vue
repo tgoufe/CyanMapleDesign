@@ -51,7 +51,7 @@ export default {
             ,   boxShadow
             ;
             if(this.border&&parent.border&&parent.realSpace!==0){
-              boxShadow='0px 0px 0px 1px '+parent.borderColor
+              boxShadow='0px 0px 0px 1px '+parent.borderColor;
             }
             return {
               border,

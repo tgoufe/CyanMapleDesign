@@ -34,7 +34,8 @@
               'swiper',
               'progress',
               'slidebar',
-              'scroll'
+              'scroll',
+              'captcha'
             ]
         },
         page: {
