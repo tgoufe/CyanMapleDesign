@@ -22,6 +22,7 @@ import actions from './ui/actions.vue';
 import slider from './ui/slider.vue';
     import sliderConfig from './ui/slider/config.vue'
     import sliderExample from './ui/slider/example.vue'
+    import sliderElement from './ui/slider/element.vue'
 import list from './ui/list.vue';
     import listMusic from './ui/list/music.vue';
     import listConfig from './ui/list/config.vue';
@@ -31,6 +32,7 @@ import swiper from './ui/swiper.vue';
 import progress from './ui/progress.vue';
 import slidebar from './ui/slidebar.vue';
 import scroll from './ui/scroll.vue';
+import captcha from './ui/captcha.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
@@ -53,6 +55,7 @@ const routes = [
     {path: '/slider/', component: slider},
     {path: '/slider/config',component:sliderConfig},
     {path: '/slider/example',component:sliderExample},
+    {path: '/slider/element',component:sliderElement},
     {path: '/list/', component: list},
     {path: '/list/music', component: listMusic},
     {path: '/list/config', component: listConfig},
@@ -62,18 +65,17 @@ const routes = [
     {path: '/progress/', component: progress},
     {path: '/slidebar/', component: slidebar},
     {path: '/scroll/', component: scroll},
+    {path: '/captcha/', component: captcha},
 ];
 const router = new VueRouter({
     routes
 });
-import listData from './demoData/music.json';
 window.vm = new Vue({
     el: '#main',
     router,
     data: {
         headTitle: 'CMUI组件列表',
-        listData,
-        show:true
+        imageList:_.times(6,i=>location.origin+'/image/white'+i+'.jpg')
     },
     watch:{
 
@@ -81,6 +83,9 @@ window.vm = new Vue({
     methods: {
         goback() {
             this.$router.go(-1);
+        },
+        showbottom(){
+            maple.scrollBar('bottom')
         }
     },
     computed:{
@@ -89,6 +94,5 @@ window.vm = new Vue({
         if (location.hash === '#/') {
             this.$router.replace('/componentList/default');
         }
-        
     }
 });

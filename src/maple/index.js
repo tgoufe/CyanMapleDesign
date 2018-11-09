@@ -13,6 +13,10 @@ import * as util from './util';
 //挂载工具方法
 maple._ = util;
 maple.util = util;
+import ttt from './util/index.js';
+_.forEach(ttt,(value,key)=>{
+	maple[key]=value;
+})
 import * as support from './support';
 //挂载支持
 maple.support = support;

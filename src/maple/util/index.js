@@ -27,7 +27,7 @@ import HandlerQueue from './handlerQueue.js';
 
 // 工具函数
 import tools        from './tools.js';
-
+import {getDomView,getViewRange} from './dom.js';
 export default {
 	debounce
 	, throttle
@@ -41,5 +41,6 @@ export default {
 	, HandlerQueue
 
 	// , validate
-	, tools
+	, tools,
+	getDomView,getViewRange
 };

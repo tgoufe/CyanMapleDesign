@@ -1,5 +1,5 @@
 <template>
-<div class="cmui-list-item bg-white"
+<div class="cmui-list-item"
      v-bind:style="itemStyle()"
      ref="listItem"
 >
