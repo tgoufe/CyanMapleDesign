@@ -21,7 +21,7 @@
 						click:_.partialRight(itemEvent,item,index)
 					},
 					key:index
-				},_.get(item,'data.attrs.title')||item.children.filter(inner=>_.get(inner,'data.attrs.slot')=='title')||'')
+				},_.get(item,'data.attrs.title')||_.filter(item.children,inner=>_.get(inner,'data.attrs.slot')=='title')||'')
 			})
 			return h('div',{
 				'class':{

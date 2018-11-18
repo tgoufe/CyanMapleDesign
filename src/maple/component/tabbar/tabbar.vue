@@ -24,7 +24,7 @@
 			,	navItem
 			,	extras
 			,	extraEvent
-			}=this
+			}=this;
 			const content=h('div',{
 				'class':{
 					'cmui-tabbar__content':true,
@@ -38,7 +38,7 @@
 					},
 					ref:'pane'
 				})
-			])
+			]);
 			const pre=h('div',{
 				'class':{
 					'cmui-tabbar__pre':true,
@@ -77,7 +77,7 @@
 						click:_.partialRight(extraEvent,item,index)
 					}
 				},[item])
-			})
+			});
 			const extra=h('div',{
 				'class':{
 					'cmui-tabbar__extra':true,
@@ -95,7 +95,7 @@
 				nav,
 				this.nav[1]?next:undefined,
 				extraList.length?extra:undefined
-			])
+			]);
 			return h('div',{
 				'class':{
 					'cmui-tabbar':true,
@@ -135,7 +135,7 @@
 			},
 			changeToNext(){
 				if(this.activeIndex<this.items.length-1){
-					this.activeIndex++
+					this.activeIndex++;
 					this.$nextTick(()=>{
 						this.scrollAcitveIntoViewIfNeeded(false)
 					})
@@ -143,7 +143,7 @@
 			},
 			changeToPre(){
 				if(this.activeIndex>0){
-					this.activeIndex--
+					this.activeIndex--;
 					this.$nextTick(()=>{
 						this.scrollAcitveIntoViewIfNeeded(true)
 					})
@@ -151,7 +151,7 @@
 			},
 			changeToIndex(index=0){
 				if(_.inRange(index,this.items.length)){
-					this.activeIndex=index
+					this.activeIndex=index;
 					this.$nextTick(()=>{
 						this.scrollAcitveIntoViewIfNeeded(true)
 					})
@@ -163,11 +163,11 @@
 				}
 			},
 			getItems(){
-				return this.$slots.default.filter(item => item.tag=== 'cmui-tabbar-item')
+                return _.filter(this.$slots.default,item => item.tag=== 'cmui-tabbar-item')
 			},
 			updata(){
 				this.items=[];
-				this.$nextTick(_=>{
+				this.$nextTick(()=>{
 					this.items=this.getItems();
 				})
 			},

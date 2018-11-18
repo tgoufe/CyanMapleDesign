@@ -1,2 +1,3 @@
-let time = require('dayjs');
+// let time = require('dayjs');
+import time from 'dayjs';
 export default time;

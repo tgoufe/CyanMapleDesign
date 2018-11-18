@@ -4,8 +4,8 @@
  * @file    Service Worker 后台执行文件
  * */
 
-import CacheStorageModel    from '../model/cacheStorage.js';
-import notify               from '../notify.js';
+import CacheStorageModel    from '../TODO/model/cacheStorage.js';
+import notify               from '../TODO/notify.js';
 
 let CACHE_URL = []
 	, url = ''

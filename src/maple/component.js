@@ -2,7 +2,6 @@ import img from './component/img/img.vue';
 import pick from './component/pick/pick.vue';
 import scroll from './component/scroll/scroll.vue';
 import scrollItem from './component/scroll/scroll-item.vue';
-
 import indexlist from './component/indexlist/indexlist.vue';
 import indexlistItem from './component/indexlist/indexlistItem.vue';
 import collapse from './component/collapse/collapse.vue';

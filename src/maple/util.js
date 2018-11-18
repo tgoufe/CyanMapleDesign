@@ -1,7 +1,3 @@
-/**
- * Created by chenqifeng on 2016/8/26.
- */
-
 let cache = {};
 
 export let isTimeStr = (str = '') => /^\d+(s|m|h|d|y)?$/.test(str);
@@ -45,37 +41,6 @@ export let formatDateByStr = (date = new Date(),format = 'YYYY-MM-DD') =>{
     });
 };
 
-export let parseURL = (url = location.href) => {
-    let a = document.createElement('a');
-    a.href = url;
-    return {
-        source: url || location.href,
-        protocol: a.protocol.replace(':', ''),
-        host: a.hostname,
-        port: a.port,
-        query: a.search,
-        params: (function() {
-            let ret = {},
-                seg = a.search.replace(/^\?/, '').split('&'),
-                len = seg.length,
-                s;
-            for (let i = 0; i < len; i++) {
-                if (!seg[i]) {
-                    continue;
-                }
-                s = seg[i].split('=');
-                ret[s[0]] = s[1];
-            }
-            return ret;
-        })(),
-        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1],
-        hash: a.hash.replace('#', ''),
-        path: a.pathname.replace(/^([^\/])/, '/$1'),
-        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1],
-        segments: a.pathname.replace(/^\//, '').split('/')
-    };
-};
-
 /**
  * options:{
  * 	key:"",
@@ -97,12 +62,12 @@ export let everyTime = options => {
     }
 };
 
-export let stopTime = key => {
+export let stopTime = () => {
     window.clearTimeout(cache[options.key]);
     delete cache[options.key];
 };
 
-export let stopAllTime = key => {
+export let stopAllTime = () => {
     for (let i in cache) {
         if (cache.hasOwnProperty(i)) {
             window.clearTimeout(cache[i]);
@@ -113,7 +78,7 @@ export let stopAllTime = key => {
 
 export let isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
 
-export let calculationTimeByMiniSeconds = (millisecond, notZerofill) => {
+export let calculationTimeByMiniSeconds = (millisecond, notZerofill=true) => {
     //共多少豪秒
     millisecond = Math.round(millisecond/100);
 

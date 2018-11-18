@@ -52,10 +52,10 @@ import util     from './util/index.js';
  * ---------- 全局运行时检测 ----------
  * */
 // 运行参数
-import url      from './runtime/url.js';
+import url      from '../runtime/url.js';
 
 // 运行设备、系统、内核、浏览器
-import device   from './runtime/device.js';
+import device   from '../runtime/device.js';
 
 /**
  * ---------- 数据层 ----------

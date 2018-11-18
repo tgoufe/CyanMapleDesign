@@ -16,3 +16,4 @@ package-lock.json
 *.sln
 src/.DS_Store
 demo/.DS_Store
+src/.DS_Store

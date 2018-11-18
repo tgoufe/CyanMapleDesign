@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import vm from "../../vm.js";
+import vm from "../../TODO/vm.js";
 function getScroll(target, top) {
     const prop = top ? 'pageYOffset' : 'pageXOffset';
     const method = top ? 'scrollTop' : 'scrollLeft';

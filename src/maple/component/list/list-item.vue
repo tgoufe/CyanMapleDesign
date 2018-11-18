@@ -75,9 +75,10 @@ export default {
             ,   backgroundColor
             ;
             if(parent.realSpace){
-                if(index<nopaddingBFrom){
+                // TODO 动态修改内部数量的时候会判断错误需要增加watch感觉使用起来可能会麻烦，暂时去掉
+                // if(index<nopaddingBFrom){
                     paddingBottom=parent.realSpace+'rem';
-                }
+                // }
                 paddingRight=parent.realSpace+'rem';
             }
             if(_.isNumber(col)&&col!==1){
