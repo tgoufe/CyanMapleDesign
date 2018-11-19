@@ -9,23 +9,40 @@
 		&:last-child:after{
 			height:0
 		}
-		&:after{
-			position: absolute;
-		    right: 0;
-		    bottom: 0;
-		    left: 0;
-		    height: 1px;
-		    content: '';
-		    transform: scaleY(.5);
-		    background-color: $border-color-default;
-		}
 	}
-	&.listGroup-hideLine{
+	&.line{
+		&:before{
+			content:"";
+			width:200%;
+			height:200%;
+			border:1px solid darken($border-color-default,10%);
+			position:absolute;
+			transform-origin: 0 0;
+			transform:scale(.5,.5);
+		}
+		&.radius:before{
+			border-radius: $border-radius-base * 2;
+		}
 		.listGroup_item{
-			margin-top:0;
-			margin-bottom:0;
-			&:after,&:before{
-				display:none;
+			&:after{
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 1px;
+				content: '';
+				transform: scaleY(.5);
+				background-color: darken($border-color-default,10%);
+			}
+			&:before{
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 1px;
+				content: '';
+				transform: scaleX(.5);
+				background-color: darken($border-color-default,10%);
 			}
 		}
 	}
@@ -33,18 +50,8 @@
 		float:left;
 		margin-bottom:-1px;
 		margin-top:1px;
-		&:before{
-			position: absolute;
-		    right: 0;
-		    bottom: 0;
-		    top: 0;
-		    width: 1px;
-		    content: '';
-		    transform: scaleX(.5);
-		    background-color: $border-color-default;
-		}
 	}
-	@for $i from 2 through 5{
+	@for $i from 2 through 6{
 		&.listGroup-col#{$i} .listGroup_item{
 			@extend %listItemStyle;
 			width:1/$i * 100%;
