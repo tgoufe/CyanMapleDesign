@@ -12,7 +12,7 @@
     </div>
     <!-- 主体 -->
     <div class="cmui-input__main pos-r" :class="{flex1:!label||!$slots.default}">
-        <input :style="inputStyle" :type="selfType" ref="input" :name="name" v-model="value" :readonly="readonly" :placeholder="placeholder" :disabled="disabled" :class="targetClass" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
+        <input :style="inputStyle" :type="selfType" ref="input" :name="name" v-model.lazy="value" :readonly="readonly" :placeholder="placeholder" :disabled="disabled" :class="targetClass" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
         <div v-if="type==='search'" class="input-search" :style="{display:type==='search'?'block':'none'}"></div>
         <div class="input-reset" :style="{display:value.length?'block':'none'}" v-if="reset===true&&!disabled" @click="resetInput()"></div>
     </div>
@@ -110,18 +110,20 @@ export default {
       target.focus();
       this.$emit("reset", target, this);
       this.$emit("input", "", target, this);
-    }
-  },
-    watch:{
-        value(newValue,oldValue){
-            if(this.type==='number'){
-                if(!/^(\-)?\d+\.?(\d+)?$/.test(newValue)&&newValue.length){
-                    this.value=/^(\-)?\d+\.?(\d+)?$/.test(oldValue)?oldValue:'';
-                    return ;
-                }
-            }
-        }
     },
+    handleInput(event) {
+      let evt = window.event||event;
+      let target = evt.target||evt.srcElement;
+      let value = target.value;
+      if(this.type==='number'){
+        let rs=/(\-)?\d+\.?(\d+)?/.exec(value)
+        value=rs?rs[0]:''
+      }
+      target.value=value;
+      this.$emit("input", value, target, this);
+      this.$nextTick(this.rendered);
+    },
+  },
   computed: {
     inputStyle() {
       let style = {};

@@ -64,6 +64,7 @@ export default {
             errorSrc:{type:String,default:base64_1x1},
             preView:{type:Boolean,default:false},
             preViewList:{type:Array,default:[]},
+            preViewIndex:{type:Number,default:0}
         },
         computed:{
             realSrc(){
@@ -73,7 +74,9 @@ export default {
         methods:{
             imgClick:function(){
                 if(this.preView){
-                    imagePreView(this.preViewList.length?this.preViewList:this.src)
+                    let list=this.preViewList.length?this.preViewList:this.src;
+                    let index=this.preViewIndex;
+                    imagePreView.call(this,list,index);
                 }
             },
             srcError(){

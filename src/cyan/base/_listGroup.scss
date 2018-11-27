@@ -1,8 +1,8 @@
-.listGroup{
+.list{
 	position: relative;
     list-style: none;
     overflow: hidden;
-	.listGroup_item{
+	.list-item{
 		transform-style: preserve-3d;
 		position: relative;
 		overflow: hidden;
@@ -10,7 +10,8 @@
 			height:0
 		}
 	}
-	&.line{
+	&.border{
+		border:none;
 		&:before{
 			content:"";
 			width:200%;
@@ -23,7 +24,7 @@
 		&.radius:before{
 			border-radius: $border-radius-base * 2;
 		}
-		.listGroup_item{
+		.list-item{
 			&:after{
 				position: absolute;
 				right: 0;
@@ -52,7 +53,7 @@
 		margin-top:1px;
 	}
 	@for $i from 2 through 6{
-		&.listGroup-col#{$i} .listGroup_item{
+		&.list-col#{$i} .list-item{
 			@extend %listItemStyle;
 			width:1/$i * 100%;
 			&:nth-child(#{$i}n):before{

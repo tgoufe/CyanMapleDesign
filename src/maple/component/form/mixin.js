@@ -1,30 +1,35 @@
 export default {
   methods: {
-    handleFocus() {
-      const target = event.target;
-      const value = target.value;
+    handleFocus(event) {
+        let evt = window.event||event;
+        let target = evt.target||evt.srcElement;
+        let value = target.value;
       this.$emit("focus", value, target, this);
     },
-    handleInput() {
-      const target = event.target;
-      const value = target.value;
+    handleInput(event) {
+        let evt = window.event||event;
+        let target = evt.target||evt.srcElement;
+        let value = target.value;
       this.$emit("input", value, target, this);
       this.$nextTick(this.rendered);
     },
-    handleChange() {
-      const target = event.target;
-      const value = target.value;
+    handleChange(event) {
+        let evt = window.event||event;
+        let target = evt.target||evt.srcElement;
+        let value = target.value;
       this.$emit("change", value, target, this);
       this.$emit("input", value, target, this);
     },
-    handleBlur() {
-      const target = event.target;
-      const value = target.value;
+    handleBlur(event) {
+        let evt = window.event||event;
+        let target = evt.target||evt.srcElement;
+        let value = target.value;
       this.$emit("blur", value, target, this);
     },
-    rendered() {
-      const target = event.target;
-      const value = target.value;
+    rendered(event) {
+        let evt = window.event||event;
+        let target = evt.target||evt.srcElement;
+        let value = target.value;
       this.$emit("rendered", value, target, this);
     }
   },
