@@ -7,7 +7,8 @@
     "start": "parcel build src/cyan/cmui.scss -d dist/lib && parcel demo/index/index.html",
     "cyan": "parcel build src/cyan/cmui.scss -d CMUI",
     "maple": "parcel build src/maple/index.js -d CMUI ",
-    "theme": "parcel build src/maple/theme.scss -d CMUI "
+    "theme": "parcel build src/maple/theme.scss -d CMUI ",
+    "product": "webpack --mode=production"
   },
   "keywords": [
     "touch",
@@ -22,20 +23,29 @@
   "author": "qqkillqq",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^9.1.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-latest": "^6.24.1",
-    "eslint": "^5.5.0",
-    "lodash": "^4.17.4",
-    "node-sass": "^4.7.2",
-    "parcel-bundler": "^1.4.1",
-    "parcel-plugin-vue": "^1.5.0",
-    "postcss-modules": "^1.1.0",
-    "prettier": "^1.10.2",
-    "vue-template-compiler": "^2.5.16"
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.2",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.1",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.4.0",
+    "sass": "^1.15.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0",
     "dayjs": "^1.5.16",
     "swiper": "^4.2.6",
     "vue": "^2.5.16"
