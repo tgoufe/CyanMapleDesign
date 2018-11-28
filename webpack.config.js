@@ -23,10 +23,10 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: __dirname + 'node_modules',
-                include: __dirname + 'src',
+                exclude: __dirname + '/node_modules',
+                // include: __dirname + 'src',
                 options: {
-                    presets: ['env']
+                    presets: ['@babel/preset-env']
                 }
             },
             {
