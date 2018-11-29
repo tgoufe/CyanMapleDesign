@@ -9,7 +9,7 @@
 	    <div class="cmui-popup__container abs-full flex-container"
 		:class="[_position]"
 	    >
-	      <div class="cmui-popup__content flex-container-col"
+	      <div class="cmui-popup__content"
 			:style="[_contentStyle,targetStyle]"
 			:class="[targetClass]"
 	      >
