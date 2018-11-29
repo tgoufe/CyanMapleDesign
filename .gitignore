@@ -17,3 +17,5 @@ package-lock.json
 src/.DS_Store
 demo/.DS_Store
 src/.DS_Store
+
+*.iml
