@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<cmui-list :border="true">
-			<cmui-list-item v-for="(item,index) in imgList" class="bg-white">
+			<cmui-list-item v-for="(item,index) in imgList" class="bg-white" :key="index">
 				<cmui-swiper :right="item.control" @swiper="handle(index, item,$event)">
 					<div class="paddingv10 flex-container vfull">
 						<div class="img-container border flex-x marginh20" style="width:70px;height:70px">
 							<img :src="item.src">
 						</div>
 						<div class="flex1">
-							<p>adfdsfdsfdsafasdfdsafsdafasdfas{{index}}</p>
+							<p>{{index}}</p>
 						</div>
 					</div>
 				</cmui-swiper>

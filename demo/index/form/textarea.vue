@@ -42,7 +42,7 @@
                 <cmui-list-item>
                     <p>target-class</p>
                     <div class="">
-                        <cmui-checkbox v-for="item in targetClassList" v-model="item.value">
+                        <cmui-checkbox :key="key" v-for="(item,key) in targetClassList" v-model="item.value">
                             {{item.text}}
                         </cmui-checkbox>
                     </div>
@@ -50,7 +50,7 @@
             </cmui-list>
         </div>
         <cmui-list>
-            <cmui-list-item v-for="item in imgData">
+            <cmui-list-item :key="key" v-for="(item,key) in imgData">
                 <div style="min-height: 50px">
                     <cmui-img :lazy-load="true" :src="item" :pre-view="true"></cmui-img>
                 </div>

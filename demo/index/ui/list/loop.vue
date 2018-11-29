@@ -11,9 +11,9 @@
 			</cmui-list-item>
 			<cmui-list-item>
 				<cmui-list :col="2" :space="10">
-					<cmui-list-item v-for="(item,index) in 4">
+					<cmui-list-item v-for="(item,index) in 4" :key="index">
 						<cmui-list :col="2" border="#17c147" :space="10">
-							<cmui-list-item v-for="(item,index) in 4">
+							<cmui-list-item v-for="(item,index) in 4" :key="index">
 								<div class="ratio-container">
 									<div class="img-container flex-x">
 										<img :src="list[index+1]" alt="">
@@ -38,7 +38,7 @@
 					</cmui-list-item>
 				</cmui-list>
 				<cmui-list :col="3" border="#17c147">
-					<cmui-list-item v-for="(item,index) in 3">
+					<cmui-list-item v-for="(item,index) in 3" :key="index">
 						<div class="ratio-container-1x2">
 							<div class="img-container flex-x">
 								<img :src="list[index+5]" alt="">
@@ -49,7 +49,7 @@
 			</cmui-list-item>
 			<cmui-list-item>
 				<cmui-list :col="2" border="#17c147">
-					<cmui-list-item v-for="(item,index) in 2">
+					<cmui-list-item v-for="(item,index) in 2" :key="index">
 						<div class="ratio-container">
 							<div class="img-container flex-x">
 								<img :src="list[index+1]" alt="">
@@ -74,7 +74,7 @@
 					</cmui-list-item>
 				</cmui-list>
 				<cmui-list :col="2" border="#17c147">
-					<cmui-list-item v-for="(item,index) in 2">
+					<cmui-list-item v-for="(item,index) in 2" :key="index">
 						<div class="ratio-container">
 							<div class="img-container flex-x">
 								<img :src="list[index+1]" alt="">
@@ -93,7 +93,7 @@
 
 			return{
 				list:_.times(10,i=>{
-	                return location.origin+'/image/black'+i+'.jpg';
+	                return location.origin+'/dist/image/black'+i+'.jpg';
 	            })
 			}
 		}

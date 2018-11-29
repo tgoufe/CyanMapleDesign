@@ -51,7 +51,7 @@
                 <cmui-list-item>
                     <p>target-class</p>
                     <div class="flex-container">
-                        <cmui-checkbox v-for="item in targetClassList" v-model="item.value">
+                        <cmui-checkbox v-for="(item,key) in targetClassList" :key="key" v-model="item.value">
                             {{item.text}}
                         </cmui-checkbox>
                     </div>

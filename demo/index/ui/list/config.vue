@@ -2,7 +2,7 @@
     <div class="padding20">
         <div class="example tag-container">
             <cmui-list v-bind="options">
-                <cmui-list-item v-for="item in list" class="bg-white">
+                <cmui-list-item :key="key" v-for="(item,key) in list" class="bg-white">
                     <div class="ratio-container">
                         <div class="img-container flex-x">
                             <img :src="item">

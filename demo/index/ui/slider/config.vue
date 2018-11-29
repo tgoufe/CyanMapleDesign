@@ -9,7 +9,7 @@
 				:space="optionsSpace"
 				:page="optionsPage"
 			>
-				<cmui-slider-item v-for="item in imgList">
+				<cmui-slider-item :key="key" v-for="(item,key) in imgList">
 					<img :src="item">
 				</cmui-slider-item>
 			</cmui-slider>

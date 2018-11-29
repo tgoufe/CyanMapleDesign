@@ -1,7 +1,7 @@
 <template>
 	<cmui-list :border="true" :index="true">
-        <cmui-list-group v-for="item in listData" :title="item.name">
-            <cmui-list-item v-for="inner in item.items">
+        <cmui-list-group :key="key" v-for="(item,key) in listData" :title="item.name">
+            <cmui-list-item :key="key2" v-for="(inner,key2) in item.items">
                 <div class="flex-container padding20">
                     <div class="img-container round marginr20" style="width:50px">
                         <img :src="inner.avatar" alt="">

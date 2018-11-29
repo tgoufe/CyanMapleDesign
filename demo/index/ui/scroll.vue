@@ -2,7 +2,7 @@
 	<div class="padding20">
 		<div class="tag-container example">
 			<cmui-scroll direction="v" style="height:400px" :pull-text="['下拉刷新','释放刷新','上拉加载','释放加载']" ref="xxx" :free-mode="true" @pullStart="start" @pullEnd="end" :watch="imageList" @rendered="rendered">
-				<cmui-scroll-item v-for="(k,i) in imageList">
+				<cmui-scroll-item v-for="(k,i) in imageList" :key="i">
 					<div class="flex-container padding10">
 						<div class="ratio-container" style="width:100px">
 							<div class="img-container border marginr10 round flex-x">

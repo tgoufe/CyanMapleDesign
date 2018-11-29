@@ -4,6 +4,7 @@
             <p>热门城市</p>
             <cmui-checkbox
             v-for="(value,key) in cityList"
+            :key="key"
             :label="value"
             v-bind="options"
             v-model="checkedIndex[key]"
@@ -47,7 +48,7 @@
                 <cmui-list-item>
                     <p>target-class</p>
                     <div class="flex-container">
-                        <cmui-checkbox v-for="item in targetClassList" v-model="item.value" target-class="small">
+                        <cmui-checkbox v-for="item in targetClassList" :key="key" v-model="item.value" target-class="small">
                             {{item.text}}
                         </cmui-checkbox>
                     </div>
@@ -64,7 +65,8 @@
             <br>
             <cmui-checkbox
                 v-model="item.value"
-                v-for="item in demoList"
+                v-for="(item,key) in demoList"
+                :key="key"
                 :label="item.label"
                 target-class="small square reverse"
             />

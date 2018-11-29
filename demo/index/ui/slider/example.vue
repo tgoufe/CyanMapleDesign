@@ -3,7 +3,7 @@
 		<div class="example margin10 tag-container">
 			<p>默认的滚动</p>
 	        <cmui-slider>
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-5x2 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -15,7 +15,7 @@
 	    <div class="example margin10 tag-container">
 			<p>导航：设置nav为true即可</p>
 	        <cmui-slider :nav="true">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-5x2 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -27,7 +27,7 @@
 	    <div class="example margin10 tag-container">
 			<p>分页：设置page为true即可</p>
 	        <cmui-slider :page="true">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-5x2 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -39,7 +39,7 @@
 	    <div class="example margin10 tag-container">
 			<p>动态分页：设置page为数字即可</p>
 	        <cmui-slider :page="2">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-5x2 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -51,7 +51,7 @@
 	    <div class="example margin10 tag-container">
 			<p>动态分页：设置page为progress即可</p>
 	        <cmui-slider page="progress">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-5x2 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -63,7 +63,7 @@
 	    <div class="example margin10 tag-container">
 			<p>动态分页：设置page为number即可</p>
 	        <cmui-slider page="number">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-5x2 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -75,7 +75,7 @@
 	    <div class="example margin10 tag-container">
 			<p>显示数量：设置col属性为数字，设置space属性表示slider之间的间距</p>
 	        <cmui-slider :col="3.5" :space="20">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-2x3 bg-red">
 	        			<div class="flex-container center">
 	        				Slide {{i}}
@@ -87,7 +87,7 @@
 		<div class="example margin10 tag-container">
 			<p>自动跨度：将col属性设置为0，会以内容为宽度自动适应</p>
 	        <cmui-slider :col="0" :space="20">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-2x3 bg-red" :style="getRandomWidth()">
 	        			<div class="flex-container center">
 	        				{{i}}
@@ -99,7 +99,7 @@
 	    <div class="example margin10 tag-container">
 			<p>freeMode模式：设置freeMode属性为true即可</p>
 	        <cmui-slider :free-mode="true" :col="0" :space="20">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="ratio-container-2x3 bg-red" :style="getRandomWidth()">
 	        			<div class="flex-container center">
 	        				{{i}}
@@ -111,7 +111,7 @@
 	    <div class="example margin10 tag-container">
 			<p>垂直滚动：设置direction="vertical"同时设置height属性表示高度</p>
 	        <cmui-slider direction="vertical" height="20px">
-	        	<cmui-slider-item v-for="i in 10">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in 10">
 	        		<div class="bg-red" style="height:20px">
 	        			滚动的文字
 	        		</div>
@@ -144,12 +144,12 @@
 	    <div class="example margin10 tag-container" id="controlDemo">
 			<p>控制关联：将control属性指向一个固定的ref即可关联两个slider</p>
 	        <cmui-slider class="bigSlider" ref="big" control="small">
-	        	<cmui-slider-item v-for="i in imageList">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in imageList">
 	        		<img :src="i">
 	        	</cmui-slider-item>
 	        </cmui-slider>
 	        <cmui-slider class="smallSlider" ref="small" control="big" :col="0" :options="{centeredSlides: true,slideToClickedSlide: true}">
-	        	<cmui-slider-item v-for="i in imageList" style="width:25%">
+	        	<cmui-slider-item :key="key" v-for="(i,key) in imageList" style="width:25%">
 	        		<img :src="i">
 	        	</cmui-slider-item>
 	        </cmui-slider>

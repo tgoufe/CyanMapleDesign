@@ -1,7 +1,7 @@
 <template>
     <div class="padding30">
         <cmui-list :col="1" :border="true">
-        <cmui-list-item v-for="item in list" class="bg-white">
+        <cmui-list-item :key="key" v-for="(item,key) in list" class="bg-white">
             <router-link :to="item.path" class="flex-container padding30 text-dark">
                 <span>{{item.title}}</span>
                 <i class="baseIcon baseIcon-right"></i>

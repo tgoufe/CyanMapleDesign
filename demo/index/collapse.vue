@@ -1,7 +1,7 @@
 <template>
     <div class="padding10">
         <cmui-collapse :onlyone="true" :activeIndex="activeIndex">
-            <cmui-collapse-item v-for="item in items">
+            <cmui-collapse-item :key="key" v-for="(item,key) in items">
                 <div slot="title">
                     {{item.title}}
                 </div>

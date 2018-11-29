@@ -1,7 +1,7 @@
 <template>
     <div>
         <cmui-list :space="20" class="margin20">
-            <cmui-list-item v-for="item in buttonList">
+            <cmui-list-item :key="key" v-for="(item,key) in buttonList">
                 <a href="javascript:void(0)"
                    class="btn block radius reverse"
                    @click="showPicker(`${item}Data`)">{{item}} picker</a>
