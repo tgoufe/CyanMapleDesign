@@ -7,8 +7,4 @@ let entry={
 module.exports = merge(baseWebpackConfig,{
     mode: "production",
     entry,
-    output: {
-        filename: '[name].js',
-        path: resolve('CMUI'),
-    }
 });

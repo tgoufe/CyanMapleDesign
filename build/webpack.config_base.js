@@ -2,6 +2,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 let {resolve}=require('./utils');
 module.exports = {
     mode:'production',
+    output: {
+        filename: '[name].js',
+        path: resolve('CMUI'),
+    },
     plugins: [
         new VueLoaderPlugin()
     ],

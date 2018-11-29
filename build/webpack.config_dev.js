@@ -10,10 +10,6 @@ let entry={
 module.exports = merge(baseWebpackConfig,{
     mode: "development",
     entry,
-    output: {
-        filename: '[name].js',
-        path: resolve('CMUI'),
-    },
     plugins:[
         new HtmlWebpackPlugin({
             filename: 'index.html',
