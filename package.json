@@ -4,11 +4,10 @@
   "description": "cmui",
   "main": "CMUI/index.js",
   "scripts": {
-    "start": "npm run cyan & npm run theme &webpack-dev-server --config build/webpack.config_dev.js",
+    "start": "webpack-dev-server --config build/webpack.config_dev.js",
     "cyan": "parcel build src/cyan/cmui.scss -d CMUI",
-    "maple": "parcel build src/maple/index.js -d CMUI ",
-    "theme": "parcel build src/maple/theme.scss -d CMUI ",
-    "product": "webpack --mode=production"
+    "maple": "webpack --config build/webpack.config_pro.js",
+    "theme": "parcel build src/maple/theme.scss -d CMUI "
   },
   "files": [
     "src/",
@@ -41,6 +40,7 @@
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "lodash": "^4.17.11",
     "node-sass": "^4.10.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.4.0",
