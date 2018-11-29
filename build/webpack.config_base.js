@@ -1,6 +1,5 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 let {resolve}=require('./utils');
-let sourceList=['src/maple','src/cyan'].map(resolve);
 module.exports = {
     mode:'production',
     plugins: [
@@ -28,7 +27,6 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                include: sourceList,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -43,7 +41,6 @@ module.exports = {
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
-                include: sourceList,
                 options: {
                     limit: 10000,
                     name: resolve('CMUI/[name].[hash:7].[ext]')
@@ -52,7 +49,6 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
-                include: sourceList,
                 options: {
                     limit: 10000,
                     name: resolve('CMUI/[name].[hash:7].[ext]')
