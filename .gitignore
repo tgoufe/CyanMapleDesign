@@ -7,7 +7,7 @@ demo/img
 .cache/
 npm-debug.log*
 package-lock.json
-
+CMUI
 # Editor directories and files
 .idea
 *.suo
