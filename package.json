@@ -10,6 +10,10 @@
     "theme": "parcel build src/maple/theme.scss -d CMUI ",
     "product": "webpack --mode=production"
   },
+  "files": [
+    "src/",
+    "CMUI/"
+  ],
   "keywords": [
     "touch",
     "ios",
@@ -29,6 +33,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.2",
     "babel-preset-env": "^1.7.0",
@@ -45,7 +50,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
     "dayjs": "^1.5.16",
     "swiper": "^4.2.6",
     "vue": "^2.5.16"
