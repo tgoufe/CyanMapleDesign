@@ -22,11 +22,11 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: __dirname + '/node_modules',
-                // include: __dirname + 'src',
-                options: {
-                    presets: ['@babel/preset-env']
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
                 }
             },
             {
