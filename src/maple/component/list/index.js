@@ -2,7 +2,7 @@ import listVue from './list.vue';
 import listItemVue from './list-item.vue';
 import listGroupVue from './list-group.vue';
 import listList from './listList';
-import Sortable from './Sortable.js';
+// import Sortable from './Sortable.js';
 
 Vue.component('cmui-list',listVue);
 Vue.component('cmui-list-item',listItemVue);
@@ -77,9 +77,9 @@ function List(){
 		template+='</div>';
 		template=$(template);
 		$(options.parent).append(template);
-		if(options.sortable){
-			new Sortable(template.find('>.clearfix')[0],options.options);
-		}
+		// if(options.sortable){
+		// 	new Sortable(template.find('>.clearfix')[0],options.options);
+		// }
 		listList.add(template);
 		return template;
 	}
