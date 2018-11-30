@@ -149,7 +149,15 @@ input{
                     }
                     @extend .baseIcon-squarecheck;
                 }
-            } 
+            }
+            &.right{
+                &:checked{
+                    @extend .baseIcon-roundcheck;
+                    &.reverse{
+                        @extend .baseIcon-roundcheckfill;
+                    }
+                }
+            }
         };
         &[type=checkbox]{
             @extend .baseIcon-round;
