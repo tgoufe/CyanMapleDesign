@@ -75,7 +75,7 @@ window.vm = new Vue({
     el: '#main',
     router,
     data: {
-        headTitle: 'CMUI组件列表',
+        headTitle: 'CYANMAPLE',
         imageList:_.times(6,i=>location.origin+'/image/white'+i+'.jpg')
     },
     watch:{
