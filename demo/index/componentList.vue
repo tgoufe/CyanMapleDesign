@@ -8,16 +8,16 @@
             </div>
             
         </div>
-        <div class="paddingh30">
-            <cmui-list :col="1" :border="true">
-                <cmui-list-item :key="key" v-for="(item,key) in list" class="bg-white">
-                    <router-link :to="item.path" class="flex-container padding30 text-dark">
-                        <div class="flex-container left text-black">
-                            <i class="baseIcon lh-28" style="font-size: 24px;" :class="item.icon"></i>
-                            <span class="fs-14 marginl20">{{item.title}}</span>
+        <div class="paddingh30" :class="!topTitle && 'childTheme'">
+            <cmui-list :col="1">
+                <cmui-list-item :key="key" v-for="(item,key) in list" class="bg-white" :class="!topTitle && (((key + 1) % 3 === 0) ? 'borderb' : 'borderr borderb')" :style="!topTitle && 'height: 33.333333333vw;'">
+                    <router-link :to="item.path" :class="topTitle && 'flex-container'" class="padding30 text-dark">
+                        <div class="text-black" :class="topTitle ? 'flex-container left' : 'text-center'">
+                            <div class="lh-28" :class="topTitle ? 'marginr20' : 'paddingt50 paddingb20'"><i class="baseIcon" :class="item.icon" style="font-size: 24px;"></i></div>
+                            <div class="fs-14 text-center" :class="!topTitle && 'text-dark'">{{item.title}}</div>
                         </div>
                         
-                        <i class="baseIcon baseIcon-right" style="color:#D9D9D9"></i>
+                        <i class="baseIcon baseIcon-right" style="color:#D9D9D9" v-show="topTitle"></i>
                     </router-link>
                 </cmui-list-item>
             </cmui-list>
@@ -28,7 +28,30 @@
     const componentData = {
         base: {
             pageTitle: '基础组件',
-            list: ['badge', 'button', 'layout', 'type']
+            topTitle: false,
+            list:[
+                {
+                    title: 'badge',
+                    icon: 'baseIcon-base_badge',
+                    path: '/badge'
+                },
+                {
+                    title: 'button',
+                    icon: 'baseIcon-base_button',
+                    path: '/button'
+                },
+                {
+                    title: 'layout',
+                    icon: 'baseIcon-base_layout',
+                    path: '/layout'
+                },
+                {
+                    title: 'type',
+                    icon: 'baseIcon-base_type',
+                    path: '/type'
+                }
+            ]
+            // list: ['badge', 'button', 'layout', 'type']
         },
         ui: {
             pageTitle: 'UI组件',

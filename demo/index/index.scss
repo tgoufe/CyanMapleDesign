@@ -87,5 +87,15 @@ table {
 }
 .cmui-list-item{
   margin-top:15px;
-  box-shadow: none !important;
+}
+.pc-head{
+  background:#fff;
+}
+.childTheme{
+  padding:0;
+  .cmui-list-item{
+    width:33.333333333%;
+    margin:0;
+    clear:none !important;
+  }
 }
