@@ -56,23 +56,91 @@
         ui: {
             pageTitle: 'UI组件',
             list: [
-              'picker',
-              'mask',
-              'notice',
-              'actions',
-              'alert',
-              'confirm',
-              'popup',
-              'slider',
-              'list',
-              'tabbar',
-              'collapse',
-              'affix',
-              'swiper',
-              'progress',
-              'slidebar',
-              'scroll',
-              'captcha'
+                {
+                    title: 'picker',
+                    icon: 'baseIcon-ui_picker',
+                    path: '/picker'
+                },
+                {
+                    title: 'mask',
+                    icon: 'baseIcon-ui_mask',
+                    path: '/mask'
+                },
+                {
+                    title: 'notice',
+                    icon: 'baseIcon-ui_notice',
+                    path: '/notice'
+                },
+                {
+                    title: 'actions',
+                    icon: 'baseIcon-ui_actions',
+                    path: '/actions'
+                },
+                {
+                    title: 'alert',
+                    icon: 'baseIcon-ui_alert',
+                    path: '/alert'
+                },
+                {
+                    title: 'confirm',
+                    icon: 'baseIcon-ui_confirm',
+                    path: '/confirm'
+                },
+                {
+                    title: 'popup',
+                    icon: 'baseIcon-ui_popup',
+                    path: '/popup'
+                },
+                {
+                    title: 'slider',
+                    icon: 'baseIcon-ui_slider',
+                    path: '/slider'
+                },
+                {
+                    title: 'list',
+                    icon: 'baseIcon-ui_list',
+                    path: '/list'
+                },
+                {
+                    title: 'tabbar',
+                    icon: 'baseIcon-ui_tabbar',
+                    path: '/tabbar'
+                },
+                {
+                    title: 'collapse',
+                    icon: 'baseIcon-ui_collapse',
+                    path: '/collapse'
+                },
+                {
+                    title: 'affix',
+                    icon: 'baseIcon-ui_affix',
+                    path: '/affix'
+                },
+                {
+                    title: 'swiper',
+                    icon: 'baseIcon-ui_swiper',
+                    path: '/swiper'
+                },
+                {
+                    title: 'progress',
+                    icon: 'baseIcon-ui_progress',
+                    path: '/progress'
+                },
+                {
+                    title: 'slidebar',
+                    icon: 'baseIcon-ui_slidebar',
+                    path: '/slidebar'
+                },
+                {
+                    title: 'scroll',
+                    icon: 'baseIcon-ui_scroll',
+                    path: '/scroll'
+                },
+                {
+                    title: 'captcha',
+                    icon: 'baseIcon-ui_captcha',
+                    path: '/captcha'
+                }
             ]
         },
         page: {
@@ -87,7 +155,39 @@
         // },
         form: {
         pageTitle: '表单组件',
-        list: ['input','select','number','radio','textarea','checkbox']
+        list: [
+            {
+                title: 'input',
+                icon: 'baseIcon-form_input',
+                path: '/input'
+            },
+            {
+                title: 'select',
+                icon: 'baseIcon-form_select',
+                path: '/select'
+            },
+            {
+                title: 'number',
+                icon: 'baseIcon-form_number',
+                path: '/number'
+            },
+            {
+                title: 'radio',
+                icon: 'baseIcon-form_radio',
+                path: '/radio'
+            },
+            {
+                title: 'textarea',
+                icon: 'baseIcon-form_textarea',
+                path: '/textarea'
+            },
+            {
+                title: 'checkbox',
+                icon: 'baseIcon-form_checkbox',
+                path: '/checkbox'
+            }
+        ]
+        // list: ['input','select','number','radio','textarea','checkbox']
         },
         default: {
             pageTitle: 'CYANMAPLE',
