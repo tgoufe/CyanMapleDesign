@@ -309,6 +309,24 @@ $dotsize:14px;
     border-radius:100px;
     background-color: black;
 }
-html{
-    background:#f8f8f8;
+
+
+//image-pre-view
+.cmui-image-preView{
+    z-index:9;
+    background-color:rgba(0,0,0,.7);
+    .swiper-slide{
+        width:100% !important;
+        text-align: center;
+    }
+    .swiper-wrapper{
+        @extend %flex-container;
+    }
+    .swiper-pagination-bullet{
+        background: rgba(253, 250, 250, .5);
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-active{
+        background: #007aff;
+    }
 }
