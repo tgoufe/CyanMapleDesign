@@ -14,7 +14,9 @@
     <div class="cmui-input__main pos-r" :class="{flex1:!label||!$slots.default}">
         <input :style="inputStyle" :type="selfType" ref="input" :name="name" v-model.lazy="value" :readonly="readonly" :placeholder="placeholder" :disabled="disabled" :class="targetClass" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
         <div v-if="type==='search'" class="input-search" :style="{display:type==='search'?'block':'none'}"></div>
+        <!-- <div class="input-changeType" style="display:block"></div> -->
         <div class="input-reset" :style="{display:value.length?'block':'none'}" v-if="reset===true&&!disabled" @click="resetInput()"></div>
+        
     </div>
     <!-- 后置 -->
     <div class="cmui-input__append flex-container" :class="[targetClass,{disabled:appendDisabled}]" v-if="$slots.append||append">
@@ -100,7 +102,8 @@ export default {
     append: String,
     width:[Number,String],
     prependDisabled: { type: Boolean, default: false },
-    appendDisabled: { type: Boolean, default: false }
+    appendDisabled: { type: Boolean, default: false },
+    changeType:{type:Boolean,default:false}
   },
   mixins: [mixin],
   methods: {
@@ -119,7 +122,7 @@ export default {
         let rs=/(\-)?\d+\.?(\d+)?/.exec(value)
         value=rs?rs[0]:''
       }
-      target.value=value;
+      // target.value=value;
       this.$emit("input", value, target, this);
       this.$nextTick(this.rendered);
     },

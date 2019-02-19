@@ -21,7 +21,7 @@ Url.prototype.init = function(url) {
                 continue;
             }
             s = seg[i].split('=');
-            ret[s[0]] = s[1];
+            ret[s[0]] = s.slice(1).join('=');
             //删除微信下的?10000skip
             if(ret[s[0]] && typeof ret[s[0]]==='string'){
                 ret[s[0]]=ret[s[0]].replace(/\?10000skip(=true)?/,'');

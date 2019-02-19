@@ -9,6 +9,9 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin()
     ],
+    devServer: {
+        disableHostCheck: true
+    },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {

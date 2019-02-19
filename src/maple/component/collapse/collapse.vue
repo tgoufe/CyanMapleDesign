@@ -3,9 +3,6 @@
     <slot></slot>
   </div>
 </template>
-<style lang="scss">
-  @import 'theme';
-</style>
 <script>
   export default {
     name: 'CMUICollapse',

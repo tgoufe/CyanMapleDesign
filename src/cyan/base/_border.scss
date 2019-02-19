@@ -27,10 +27,10 @@
 			}
 		}
 	}
-	&.round{
+	&.round,&-round{
 		border-radius:50%;
 	}
-	&.radius{
+	&.radius,&-radius{
 		border-radius:$border-radius-base;
 	}
 }

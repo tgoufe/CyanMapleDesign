@@ -25,7 +25,6 @@
 	}
 </style>
 <script>
-	var timer;
 	export default{
 		props:{
 			nowTime:{type:Number,default:+new Date},
@@ -43,7 +42,7 @@
 				intervalTime = this.showMilli?100:1000;
 			if(_.isNumber(this.endTime)&&_.isNumber(this.nowTime)&&this.endTime>this.nowTime){
 				vm.nowTime+=intervalTime;
-				timer=setInterval(function(){
+				this.timer=setInterval(function(){
 					vm.nowTime+=intervalTime;
 				}, intervalTime);
 			}
@@ -54,15 +53,17 @@
 					var countDownTime=this.endTime-value;
 					this.$emit('update',this,countDownTime);
 					if(countDownTime<0){
-						clearTimeout(timer);
+						clearTimeout(this.timer);
 						this.contentList={hour:'00',minute:'00',sec:'00'};
 						this.$emit('countdownend',this);
 					}else{
-						var obj={
-							hour:Math.floor((countDownTime / 3600000) % 24),
-							minute:Math.floor((countDownTime / 60000) % 60),
-							sec:Math.floor((countDownTime / 1000) % 60)
-						};
+					    let obj={};
+					    if(this.showDay){
+					        obj.day=Math.floor((countDownTime / 3600000) / 24)
+						}
+						obj.hour=Math.floor((countDownTime / 3600000) % 24);
+						obj.minute=Math.floor((countDownTime / 60000) % 60);
+						obj.sec=Math.floor((countDownTime / 1000) % 60);
 						if(this.showMilli){
 							obj.millSec = Math.floor((countDownTime / 100) % 10)
 						}
@@ -74,12 +75,15 @@
 				var vm=this,
 					intervalTime = this.showMilli?100:1000;
 				if(this.endTime&&this.nowTime&&this.endTime>this.nowTime){
-					clearTimeout(timer);
+					clearTimeout(this.timer);
 					vm.nowTime+=intervalTime;
-					timer=setInterval(function(){
+					this.timer=setInterval(function(){
 						vm.nowTime+=intervalTime;
 					}, intervalTime);
 				}
+			},
+			destroyed(){
+                clearTimeout(this.timer);
 			}
 		}
 	}

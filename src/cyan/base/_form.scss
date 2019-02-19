@@ -50,12 +50,12 @@ input{
 }
 .form{
     input{
-        &[type=search] {
-            text-align: center;
-            &:focus {
-                text-align: left
-            }
-        };
+        // &[type=search] {
+        //     text-align: center;
+        //     &:focus {
+        //         text-align: left
+        //     }
+        // };
         @at-root .form textarea,.form select,.from textarea,
         &[type=color],
         &[type=date],
@@ -326,7 +326,7 @@ input{
         }
     }
     .input-reset,.input-changeType{
-        -webkit-user-modify: read-write-plaintext-only;
+        // -webkit-user-modify: read-write-plaintext-only;
     }
     .input-search{
          @extend .baseIcon-search;
@@ -337,7 +337,15 @@ input{
         @extend .baseIcon-roundclosefill;
     }
     .input-changeType{
-        @extend .baseIcon-attentionfill;
+        @extend .baseIcon-attention;
+        &~{
+            .input-reset{
+                right:nth(map-get($btn-size-list,'base'),1);
+            }
+        }
+    }
+    input[type=password]~.input-changeType{
+        @extend .baseIcon-attentionforbid;
     }
     .inputGroup{
         @extend .flex-container;

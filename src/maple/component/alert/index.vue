@@ -4,7 +4,7 @@
 			:visible.sync="selfVisible"
 			class="cmui-alert"
 			:mask-event="false"
-			target-class="cmui-dialog__container cmui-alert__container">
+			:target-class="`cmui-dialog__container cmui-alert__container ${targetClass}`">
 			<div class="cmui-dialog__title cmui-alert__title" v-html="title" v-if="title" slot="top"></div>
 			<div class="cmui-dialog__warp cmui-alert__warp">
 				<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="!content||$slots.default" :style="bodyStyle">
@@ -30,7 +30,8 @@
 			okStyle:{type:Object,default:null},
 			okDisable:{type:Boolean,default:false},
 			okDisableStyle:{type:Object,default:null},
-			visible:{type:Boolean,default:false}
+			visible:{type:Boolean,default:false},
+			targetClass:{type:String,default:''}
 		},
 		compontents:{
 			cmuiPopup

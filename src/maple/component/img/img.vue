@@ -6,23 +6,6 @@ alt=""
 @error="srcError()"
 />
 </template>
-<style lang="scss">
-    .cmui-image-preView{
-        z-index:9;
-        background-color:rgba(0,0,0,.7);
-        .swiper-slide{
-            width:100% !important;
-            text-align: center;
-        }
-        .swiper-pagination-bullet{
-            background: rgba(253, 250, 250, .5);
-            opacity: 1;
-        }
-        .swiper-pagination-bullet-active{
-            background: #007aff;
-        }
-    }
-</style>
 <script>
 import imagePreView from './imagePreView';
 let lazyLoadList=[];
@@ -64,7 +47,8 @@ export default {
             errorSrc:{type:String,default:base64_1x1},
             preView:{type:Boolean,default:false},
             preViewList:{type:Array,default:[]},
-            preViewIndex:{type:Number,default:0}
+            preViewIndex:{type:Number,default:0},
+            preViewOptions:{type:Object,default:{}}
         },
         computed:{
             realSrc(){
@@ -76,7 +60,7 @@ export default {
                 if(this.preView){
                     let list=this.preViewList.length?this.preViewList:this.src;
                     let index=this.preViewIndex;
-                    imagePreView.call(this,list,index);
+                    imagePreView.call(this,list,index,this.preViewOptions);
                 }
             },
             srcError(){

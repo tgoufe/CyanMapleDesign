@@ -19,6 +19,8 @@ import style from './style';
 maple.style = style;
 import time from './time';
 maple.time = time;
+import shake from './shake';
+maple.shake=shake;
 import component from './component';
 import alert     from './component/alert/index.js';
 import confirm   from './component/confirm/index.js';

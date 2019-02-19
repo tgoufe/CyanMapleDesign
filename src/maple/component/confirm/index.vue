@@ -4,7 +4,7 @@
 	class="cmui-confirm"
 	:mask-event="false"
 	:visible.sync="selfVisible"
-	target-class="cmui-dialog__container cmui-confirm__container"
+	:target-class="`cmui-dialog__container cmui-confirm__container ${targetClass}`"
 	>
 		<div class="cmui-dialog__title cmui-confirm__title" slot="top" v-html="title" v-if="title"></div>
 		<div class="cmui-dialog__warp cmui-confirm__warp">
@@ -38,6 +38,7 @@
 			cancelDisable:{type:Boolean,default:false},
 			cancelDisableStyle:{type:Object,default:null},
 			visible:{type:Boolean,default:false},
+			targetClass:{type:String,default:''}
 		},
 		compontents:{
 			cmuiPopup
