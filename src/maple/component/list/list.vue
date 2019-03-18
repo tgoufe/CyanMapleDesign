@@ -1,8 +1,8 @@
 <template>
   <div
   class="cmui-list"
+  :style="[boxShadow]"
   :class="{'overflow-h':needOverHide}"
-  :style="boxShadow"
   ><!--  -->
     <div class="clearfix"  :style="containerStyle"><!-- -->
       <div class="fixed-right flex-container center cmui-list-index" style="z-index: 21" v-if="index">
@@ -32,16 +32,18 @@ export default {
     index: { type: [Boolean, Function], default: false }
   },
   data: function() {
-    var defaultBorderColor = "#eeeeee",
-      isColor = /^#[a-fA-F0-9]{6}$/.test(this.border),
-      borderColor = isColor ? this.border : defaultBorderColor;
+    let defaultBorderColor = "#eeeeee";
+    let isColor = /^#[a-fA-F0-9]{6}$/.test(this.border);
+    let borderColor = isColor ? this.border : defaultBorderColor;
+    let needOverHide=true;
     return {
       borderColor,
       groupList:[],
       activeIndex:0,
       indexItemHeight:0,
       startIndex:0,
-      listEventStartY:0
+      listEventStartY:0,
+      needOverHide
     };
   },
   computed: {
@@ -69,10 +71,8 @@ export default {
       }
     },
     containerStyle() {
-      let marginRight,marginBottom;
-      marginRight=marginBottom=this.realSpace?("-" + this.realSpace + "rem"):undefined;
       return {
-        marginRight
+        margin:this.realSpace?("-" + this.realSpace/2 + "rem"):undefined
       };
     },
     boxShadow() {
@@ -80,12 +80,6 @@ export default {
         return "0px 0px 0px 1px " + this.borderColor;
       }
       return;
-    },
-    needOverHide() {
-      return (
-        _.get(this, "$parent.itemContainerStyle.boxShadow") &&
-        this.space
-      );
     },
     noPaddingbFrom(){
       let isChild=this.$parent.$options._componentTag==="cmui-list-item";
@@ -128,12 +122,12 @@ export default {
     },
   },
   mounted(){
+    let parentNode = this.$el;
+    let baseNode = this.$el.firstChild;
+    this.needOverHide=parentNode.offsetLeft>this.space/2;
     if (!this.index) {
       return;
     }
-    let parentNode = this.$el;
-    let baseNode = this.$el.firstChild;
-    let _this=this;
     while (parentNode.clientHeight >= baseNode.clientHeight) {
       if (parentNode === document.body) {
         parentNode = document;
@@ -141,6 +135,7 @@ export default {
       }
       parentNode = parentNode.parentNode;
     }
+    let _this=this;
     parentNode.addEventListener('scroll',_.throttle(function(){
       _this.activeIndex =
         _this.groupList.filter(

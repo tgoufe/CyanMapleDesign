@@ -12,6 +12,7 @@ import swiper from './component/swiper/swiper.vue';
 import progress from './component/progress/progress.vue';
 import slidebar from './component/slidebar/slidebar.vue';
 import captcha from './component/captcha/captcha.vue';
+import datePicker from './component/datePicker/dataPicker.vue';
 export default {
 		'cmui-img': img
 	,	'cmui-picker': pick
@@ -27,4 +28,5 @@ export default {
 	,	'cmui-indexlist-item':indexlistItem
 	,	'cmui-slidebar':slidebar
 	,	'cmui-captcha':captcha
+	,	'cmui-date-picker':datePicker
 };

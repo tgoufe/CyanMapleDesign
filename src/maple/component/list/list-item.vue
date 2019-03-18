@@ -42,9 +42,6 @@ export default {
         }
     },
     computed:{
-        itemList(){
-            return this.$parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
-        },
         itemContainerStyle(){
             let parent=this.getParent('cmui-list')
             ,   border
@@ -61,36 +58,29 @@ export default {
     },
     methods:{
         itemStyle(){
-            let width
-            ,   parent=this.getParent('cmui-list')
-            ,   col=parent.realCol
-            ,   colCount=(_.isArray(col)?col.length:col)||1
-            ,   index=_.findIndex(this.itemList,this)
-            ,   clear=index%colCount===0?'left':undefined
-            ,   nopaddingBFrom=parent.noPaddingbFrom
-            ,   paddingRight
-            ,   paddingLeft
-            ,   paddingBottom
-            ,   boxShadow=parent.boxShadow
-            ,   backgroundColor
-            ;
-            if(parent.realSpace){
-                // TODO 动态修改内部数量的时候会判断错误需要增加watch感觉使用起来可能会麻烦，暂时去掉
-                // if(index<nopaddingBFrom){
-                    paddingBottom=parent.realSpace+'rem';
-                // }
-                paddingRight=parent.realSpace+'rem';
-            }
+            let width,clear,boxShadow,backgroundColor,padding;
+            let parent=this.getParent('cmui-list')
+                ,   col=parent.realCol
+                ,   colCount=(_.isArray(col)?col.length:col)||1
+                ,   index=_.findIndex(parent.itemList,this);
+            padding=parent.realSpace /2 +'rem';
             if(_.isNumber(col)&&col!==1){
                 width=100/col+'%';
             }else if(_.isArray(col)){
                 let total=col.reduce((pre,next)=>pre+next);
                 width=100*col[index%col.length]/total+'%';
             }
+
             if(this.bgcolor){
-              backgroundColor=this.bgcolor;
+                backgroundColor=this.bgcolor;
             }
-            return{width,clear,paddingRight,paddingLeft,paddingBottom,boxShadow,backgroundColor}
+            if(index===-1){
+                parent.itemList=parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
+                index=_.findIndex(parent.itemList,this);
+            }
+            clear=index%colCount===0?'left':undefined;
+            boxShadow=parent.boxShadow;
+            return{width,clear,boxShadow,backgroundColor,padding}
         }
     }
 };

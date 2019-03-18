@@ -57,5 +57,6 @@ function Notice(){
 			CURRENT.cancel();
 		}, options.timeout);
 	}
+	return CURRENT;
 }
 export default Notice;

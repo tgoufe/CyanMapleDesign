@@ -229,11 +229,11 @@ export default {
             }
         },
         bindEvents(){
-            const vm = this;
+            let vm = this;
             DEFAULT_EVENTS.forEach(eventName => {
-              this.swiper.on(eventName, function() {
-                vm.$emit(eventName, ...arguments)
-                vm.$emit(eventName.replace(/([A-Z])/g, '-$1').toLowerCase(), ...arguments)
+              this.swiper.on(eventName, function(...args) {
+                vm.$emit(eventName, ...args,vm.swiper)
+                vm.$emit(eventName.replace(/([A-Z])/g, '-$1').toLowerCase(), ...args,vm.swiper)
               })
             })
         }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cmui-affix-warp" :class="{warpActive:affix}">
         <div class="cmui-affix" :style="styles" :class="{affixActive:affix}">
             <slot></slot>
         </div>
@@ -79,7 +79,7 @@ export default {
                     position:'fixed'
                 };
                 vm.$emit('on-change', true);
-            } else if ((elOffset.top - this.top) > scrollTop && this.offsetType == 'top' && affix) {
+            } else if ((elOffset.top - this.top) >= scrollTop && this.offsetType == 'top' && affix) {
                 this.affix = false;
                 this.styles = null;
                 vm.$emit('on-change', false);
@@ -94,7 +94,7 @@ export default {
                     position:'fixed'
                 };
                 vm.$emit('on-change', true);
-            } else if ((elOffset.top + this.bottom + elHeight) < (scrollTop + windowHeight) && this.offsetType == 'bottom' && affix) {
+            } else if ((elOffset.top + this.bottom + elHeight) <= (scrollTop + windowHeight) && this.offsetType == 'bottom' && affix) {
                 this.affix = false;
                 this.styles = null;
                 vm.$emit('on-change', false);

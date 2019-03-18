@@ -34,6 +34,10 @@
 		border-radius:$border-radius-base;
 	}
 }
+.shadow{
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+	border-color: rgba(0, 0, 0, 0.09);
+}
 @if(not $isPC){
 	.bordert.light,.borderr.light,.borderb.light,.borderl.light{
 		position:relative;
