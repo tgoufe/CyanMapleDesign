@@ -40,7 +40,7 @@
         </div>
         <div class="otherExp tag-container">
             <p>带有延时的按钮，例如点击加减号的时候需要通过ajax的状态判断是否增加，下面的案例用setTimeout来模拟</p>
-            <cmui-number :before-change="demoBefore" v-model="demoValue">
+            <cmui-number @before-change="demoBefore"  v-model="demoValue" :max="22" :min="18">
                 <span class="marginr20">异步按钮</span>
             </cmui-number>
         </div>
@@ -67,16 +67,14 @@ export default {
     return {
       options: {
         max:5,
-        min:-5,
+        min:0,
         value:0,
         align:'left'
       },
       targetClassList:['small','big','radius','reverse'].map(item=>({text:item,value:false})),
-      demoBefore:function(value,next){
-        _.delay(function(){
-            next();
-        },1000)
-      },
+        demoBefore(newValue,oldValue,resolve,reject){
+            _.delay(resolve,200)
+        },
       demoValue:20
     };
 
@@ -92,7 +90,10 @@ export default {
     },
     minHandle(value){
         maple.alert('最小值为'+value)
-    }
+    },
+      aaa(name){
+        console.log(name)
+      }
   }
 };
 </script>

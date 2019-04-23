@@ -158,6 +158,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.rightLine{@include justify-content(flex-end);@include align-items(baseline);}
 	&.topRound{@include justify-content(space-around);@include align-items(flex-start);}
 	&.bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
+	&.reverse{@include flex-direction(row-reverse);}
 }
 .flex-container-col{
 	@extend .flex-container;
@@ -176,6 +177,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.rightCenter{@include align-items(flex-end);@include justify-content(center);}
 	&.rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
 	&.rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
+	&.reverse{@include flex-direction(column-reverse);}
 	&>span{
 		display:block;
 	}
@@ -272,6 +274,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 .pos-r{position: relative}
 .pos-a{position: absolute}
 .pos-f{position: fixed}
+.pos-s{position:sticky}
 .vcenter{top:50%;@include translateY(-50%);@extend .pos-a}
 .hcenter{left:50%;@include translateX(-50%);@extend .pos-a}
 .fullcenter{top:50%;left:50%; @include translate(-50%, -50%);@extend .pos-a}

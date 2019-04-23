@@ -1,36 +1,44 @@
 export default {
   methods: {
     handleFocus(event) {
+        console.log(`base handleFocus`);
         let evt = window.event||event;
         let target = evt.target||evt.srcElement;
         let value = target.value;
-      this.$emit("focus", value, target, this);
+        this.$emit("focus", value,this);
     },
     handleInput(event) {
+        console.log(`base handleInput`);
         let evt = window.event||event;
         let target = evt.target||evt.srcElement;
         let value = target.value;
-      this.$emit("input", value, target, this);
-      this.$nextTick(this.rendered);
+        this.$emit("input", value,this);
+        this.$nextTick(this.rendered);
     },
     handleChange(event) {
+        console.log(`base handleChange`);
         let evt = window.event||event;
         let target = evt.target||evt.srcElement;
         let value = target.value;
-      this.$emit("change", value, target, this);
-      this.$emit("input", value, target, this);
+        this.$emit("change", value,this);
+        this.$emit("input", value,this);
     },
     handleBlur(event) {
+        console.log(`base handleBlur`);
         let evt = window.event||event;
         let target = evt.target||evt.srcElement;
         let value = target.value;
-      this.$emit("blur", value, target, this);
+        this.$emit("blur", value,this);
     },
     rendered(event) {
+        console.log(`base rendered`);
         let evt = window.event||event;
         let target = evt.target||evt.srcElement;
         let value = target.value;
-      this.$emit("rendered", value, target, this);
+        this.$emit("rendered", value,this);
+    },
+    getInput(){
+        return this.$refs.input;
     }
   },
   props: {

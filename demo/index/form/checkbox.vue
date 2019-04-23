@@ -9,6 +9,7 @@
             v-bind="options"
             v-model="checkedIndex[key]"
             :target-class="targetClass"
+            @before-change="xxx"
             />
             <p>
                 你的选择是{{checkedCity|json}}
@@ -98,7 +99,7 @@
                 checkedIndex:_.fill(Array(cityList.length),false),
                 targetClassList:['small','big','square','reverse','switch'].map(item=>({text:item,value:false})),
                 demoList:['北京','上海','广州','深圳'].map(item=>({label:item,value:true})),
-            }
+        }
         },
         computed:{
           targetClass(){
@@ -108,6 +109,11 @@
             return this.cityList.filter((item,index)=>this.checkedIndex[index]===true)
           }
           
+        },
+        methods:{
+            xxx(value,resolve,reject){
+                _.delay(resolve,1000)
+            }
         }
     }
 </script>

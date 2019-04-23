@@ -34,49 +34,76 @@ export default {
 	mixins: [mixin],
 	methods:{
 	    changeNumber:function(num=0){
-	    	let _this=this;
+	    	console.log(`number changeNumber`);
 	    	if((!this.canAdd&&num===1)||(!this.canSub&&num===-1)){
 	    		return
 	    	}
-	    	const innerThis=this.$children[0];
-	    	const target=this.$children[0].$refs.input;
 	    	const value = this.value;
+	    	const beforeChangeEvent=this.$listeners['before-change'];
 	    	let targetValue=+value+num;
 	    	targetValue=_.min([this.max,targetValue]);
 	        targetValue=_.max([this.min,targetValue]);
-	    	if(_.isFunction(this.beforeChange)){
+	    	if(_.isFunction(beforeChangeEvent)){
 	    		this.canAdd=this.canSub=false;
-	    		let next=function(newValue){
-	    			_this.value=_.isUndefined(newValue)?targetValue:newValue;
-	    			_this.setBtnState();
-	    			_this.$emit('input',_this.value,target,innerThis);
-	    		}
-	    		this.beforeChange(value,next)
+	    		new Promise((resolve,reject)=>{
+					beforeChangeEvent(targetValue,resolve,reject,this);
+				}).then(()=>{
+					this.value=targetValue;
+					this.setBtnState();
+					this.$emit('input',this.value,this);
+				},()=>{
+					this.setBtnState();
+					this.$emit('input',this.value,this);
+				})
 	    	}else{
 	        	this.value=targetValue;
 	        	this.setBtnState();
-		        this.$emit('input',this.value,target,innerThis);
+		        this.$emit('input',this.value,this);
 	    	}
 	    },
-	    setBtnState(){
-	    	const innerThis=this.$children[0];
-	    	const target=this.$children[0].$refs.input;
+	    setBtnState(isFirst=false){
+	    	console.log(`number setBtnState`,this.value);
 			this.canAdd=this.canSub=true;
 			if(+this.value===this.max){
 				this.canAdd=false;
-				this.$emit('max',this.value,target,innerThis);
+				!isFirst&&this.$emit('max',this.value,this);
 			}
 			if(+this.value===this.min){
-				this.$emit('min',this.value,target,innerThis);
+				!isFirst&&this.$emit('min',this.value,this);
 				this.canSub=false;
 			}
 		},
 		handleBlur(){
-          const target = event.target;
-          const value = target.value;
+	    	console.log(`number handleBlur`);
+			const target = event.target;
+			const value = target.value;
 			this.changeNumber(0);
-			this.$emit("blur", value, target, this);
+			this.$emit("blur", value,this);
+		},
+		handleInput(event) {
+	    	console.log(`number handleInput`);
+			let evt = window.event||event;
+			let target = evt.target||evt.srcElement;
+			let value = target.value;
+			this.$emit("input", value,this);
+			this.$nextTick(this.rendered);
+			this.setBtnState()
+		},
+		handleChange(event) {
+	    	console.log(`number handleChange`);
+			let evt = window.event||event;
+			let target = evt.target||evt.srcElement;
+			let value = target.value;
+			this.$emit("change", value,this);
+			this.$emit("input", value,this);
+			this.setBtnState()
+		},
+		getInput(){
+			return this.$children[0].$refs.input;
 		}
+	},
+	created(){
+		this.setBtnState.call(this,true);
 	},
 	props:{
 	    max:Number,
@@ -101,6 +128,11 @@ export default {
 			}else{
 				return true
 			}
+		}
+	},
+	watch:{
+		value(){
+			console.log(arguments)
 		}
 	}
 };

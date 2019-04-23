@@ -2,6 +2,7 @@ import './index.scss';
 import '../../src/pageComponent/head/index.js';
 import componentList from './componentList.vue';
 import badge from './badge.vue';
+import type from './type.vue';
 import button from './button.vue';
 import collapse from './collapse.vue';
 import tabbar from './tabbar.vue';
@@ -37,6 +38,7 @@ import captcha from './ui/captcha.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
+    {path: '/type/', component: type},
     {path: '/button/', component: button},
     {path: '/collapse/', component: collapse},
     {path: '/tabbar/', component: tabbar},
@@ -92,6 +94,9 @@ window.vm = new Vue({
     computed:{
     },
     mounted() {
+        maple.shake(()=>{
+            alert(111);
+        })
         if (location.hash === '#/') {
             this.$router.replace('/componentList/default');
         }

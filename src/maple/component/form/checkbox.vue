@@ -66,20 +66,44 @@ export default {
     handleChange(event) {
       const target = event.target;
       const value = target.checked;
-      if (_.isArray(this.value)) {
-        let length = this.value.length;
-        if (_.every(this.value, _.isBoolean)) {
-          this.value = _.fill(new Array(length), value);
-        } else {
-          _.forEach(this.value, item => {
-            _.set(item,this.path,value)
-          });
+      const beforeChangeEvent=this.$listeners['before-change'];
+      if(_.isFunction(beforeChangeEvent)){
+        this.disabled=true;
+        new Promise((resolve,reject)=>{
+          beforeChangeEvent(value,resolve,reject,this);
+        }).then(()=>{
+          if (_.isArray(this.value)) {
+            let length = this.value.length;
+            if (_.every(this.value, _.isBoolean)) {
+              this.value = _.fill(new Array(length), value);
+            } else {
+              _.forEach(this.value, item => {
+                _.set(item,this.path,value)
+              });
+            }
+          }
+          this.$emit('input',value,this);
+          this.$emit('change',value,this);
+          this.disabled=false;
+        },()=>{
+          target.checked=!target.checked;
+          this.disabled=false;
+        })
+      }else{
+        if (_.isArray(this.value)) {
+          let length = this.value.length;
+          if (_.every(this.value, _.isBoolean)) {
+            this.value = _.fill(new Array(length), value);
+          } else {
+            _.forEach(this.value, item => {
+              _.set(item,this.path,value)
+            });
+          }
         }
-        this.$emit("input", this.value, target, this);
-      } else {
-        this.$emit("input", value, target, this);
+        this.$emit("input", value,this);
+        this.$emit("change", value,this);
       }
-      this.$emit("change", value, target, this);
+
     }
   }
 };

@@ -115,6 +115,7 @@ export default {
       this.$emit("input", "", target, this);
     },
     handleInput(event) {
+        console.log(`input handleInput`);
       let evt = window.event||event;
       let target = evt.target||evt.srcElement;
       let value = target.value;

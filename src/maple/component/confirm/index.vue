@@ -15,7 +15,7 @@
 				
 			</div>
 		</div>
-		<div class="cmui-dialog__buttons cmui-confirm__buttons flex-container" slot="bottom">
+		<div class="cmui-dialog__buttons cmui-confirm__buttons flex-container" slot="bottom" :class="{reverse:reverse}">
 			<div class="cmui-confirm__button ok cmui-dialog__button flex1" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" v-html="okText" @click="!okDisable&&ok()"></div>
 			<div class="cmui-confirm__button cancel cmui-dialog__button flex1" :class="{'cancelDisable':cancelDisable}" :style="cancelDisable?cancelDisableStyle:cancelStyle" v-html="cancelText" @click="!cancelDisable&&cancel()"></div>
 		</div>
@@ -38,7 +38,8 @@
 			cancelDisable:{type:Boolean,default:false},
 			cancelDisableStyle:{type:Object,default:null},
 			visible:{type:Boolean,default:false},
-			targetClass:{type:String,default:''}
+			targetClass:{type:String,default:''},
+			reverse:{type:Boolean,default:false}
 		},
 		compontents:{
 			cmuiPopup

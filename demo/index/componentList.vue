@@ -22,6 +22,8 @@
                 </cmui-list-item>
             </cmui-list>
         </div>
+        <!--date demo-->
+        <cmui-date-picker @select="test"></cmui-date-picker>
     </div>
 </template>
 <script>
@@ -216,6 +218,11 @@
             return {
                 list,
                 topTitle
+            }
+        },
+        methods:{
+            test(value){
+                console.log(value)
             }
         },
         watch: {

@@ -2,6 +2,8 @@
 	position: relative;
     list-style: none;
     overflow: hidden;
+	margin-top:-1px;
+	margin-bottom:1px;
 	.list-item{
 		transform-style: preserve-3d;
 		position: relative;

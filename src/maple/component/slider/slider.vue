@@ -148,14 +148,20 @@ export default {
     watch: {
         watch: {
             immediate: false,
-            handler(value) {
-                this.resetSwiper();
+            handler(newValue,oldValue) {
+                if(this.loop){
+                    _.differenceWith(newValue,oldValue,_.isEqual).length&&this.resetSwiper();
+                }else{
+                    !_.isEqual(newValue,oldValue)&&this.resetSwiper();
+                }
             }
         },
         options: {
             deep: true,
             handler(newOptions, oldOptions) {
-                this.resetSwiper();
+                if(!_.isEqual(newOptions, oldOptions)){
+                    this.resetSwiper();
+                }
             }
         }
     },
@@ -207,18 +213,17 @@ export default {
                     this.swiperIndex=sliderList.length;
                 }
                 _.delay(() => {
-                	this.swiper = new Swiper(this.$refs['swiper-container'], optionsMaker.call(this, this.options), this.theme);
+                    this.swiper = new Swiper(this.$refs['swiper-container'], optionsMaker.call(this, this.options), this.theme);
                     sliderObserve.observeControl(this)
-                    
-                	if(hasInit){
-                		sliderList[this.swiperIndex]=this.swiper;
-                	}else{
-                		sliderList.add(this.swiper);
-                	}
+                    if(hasInit){
+                        sliderList[this.swiperIndex]=this.swiper;
+                    }else{
+                        sliderList.add(this.swiper);
+                    }
                     this.bindEvents();
                     this.$emit('rendered', this);
                 }, 0)
-            })
+            });
         },
         update() {
             if (this.swiper) {
@@ -232,8 +237,8 @@ export default {
             let vm = this;
             DEFAULT_EVENTS.forEach(eventName => {
               this.swiper.on(eventName, function(...args) {
-                vm.$emit(eventName, ...args,vm.swiper)
-                vm.$emit(eventName.replace(/([A-Z])/g, '-$1').toLowerCase(), ...args,vm.swiper)
+                vm.$emit(eventName, ...args,vm.swiper);
+                vm.$emit(eventName.replace(/([A-Z])/g, '-$1').toLowerCase(), ...args,vm.swiper);
               })
             })
         }

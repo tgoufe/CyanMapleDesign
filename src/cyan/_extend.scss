@@ -52,6 +52,7 @@
 	&%rightLine{@include justify-content(flex-end);@include align-items(baseline);}
 	&%topRound{@include justify-content(space-around);@include align-items(flex-start);}
 	&%bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
+    &%reverse{@include flex-direction(row-reverse);}
 }
 %flex-container-col{
 	@extend %flex-container;
@@ -70,6 +71,7 @@
 	&%rightCenter{@include align-items(flex-end);@include justify-content(center);}
 	&%rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
 	&%rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
+    &%reverse{@include flex-direction(column-reverse);}
 	&>span{
 		display:block;
 	}
