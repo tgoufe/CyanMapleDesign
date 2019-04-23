@@ -94,9 +94,6 @@ window.vm = new Vue({
     computed:{
     },
     mounted() {
-        maple.shake(()=>{
-            alert(111);
-        })
         if (location.hash === '#/') {
             this.$router.replace('/componentList/default');
         }
