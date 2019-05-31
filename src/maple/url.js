@@ -38,6 +38,7 @@ Url.prototype.init = function(url) {
         var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i;
         return !!regular.test(url);
     })(this.source);
+    this.route=this.hash?Url(this.hash):{};
     return this;
 };
 Url.prototype.init.prototype=Url.prototype;
@@ -77,6 +78,32 @@ Url.prototype.replace=function(){
 
     return this;
 };
+Url.prototype.replaceHash=function(...args){
+    let search=[];
+    _.forEach(args,item=>{
+        switch(typeof item){
+            case 'string':
+                delete this.route.params[item];
+                break;
+            case 'object':
+                for( let key in item ) {
+                    if( item.hasOwnProperty(key) ){
+                        this.route.params[key] = item[key];
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    });
+    _.forEach(this.route.params,(value,key)=>{
+        if(value!==null&&value!==undefined){
+            search.push(`${key}=${value}`)
+        }
+    });
+    this.hash=this.route.path + (search.length?'?'+search.join('&'):'');
+    history.replaceState(null, '', this.pack());
+}
 Url.prototype.push=function(){
     var key
         , argc = arguments[0]

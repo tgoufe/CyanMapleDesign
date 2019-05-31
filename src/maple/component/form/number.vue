@@ -132,8 +132,11 @@ export default {
 	},
 	watch:{
 		value(){
-			console.log(arguments)
-		}
+			this.setBtnState();
+			console.log(arguments);
+		},
+		max(){this.setBtnState();},
+		min(){this.setBtnState();},
 	}
 };
 </script>
