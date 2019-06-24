@@ -27,10 +27,11 @@
     }
 </style>
 <script>
-import baseMixin from '../mixin.js';
+// import baseMixin from '../mixin.js';
 export default {
     name:'cmui-list-item',
-    mixins:[baseMixin],
+    // mixins:[baseMixin],
+    inject:['bus'],
     props:{
         title:{type:String,default:''},
         bgcolor:{type:String,default:''},
@@ -38,49 +39,78 @@ export default {
     },
     data:function(){
         return {
-            position:{}
+            position:{},
+            index:0
         }
     },
     computed:{
         itemContainerStyle(){
-            let parent=this.getParent('cmui-list')
-            ,   border
-            ,   boxShadow
-            ;
+            // let parent=this.getParent('cmui-list')
+            // ,   border
+            // ,   boxShadow
+            // ;
+            // if(this.border&&parent.border&&parent.realSpace!==0){
+            //   boxShadow='0px 0px 0px 1px '+parent.borderColor;
+            // }
+            // return {
+            //   border,
+            //   boxShadow,
+            // }
+            //注入优化
+            let boxShadow,parent=this.bus.parent;
             if(this.border&&parent.border&&parent.realSpace!==0){
-              boxShadow='0px 0px 0px 1px '+parent.borderColor;
+                boxShadow='0px 0px 0px 1px '+parent.borderColor;
             }
-            return {
-              border,
-              boxShadow,
-            }
+            return{boxShadow}
         }
+    },
+    created(){
+        this.index=this.bus.children.push(this)-1;
+    },
+    destroyed(){
+        _.remove(this.bus.children,this);
     },
     methods:{
         itemStyle(){
-            let width,clear,boxShadow,backgroundColor,padding;
-            let parent=this.getParent('cmui-list')
-                ,   col=parent.realCol
+            // let width,clear,boxShadow,backgroundColor,padding;
+            // let parent=this.getParent('cmui-list')
+            //     ,   col=parent.realCol
+            //     ,   colCount=(_.isArray(col)?col.length:col)||1
+            //     ,   index=this.index//_.findIndex(parent.itemList,this);
+            // padding=parent.realSpace /2 +'rem';
+            // if(_.isNumber(col)&&col!==1){
+            //     width=100/col+'%';
+            // }else if(_.isArray(col)){
+            //     let total=col.reduce((pre,next)=>pre+next);
+            //     width=100*col[index%col.length]/total+'%';
+            // }
+            // if(this.bgcolor){
+            //     backgroundColor=this.bgcolor;
+            // }
+            // if(index===-1){
+            //     parent.itemList=parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
+            //     index=_.findIndex(parent.itemList,this);
+            // }
+            // clear=index%colCount===0?'left':undefined;
+            // boxShadow=parent.boxShadow;
+            // return{width,clear,boxShadow,backgroundColor,padding}
+
+            //注入优化
+            let width
+                ,   col=this.bus.parent.realCol
                 ,   colCount=(_.isArray(col)?col.length:col)||1
-                ,   index=_.findIndex(parent.itemList,this);
-            padding=parent.realSpace /2 +'rem';
+                ,   clear=this.index%colCount===0?'left':undefined
+                ,   padding=this.bus.parent.realSpace /2 +'rem'
+                ,   boxShadow=this.bus.parent.boxShadow
+                ,   backgroundColor=this.bgcolor;
+            ;
             if(_.isNumber(col)&&col!==1){
                 width=100/col+'%';
             }else if(_.isArray(col)){
                 let total=col.reduce((pre,next)=>pre+next);
-                width=100*col[index%col.length]/total+'%';
+                width=100*col[this.index%col.length]/total+'%';
             }
-
-            if(this.bgcolor){
-                backgroundColor=this.bgcolor;
-            }
-            if(index===-1){
-                parent.itemList=parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
-                index=_.findIndex(parent.itemList,this);
-            }
-            clear=index%colCount===0?'left':undefined;
-            boxShadow=parent.boxShadow;
-            return{width,clear,boxShadow,backgroundColor,padding}
+            return {width,clear,padding,boxShadow,backgroundColor}
         }
     }
 };

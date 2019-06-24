@@ -11,10 +11,11 @@
 </template>
 <script>
 import cmuiListItem from "./list-item.vue";
-import cmuiList from "./list.vue";
-import base from '../mixin.js';
+// import cmuiList from "./list.vue";
+// import base from '../mixin.js';
 export default{
-	mixins:[base],
+	// mixins:[base],
+	inject:['bus'],
 	components:{
 		cmuiListItem
 	},
@@ -22,13 +23,13 @@ export default{
 		title:{type:String,default:''}
 	},
 	data:function(){
-		let parent=this.getParent('cmui-list');
+		let parent=this.bus.parent;//this.getParent('cmui-list');
 		return{
 			border:parent.border
 		}
 	},
 	created(){
-		let parent=this.getParent('cmui-list')
+		let parent=this.bus.parent;//this.getParent('cmui-list')
 		if(parent.index){
 			parent.groupList.push({
 				title:this.title,
@@ -37,7 +38,7 @@ export default{
 		}
 	},
 	destroyed(){
-		let parent=this.getParent('cmui-list')
+		let parent=this.bus.parent;//this.getParent('cmui-list')
 		if(parent.index){
 			_.remove(parent.groupList,item=>item.vm===this);
 		}

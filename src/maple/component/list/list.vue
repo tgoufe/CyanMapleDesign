@@ -46,6 +46,14 @@ export default {
       needOverHide
     };
   },
+  provide(){
+    return {
+      bus:{
+        parent:this,
+        children:[]
+      }
+    }
+  },
   computed: {
     realSpace: function() {
       var value = parseInt(this.space);
