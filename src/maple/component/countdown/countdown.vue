@@ -58,10 +58,11 @@
 						this.$emit('countdownend',this);
 					}else{
 					    let obj={};
-					    if(this.showDay){
-					        obj.day=Math.floor((countDownTime / 3600000) / 24)
+					    let day=Math.floor((countDownTime / 3600000) / 24);
+					    if(this.showDay&&day){
+					        obj.day=day
 						}
-						obj.hour=Math.floor((countDownTime / 3600000) % 24);
+						obj.hour=Math.floor((countDownTime / 3600000) % 24)+(this.showDay?0:day*24);
 						obj.minute=Math.floor((countDownTime / 60000) % 60);
 						obj.sec=Math.floor((countDownTime / 1000) % 60);
 						if(this.showMilli){
