@@ -1,7 +1,6 @@
 import {forEach} from 'lodash';
 var alias = {
     androidchrome: "androidChrome",
-    guge: "chrome",
     webview: "webView",
     minimalui: "minimalUi",
     statusbar: "statusBar",
