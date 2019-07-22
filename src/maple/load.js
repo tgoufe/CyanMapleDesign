@@ -1,6 +1,9 @@
 import {forEach,isObject} from 'lodash';
 function BaseLoad(src,tagName,props={}){
-    return new Promise(resolve => {
+    if(!src){
+        return new Promise.resolve(null);
+    }
+    return new Promise((resolve,reject) => {
         let dom =document.createElement(tagName);
         dom.src=src;
         (function loop(props,target){
@@ -18,13 +21,15 @@ function BaseLoad(src,tagName,props={}){
             });
         };
         dom.onError=function(){
-            resolve(null);
+            reject(null);
         };
         document.body.appendChild(dom);
     })
 }
-function load(options={}){
-    let{type,url}=options;
+function load(type,url){
+    if(isObject(type)){
+        ({type,url}=type)
+    }
     switch (type) {
         case 'js':
         case 'javascript':
