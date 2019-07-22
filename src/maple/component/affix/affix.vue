@@ -42,7 +42,8 @@ export default {
     data () {
         return {
             affix: false,
-            styles: {}
+            styles: {},
+            containerHeight:null
         };
     },
     computed: {
@@ -78,10 +79,16 @@ export default {
                     width: `${this.$el.offsetWidth}px`,
                     position:'fixed'
                 };
+                if(!this.$el.style.height){
+                    this.$el.style.height=`${elHeight}px`
+                }else{
+                    this.containerHeight=this.$el.style.height;
+                }
                 vm.$emit('on-change', true);
             } else if ((elOffset.top - this.top) >= scrollTop && this.offsetType == 'top' && affix) {
                 this.affix = false;
                 this.styles = null;
+                this.$el.style.height=this.containerHeight?`${this.containerHeight}px`:null;
                 vm.$emit('on-change', false);
             }
             // Fixed Bottom
@@ -91,12 +98,19 @@ export default {
                     bottom: `${this.bottom}px`,
                     left: `${elOffset.left}px`,
                     width: `${this.$el.offsetWidth}px`,
-                    position:'fixed'
+                    position:'fixed',
+                    height:`${elHeight}px`
                 };
+                if(!this.$el.style.height){
+                    this.$el.style.height=`${elHeight}px`
+                }else{
+                    this.containerHeight=this.$el.style.height;
+                }
                 vm.$emit('on-change', true);
             } else if ((elOffset.top + this.bottom + elHeight) <= (scrollTop + windowHeight) && this.offsetType == 'bottom' && affix) {
                 this.affix = false;
                 this.styles = null;
+                this.$el.style.height=this.containerHeight?`${this.containerHeight}px`:null;
                 vm.$emit('on-change', false);
             }
         }
