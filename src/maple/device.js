@@ -1,3 +1,4 @@
+import {forEach} from 'lodash';
 var alias = {
     androidchrome: "androidChrome",
     guge: "chrome",
@@ -8,7 +9,12 @@ var alias = {
     wechat: "weixin",
     wx: "weixin"
 };
-
+var metaViewport=Array.from(document.getElementsByTagName('meta')).filter(item=>{
+    return item.getAttribute('name')==='viewport'
+});
+// Classes
+var classNames = [];
+var htmlClass=document.documentElement.classList;
 var device = function() {
     var l = arguments.length,
         i = 0,
@@ -100,22 +106,17 @@ if (device.os && device.os === "ios") {
         (osVersionArr[0] * 1 === 7
             ? osVersionArr[1] * 1 >= 1
             : osVersionArr[0] * 1 > 7) &&
-        $('meta[name="viewport"]').length > 0 &&
-        $('meta[name="viewport"]')
-            .attr("content")
-            .indexOf("minimal-ui") >= 0;
+            metaViewport.length > 0 &&
+            metaViewport.getAttribute('content').indexOf("minimal-ui") >= 0;
 }
 
 // Check for status bar and fullscreen app mode
-var windowWidth = $(window).width();
-var windowHeight = $(window).height();
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
 
 device.statusBar =
     device.webView &&
     windowWidth * windowHeight === screen.width * screen.height;
-
-// Classes
-var classNames = [];
 
 // Pixel Ratio
 device.pixelRatio = window.devicePixelRatio || 1;
@@ -142,16 +143,18 @@ if (device.os) {
 if (device.statusBar) {
     classNames.push("with-statusbar-overlay");
 } else {
-    $("html").removeClass("with-statusbar-overlay");
+    htmlClass.remove("with-statusbar-overlay");
 }
-
-// Add html classes
-if (classNames.length > 0) {$("html").addClass(classNames.join(" "));}
-
 // keng..
 device.weixin = /MicroMessenger/i.test(ua);
 
 // UC �����
 device.uc = ua.indexOf("UCBrowser") > -1;
-
+// Add html classes
+forEach(device,(value,key)=>{
+    if(value===true){
+        classNames.push(`device_${key}`);
+    }
+});
+htmlClass.add(...classNames);
 export default device;

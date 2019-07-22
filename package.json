@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "dayjs": "^1.5.16",
+    "lodash": "^4.17.15",
     "swiper": "^4.2.6",
     "vue": "^2.5.16"
   }
