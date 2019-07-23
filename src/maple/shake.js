@@ -23,6 +23,7 @@
  * 参数使用方式3：前两种方式混合使用，对象的优先级更高，会覆盖前面的参数
  * EXP：maple.shake(function(){console.log('begin')},{interval:2000})
  */
+import {filter,isFunction,isNumber,isBoolean,get,isPlainObject,find,throttle,assign} from 'lodash';
 let eventName=(function(){
     if('DeviceMotionEvent' in window){
         return 'devicemotion';
@@ -34,7 +35,7 @@ let eventName=(function(){
 })();
 class shakeHandle{
     constructor(options){
-        this.handleList=_.filter(options,_.isFunction);
+        this.handleList=filter(options,isFunction);
         this.handle=function(e){
             let acceleration = e.acceleration||e.accelerationIncludingGravity, x, y, z;
                 if(acceleration){
@@ -68,16 +69,16 @@ class shakeHandle{
 }
 export default function shake(){
 	let options={
-		startFn:_(arguments).filter(_.isFunction).get(0,new Function),
-		endFn:_(arguments).filter(_.isFunction).get(1,new Function),
-		interval:_(arguments).filter(_.isNumber).get(0,0),//每次触发startFn的时间间隔
-		continueEvent:_(arguments).filter(_.isBoolean).get(0,true)//摇动过程中是否持续执行startFn事件
+		startFn:filter(arguments,isFunction)[0]||new Function,
+		endFn:filter(arguments,isFunction)[1]||new Function,
+		interval:filter(arguments,isNumber)[0]||0,//每次触发startFn的时间间隔
+		continueEvent:filter(arguments,isBoolean)[0]||true//摇动过程中是否持续执行startFn事件
 	};
-	_.assign(options,_(arguments).find(_.isPlainObject));
+	assign(options,find(arguments,isPlainObject));
 	if(!options.continueEvent){
 		options.hasRun=false;
 	}else if(options.interval>16){//针对16毫秒的时差做兼容
-		options.startFn=_.throttle(options.startFn,options.interval,{ 'trailing': false });
+		options.startFn=throttle(options.startFn,options.interval,{ 'trailing': false });
 	}
 	return new shakeHandle(options);
 }

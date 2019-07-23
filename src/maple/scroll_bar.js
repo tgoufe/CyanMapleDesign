@@ -1,6 +1,7 @@
 import log from "./log";
+import {remove,isElement} from 'lodash';
 export default function(...arg) {
-	let dom = _.remove(arg, _.isElement)[0] || document.documentElement;
+	let dom = remove(arg, isElement)[0] || document.documentElement;
 	let domScrollTop=dom.scrollTop||document.body.scrollTop;
 	let domScrollLeft=dom.scrollLeft||document.body.scrollLeft;
 	let argLen = arg.length;
