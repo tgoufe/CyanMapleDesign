@@ -9,7 +9,8 @@ var alias = {
     wx: "weixin"
 };
 var metaViewport=Array.from(document.getElementsByTagName('meta')).filter(item=>{
-    return item.getAttribute('name')==='viewport'
+    return item.getAttribute('name')==='viewport'&&
+        item.getAttribute('content').indexOf("minimal-ui") >= 0;
 });
 // Classes
 var classNames = [];
@@ -105,8 +106,7 @@ if (device.os && device.os === "ios") {
         (osVersionArr[0] * 1 === 7
             ? osVersionArr[1] * 1 >= 1
             : osVersionArr[0] * 1 > 7) &&
-            metaViewport.length > 0 &&
-            metaViewport.getAttribute('content').indexOf("minimal-ui") >= 0;
+            metaViewport.length > 0 ;
 }
 
 // Check for status bar and fullscreen app mode
