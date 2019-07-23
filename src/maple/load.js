@@ -1,18 +1,15 @@
 import {forEach,isObject} from 'lodash';
 function BaseLoad(src,tagName,props={}){
-    if(!src){
-        return new Promise.resolve(null);
-    }
-    return new Promise((resolve,reject) => {
+    return !src
+    ? new Promise.resolve(null)
+    : new Promise((resolve,reject) => {
         let dom =document.createElement(tagName);
         dom.src=src;
         (function loop(props,target){
             forEach(props,(value,key)=>{
-                if(isObject(value)){
-                    loop(value,target[key])
-                }else{
-                    target[key]=value;
-                }
+                isObject(value)
+                ? loop(value,target[key])
+                : target[key]=value;
             })
         })(props,dom);
         dom.onload=function(){

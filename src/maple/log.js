@@ -1,7 +1,3 @@
-/**
- * Created by chenqifeng on 2016/8/30.
- */
-
 export default function (text,data){
     let styleString='';
     styleString+='font-size:13px;';
