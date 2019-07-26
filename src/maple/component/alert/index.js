@@ -1,9 +1,22 @@
 import alertVue from "./index.vue";
-let defaults = _.mapValues(alertVue.props,item=>item.default);
+import {
+    defaults,
+    each,
+    filter,
+    find,
+    isFunction,
+    isObject,
+    isPlainObject,
+    last,
+    mapValues,
+    once,
+    uniqueId
+} from 'lodash';
+let defaultsOptions = mapValues(alertVue.props,item=>item.default);
 Vue.component('cmui-alert', alertVue);
-let id = 'cmui-alert-' + _.uniqueId();
+let id = 'cmui-alert-' + uniqueId();
 let CURRENT = null;
-let setCurrent = _.once(function() {
+let setCurrent = once(function() {
     window && $('<cmui-alert id="' + id + '" >').appendTo('body');
     CURRENT = new Vue({
         el: '#' + id
@@ -13,17 +26,17 @@ function Alert() {
     let options = {};
     if (arguments) {
         if (arguments.length > 1) {
-            options.okFn = _.filter(arguments, _.isFunction)[0];
-            options.callback = _.filter(arguments, _.isFunction)[1];
-            let stringList = _.filter(arguments, item => (typeof item).match(/string|number|boolean/)).map(item => item.toString());
-            options.content = _.last(stringList);
+            options.okFn = filter(arguments, isFunction)[0];
+            options.callback = filter(arguments, isFunction)[1];
+            let stringList = filter(arguments, item => (typeof item).match(/string|number|boolean/)).map(item => item.toString());
+            options.content = last(stringList);
             if (stringList.length > 1) {
                 options.title = stringList[0];
             }
         } else {
             if ((typeof arguments[0]).match(/string|number|boolean/)) {
                 options.content = arguments[0];
-            } else if (_.isObject(arguments[0])) {
+            } else if (isObject(arguments[0])) {
                 options = arguments[0];
             } else {
                 return CURRENT;
@@ -32,9 +45,9 @@ function Alert() {
     } else {
         return CURRENT;
     }
-    options = _.defaults(_.find(arguments, _.isPlainObject), options, defaults);
+    options = defaults(find(arguments, isPlainObject), options, defaultsOptions);
     setCurrent();
-    _.each(options, (value, key) => {
+    each(options, (value, key) => {
         CURRENT[key] = value;
     });
     CURRENT.visible = true;

@@ -1,4 +1,5 @@
 import './index.scss';
+import '../../src/maple/theme.scss'
 import '../../src/pageComponent/head/index.js';
 import componentList from './componentList.vue';
 import badge from './badge.vue';

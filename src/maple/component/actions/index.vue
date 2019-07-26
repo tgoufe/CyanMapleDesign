@@ -12,6 +12,7 @@
 </template>
 <script>
 import cmuiPopup from '../popup/popup.vue';
+import {isFunction,isObject,defaults} from 'lodash';
 export default {
     props: {
         items: { type: Array, default: [] },
@@ -36,17 +37,17 @@ export default {
         cancel: function() {
             this.visible=false;
             this.$emit('cancel', this);
-            _.isFunction(this.cancelFn) && this.cancelFn()
+            isFunction(this.cancelFn) && this.cancelFn()
         },
         itemEvent: function(item, index) {
             this.visible=false;
             this.$emit('select', item, index, this);
-            _.isFunction(this.selectFn) && this.selectFn(item, index);
+            isFunction(this.selectFn) && this.selectFn(item, index);
         },
         getActionText(value, index) {
-            if (_.isFunction(value)) {
+            if (isFunction(value)) {
                 return this.getActionText(value());
-            } else if (_.isObject(value)) {
+            } else if (isObject(value)) {
                 value.text = value.text || index;
                 return String(value.text);
             } else {
@@ -54,7 +55,7 @@ export default {
             }
         },
         getActionStyle(itemStyle,baseStyle){
-        	return _.defaults(itemStyle,baseStyle)
+        	return defaults(itemStyle,baseStyle)
         }
     }
 }

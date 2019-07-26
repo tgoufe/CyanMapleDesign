@@ -22,8 +22,9 @@
                 </cmui-list-item>
             </cmui-list>
         </div>
+
         <!--date demo-->
-        <cmui-date-picker @select="test"></cmui-date-picker>
+        <!--<cmui-date-picker @select="test"></cmui-date-picker>-->
     </div>
 </template>
 <script>
@@ -151,10 +152,6 @@
                 
             ]
         },
-        // business: {
-        //     pageTitle: '业务组件',
-        //     list: ['mask', 'notice', 'action', 'alert']
-        // },
         form: {
         pageTitle: '表单组件',
         list: [
@@ -222,7 +219,7 @@
         },
         methods:{
             test(value){
-                console.log(value)
+                console.log(arguments)
             }
         },
         watch: {
