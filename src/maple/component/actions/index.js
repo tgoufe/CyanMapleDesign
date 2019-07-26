@@ -15,10 +15,12 @@ Vue.component('cmui-actions',actionsVue);
 let id='cmui-actions-'+uniqueId();
 let CURRENT=null;
 let setCurrent=once(function(){
-  window&&$('<cmui-actions id="'+id+'">').appendTo('body');
-  CURRENT=new Vue({
-    el:'#'+id
-  }).$children[0];
+	let dom=document.createElement('cmui-actions');
+	dom.id=id;
+	document.body.appendChild(dom);
+	CURRENT=new Vue({
+		el:'#'+id
+	}).$children[0];
 });
 function actions(){
 	setCurrent();

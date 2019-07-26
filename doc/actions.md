@@ -11,7 +11,7 @@ maple.actions({
 })
 ~~~
 
-options说明
+### options说明
 
 | 参数          | 说明                | 类型       | 默认值  |    |
 |:------------|:------------------|:---------|:-----|:---|
@@ -23,6 +23,7 @@ options说明
 | itemStyle   | 每一个Item的样式        | object   | null |    |
 | selectFn      | 点击item时触发的函数      | function | null |  回调函数接收两个参数，点击的文本内容和索引  |
 | activeIndex | 添加active类的item的索引 | number   | -1   |    |
+| visible| 是否可见|Boolean|true|通常情况不需要设置
 
 ### items结构:
 
