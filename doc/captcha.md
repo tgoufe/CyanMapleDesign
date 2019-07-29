@@ -32,3 +32,25 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 | 事件名称  |触发时间|参数
 |---|---|---|
 | inputEnd  |全部内容输入完成时触发|value
+
+### 样式接口
+```scss
+//层叠样式接口
+.cmui-captcha{
+  .cmui-captcha__warp{
+    .cmui-captcha__item{
+      &.active{}
+      .cmui-captcha__dot{}
+      .cmui-captcha__line{}
+    }
+  }
+}
+//平行样式接口
+.cmui-captcha{}
+.cmui-captcha__warp{}
+.cmui-captcha__item{}
+.cmui-captcha__item.active{}
+.cmui-captcha__dot{}
+.cmui-captcha__line{}
+```
+

@@ -41,6 +41,10 @@ npm start
 ## 组件应用
 * [actions](doc/actions.md)
 * [affix](doc/affix.md)
+* [alert](doc/alert.md)
+* [captcha](doc/captcha.md)
+* [confirm](doc/confirm.md)
+* [popup](doc/popup.md)
 ## 贡献
 欢迎给我们提issue或PR。
 
