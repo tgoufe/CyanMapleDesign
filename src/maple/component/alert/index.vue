@@ -18,10 +18,9 @@
 				</div>
 			</div>
 			<div class="cmui-dialog__buttons cmui-alert__buttons">
-				<div class="cmui-alert__button cmui-dialog__button" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" @click="cancel()">
-					<template v-html="okText" v-if="!$slots.bottom"></template>
-					<slot name="bottom" v-else></slot>
+				<div class="cmui-alert__button cmui-dialog__button" :class="{'okDisable':okDisable}" v-if="!$slots.bottom" v-html="okText" :style="okDisable?okDisableStyle:okStyle" @click="cancel()">
 				</div>
+				<slot name="bottom" v-else></slot>
 			</div>
 	</cmui-popup>
 </template>
@@ -43,9 +42,10 @@
 			cmuiPopup
 		},
 		data:function(){
+			let dom=document.documentElement;
 			return {
 				bodyStyle:{
-					'max-height':$(window).height()*.72-69-parseInt($('html').css('fontSize'))+'px'
+					'max-height':dom.clientHeight*.72-69-parseInt(getComputedStyle(dom).fontSize)+'px'
 				}
 			}
 		},

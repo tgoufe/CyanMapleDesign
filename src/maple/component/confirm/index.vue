@@ -6,7 +6,10 @@
 	:visible.sync="selfVisible"
 	:target-class="`cmui-dialog__container cmui-confirm__container ${targetClass}`"
 	>
-		<div class="cmui-dialog__title cmui-confirm__title" slot="top" v-html="title" v-if="title"></div>
+		<div class="cmui-dialog__title cmui-confirm__title" v-if="title||$slots.top">
+			<template v-html="title" v-if="!$slots.top"></template>
+			<slot name="top" v-else></slot>
+		</div>
 		<div class="cmui-dialog__warp cmui-confirm__warp">
 			<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="!content||$slots.default" :style="bodyStyle">
 				<slot v-if="$slots.default"></slot>
@@ -16,8 +19,11 @@
 			</div>
 		</div>
 		<div class="cmui-dialog__buttons cmui-confirm__buttons flex-container" slot="bottom" :class="{reverse:reverse}">
-			<div class="cmui-confirm__button ok cmui-dialog__button flex1" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" v-html="okText" @click="!okDisable&&ok()"></div>
-			<div class="cmui-confirm__button cancel cmui-dialog__button flex1" :class="{'cancelDisable':cancelDisable}" :style="cancelDisable?cancelDisableStyle:cancelStyle" v-html="cancelText" @click="!cancelDisable&&cancel()"></div>
+			<template v-if="!$slots.bottom">
+				<div class="cmui-confirm__button ok cmui-dialog__button flex1" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" v-html="okText" @click="!okDisable&&ok()"></div>
+				<div class="cmui-confirm__button cancel cmui-dialog__button flex1" :class="{'cancelDisable':cancelDisable}" :style="cancelDisable?cancelDisableStyle:cancelStyle" v-html="cancelText" @click="!cancelDisable&&cancel()"></div>
+			</template>
+			<slot name="bottom" v-else></slot>
 		</div>
 	</cmui-popup>
 </template>
@@ -45,9 +51,10 @@
 			cmuiPopup
 		},
 		data:function(){
+			let dom=document.documentElement;
 			return {
 				bodyStyle:{
-					'max-height':$(window).height()*.72-69-parseInt($('html').css('fontSize'))+'px'
+					'max-height':dom.clientHeight*.72-69-parseInt(getComputedStyle(dom).fontSize)+'px'
 				}
 			}
 		},
