@@ -36,6 +36,8 @@ npm start
 3.删除package.json中的devDependencies中的内容
 4.安装autoprefixer和node-sass:npm i node-sass autoprefixer -D
 5.直接执行npm run start,第一次执行需要几分钟时间来安装依赖并生成缓存，之后速度回很快
+# api
+[全局方法](blob/master/doc/methodsAPI.md)
 ## 贡献
 欢迎给我们提issue或PR。
 
