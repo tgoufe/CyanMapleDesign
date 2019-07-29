@@ -84,12 +84,12 @@ export default {
                 }else{
                     this.containerHeight=this.$el.style.height;
                 }
-                vm.$emit('on-change', true);
+                vm.$emit('change', true);
             } else if ((elOffset.top - this.top) >= scrollTop && this.offsetType == 'top' && affix) {
                 this.affix = false;
                 this.styles = null;
                 this.$el.style.height=this.containerHeight?`${this.containerHeight}px`:null;
-                vm.$emit('on-change', false);
+                vm.$emit('change', false);
             }
             // Fixed Bottom
             if ((elOffset.top + this.bottom + elHeight) > (scrollTop + windowHeight) && this.offsetType == 'bottom' && !affix) {
@@ -106,12 +106,12 @@ export default {
                 }else{
                     this.containerHeight=this.$el.style.height;
                 }
-                vm.$emit('on-change', true);
+                vm.$emit('change', true);
             } else if ((elOffset.top + this.bottom + elHeight) <= (scrollTop + windowHeight) && this.offsetType == 'bottom' && affix) {
                 this.affix = false;
                 this.styles = null;
                 this.$el.style.height=this.containerHeight?`${this.containerHeight}px`:null;
-                vm.$emit('on-change', false);
+                vm.$emit('change', false);
             }
         }
     }
