@@ -36,26 +36,29 @@
 		props:{
 			length:{type:Number,default:4},
 			type:{type:String,default:'number'},
-			hide:{type:Boolean,default:false}
+			hide:{type:Boolean,default:false},
+			value:{type:String,default:''}
 		},
 		data:function(){
 			return {
-				value:'',
 				activeIndex:-1
 			}
 		},
 		watch:{
-			value(newValue,oldValue){
-				if(this.type==='number'){
-					if(!/^\d+$/.test(newValue)&&newValue.length){
-						this.value=/^\d+$/.test(oldValue)?oldValue:'';
-						return ;
+			value:{
+				immediate:true,
+				handler(newValue,oldValue){
+					if(this.type==='number'){
+						if(!/^\d+$/.test(newValue)&&newValue.length){
+							this.value=/^\d+$/.test(oldValue)?oldValue:'';
+							return ;
+						}
 					}
+					if(newValue.length>=this.length){
+						this.inputEnd()
+					}
+					this.setActiveIndex();
 				}
-				if(newValue.length>=this.length){
-					this.inputEnd()
-				}
-				this.setActiveIndex();
 			}
 		},
 		methods:{
@@ -71,11 +74,7 @@
 				this.setActiveIndex(-1);
 			},
 			setActiveIndex(index){
-				if(_.isUndefined(index)){
-					this.activeIndex=this.value.length
-				}else{
-					this.activeIndex=-1
-				}
+				this.activeIndex=index?-1:this.value.length;
 			}
 		}
 	}
