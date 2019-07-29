@@ -76,18 +76,50 @@ maple(1,2,3,{color:'blue'})
 
 你也可以使用组件的方式进行调用
 ```javascript
-<cmui-actions 
-    :visible.sync="actionsVisible"
-    :items=[1,2,3]
-    @select="selectFn"
-    @cancel="cancelFn"
-    cancelText="cancel"
-    :cancelStyle="{color:'blue}"
-    :itemStyle="{color:'red'"
-    activeIndex="2"
-    title="this is a title"
-/>
+<template>
+    <cmui-actions 
+        :visible.sync="actionsVisible"
+        :items="items"
+        @select="selectFn"
+        @cancel="cancelFn"
+        cancelText="cancel"
+        :cancelStyle="{color:'blue}"
+        :itemStyle="{color:'red'"
+        activeIndex="2"
+        title="this is a title"
+    />
+</template>
+<script>
+    export default{
+        data:function(){
+            return{
+                actionsVisible:false,
+                items:[1,2,3]
+            }
+        },
+        methods:{
+            select(item,index){},
+            cancel(){}
+        }
+    }
+</script>
 ```
 ### 抛出的事件
 * select:点击任意一项的时候被调用
+* * 回调参数 ：item index
 * cancel:点击取消的时候被调用
+
+### 样式接口
+```scss
+.cmui-actions{
+  .cmui-actions__container{
+    .cmui-actions__title{}
+    .cmui-actions__group{
+      .cmui-actions__button{}
+    }
+    .cmui-actions__cancel{
+      .cmui-actions__button{}
+    }
+  }
+}
+```
