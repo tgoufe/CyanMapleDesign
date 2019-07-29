@@ -11,7 +11,7 @@
 	    >
 	      <div class="cmui-popup__content"
 			:style="[_contentStyle,targetStyle]"
-			:class="[targetClass]"
+			:class="[targetClass,{'flex-container-col':useFlex}]"
 	      >
 	        <div class="cmui-popup__top">
 				<slot name="top"></slot>
@@ -100,6 +100,7 @@
 }
 </style>
 <script type="text/javascript">
+	import device from '../../device.js';
 	let scrollRec;
 	export default{
 		name:'popup',
@@ -110,6 +111,13 @@
 			targetStyle:Object,
 			targetClass:Array,
 			stopPageScroll:{type:Boolean,default:true}
+		},
+		data:function(){
+			let isIos=device.os==='ios';
+			let ua=/OS\s(\d+)/.exec(window.navigator.userAgent);
+			return {
+				useFlex:!(ua&&isIos&&parseInt(ua[1]<9))
+			}
 		},
 		methods:{
 			maskClick(){
@@ -155,13 +163,13 @@
 				handler:function(value){
 					if(this.stopPageScroll){
 						if(value){
-							scrollRec=$(document).scrollTop();
+							scrollRec=document.documentElement.scrollTop||document.body.scrollTop;
 							document.body.style.top = -scrollRec+'px';
-							$('body').addClass('fixed-full');
+							document.body.classList.add('fixed-full');
 						}else{
-							document.body.style.removeProperty('top')
-							$('body').removeClass('fixed-full');
-							$(document).scrollTop(scrollRec);
+							document.body.style.removeProperty('top');
+							document.body.classList.remove('fixed-full');
+							document.documentElement.scrollTop=scrollRec;
 						}
 					}
 					this.$emit('update:visible', value);
