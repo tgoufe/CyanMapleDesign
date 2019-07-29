@@ -38,6 +38,9 @@ npm start
 5.直接执行npm run start,第一次执行需要几分钟时间来安装依赖并生成缓存，之后速度回很快
 # api
 [全局方法](doc/methodsAPI.md)
+## 组件应用
+* [actions](doc/actions.md)
+* [affix](doc/affix.md)
 ## 贡献
 欢迎给我们提issue或PR。
 
