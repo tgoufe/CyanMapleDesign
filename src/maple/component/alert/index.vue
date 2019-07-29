@@ -5,7 +5,10 @@
 			class="cmui-alert"
 			:mask-event="false"
 			:target-class="`cmui-dialog__container cmui-alert__container ${targetClass}`">
-			<div class="cmui-dialog__title cmui-alert__title" v-html="title" v-if="title" slot="top"></div>
+			<div class="cmui-dialog__title cmui-alert__title" v-if="title||$slots.top">
+				<template v-html="title" v-if="!$slots.top"></template>
+				<slot name="top" v-else></slot>
+			</div>
 			<div class="cmui-dialog__warp cmui-alert__warp">
 				<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="!content||$slots.default" :style="bodyStyle">
 					<slot v-if="$slots.default"></slot>
@@ -14,8 +17,11 @@
 					
 				</div>
 			</div>
-			<div class="cmui-dialog__buttons cmui-alert__buttons" slot="bottom">
-				<div class="cmui-alert__button cmui-dialog__button" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" v-html="okText" @click="cancel()" slot="bottom"></div>
+			<div class="cmui-dialog__buttons cmui-alert__buttons">
+				<div class="cmui-alert__button cmui-dialog__button" :class="{'okDisable':okDisable}" :style="okDisable?okDisableStyle:okStyle" @click="cancel()">
+					<template v-html="okText" v-if="!$slots.bottom"></template>
+					<slot name="bottom" v-else></slot>
+				</div>
 			</div>
 	</cmui-popup>
 </template>

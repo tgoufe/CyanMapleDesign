@@ -17,9 +17,11 @@ Vue.component('cmui-alert', alertVue);
 let id = 'cmui-alert-' + uniqueId();
 let CURRENT = null;
 let setCurrent = once(function() {
-    window && $('<cmui-alert id="' + id + '" >').appendTo('body');
-    CURRENT = new Vue({
-        el: '#' + id
+    let dom=document.createElement('cmui-alert');
+    dom.id=id;
+    document.body.appendChild(dom);
+    CURRENT=new Vue({
+        el:'#'+id
     }).$children[0];
 });
 function Alert() {
@@ -53,7 +55,7 @@ function Alert() {
     CURRENT.visible = true;
     if (typeof options.callback === 'function') {
         CURRENT.$nextTick(function() {
-            options.callback($(CURRENT.$el));
+            options.callback(CURRENT.$el);
         });
     }
     return CURRENT;
