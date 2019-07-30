@@ -36,6 +36,7 @@ import progress from './ui/progress.vue';
 import slidebar from './ui/slidebar.vue';
 import scroll from './ui/scroll.vue';
 import captcha from './ui/captcha.vue';
+import countdown from './ui/countdown.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},
@@ -70,6 +71,7 @@ const routes = [
     {path: '/slidebar/', component: slidebar},
     {path: '/scroll/', component: scroll},
     {path: '/captcha/', component: captcha},
+    {path: '/countdown/', component: countdown},
 ];
 const router = new VueRouter({
     routes

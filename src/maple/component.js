@@ -6,6 +6,7 @@ import indexlist from './component/indexlist/indexlist.vue';
 import indexlistItem from './component/indexlist/indexlistItem.vue';
 import collapse from './component/collapse/collapse.vue';
 import collapseItem from './component/collapse/collapse-item.vue';
+import countdown from './component/countdown/countdown.vue'
 import affix from './component/affix/affix.vue';
 import popup from './component/popup/popup.vue';
 import swiper from './component/swiper/swiper.vue';
@@ -18,6 +19,7 @@ export default {
 	,	'cmui-picker': pick
 	,	'cmui-collapse': collapse
 	,	'cmui-collapse-item': collapseItem
+	,	'cmui-countdown':countdown
 	,	'cmui-affix': affix
 	,	'cmui-popup': popup
 	,	'cmui-scroll': scroll

@@ -35,7 +35,7 @@ import list      from './component/list/index.js';
 import tabbar    from './component/tabbar/index.js';
 import form      from './component/form/index.js';
 import maskPanel from './component/maskPanel/index.js';
-import countdown from './component/countdown/index.js';
+// import countdown from './component/countdown/index.js';
 import picker from './component/pick/index.js';
 maple.notice = notice;
 maple.alert = alert;
@@ -47,7 +47,7 @@ maple.tabbar = tabbar;
 maple.list = list;
 maple.form = form;
 maple.maskPanel = maskPanel;
-maple.countdown = countdown;
+// maple.countdown = countdown;
 maple.message = message;
 maple.picker=picker;
 // // // 初始化通用组件

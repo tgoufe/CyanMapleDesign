@@ -6,25 +6,26 @@
 	</div>
 </template>
 <style>
-	.countdown-container{
-		background-color:#232323;
-		color:#ffffff;
-		padding:1px 3px;
-		border-radius:2px;
-		position: relative;
-	}
-	.countdown-container:not(:last-child){
-		margin-right: 10px;
-	}
-	.countdown-container:not(:last-child):after{
-		content: ':';
-		color:#232323;
-		position: absolute;
-		right:-7px;
-		top:0;
-	}
+.countdown-container{
+	background-color:#232323;
+	color:#ffffff;
+	padding:1px 3px;
+	border-radius:2px;
+	position: relative;
+}
+.countdown-container:not(:last-child){
+	margin-right: 10px;
+}
+.countdown-container:not(:last-child):after{
+	content: ':';
+	color:#232323;
+	position: absolute;
+	right:-7px;
+	top:0;
+}
 </style>
 <script>
+	import {isNumber,mapValues,padStart} from 'lodash';
 	export default{
 		props:{
 			nowTime:{type:Number,default:+new Date},
@@ -40,7 +41,7 @@
 		mounted(){
 			var vm=this,
 				intervalTime = this.showMilli?100:1000;
-			if(_.isNumber(this.endTime)&&_.isNumber(this.nowTime)&&this.endTime>this.nowTime){
+			if(isNumber(this.endTime)&&isNumber(this.nowTime)&&this.endTime>this.nowTime){
 				vm.nowTime+=intervalTime;
 				this.timer=setInterval(function(){
 					vm.nowTime+=intervalTime;
@@ -68,7 +69,7 @@
 						if(this.showMilli){
 							obj.millSec = Math.floor((countDownTime / 100) % 10)
 						}
-						this.contentList=_.mapValues(obj,item=>_.padStart(item,2,0))
+						this.contentList=mapValues(obj,item=>padStart(item,2,0))
 					}
 				}
 			},
@@ -83,9 +84,9 @@
 					}, intervalTime);
 				}
 			},
-			destroyed(){
-                clearTimeout(this.timer);
-			}
+		},
+		destroyed(){
+			clearTimeout(this.timer);
 		}
 	}
 </script>

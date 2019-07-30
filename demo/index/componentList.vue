@@ -144,6 +144,12 @@
                     icon: 'baseIcon-ui_captcha',
                     path: '/captcha'
                 }
+                ,
+                {
+                    title: 'countdown',
+                    icon: 'baseIcon-ui_countdown',
+                    path: '/countdown'
+                }
             ]
         },
         page: {

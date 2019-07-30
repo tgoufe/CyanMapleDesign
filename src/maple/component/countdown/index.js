@@ -1,5 +1,11 @@
 import countdown from './countdown.vue';
-
+import {defaults,
+	find,
+	isBoolean,
+	isFunction,
+	isNumber,
+	isPlainObject,
+	isString} from 'lodash';
 Vue.component('cmui-countdown',countdown);
 let defaultOptions={
 	nowTime:+new Date,
@@ -14,15 +20,15 @@ function countDown(...arg){
 	@countdownend="end"
 	></cmui-countdown>`);
 	let endTime;
-	let time=_.find(arg,_.isNumber);
-	let parent=_.find(arg,_.isString);
-	let showMilli=_.find(arg,_.isBoolean);
-	let callback=_.find(arg,_.isFunction);
-	let options=_.find(arg,_.isPlainObject);
+	let time=find(arg,isNumber);
+	let parent=find(arg,isString);
+	let showMilli=find(arg,isBoolean);
+	let callback=find(arg,isFunction);
+	let options=find(arg,isPlainObject);
 	if(time){
 		endTime=defaultOptions.nowTime+time;
 	}
-	options=_.defaults(options,{
+	options=defaults(options,{
 		endTime,callback,parent,showMilli
 	},defaultOptions);
 	if($(options.parent).length){
@@ -34,7 +40,7 @@ function countDown(...arg){
 			},
 			methods:{
 				end(...arg){
-					if(_.isFunction(options.callback)){
+					if(isFunction(options.callback)){
 						options.callback(...arg);
 					}
 				}
