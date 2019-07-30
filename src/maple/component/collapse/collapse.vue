@@ -3,6 +3,26 @@
     <slot></slot>
   </div>
 </template>
+<style lang="scss" type="text/scss">
+  .cmui-collapse-item__body,.cmui-collapse-item__header{
+    border: 1px solid #dfe6ec;
+    margin-bottom: -1px;
+  }
+  .cmui-collapse-item{
+    &:last-child{
+      .cmui-collapse-item__body{
+        margin-bottom:0px;
+      }
+    }
+  }
+  .cmui-collapse-item__bodyWarp{
+    will-change: height;
+    overflow: hidden;
+  }
+  .collapse-transition {
+    transition: height .3s ease-in-out;
+  }
+</style>
 <script>
   export default {
     name: 'CMUICollapse',

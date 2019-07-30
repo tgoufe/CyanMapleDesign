@@ -20,6 +20,7 @@
 <script>
   import mixin from '../mixin.js';
   import CollapseTransition from './collapse-transition.js';
+  import findIndex from 'lodash';
   export default {
     name: 'CMUICollapseItem',
     componentName: 'CMUICollapseItem',
@@ -32,7 +33,7 @@
     },
     data(){
       return {
-        name:_.findIndex(this.$parent.$children,item=>item==this)
+        name:findIndex(this.$parent.$children,item=>item==this)
       }
     },
     computed: {
