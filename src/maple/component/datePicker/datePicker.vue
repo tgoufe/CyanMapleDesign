@@ -95,7 +95,8 @@
         },
         methods:{
             setYear(year){
-                this.now=new Date(this.now).setFullYear(year)
+                console.log(this.year,year)
+                this.now=new Date(this.now).setFullYear(year);
                 this.showYearList=false;
             },
             setMonth(month){
@@ -121,24 +122,3 @@
         }
     }
 </script>
-
-<style type="text/css" lang="scss">
-.cmui-datePicker{
-    .yearList{
-        .yearItem{
-        }
-    }
-    .monthList{
-        .monthItem{
-
-        }
-    }
-    .dayList{
-        .dayItem{
-            &.thisMonth{
-                background-color: blue;
-            }
-        }
-    }
-}
-</style>
