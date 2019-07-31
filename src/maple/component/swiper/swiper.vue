@@ -67,14 +67,17 @@
 }
 </style>
 <script>
+    import {ready} from '../../dom';
   const touchesStart = {};
   let isTouched;
   let isScrolling;
   let touchStartTime;
   let openedList=[];
-  window&&$(document).on('scroll',()=>{
-    openedList.forEach(item=>item.close());
-  })
+  ready(function(){
+      window.addEventListener('scroll',()=>{
+          openedList.forEach(item=>item.close());
+      })
+  });
 export default {
   name: "cmui-swiper",
   data: function() {

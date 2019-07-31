@@ -1,10 +1,12 @@
 import maskVue from './index.vue';
-
+import {ready} from '../../dom';
 Vue.component('cmui-mask',maskVue);
 var id=_.uniqueId('cmui-mask-');
 var CURRENT=null;
-$(function(){
-	$('<cmui-mask id="'+id+'"></cmui-mask>').appendTo('body');
+ready(function(){
+	let dom=document.createElement('cmui-mask');
+	dom.id=id;
+	document.body.appendChild(dom);
 	CURRENT=new Vue({
 		el:'#'+id
 	}).$children[0];

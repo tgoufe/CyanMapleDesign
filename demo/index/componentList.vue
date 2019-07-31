@@ -23,7 +23,7 @@
             </cmui-list>
         </div>
 
-        <!--date demo-->
+        <!--date docDemo-->
         <!--<cmui-date-picker @select="test"></cmui-date-picker>-->
     </div>
 </template>

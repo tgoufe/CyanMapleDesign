@@ -1,6 +1,6 @@
 import maple from './core';
-import { cookie } from './cache/cookie';
-maple.cookie = cookie;
+// import { cookie } from './cache/cookie';
+// maple.cookie = cookie;
 import { sessionData } from './cache/session';
 maple.sessionData = sessionData;
 import { localData } from './cache/local';
@@ -35,7 +35,7 @@ import list      from './component/list/index.js';
 import tabbar    from './component/tabbar/index.js';
 import form      from './component/form/index.js';
 import maskPanel from './component/maskPanel/index.js';
-// import countdown from './component/countdown/index.js';
+// import countdown from './components/countdown/index.js';
 import picker from './component/pick/index.js';
 maple.notice = notice;
 maple.alert = alert;

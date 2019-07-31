@@ -117,7 +117,7 @@ function makeMap (
 /**
  * Check if a tag is a built-in tag.
  */
-var isBuiltInTag = makeMap('slot,component', true);
+var isBuiltInTag = makeMap('slot,components', true);
 
 /**
  * Check if a attribute is a reserved attribute.
@@ -382,12 +382,12 @@ var config = ({
 
   /**
    * Check if a tag is reserved so that it cannot be registered as a
-   * component. This is platform-dependent and may be overwritten.
+   * components. This is platform-dependent and may be overwritten.
    */
   isReservedTag: no,
 
   /**
-   * Check if an attribute is reserved so that it cannot be used as a component
+   * Check if an attribute is reserved so that it cannot be used as a components
    * prop. This is platform-dependent and may be overwritten.
    */
   isReservedAttr: no,
@@ -1176,7 +1176,7 @@ strats.data = function (
     if (childVal && typeof childVal !== 'function') {
       process.env.NODE_ENV !== 'production' && warn(
         'The "data" option should be a function ' +
-        'that returns a per-instance value in component ' +
+        'that returns a per-instance value in components ' +
         'definitions.',
         vm
       );
@@ -1304,14 +1304,14 @@ var defaultStrat = function (parentVal, childVal) {
 };
 
 /**
- * Validate component names
+ * Validate components names
  */
 function checkComponents (options) {
   for (var key in options.components) {
     var lower = key.toLowerCase();
     if (isBuiltInTag(lower) || config.isReservedTag(lower)) {
       warn(
-        'Do not use built-in or reserved HTML elements as component ' +
+        'Do not use built-in or reserved HTML elements as components ' +
         'id: ' + key
       );
     }
@@ -2067,7 +2067,7 @@ function extractPropsFromVNodeData (
 ) {
   // we are only extracting raw values here.
   // validation and default values are handled in the child
-  // component itself.
+  // components itself.
   var propOptions = Ctor.options.props;
   if (isUndef(propOptions)) {
     return
@@ -2085,7 +2085,7 @@ function extractPropsFromVNodeData (
           attrs && hasOwn(attrs, keyInLowerCase)
         ) {
           tip(
-            "Prop \"" + keyInLowerCase + "\" is passed to component " +
+            "Prop \"" + keyInLowerCase + "\" is passed to components " +
             (formatComponentName(tag || Ctor)) + ", but the declared prop name is" +
             " \"" + key + "\". " +
             "Note that HTML attributes are case-insensitive and camelCased " +
@@ -2135,7 +2135,7 @@ function checkProp (
 // generated render function is guaranteed to return Array<VNode>. There are
 // two cases where extra normalization is needed:
 
-// 1. When the children contains components - because a functional component
+// 1. When the children contains components - because a functional components
 // may return an Array instead of a single root. In this case, just a simple
 // normalization is needed - if any child is an Array, we flatten the whole
 // thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
@@ -2282,7 +2282,7 @@ function resolveAsyncComponent (
 
     var reject = once(function (reason) {
       process.env.NODE_ENV !== 'production' && warn(
-        "Failed to resolve async component: " + (String(factory)) +
+        "Failed to resolve async components: " + (String(factory)) +
         (reason ? ("\nReason: " + reason) : '')
       );
       if (isDef(factory.errorComp)) {
@@ -2477,7 +2477,7 @@ function eventsMixin (Vue) {
       var lowerCaseEvent = event.toLowerCase();
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
         tip(
-          "Event \"" + lowerCaseEvent + "\" is emitted in component " +
+          "Event \"" + lowerCaseEvent + "\" is emitted in components " +
           (formatComponentName(vm)) + " but the handler is registered for \"" + event + "\". " +
           "Note that HTML attributes are case-insensitive and you cannot use " +
           "v-on to listen to camelCase events when using in-DOM templates. " +
@@ -2710,7 +2710,7 @@ function mountComponent (
         );
       } else {
         warn(
-          'Failed to mount component: template or render function not defined.',
+          'Failed to mount components: template or render function not defined.',
           vm
         );
       }
@@ -2745,7 +2745,7 @@ function mountComponent (
 
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
-  // component's mounted hook), which relies on vm._watcher being already defined
+  // components's mounted hook), which relies on vm._watcher being already defined
   new Watcher(vm, updateComponent, noop, null, true /* isRenderWatcher */);
   hydrating = false;
 
@@ -2769,7 +2769,7 @@ function updateChildComponent (
     isUpdatingChildComponent = true;
   }
 
-  // determine whether component has slot children
+  // determine whether components has slot children
   // we need to do this before overwriting $options._renderChildren
   var hasChildren = !!(
     renderChildren ||               // has new static slots
@@ -2916,9 +2916,9 @@ function flushSchedulerQueue () {
   // This ensures that:
   // 1. Components are updated from parent to child. (because parent is always
   //    created before the child)
-  // 2. A component's user watchers are run before its render watcher (because
+  // 2. A components's user watchers are run before its render watcher (because
   //    user watchers are created before the render watcher)
-  // 3. If a component is destroyed during a parent component's watcher run,
+  // 3. If a components is destroyed during a parent components's watcher run,
   //    its watchers can be skipped.
   queue.sort(function (a, b) { return a.id - b.id; });
 
@@ -2937,7 +2937,7 @@ function flushSchedulerQueue () {
           'You may have an infinite update loop ' + (
             watcher.user
               ? ("in watcher with expression \"" + (watcher.expression) + "\"")
-              : "in a component render function."
+              : "in a components render function."
           ),
           watcher.vm
         );
@@ -2952,7 +2952,7 @@ function flushSchedulerQueue () {
 
   resetSchedulerState();
 
-  // call component updated and activated hooks
+  // call components updated and activated hooks
   callActivatedHooks(activatedQueue);
   callUpdatedHooks(updatedQueue);
 
@@ -2975,7 +2975,7 @@ function callUpdatedHooks (queue) {
 }
 
 /**
- * Queue a kept-alive component that was activated during patch.
+ * Queue a kept-alive components that was activated during patch.
  * The queue will be processed after the entire tree has been patched.
  */
 function queueActivatedComponent (vm) {
@@ -3286,7 +3286,7 @@ function initProps (vm, propsOptions) {
       if (isReservedAttribute(hyphenatedKey) ||
           config.isReservedAttr(hyphenatedKey)) {
         warn(
-          ("\"" + hyphenatedKey + "\" is a reserved attribute and cannot be used as component prop."),
+          ("\"" + hyphenatedKey + "\" is a reserved attribute and cannot be used as components prop."),
           vm
         );
       }
@@ -3294,7 +3294,7 @@ function initProps (vm, propsOptions) {
         if (vm.$parent && !isUpdatingChildComponent) {
           warn(
             "Avoid mutating a prop directly since the value will be " +
-            "overwritten whenever the parent component re-renders. " +
+            "overwritten whenever the parent components re-renders. " +
             "Instead, use a data or computed property based on the prop's " +
             "value. Prop being mutated: \"" + key + "\"",
             vm
@@ -3304,7 +3304,7 @@ function initProps (vm, propsOptions) {
     } else {
       defineReactive(props, key, value);
     }
-    // static props are already proxied on the component's prototype
+    // static props are already proxied on the components's prototype
     // during Vue.extend(). We only need to proxy props defined at
     // instantiation here.
     if (!(key in vm)) {
@@ -3394,8 +3394,8 @@ function initComputed (vm, computed) {
       );
     }
 
-    // component-defined computed properties are already defined on the
-    // component prototype. We only need to define computed properties defined
+    // components-defined computed properties are already defined on the
+    // components prototype. We only need to define computed properties defined
     // at instantiation here.
     if (!(key in vm)) {
       defineComputed(vm, key, userDef);
@@ -3463,7 +3463,7 @@ function initMethods (vm, methods) {
     if (process.env.NODE_ENV !== 'production') {
       if (methods[key] == null) {
         warn(
-          "Method \"" + key + "\" has an undefined value in the component definition. " +
+          "Method \"" + key + "\" has an undefined value in the components definition. " +
           "Did you reference the function correctly?",
           vm
         );
@@ -3477,7 +3477,7 @@ function initMethods (vm, methods) {
       if ((key in vm) && isReserved(key)) {
         warn(
           "Method \"" + key + "\" conflicts with an existing Vue instance method. " +
-          "Avoid defining component methods that start with _ or $."
+          "Avoid defining components methods that start with _ or $."
         );
       }
     }
@@ -3582,7 +3582,7 @@ function initInjections (vm) {
         defineReactive(vm, key, result[key], function () {
           warn(
             "Avoid mutating an injected value directly since the changes will be " +
-            "overwritten whenever the provided component re-renders. " +
+            "overwritten whenever the provided components re-renders. " +
             "injection being mutated: \"" + key + "\"",
             vm
           );
@@ -4010,7 +4010,7 @@ function mergeProps (to, from) {
 
 /*  */
 
-// hooks to be invoked on component VNodes during patch
+// hooks to be invoked on components VNodes during patch
 var componentVNodeHooks = {
   init: function init (
     vnode,
@@ -4055,7 +4055,7 @@ var componentVNodeHooks = {
     if (vnode.data.keepAlive) {
       if (context._isMounted) {
         // vue-router#1212
-        // During updates, a kept-alive component's child components may
+        // During updates, a kept-alive components's child components may
         // change, so directly walking the tree here may call activated hooks
         // on incorrect children. Instead we push them into a queue which will
         // be processed after the whole patch process ended.
@@ -4098,7 +4098,7 @@ function createComponent (
     Ctor = baseCtor.extend(Ctor);
   }
 
-  // if at this stage it's not a constructor or an async component factory,
+  // if at this stage it's not a constructor or an async components factory,
   // reject.
   if (typeof Ctor !== 'function') {
     if (process.env.NODE_ENV !== 'production') {
@@ -4107,13 +4107,13 @@ function createComponent (
     return
   }
 
-  // async component
+  // async components
   var asyncFactory;
   if (isUndef(Ctor.cid)) {
     asyncFactory = Ctor;
     Ctor = resolveAsyncComponent(asyncFactory, baseCtor, context);
     if (Ctor === undefined) {
-      // return a placeholder node for async component, which is rendered
+      // return a placeholder node for async components, which is rendered
       // as a comment node but preserves all the raw information for the node.
       // the information will be used for async server-rendering and hydration.
       return createAsyncPlaceholder(
@@ -4129,10 +4129,10 @@ function createComponent (
   data = data || {};
 
   // resolve constructor options in case global mixins are applied after
-  // component constructor creation
+  // components constructor creation
   resolveConstructorOptions(Ctor);
 
-  // transform component v-model data into props & events
+  // transform components v-model data into props & events
   if (isDef(data.model)) {
     transformModel(Ctor.options, data);
   }
@@ -4140,16 +4140,16 @@ function createComponent (
   // extract props
   var propsData = extractPropsFromVNodeData(data, Ctor, tag);
 
-  // functional component
+  // functional components
   if (isTrue(Ctor.options.functional)) {
     return createFunctionalComponent(Ctor, propsData, data, context, children)
   }
 
   // extract listeners, since these needs to be treated as
-  // child component listeners instead of DOM listeners
+  // child components listeners instead of DOM listeners
   var listeners = data.on;
   // replace with listeners with .native modifier
-  // so it gets processed during parent component patch.
+  // so it gets processed during parent components patch.
   data.on = data.nativeOn;
 
   if (isTrue(Ctor.options.abstract)) {
@@ -4164,13 +4164,13 @@ function createComponent (
     }
   }
 
-  // merge component management hooks onto the placeholder node
+  // merge components management hooks onto the placeholder node
   mergeHooks(data);
 
   // return a placeholder vnode
   var name = Ctor.options.name || tag;
   var vnode = new VNode(
-    ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
+    ("vue-components-" + (Ctor.cid) + (name ? ("-" + name) : '')),
     data, undefined, undefined, undefined, context,
     { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children },
     asyncFactory
@@ -4224,7 +4224,7 @@ function mergeHook$1 (one, two) {
   }
 }
 
-// transform component v-model info (value and callback) into
+// transform components v-model info (value and callback) into
 // prop and event handler respectively.
 function transformModel (options, data) {
   var prop = (options.model && options.model.prop) || 'value';
@@ -4283,7 +4283,7 @@ function _createElement (
     tag = data.is;
   }
   if (!tag) {
-    // in case of component :is set to falsy value
+    // in case of components :is set to falsy value
     return createEmptyVNode()
   }
   // warn against non-primitive key
@@ -4320,7 +4320,7 @@ function _createElement (
         undefined, undefined, context
       );
     } else if (isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
-      // component
+      // components
       vnode = createComponent(Ctor, data, context, children, tag);
     } else {
       // unknown or unlisted namespaced elements
@@ -4332,7 +4332,7 @@ function _createElement (
       );
     }
   } else {
-    // direct component options / constructor
+    // direct components options / constructor
     vnode = createComponent(tag, data, context, children);
   }
   if (isDef(vnode)) {
@@ -4436,7 +4436,7 @@ function renderMixin (Vue) {
     } catch (e) {
       handleError(e, vm, "render");
       // return error render result,
-      // or previous vnode to prevent render error causing blank component
+      // or previous vnode to prevent render error causing blank components
       /* istanbul ignore else */
       if (process.env.NODE_ENV !== 'production') {
         if (vm.$options.renderError) {
@@ -4492,9 +4492,9 @@ function initMixin (Vue) {
     vm._isVue = true;
     // merge options
     if (options && options._isComponent) {
-      // optimize internal component instantiation
+      // optimize internal components instantiation
       // since dynamic options merging is pretty slow, and none of the
-      // internal component options needs special treatment.
+      // internal components options needs special treatment.
       initInternalComponent(vm, options);
     } else {
       vm.$options = mergeOptions(
@@ -4680,7 +4680,7 @@ function initExtend (Vue) {
     if (process.env.NODE_ENV !== 'production') {
       if (!/^[a-zA-Z][\w-]*$/.test(name)) {
         warn(
-          'Invalid component name: "' + name + '". Component names ' +
+          'Invalid components name: "' + name + '". Component names ' +
           'can only contain alphanumeric characters and the hyphen, ' +
           'and must start with a letter.'
         );
@@ -4769,7 +4769,7 @@ function initAssetRegisters (Vue) {
         if (process.env.NODE_ENV !== 'production') {
           if (type === 'component' && config.isReservedTag(id)) {
             warn(
-              'Do not use built-in or reserved HTML elements as component ' +
+              'Do not use built-in or reserved HTML elements as components ' +
               'id: ' + id
             );
           }
@@ -5145,7 +5145,7 @@ function getTagNamespace (tag) {
     return 'svg'
   }
   // basic support for MathML
-  // note it doesn't support other MathML elements being component roots
+  // note it doesn't support other MathML elements being components roots
   if (tag === 'math') {
     return 'math'
   }
@@ -5440,7 +5440,7 @@ function createPatchFunction (backend) {
         if (isUnknownElement$$1(vnode, creatingElmInVPre)) {
           warn(
             'Unknown custom element: <' + tag + '> - did you ' +
-            'register the component correctly? For recursive components, ' +
+            'register the components correctly? For recursive components, ' +
             'make sure to provide the "name" option.',
             vnode.context
           );
@@ -5479,9 +5479,9 @@ function createPatchFunction (backend) {
       if (isDef(i = i.hook) && isDef(i = i.init)) {
         i(vnode, false /* hydrating */, parentElm, refElm);
       }
-      // after calling the init hook, if the vnode is a child component
+      // after calling the init hook, if the vnode is a child components
       // it should've created a child instance and mounted it. the child
-      // component also has set the placeholder vnode's elm.
+      // components also has set the placeholder vnode's elm.
       // in that case we can just return the element and be done.
       if (isDef(vnode.componentInstance)) {
         initComponent(vnode, insertedVnodeQueue);
@@ -5503,7 +5503,7 @@ function createPatchFunction (backend) {
       invokeCreateHooks(vnode, insertedVnodeQueue);
       setScope(vnode);
     } else {
-      // empty component root.
+      // empty components root.
       // skip all element-related modules except for ref (#3455)
       registerRef(vnode);
       // make sure to invoke the insert hook
@@ -5513,7 +5513,7 @@ function createPatchFunction (backend) {
 
   function reactivateComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
     var i;
-    // hack for #4339: a reactivated component with inner transition
+    // hack for #4339: a reactivated components with inner transition
     // does not trigger because the inner node's created hooks are not called
     // again. It's not ideal to involve module-specific logic in here but
     // there doesn't seem to be a better way to do it.
@@ -5528,8 +5528,8 @@ function createPatchFunction (backend) {
         break
       }
     }
-    // unlike a newly created component,
-    // a reactivated keep-alive component doesn't insert itself
+    // unlike a newly created components,
+    // a reactivated keep-alive components doesn't insert itself
     insert(parentElm, vnode.elm, refElm);
   }
 
@@ -5645,7 +5645,7 @@ function createPatchFunction (backend) {
         // directly removing
         rm = createRmCb(vnode.elm, listeners);
       }
-      // recursively invoke hooks on child component root node
+      // recursively invoke hooks on child components root node
       if (isDef(i = vnode.componentInstance) && isDef(i = i._vnode) && isDef(i.data)) {
         removeAndInvokeRemoveHook(i, rm);
       }
@@ -5805,7 +5805,7 @@ function createPatchFunction (backend) {
   }
 
   function invokeInsertHook (vnode, queue, initial) {
-    // delay insert hooks for component root nodes, invoke them after the
+    // delay insert hooks for components root nodes, invoke them after the
     // element is really inserted
     if (isTrue(initial) && isDef(vnode.parent)) {
       vnode.parent.data.pendingInsert = queue;
@@ -5845,7 +5845,7 @@ function createPatchFunction (backend) {
     if (isDef(data)) {
       if (isDef(i = data.hook) && isDef(i = i.init)) { i(vnode, true /* hydrating */); }
       if (isDef(i = vnode.componentInstance)) {
-        // child component. it should have hydrated its own tree.
+        // child components. it should have hydrated its own tree.
         initComponent(vnode, insertedVnodeQueue);
         return true
       }
@@ -5921,7 +5921,7 @@ function createPatchFunction (backend) {
 
   function assertNodeMatch (node, vnode, inVPre) {
     if (isDef(vnode.tag)) {
-      return vnode.tag.indexOf('vue-component') === 0 || (
+      return vnode.tag.indexOf('vue-components') === 0 || (
         !isUnknownElement$$1(vnode, inVPre) &&
         vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
       )
@@ -5940,7 +5940,7 @@ function createPatchFunction (backend) {
     var insertedVnodeQueue = [];
 
     if (isUndef(oldVnode)) {
-      // empty mount (likely as component), create new root element
+      // empty mount (likely as components), create new root element
       isInitialPatch = true;
       createElm(vnode, insertedVnodeQueue, parentElm, refElm);
     } else {
@@ -6009,7 +6009,7 @@ function createPatchFunction (backend) {
               // e.g. for directives that uses the "inserted" hook.
               var insert = ancestor.data.hook.insert;
               if (insert.merged) {
-                // start at index 1 to avoid re-invoking component mounted hook
+                // start at index 1 to avoid re-invoking components mounted hook
                 for (var i$2 = 1; i$2 < insert.fns.length; i$2++) {
                   insert.fns[i$2]();
                 }
@@ -6313,7 +6313,7 @@ var klass = {
 /*  */
 
 /**
- * Cross-platform code generation for component v-model
+ * Cross-platform code generation for components v-model
  */
 
 
@@ -6536,8 +6536,8 @@ function normalizeStyleBinding (bindingStyle) {
 }
 
 /**
- * parent component style should be after child's
- * so that parent component's style could override it
+ * parent components style should be after child's
+ * so that parent components's style could override it
  */
 function getStyle (vnode, checkChild) {
   var res = {};
@@ -6938,9 +6938,9 @@ function enter (vnode, toggleDisplay) {
   var appearCancelled = data.appearCancelled;
   var duration = data.duration;
 
-  // activeInstance will always be the <transition> component managing this
+  // activeInstance will always be the <transition> components managing this
   // transition. One edge case to check is when the <transition> is placed
-  // as the root node of a child component. In that case we need to check
+  // as the root node of a child components. In that case we need to check
   // <transition>'s parent for appear check.
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
@@ -7176,7 +7176,7 @@ function isValidDuration (val) {
 /**
  * Normalize a transition hook's argument length. The hook may be:
  * - a merged hook (invoker) with the original in .fns
- * - a wrapped component method (check ._length)
+ * - a wrapped components method (check ._length)
  * - a plain function (.length)
  */
 function getHookArgumentsLength (fn) {
@@ -7375,7 +7375,7 @@ function trigger (el, type) {
 
 /*  */
 
-// recursively search for possible transition defined inside the component root
+// recursively search for possible transition defined inside the components root
 function locateNode (vnode) {
   return vnode.componentInstance && (!vnode.data || !vnode.data.transition)
     ? locateNode(vnode.componentInstance._vnode)
@@ -7444,7 +7444,7 @@ var platformDirectives = {
 
 /*  */
 
-// Provides transition support for a single element/component.
+// Provides transition support for a single element/components.
 // supports transition mode (out-in / in-out)
 
 var transitionProps = {
@@ -7465,8 +7465,8 @@ var transitionProps = {
   duration: [Number, String, Object]
 };
 
-// in case the child is also an abstract component, e.g. <keep-alive>
-// we want to recursively retrieve the real component to be rendered
+// in case the child is also an abstract components, e.g. <keep-alive>
+// we want to recursively retrieve the real components to be rendered
 function getRealChild (vnode) {
   var compOptions = vnode && vnode.componentOptions;
   if (compOptions && compOptions.Ctor.options.abstract) {
@@ -7555,7 +7555,7 @@ var Transition = {
 
     var rawChild = children[0];
 
-    // if this is a component root node and the component's
+    // if this is a components root node and the components's
     // parent container node also has transition, skip.
     if (hasParentTransition(this.$vnode)) {
       return rawChild
@@ -7574,7 +7574,7 @@ var Transition = {
     }
 
     // ensure a key that is unique to the vnode type and to this transition
-    // component instance. This key will be used to remove pending leaving nodes
+    // components instance. This key will be used to remove pending leaving nodes
     // during entering.
     var id = "__transition-" + (this._uid) + "-";
     child.key = child.key == null
@@ -7600,7 +7600,7 @@ var Transition = {
       oldChild.data &&
       !isSameChild(child, oldChild) &&
       !isAsyncPlaceholder(oldChild) &&
-      // #6687 component root is a comment node
+      // #6687 components root is a comment node
       !(oldChild.componentInstance && oldChild.componentInstance._vnode.isComment)
     ) {
       // replace old child transition data with fresh one

@@ -52,7 +52,7 @@
 			nowTime(value){
 				if(this.endTime&&this.nowTime){
 					var countDownTime=this.endTime-value;
-					this.$emit('update',this,countDownTime);
+					this.$emit('update',countDownTime,this);
 					if(countDownTime<0){
 						clearTimeout(this.timer);
 						this.contentList={hour:'00',minute:'00',sec:'00'};

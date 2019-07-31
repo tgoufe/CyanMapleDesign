@@ -8,6 +8,7 @@ alt=""
 </template>
 <script>
 import imagePreView from './imagePreView';
+import {ready} from '../../dom';
 let lazyLoadList=[];
 let windowHeight=window.screen.availHeight;
 let windowWidth=window.screen.availWidth;
@@ -36,13 +37,13 @@ const checkLazyLoadImage=_.debounce(function(){
         checkFinish=true;
     }
 },500)
-$(function(){
-    $(window).on('scroll',checkLazyLoadImage);
-    $(window).on('resize',function(){
+ready(function(){
+    window.addEventListener('scroll',checkLazyLoadImage);
+    window.addEventListener('resize',function(){
         windowHeight=window.screen.availHeight;
         windowWidth=window.screen.availWidth;
     })
-})
+});
 const base64_1x1='data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
 export default {
         props:{
