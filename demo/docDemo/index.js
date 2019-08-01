@@ -1,9 +1,9 @@
 import '../../src/maple/theme.scss'
 import countdown from './countdown.vue';
-import datePicker from './dataPicker.vue';
+import image from './image.vue';
 let routes=[
     {path:'/countdown',component:countdown},
-    {path:'/datePicker',component:datePicker}
+    {path:'/image',component:image}
 ];
 const router = new VueRouter({
     routes

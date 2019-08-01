@@ -17,7 +17,7 @@ module.exports = {
                     'confirm.md',
                     'countdown.md',
                     'popup.md',
-                    'datePicker.md'
+                    'image.md'
                 ]
             }
         ],

@@ -9,6 +9,11 @@ alt=""
 <script>
 import imagePreView from './imagePreView';
 import {ready} from '../../dom';
+import {
+    inRange,
+    debounce,
+    remove
+} from 'lodash';
 let lazyLoadList=[];
 let windowHeight=window.screen.availHeight;
 let windowWidth=window.screen.availWidth;
@@ -16,11 +21,11 @@ let checkFinish=true;
 function isInView(dom){
     const {top,left,height,width}
         = dom.getBoundingClientRect();
-    const inView= _.inRange(top>0?top:(top+height),windowHeight)
-        && _.inRange(left>0?left:(left+width),windowWidth);
+    const inView= inRange(top>0?top:(top+height),windowHeight)
+        && inRange(left>0?left:(left+width),windowWidth);
     return {inView,top}
 }
-const checkLazyLoadImage=_.debounce(function(){
+const checkLazyLoadImage=debounce(function(){
     if(checkFinish){
         checkFinish=false;
         for(let i=0;i<lazyLoadList.length;i++ ){
@@ -36,7 +41,7 @@ const checkLazyLoadImage=_.debounce(function(){
         }
         checkFinish=true;
     }
-},500)
+},500);
 ready(function(){
     window.addEventListener('scroll',checkLazyLoadImage);
     window.addEventListener('resize',function(){
@@ -80,7 +85,7 @@ export default {
             checkLazyLoadImage();
         },
         destroyed(){
-            _.remove(lazyLoadList,this);
+            remove(lazyLoadList,this);
         }
 };
 </script>
