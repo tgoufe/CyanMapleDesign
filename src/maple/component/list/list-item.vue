@@ -28,6 +28,12 @@
 </style>
 <script>
 // import baseMixin from '../mixin.js';
+import {
+    remove,
+    isArray,
+    findIndex,
+    isNumber,
+} from 'lodash';
 export default {
     name:'cmui-list-item',
     // mixins:[baseMixin],
@@ -68,19 +74,19 @@ export default {
         this.index=this.bus.children.push(this)-1;
     },
     destroyed(){
-        _.remove(this.bus.children,this);
+        remove(this.bus.children,this);
     },
     methods:{
         itemStyle(){
             // let width,clear,boxShadow,backgroundColor,padding;
             // let parent=this.getParent('cmui-list')
             //     ,   col=parent.realCol
-            //     ,   colCount=(_.isArray(col)?col.length:col)||1
-            //     ,   index=this.index//_.findIndex(parent.itemList,this);
+            //     ,   colCount=(isArray(col)?col.length:col)||1
+            //     ,   index=this.index//findIndex(parent.itemList,this);
             // padding=parent.realSpace /2 +'rem';
-            // if(_.isNumber(col)&&col!==1){
+            // if(isNumber(col)&&col!==1){
             //     width=100/col+'%';
-            // }else if(_.isArray(col)){
+            // }else if(isArray(col)){
             //     let total=col.reduce((pre,next)=>pre+next);
             //     width=100*col[index%col.length]/total+'%';
             // }
@@ -89,7 +95,7 @@ export default {
             // }
             // if(index===-1){
             //     parent.itemList=parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
-            //     index=_.findIndex(parent.itemList,this);
+            //     index=findIndex(parent.itemList,this);
             // }
             // clear=index%colCount===0?'left':undefined;
             // boxShadow=parent.boxShadow;
@@ -98,15 +104,15 @@ export default {
             //注入优化
             let width
                 ,   col=this.bus.parent.realCol
-                ,   colCount=(_.isArray(col)?col.length:col)||1
+                ,   colCount=(isArray(col)?col.length:col)||1
                 ,   clear=this.index%colCount===0?'left':undefined
                 ,   padding=this.bus.parent.realSpace /2 +'rem'
                 ,   boxShadow=this.bus.parent.boxShadow
                 ,   backgroundColor=this.bgcolor;
             ;
-            if(_.isNumber(col)&&col!==1){
+            if(isNumber(col)&&col!==1){
                 width=100/col+'%';
-            }else if(_.isArray(col)){
+            }else if(isArray(col)){
                 let total=col.reduce((pre,next)=>pre+next);
                 width=100*col[this.index%col.length]/total+'%';
             }

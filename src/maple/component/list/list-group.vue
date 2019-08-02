@@ -11,6 +11,7 @@
 </template>
 <script>
 import cmuiListItem from "./list-item.vue";
+import {remove} from 'lodash';
 // import cmuiList from "./list.vue";
 // import base from '../mixin.js';
 export default{
@@ -40,7 +41,7 @@ export default{
 	destroyed(){
 		let parent=this.bus.parent;//this.getParent('cmui-list')
 		if(parent.index){
-			_.remove(parent.groupList,item=>item.vm===this);
+			remove(parent.groupList,item=>item.vm===this);
 		}
 	}
 }

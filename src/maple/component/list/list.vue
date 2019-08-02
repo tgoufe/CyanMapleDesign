@@ -21,6 +21,15 @@
 </template>
 <script>
 import baseMixin from '../mixin.js';
+import {
+  isNumber,
+  inRange,
+  isArray,
+  every,
+  get,
+  isFunction,
+  throttle
+} from 'lodash';
 export default {
   name: "cmui-list",
   mixins:[baseMixin],
@@ -57,8 +66,8 @@ export default {
   computed: {
     realSpace: function() {
       var value = parseInt(this.space);
-      if (_.isNumber(value)) {
-        if (_.inRange(value, -1, 51)) {
+      if (isNumber(value)) {
+        if (inRange(value, -1, 51)) {
           return value / 75 || 0;
         }
       }
@@ -66,13 +75,13 @@ export default {
     },
     realCol() {
       var value = this.col;
-      if (_.isNumber(value)) {
-        if (_.inRange(value, 0, 11)) {
+      if (isNumber(value)) {
+        if (inRange(value, 0, 11)) {
           return parseInt(value) || 1;
         } else {
           return 1;
         }
-      } else if (_.isArray(value) && _.every(value, _.isNumber)) {
+      } else if (isArray(value) && every(value, isNumber)) {
         return value.map(item => parseInt(item) || 1);
       } else {
         return parseInt(value) || 1;
@@ -95,15 +104,15 @@ export default {
       // if(!isChild){
       //   return 0
       // }else{
-        let itemLen=this.$slots.default.filter(item=>_.get(item,'componentOptions.tag')==='cmui-list-item').length;
-        let col=_.isArray(this.realCol)?this.realCol.length:this.realCol
+        let itemLen=this.$slots.default.filter(item=>get(item,'componentOptions.tag')==='cmui-list-item').length;
+        let col=isArray(this.realCol)?this.realCol.length:this.realCol
         return itemLen-(itemLen%col||col);
       // }
     }
   },
   methods:{
     indexFormat(value){
-      if(_.isFunction(this.index)){
+      if(isFunction(this.index)){
         return this.index(value)
       }
       return value.toString()[0];
@@ -144,7 +153,7 @@ export default {
       parentNode = parentNode.parentNode;
     }
     let _this=this;
-    parentNode.addEventListener('scroll',_.throttle(function(){
+    parentNode.addEventListener('scroll',throttle(function(){
       _this.activeIndex =
         _this.groupList.filter(
           item => item.vm.$el.getBoundingClientRect().top < 0
