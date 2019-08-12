@@ -1,14 +1,13 @@
 function CMUI_ListList(){
 	this.length=0;
 }
-import {times} from 'lodash';
 CMUI_ListList.prototype.add=function(item){
 	//类型判断暂时没加
 	this[this.length++]=item;
 	return this;
 };
 CMUI_ListList.prototype.remove=function(){
-	times(this.length,index=>{
+	_.times(this.length,index=>{
 		if(this[index] instanceof jQuery){
 			this[index].remove();
 			this[index]=null;

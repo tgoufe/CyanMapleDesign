@@ -1,18 +1,6 @@
 import noticeVue from "./index.vue";
-import {
-uniqueId,
-once,
-filter,
-isFunction,
-last,
-isNumber,
-isObject,
-defaults,
-find,
-isPlainObject,
-each,
-} from 'lodash';
-var defaultsOptions = {
+
+var defaults = {
 	  content: ''
 	, className: ''
 	, timeout: 3000
@@ -20,10 +8,10 @@ var defaultsOptions = {
 	, callback:function(){}
 };
 Vue.component('cmui-notice',noticeVue);
-var id='cmui-notice-'+uniqueId();
+var id='cmui-notice-'+_.uniqueId();
 var CURRENT=null;
 var timeHandle;
-let setCurrent=once(function(){
+let setCurrent=_.once(function(){
   $('<cmui-notice id="'+id+'">').appendTo('body');
   CURRENT=new Vue({
     el:'#'+id
@@ -34,16 +22,16 @@ function Notice(){
 	var options={};
 	if(arguments){
 		if(arguments.length>1){
-			options.callback=filter(arguments,isFunction)[0];
-			var stringList=filter(arguments,item=>(typeof item).match(/string|number|boolean/)).map(item=>item.toString());
+			options.callback=_.filter(arguments,_.isFunction)[0];
+			var stringList=_.filter(arguments,item=>(typeof item).match(/string|number|boolean/)).map(item=>item.toString());
 			options.content=stringList[0];
 			if(stringList.length>1){
-				options.timeout=last(filter(arguments,isNumber))|0;
+				options.timeout=_.last(_.filter(arguments,_.isNumber))|0;
 			}
 		}else{
 			if( (typeof arguments[0]).match(/string|number|boolean/)){
 				options.content=arguments[0];
-			}else if(isObject(arguments[0])){
+			}else if(_.isObject(arguments[0])){
 				options=arguments[0];
 			}else{
 				return CURRENT;
@@ -52,9 +40,9 @@ function Notice(){
 	}else{
 		return CURRENT;
 	}
-	options = defaults(find(arguments,isPlainObject),options, defaultsOptions);
+	options = _.defaults(_.find(arguments,_.isPlainObject),options, defaults);
 	CURRENT.showCmuiDialog=true;
-	each(options,(value,key)=>{
+	_.each(options,(value,key)=>{
 		CURRENT[key]=value;
 	});
 	if(typeof options.callback==='function'){

@@ -13,22 +13,16 @@
 </template>
 <script>
     import cityData from './city.json';
-    import {
-    map,
-    isPlainObject,
-    isString,
-    includes,
-    } from 'lodash';
     function fromatCity(data){
-      return map(data,(value,key)=>{
-        if(isPlainObject(value)){
+      return _.map(data,(value,key)=>{
+        if(_.isPlainObject(value)){
           return{
             text:value.name,
             value:key,
             children:value.child?fromatCity(value.child):undefined
           }
         }
-        if(isString(value)){
+        if(_.isString(value)){
           return{
             text:value,
             value:key
@@ -36,32 +30,32 @@
         }
       })
     }
-    let timeData=times(10,i=>{
+    let timeData=_.times(10,i=>{
         return {
           text:2010+i,
           value:2010+i,
           children:[]
         }
       }).map(item=>{
-        item.children=times(12,i=>{
+        item.children=_.times(12,i=>{
           let days;
           if(i===1){
             days=item.value%4?28:29;
           }else{
-            days=includes([0,2,4,6,7,9,11],i)?31:30
+            days=_.includes([0,2,4,6,7,9,11],i)?31:30
           }
           return {
             text:i+1,
             value:i+1,
-            children:times(days,i=>i+1)
+            children:_.times(days,i=>i+1)
           }
         })
         return item
-      });
-    let fullTimeData=[timeData,[],[],times(24),times(60)];
+      })
+    let fullTimeData=[timeData,[],[],_.times(24),_.times(60)];
     let dataList={
-      baseData:times(10),
-      aloneData:[['上午','下午'],times(12,index=>`${index}点`)],
+      baseData:_.times(10),
+      aloneData:[['上午','下午'],_.times(12,index=>`${index}点`)],
       childrenData:[fromatCity(cityData)],
       timeData,
       fullTimeData

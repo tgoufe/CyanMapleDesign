@@ -25,19 +25,8 @@
 import Swiper from 'swiper';
 import themeList from './themeList.json';
 import sliderList from './sliderList';
-import {
-get,
-isString,
-isNumber,
-set,
-defaultsDeep,
-differenceWith,
-isEqual,
-uniqueId,
-delay,
-} from 'lodash';
 function optionsMaker(options, themeName) {
-    let themeOptions = get(themeList,themeName);
+    let themeOptions = _.get(themeList,themeName);
     let propOptions = {};
     //set slidesPerView as col
     if (this.col === 0) {
@@ -56,21 +45,21 @@ function optionsMaker(options, themeName) {
         let tempOption = {
             el: '.swiper-pagination'
         };
-        if (isString(this.page)) {
+        if (_.isString(this.page)) {
             if (this.page === 'progress') {
                 tempOption.type = 'progressbar';
             } else if (this.page === 'number') {
                 tempOption.type = 'fraction';
             }
-        } else if (isNumber(this.page)) {
+        } else if (_.isNumber(this.page)) {
         	tempOption.dynamicBullets=true;
             tempOption.dynamicMainBullets = parseInt(this.page) || 1;
         }
-        set(propOptions, 'pagination', tempOption);
+        _.set(propOptions, 'pagination', tempOption);
     }
     //set navigation as nav
     if (this.nav) {
-        set(propOptions, 'navigation', {
+        _.set(propOptions, 'navigation', {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         })
@@ -83,7 +72,7 @@ function optionsMaker(options, themeName) {
     ['loop', 'autoplay', 'direction','freeMode'].forEach(item => {
         propOptions[item] = this[item];
     })
-    let rsOptions=defaultsDeep(options, propOptions, themeOptions);
+    let rsOptions=_.defaultsDeep(options, propOptions, themeOptions);
     if(rsOptions.slidesPerView === 'auto'){
         let pos=(rsOptions.direction==='vertical')?'height':'width'
         this.$children.forEach(item => {
@@ -129,7 +118,7 @@ let sliderObserve=new class {
     observeControl(vm){
         let _this=this;
         let controlName=vm.control;
-        if(controlName&&isString(controlName)){
+        if(controlName&&_.isString(controlName)){
             this.refList.forEach(item=>{
                 if(item.name===controlName){
                     this.bindControl(vm.swiper,item.vm.swiper)
@@ -142,7 +131,7 @@ let sliderObserve=new class {
                 }
             })
         }
-        let refName=get(vm,'$vnode.data.ref');
+        let refName=_.get(vm,'$vnode.data.ref');
         if(refName){
             this.refList.push({vm,name:refName});
             this.publish(vm.swiper,refName)
@@ -161,16 +150,16 @@ export default {
             immediate: false,
             handler(newValue,oldValue) {
                 if(this.loop){
-                    differenceWith(newValue,oldValue,isEqual).length&&this.resetSwiper();
+                    _.differenceWith(newValue,oldValue,_.isEqual).length&&this.resetSwiper();
                 }else{
-                    !isEqual(newValue,oldValue)&&this.resetSwiper();
+                    !_.isEqual(newValue,oldValue)&&this.resetSwiper();
                 }
             }
         },
         options: {
             deep: true,
             handler(newOptions, oldOptions) {
-                if(!isEqual(newOptions, oldOptions)){
+                if(!_.isEqual(newOptions, oldOptions)){
                     this.resetSwiper();
                 }
             }
@@ -194,7 +183,7 @@ export default {
         }
     },
     props: {
-    	id:{type:String,default:uniqueId('cmui-slider_')},
+    	id:{type:String,default:_.uniqueId('cmui-slider_')},
         watch: { type: Object, default: {} },
         theme: { type: Number, default: 0 },
         options: { type: Object, default: null},
@@ -223,7 +212,7 @@ export default {
                 }else{
                     this.swiperIndex=sliderList.length;
                 }
-                delay(() => {
+                _.delay(() => {
                     this.swiper = new Swiper(this.$refs['swiper-container'], optionsMaker.call(this, this.options), this.theme);
                     sliderObserve.observeControl(this)
                     if(hasInit){
