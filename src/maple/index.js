@@ -51,7 +51,9 @@ maple.maskPanel = maskPanel;
 maple.message = message;
 maple.picker=picker;
 // // // 初始化通用组件
-_.forEach(component,(value,key)=>Vue.component(key,value));
+for(let i in component){
+    Vue.component(i,component[i])
+}
 export default (window.maple = maple);
 
 

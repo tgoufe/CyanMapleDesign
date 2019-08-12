@@ -2,7 +2,7 @@ var cmuiStyle;
 var cssRules;
 var cssRulesLen;
 import {ready} from './dom';
-import {get,filter,isString,isPlainObject,chain,camelCase,find,forEach,findLast,removeProperty,pick} from 'lodash';
+import {get,filter,isString,isPlainObject,chain,camelCase,find,forEach,findLast,pick} from 'lodash';
 ready(function(){
 	cmuiStyle = document.createElement('style');
 	document.head.appendChild(cmuiStyle);
@@ -33,7 +33,7 @@ function style(){
 			}else{//删除选择器下的具体样式
 				let t=findLast(cssRules,item=>get(item,'selectorText')===selector);
 				t=get(t,'style');
-				removeProperty(t,name);
+				delete t[name];
 			}
 		}else if(selector&& isPlainObject(value)){
 			forEach(value,(value,key)=>{

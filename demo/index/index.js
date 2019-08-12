@@ -37,6 +37,7 @@ import slidebar from './ui/slidebar.vue';
 import scroll from './ui/scroll.vue';
 import captcha from './ui/captcha.vue';
 import countdown from './ui/countdown.vue';
+import _ from 'lodash';
 const routes = [
     {path: '/componentList/:id', component: componentList},
     {path: '/badge/', component: badge},

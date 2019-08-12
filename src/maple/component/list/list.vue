@@ -3,7 +3,7 @@
   class="cmui-list"
   :style="[boxShadow]"
   :class="{'overflow-h':needOverHide}"
-  ><!--  -->
+  >
     <div class="clearfix"  :style="containerStyle"><!-- -->
       <div class="fixed-right flex-container center cmui-list-index" style="z-index: 21" v-if="index">
         <div class="indexWarp flex-container-col scroll-container-y">
@@ -44,7 +44,7 @@ export default {
     let defaultBorderColor = "#eeeeee";
     let isColor = /^#[a-fA-F0-9]{6}$/.test(this.border);
     let borderColor = isColor ? this.border : defaultBorderColor;
-    let needOverHide=true;
+    let needOverHide=false;//临时设置
     return {
       borderColor,
       groupList:[],
@@ -99,15 +99,9 @@ export default {
       return;
     },
     noPaddingbFrom(){
-      let isChild=this.$parent.$options._componentTag==="cmui-list-item";
-      // console.log(isChild,this.$el)
-      // if(!isChild){
-      //   return 0
-      // }else{
         let itemLen=this.$slots.default.filter(item=>get(item,'componentOptions.tag')==='cmui-list-item').length;
         let col=isArray(this.realCol)?this.realCol.length:this.realCol
         return itemLen-(itemLen%col||col);
-      // }
     }
   },
   methods:{
@@ -141,7 +135,7 @@ export default {
   mounted(){
     let parentNode = this.$el;
     let baseNode = this.$el.firstChild;
-    this.needOverHide=parentNode.offsetLeft>this.space/2;
+    // this.needOverHide=parentNode.offsetLeft>this.space/2;
     if (!this.index) {
       return;
     }

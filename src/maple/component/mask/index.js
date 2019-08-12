@@ -1,7 +1,18 @@
 import maskVue from './index.vue';
 import {ready} from '../../dom';
+import {
+uniqueId,
+filter,
+isString,
+find,
+every,
+isFunction,
+isPlainObject,
+defaults,
+each
+} from 'lodash';
 Vue.component('cmui-mask',maskVue);
-var id=_.uniqueId('cmui-mask-');
+var id=uniqueId('cmui-mask-');
 var CURRENT=null;
 ready(function(){
 	let dom=document.createElement('cmui-mask');
@@ -12,7 +23,7 @@ ready(function(){
 	}).$children[0];
 });
 function mask(){
-	var defaults={
+	var defaultsOptions={
 		position:'center',
 		content:'',
 		closeFn:function(){},
@@ -20,24 +31,24 @@ function mask(){
 		contentStyle:null
 	};
 	if(arguments.length){
-		var argString=_.filter(arguments,_.isString);
-		defaults.position=_.find(argString,item=>{
-			return _.every(item.split(' ').filter(i=>i.length),i=>{
+		var argString=filter(arguments,isString);
+		defaultsOptions.position=find(argString,item=>{
+			return every(item.split(' ').filter(i=>i.length),i=>{
 				return /^(top|left|bottom|right|center|between)$/.test(i);
 			});
 		})||'center';
-		defaults.content=_.find(argString,item=>item!==defaults.position)||'';
-		defaults.callback=_.find(arguments,_.isFunction);
-		var argObject=_.find(arguments,_.isPlainObject);
-		defaults = _.defaults(argObject,defaults);
+		defaultsOptions.content=find(argString,item=>item!==defaultsOptions.position)||'';
+		defaultsOptions.callback=find(arguments,isFunction);
+		var argObject=find(arguments,isPlainObject);
+		defaultsOptions = defaults(argObject,defaultsOptions);
 		document.body.classList.add('overflow-h');
 		CURRENT.showCmuiDialog=true;
-		_.each(defaults,(value,key)=>{
+		each(defaultsOptions,(value,key)=>{
 			CURRENT[key]=value;
 		});
-		if(typeof defaults.callback==='function'){
+		if(typeof defaultsOptions.callback==='function'){
 			CURRENT.$nextTick(function(){
-				defaults.callback($(CURRENT.$el));
+				defaultsOptions.callback($(CURRENT.$el));
 			});
 		}
 	}

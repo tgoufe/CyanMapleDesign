@@ -51,18 +51,6 @@ export default {
     },
     computed:{
         itemContainerStyle(){
-            // let parent=this.getParent('cmui-list')
-            // ,   border
-            // ,   boxShadow
-            // ;
-            // if(this.border&&parent.border&&parent.realSpace!==0){
-            //   boxShadow='0px 0px 0px 1px '+parent.borderColor;
-            // }
-            // return {
-            //   border,
-            //   boxShadow,
-            // }
-            //注入优化
             let boxShadow,parent=this.bus.parent;
             if(this.border&&parent.border&&parent.realSpace!==0){
                 boxShadow='0px 0px 0px 1px '+parent.borderColor;
@@ -78,30 +66,6 @@ export default {
     },
     methods:{
         itemStyle(){
-            // let width,clear,boxShadow,backgroundColor,padding;
-            // let parent=this.getParent('cmui-list')
-            //     ,   col=parent.realCol
-            //     ,   colCount=(isArray(col)?col.length:col)||1
-            //     ,   index=this.index//findIndex(parent.itemList,this);
-            // padding=parent.realSpace /2 +'rem';
-            // if(isNumber(col)&&col!==1){
-            //     width=100/col+'%';
-            // }else if(isArray(col)){
-            //     let total=col.reduce((pre,next)=>pre+next);
-            //     width=100*col[index%col.length]/total+'%';
-            // }
-            // if(this.bgcolor){
-            //     backgroundColor=this.bgcolor;
-            // }
-            // if(index===-1){
-            //     parent.itemList=parent.$children.filter(item=>item.$options._componentTag==="cmui-list-item");
-            //     index=findIndex(parent.itemList,this);
-            // }
-            // clear=index%colCount===0?'left':undefined;
-            // boxShadow=parent.boxShadow;
-            // return{width,clear,boxShadow,backgroundColor,padding}
-
-            //注入优化
             let width
                 ,   col=this.bus.parent.realCol
                 ,   colCount=(isArray(col)?col.length:col)||1

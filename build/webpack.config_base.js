@@ -1,4 +1,5 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 let {resolve}=require('./utils');
 module.exports = {
     mode:'production',
@@ -7,7 +8,8 @@ module.exports = {
         path: resolve('CMUI'),
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new LodashModuleReplacementPlugin()
     ],
     devServer: {
         disableHostCheck: true
@@ -16,10 +18,11 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             jquery:resolve('dist/lib/jquery_3.2.1_jquery.min.js'),
-            lodash:resolve('dist/lib/lodash.js_4.17.4_lodash.min.js'),
             vue:resolve('dist/lib/vue_2.5.13_vue.min.js'),
             router:resolve('dist/lib/vue-router_3.0.1_vue-router.min.js'),
-            flexible:resolve('dist/lib/flexible.js')
+            flexible:resolve('dist/lib/flexible.js'),
+            "@component":resolve('src/maple/component'),
+            "@cyan":resolve('src/cyan')
         }
     },
     module: {
@@ -37,7 +40,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env'],
+                        plugins:['lodash']
                     }
                 }
             },
