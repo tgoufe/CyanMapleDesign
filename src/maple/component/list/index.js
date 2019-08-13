@@ -75,13 +75,26 @@ function List(){
 		});
 		template+='	</div>';
 		template+='</div>';
-		template=$(template);
-		$(options.parent).append(template);
+		let dom =document.createElement('div');
+		dom.outerHTML=template;
+		if(options.parent instanceof HTMLElement){
+			options.parent.appendChild(dom);
+		}else if(_.isString(options.parent)){
+			let parent=document.querySelector(options.parent);
+			if(parent){
+				parent.appendChild(dom);
+			}else{
+				return
+			}
+		}else{
+			return
+		}
+		// $(options.parent).append(template);
 		// if(options.sortable){
 		// 	new Sortable(template.find('>.clearfix')[0],options.options);
 		// }
-		listList.add(template);
-		return template;
+		listList.add(dom);
+		return dom;
 	}
 }
 export default List;

@@ -1,10 +1,10 @@
 import maple from './core';
 // import { cookie } from './cache/cookie';
 // maple.cookie = cookie;
-import { sessionData } from './cache/session';
-maple.sessionData = sessionData;
-import { localData } from './cache/local';
-maple.localData = localData;
+// import { sessionData } from './cache/session';
+// maple.sessionData = sessionData;
+// import { localData } from './cache/local';
+// maple.localData = localData;
 import url from './url';
 maple.url = url;
 import log from './log';
@@ -35,7 +35,6 @@ import list      from './component/list/index.js';
 import tabbar    from './component/tabbar/index.js';
 import form      from './component/form/index.js';
 import maskPanel from './component/maskPanel/index.js';
-// import countdown from './components/countdown/index.js';
 import picker from './component/pick/index.js';
 maple.notice = notice;
 maple.alert = alert;
@@ -47,33 +46,12 @@ maple.tabbar = tabbar;
 maple.list = list;
 maple.form = form;
 maple.maskPanel = maskPanel;
-// maple.countdown = countdown;
 maple.message = message;
 maple.picker=picker;
-// // // 初始化通用组件
-_.forEach(component,(value,key)=>Vue.component(key,value));
+for(let i in component){
+    Vue.component(i,component[i]);
+}
 export default (window.maple = maple);
 
-
-// import * as util from './util';
-// //挂载工具方法
-// maple._ = util;
-// maple.util = util;
-// import ttt from './util/index.js';
-// _.forEach(ttt,(value,key)=>{
-// 	maple[key]=value;
-// })
-// import * as support from './support';
-// //挂载支持
-// maple.support = support;
-
-
-
-//
-// import validator from './validator/index.js';maple.validator=validator;
-//
-// import vm from './vm';
-// //挂载vm控制器
-// maple.vm = vm;
 
 

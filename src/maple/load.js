@@ -1,4 +1,4 @@
-import {forEach,isObject} from 'lodash';
+import _ from 'lodash';
 function BaseLoad(src,tagName,props={}){
     return !src
     ? new Promise.resolve(null)
@@ -6,8 +6,8 @@ function BaseLoad(src,tagName,props={}){
         let dom =document.createElement(tagName);
         dom.src=src;
         (function loop(props,target){
-            forEach(props,(value,key)=>{
-                isObject(value)
+            _.forEach(props,(value,key)=>{
+                _.isObject(value)
                 ? loop(value,target[key])
                 : target[key]=value;
             })
@@ -24,7 +24,7 @@ function BaseLoad(src,tagName,props={}){
     })
 }
 function load(type,url){
-    if(isObject(type)){
+    if(_.isObject(type)){
         ({type,url}=type)
     }
     switch (type) {

@@ -1,7 +1,7 @@
+import _ from 'lodash';
 function Url(url){
     return new Url.prototype.init(url);
 }
-
 Url.prototype.init = function(url) {
     var a = document.createElement('a');
     a.href = url||location.href;

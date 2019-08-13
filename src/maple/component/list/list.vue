@@ -2,8 +2,7 @@
   <div
   class="cmui-list"
   :style="[boxShadow]"
-  :class="{'overflow-h':needOverHide}"
-  ><!--  -->
+  >
     <div class="clearfix"  :style="containerStyle"><!-- -->
       <div class="fixed-right flex-container center cmui-list-index" style="z-index: 21" v-if="index">
         <div class="indexWarp flex-container-col scroll-container-y">
@@ -21,15 +20,6 @@
 </template>
 <script>
 import baseMixin from '../mixin.js';
-import {
-  isNumber,
-  inRange,
-  isArray,
-  every,
-  get,
-  isFunction,
-  throttle
-} from 'lodash';
 export default {
   name: "cmui-list",
   mixins:[baseMixin],
@@ -44,7 +34,6 @@ export default {
     let defaultBorderColor = "#eeeeee";
     let isColor = /^#[a-fA-F0-9]{6}$/.test(this.border);
     let borderColor = isColor ? this.border : defaultBorderColor;
-    let needOverHide=true;
     return {
       borderColor,
       groupList:[],
@@ -52,7 +41,6 @@ export default {
       indexItemHeight:0,
       startIndex:0,
       listEventStartY:0,
-      needOverHide
     };
   },
   provide(){
@@ -66,8 +54,8 @@ export default {
   computed: {
     realSpace: function() {
       var value = parseInt(this.space);
-      if (isNumber(value)) {
-        if (inRange(value, -1, 51)) {
+      if (_.isNumber(value)) {
+        if (_.inRange(value, -1, 51)) {
           return value / 75 || 0;
         }
       }
@@ -75,13 +63,13 @@ export default {
     },
     realCol() {
       var value = this.col;
-      if (isNumber(value)) {
-        if (inRange(value, 0, 11)) {
+      if (_.isNumber(value)) {
+        if (_.inRange(value, 0, 11)) {
           return parseInt(value) || 1;
         } else {
           return 1;
         }
-      } else if (isArray(value) && every(value, isNumber)) {
+      } else if (_.isArray(value) && _.every(value, _.isNumber)) {
         return value.map(item => parseInt(item) || 1);
       } else {
         return parseInt(value) || 1;
@@ -99,20 +87,14 @@ export default {
       return;
     },
     noPaddingbFrom(){
-      let isChild=this.$parent.$options._componentTag==="cmui-list-item";
-      // console.log(isChild,this.$el)
-      // if(!isChild){
-      //   return 0
-      // }else{
-        let itemLen=this.$slots.default.filter(item=>get(item,'componentOptions.tag')==='cmui-list-item').length;
-        let col=isArray(this.realCol)?this.realCol.length:this.realCol
+        let itemLen=this.$slots.default.filter(item=>_.get(item,'componentOptions.tag')==='cmui-list-item').length;
+        let col=_.isArray(this.realCol)?this.realCol.length:this.realCol
         return itemLen-(itemLen%col||col);
-      // }
     }
   },
   methods:{
     indexFormat(value){
-      if(isFunction(this.index)){
+      if(_.isFunction(this.index)){
         return this.index(value)
       }
       return value.toString()[0];
@@ -126,7 +108,13 @@ export default {
       this.activeIndex=index;
       this.startIndex = index;
       this.listEventStartY = event.touches[0].clientY;
-      this.indexItemHeight =this.indexItemHeight || $(event.target).outerHeight();
+      function outHeight(dom){
+        let propObj=window.getComputedStyle(dom);
+        return ['marginTop','marginBottom','borderTopWidth','borderBottomWidth','height'].reduce((rs,prop)=>{
+          return rs+=~~propObj[prop]
+        },0)
+      }
+      this.indexItemHeight =this.indexItemHeight || outHeight(event.target);
       this.scrollToGroup(index)
     },
     scrollOnIndex(e){
@@ -141,7 +129,6 @@ export default {
   mounted(){
     let parentNode = this.$el;
     let baseNode = this.$el.firstChild;
-    this.needOverHide=parentNode.offsetLeft>this.space/2;
     if (!this.index) {
       return;
     }
@@ -153,7 +140,7 @@ export default {
       parentNode = parentNode.parentNode;
     }
     let _this=this;
-    parentNode.addEventListener('scroll',throttle(function(){
+    parentNode.addEventListener('scroll',_.throttle(function(){
       _this.activeIndex =
         _this.groupList.filter(
           item => item.vm.$el.getBoundingClientRect().top < 0

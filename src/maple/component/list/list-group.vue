@@ -12,13 +12,14 @@
 <script>
 import cmuiListItem from "./list-item.vue";
 import {remove} from 'lodash';
-// import cmuiList from "./list.vue";
+import cmuiList from "./list.vue";
 // import base from '../mixin.js';
 export default{
 	// mixins:[base],
 	inject:['bus'],
 	components:{
-		cmuiListItem
+		cmuiListItem,
+		cmuiList
 	},
 	props:{
 		title:{type:String,default:''}

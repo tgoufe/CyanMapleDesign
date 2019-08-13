@@ -6,5 +6,5 @@ let entry={
 };
 module.exports = merge(baseWebpackConfig,{
     mode: "production",
-    entry,
+    entry
 });
