@@ -111,12 +111,12 @@
   }
   export default {
     props:{
-      data:Array
-      , selectIndex:Array
-      , visible:false
-      , rightFn:Function
-      , leftFn:Function
-      , title:String
+      data:{type:Array,default:[]}
+      , selectIndex:{type:Array,default:[]}
+      , visible:{type:Boolean,default:false}
+      , rightFn:{type:Function,default:null}
+      , leftFn:{type:Function,default:null}
+      , title:{type:String,default:''}
       , leftText:{type:String,default:'取消'}
       , rightText:{type:String,default:'确定'}
     },
