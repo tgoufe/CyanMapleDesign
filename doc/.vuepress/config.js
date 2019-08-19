@@ -16,8 +16,13 @@ module.exports = {
                     'collapse.md',
                     'confirm.md',
                     'countdown.md',
+                    'datePicker.md',
+                    'image.md',
+                    'list.md',
+                    'mask.md',
                     'popup.md',
-                    'image.md'
+                    'notice.md',
+                    'picker.md'
                 ]
             }
         ],

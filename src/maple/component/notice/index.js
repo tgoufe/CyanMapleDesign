@@ -1,5 +1,5 @@
 import noticeVue from "./index.vue";
-
+import _ from 'lodash';
 var defaults = {
 	  content: ''
 	, className: ''
@@ -12,10 +12,12 @@ var id='cmui-notice-'+_.uniqueId();
 var CURRENT=null;
 var timeHandle;
 let setCurrent=_.once(function(){
-  $('<cmui-notice id="'+id+'">').appendTo('body');
-  CURRENT=new Vue({
-    el:'#'+id
-  }).$children[0];
+	let dom=document.createElement('cmui-notice');
+	dom.id=id;
+	document.body.appendChild(dom);
+	CURRENT=new Vue({
+		el:'#'+id
+	}).$children[0];
 });
 function Notice(){
   setCurrent();
@@ -47,7 +49,7 @@ function Notice(){
 	});
 	if(typeof options.callback==='function'){
 		CURRENT.$nextTick(function(){
-			options.callback($(CURRENT.$el));
+			options.callback(CURRENT.$el);
 		});
 	}
 	timeHandle&&clearTimeout(timeHandle);

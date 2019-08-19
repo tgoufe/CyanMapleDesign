@@ -160,10 +160,19 @@ $name:cmui-tabbar;//组件前缀
 .cmui-confirm__button.ok{}
 .cmui-confirm__button.cancel{}
 // notice
+.cmui-notice.cmui-popup{
+    .cmui-popup__mask{}
+    &.cmui-notice__container{
+        .cmui-notice__warp{
+            .cmui-notice__body{}
+        }
+    }
+}
 // 平行样式接口
-
-.cmui-noticeContainer{}
-.cmui-noticeBody{}
+.cmui-notice .cmui-popup__mask{}
+.cmui-notice__container{}
+.cmui-notice__warp{}
+.cmui-notice__body{}
 // 层叠样式接口
 .cmui-notice.cmui-popup{
     .cmui-popup__mask{

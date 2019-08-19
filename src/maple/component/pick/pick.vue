@@ -56,6 +56,7 @@
 
 <script>
   import cmuiPopup from '../popup/popup.vue';
+  import _ from 'lodash';
   import Swiper from 'swiper';
   function formatWheelData(wheelData,lengthStore){
     lengthStore.maxLen=_.max([lengthStore.maxLen,lengthStore.tempLen]);
@@ -232,9 +233,11 @@
         let data=this.getData();
         if(_.isFunction(this.rightFn)){
           if(this.rightFn(data,this)!==false){
+              this.visible=false;
             this.$emit('update:visible',false)
           }
         }else{
+            this.visible=false;
           this.$emit('update:visible',false)
         }
         this.$emit('select',data,this);
@@ -242,9 +245,11 @@
       _cancel(){
         if(_.isFunction(this.leftFn)){
           if(this.leftFn(this)!==false){
+              this.visible=false;
             this.$emit('update:visible',false)
           }
         }else{
+            this.visible=false;
           this.$emit('update:visible',false)
         }
         this.$emit('cancel',this);

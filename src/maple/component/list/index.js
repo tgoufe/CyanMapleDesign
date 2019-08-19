@@ -1,7 +1,7 @@
 import listVue from './list.vue';
 import listItemVue from './list-item.vue';
 import listGroupVue from './list-group.vue';
-import listList from './listList';
+// import listList from './listList';
 // import Sortable from './Sortable.js';
 
 Vue.component('cmui-list',listVue);
@@ -38,7 +38,7 @@ function getItemClassByCol(col){
 }
 function List(){
 	if(!arguments.length){
-		return listList;
+		// return listList;
 	}else{
 		var defaultOptions={
 			col:_.find(arguments,item=>_.isNumber(item)||_.isArray(item)&&_.every(item,_.isNumber))||1,
@@ -93,7 +93,7 @@ function List(){
 		// if(options.sortable){
 		// 	new Sortable(template.find('>.clearfix')[0],options.options);
 		// }
-		listList.add(dom);
+		// listList.add(dom);
 		return dom;
 	}
 }

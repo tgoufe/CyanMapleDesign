@@ -41,13 +41,6 @@
                 </cmui-list>
             </cmui-list-item>
         </cmui-list>
-        <cmui-list :index="true">
-            <cmui-list-group v-for="item in list" :title="item">
-                <cmui-list-item v-for="item in list" :title="item">
-                    <span>this is {{item}}</span>
-                </cmui-list-item>
-            </cmui-list-group>
-        </cmui-list>
     </div>
 </template>
 

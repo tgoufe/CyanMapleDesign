@@ -14,3 +14,4 @@
 ### [methodsAPI](methodsAPI.md)
 ### [popup](popup.md)
 ### [list](list.md)
+### [mask](mask.md)

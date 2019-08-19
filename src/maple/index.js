@@ -34,7 +34,7 @@ import slider    from './component/slider/index.js';
 import list      from './component/list/index.js';
 import tabbar    from './component/tabbar/index.js';
 import form      from './component/form/index.js';
-import maskPanel from './component/maskPanel/index.js';
+
 import picker from './component/pick/index.js';
 maple.notice = notice;
 maple.alert = alert;
@@ -45,7 +45,7 @@ maple.slider = slider;
 maple.tabbar = tabbar;
 maple.list = list;
 maple.form = form;
-maple.maskPanel = maskPanel;
+
 maple.message = message;
 maple.picker=picker;
 for(let i in component){

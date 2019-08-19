@@ -1,9 +1,9 @@
 import maskVue from './index.vue';
-import {ready} from '../../dom';
+import _ from 'lodash';
 Vue.component('cmui-mask',maskVue);
 var id=_.uniqueId('cmui-mask-');
 var CURRENT=null;
-ready(function(){
+let setCurrent=_.once(function(){
 	let dom=document.createElement('cmui-mask');
 	dom.id=id;
 	document.body.appendChild(dom);
@@ -12,6 +12,7 @@ ready(function(){
 	}).$children[0];
 });
 function mask(){
+	setCurrent();
 	var defaults={
 		position:'center',
 		content:'',
@@ -37,7 +38,7 @@ function mask(){
 		});
 		if(typeof defaults.callback==='function'){
 			CURRENT.$nextTick(function(){
-				defaults.callback($(CURRENT.$el));
+				defaults.callback(CURRENT.$el);
 			});
 		}
 	}

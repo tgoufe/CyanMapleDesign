@@ -25,7 +25,7 @@
 			return {
 				showCmuiDialog:false,
 				bodyStyle:{
-					'max-height':$(window).height()*.72-69-parseInt($('html').css('fontSize'))+'px'
+					'max-height':document.documentElement.clientHeight*.72-69-parseInt($('html').css('fontSize'))+'px'
 				}
 			}
 		},

@@ -9,7 +9,7 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
     ],
     externals:{
         'lodash':'window._',
