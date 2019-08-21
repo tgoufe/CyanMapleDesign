@@ -15,6 +15,7 @@
 </template>
 <script>
 import Swiper from 'swiper';
+import _ from 'lodash';
 export default {
     name:'cmui-scroll',
     data:function(){
@@ -112,6 +113,9 @@ export default {
         });
         _this.$emit('rendered',this)
       })
+    },
+    destroyed() {
+        this.swiper.destroy();
     }
 }
 </script>

@@ -22,7 +22,9 @@ module.exports = {
                     'mask.md',
                     'popup.md',
                     'notice.md',
-                    'picker.md'
+                    'pick.md',
+                    'progress.md',
+                    'scroll.md'
                 ]
             }
         ],

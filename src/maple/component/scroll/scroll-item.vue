@@ -5,6 +5,7 @@
 </template>
 <script>
 import basemixin from '../mixin.js';
+import _ from 'lodash';
 export default{
   mixins:[basemixin],
   data:function(){
