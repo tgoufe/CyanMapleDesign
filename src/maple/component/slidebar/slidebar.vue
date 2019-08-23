@@ -14,7 +14,7 @@
 				></div>
 			</div>
 		</div>
-	</div>
+	</div><div class="btn red"></div>
 </template>
 <style type="text/css">
 .cmui-slidebar__dot {
@@ -24,6 +24,7 @@
 }
 </style>
 <script type="text/javascript">
+	import _ from 'lodash';
 function setDisFromValue(value){
 	let barInfo=this.$refs.bar.getBoundingClientRect();
 	let dotInfo=this.$refs.dot.getBoundingClientRect();

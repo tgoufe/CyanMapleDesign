@@ -2,7 +2,7 @@
     <cmui-scroll
             direction="v"
             style="height:400px"
-            :pull-text="['下拉刷新','释放刷新','上拉加载','释放加载']"
+            :pull-text="['下拉刷新','释放重置数据','上拉加载','释放加载更多数据']"
             @pullStart="start"
             @pullEnd="end"
             @pull="pull"
@@ -20,6 +20,7 @@
     import cmuiScroll from '../../../src/maple/component/scroll/scroll.vue';
     import cmuiScrollItem from '../../../src/maple/component/scroll/scroll-item.vue';
     import '../../../src/cyan/CMUI_doc.scss';
+    let i=1;
     export default {
         name: "Scroll",
         components:{cmuiScroll,cmuiScrollItem},
@@ -30,10 +31,12 @@
         },
         methods:{
             start(){
-                console.log('start事件触发')
+                this.imageList=_.times(10);
+                i=1;
             },
             end(){
-                console.log('end事件触发')
+                this.imageList.push(..._.times(10,index=>index+i*10));
+                i++;
             },
             rendered(){
                 console.log('rendered事件触发')
