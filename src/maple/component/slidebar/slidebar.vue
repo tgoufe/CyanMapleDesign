@@ -14,7 +14,7 @@
 				></div>
 			</div>
 		</div>
-	</div><div class="btn red"></div>
+	</div>
 </template>
 <style type="text/css">
 .cmui-slidebar__dot {
