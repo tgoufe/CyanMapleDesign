@@ -1,3 +1,7 @@
+let fileTree =require('./fileTree');
+function getMdList(path){
+    return fileTree.list('doc/'+path).map(item=>item.path.replace('doc','.'))
+}
 module.exports = {
     title: '欢迎使用CyanMaple',
     description: 'Just playing around',
@@ -5,6 +9,10 @@ module.exports = {
     themeConfig:{
         sidebar:[
             '/',
+            {
+                title:'Cyan',
+                children:getMdList('Cyan'),
+            },
             '/methodsAPI.md',
             {
                 title:'组件',
@@ -26,7 +34,8 @@ module.exports = {
                     'progress.md',
                     'scroll.md'
                 ]
-            }
+            },
+
         ],
         nav:[
             {text:'冰山工作室官网',items:[

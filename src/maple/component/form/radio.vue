@@ -1,6 +1,6 @@
 <template>
 	<label class="cmui-radio" :class="{'flex-container':flex}">
-		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='left'" :style="labelStyle">
+		<span :class="{checked:label===radioValue}" class="cmui-radio__label" v-if="align==='left'" :style="labelStyle">
 			<slot></slot>
 			<template v-if="!$slots.default">{{label}}</template>
 		</span>
@@ -10,10 +10,10 @@
 		:readonly="readonly"
 		:class="[targetClass]"
 		:disabled="disabled"
-		v-model="value"
+		v-model="radioValue"
 		@change="handleChange"
 		>
-		<span :class="{checked:label===value}" class="cmui-radio__label" v-if="align==='right'" :style="labelStyle">
+		<span :class="{checked:label===radioValue}" class="cmui-radio__label" v-if="align==='right'" :style="labelStyle">
 			<slot></slot>
 			<template v-if="!$slots.default">{{label}}</template>
 		</span>
@@ -31,6 +31,16 @@
 					style.color='#ccc'
 				}
 				return style
+			}
+		},
+		data(){
+			return {
+				radioValue: this.value
+			}
+		},
+		watch:{
+			value(newValue) {
+				this.radioValue = newValue
 			}
 		}
 	}

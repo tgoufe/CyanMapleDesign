@@ -2,7 +2,7 @@
 @import "lib/function";
 $isPC:true;
 //@import "base/normalize";
-//@import "base/baseIcon";
+@import "base/baseIcon";
 @import "base/layout";
 th, td {
   border: 1px solid #dfe2e5;
@@ -11,10 +11,10 @@ th, td {
 html,body{overflow-x: hidden}
 .cmui-list-index span{margin:20px}
 //@import "base/type";
-//@import "base/button";
+@import "base/button";
 //@import "base/badge";
 @import "base/border";
-//@import "base/form";
+@import "base/form";
 //@import "base/animate";
 //@import "base/listGroup";
 @import "base/swiper";

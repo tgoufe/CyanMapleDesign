@@ -76,8 +76,6 @@ export let stopAllTime = () => {
     cache = {};
 };
 
-export let isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
-
 export let calculationTimeByMiniSeconds = (millisecond, notZerofill=true) => {
     //共多少豪秒
     millisecond = Math.round(millisecond/100);
