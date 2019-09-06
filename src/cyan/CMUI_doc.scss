@@ -8,16 +8,16 @@ th, td {
   border: 1px solid #dfe2e5;
   padding: 0.6em 1em;
 }
-html,body{overflow-x: hidden}
+html,body{overflow-x: hidden;font-size:16px !important}
 .cmui-list-index span{margin:20px}
-//@import "base/type";
+@import "base/type";
 @import "base/button";
 //@import "base/badge";
 @import "base/border";
 @import "base/form";
 //@import "base/animate";
-//@import "base/listGroup";
-@import "base/swiper";
+@import "base/listGroup";
+//@import "base/swiper";
 //@import "ui/notice";
 //@import "ui/mask";
 //@import "ui/popup";

@@ -1,4 +1,4 @@
-# Layout
+# Container
 :::tip
 Layout 主要用于配置页面的布局，通过该样式组，可以快速的搭建页面的布局，需要注意的是我们所有的盒模型均是border-box结构的。
 :::
@@ -87,9 +87,30 @@ imageContainer用于放置图片并提供了多种布局方式。你需要做的
 
 ## flex-container
 超级强大的布局组件，你几乎可以用它来创建所有的布局，而且使用非常简单，不需要你付出额外的记忆。你只需要为容器添加flex-container属性即可。
-
-* 默认：使用between结构，即如果存在一个子元素，排列在最左边，如果存在两个子元素排列在左右两边，如果存在三个子元素以左中右的形式排列。
-
-* round:
+:::tip
+必填class：flex-container(横向排列)或flex-container-col(纵向排列)二选一。默认使用between结构，即如果存在一个子元素，排列在最左边，如果存在两个子元素排列在左右两边，如果存在三个子元素以左中右的形式排列
+:::
+### 容器属性
+你还可以添加下面的样式来设置不同的结构
+* 表示间隔：使用round创建space-around结构，创建类似有间隔的网格结构。
+* 表示顺序：使用reverse来翻转顺序。
+* 表示位置：使用top bottom left right center line中的一个或多个来表示位置，你可以将flex容器想象成一个九宫格，你只需要描述你你希望的位置在哪个方向即可
+* 表示尺寸：使用vfull或hfull来表示子元素在横向铺满或纵向铺满
 <Cyan-FlexContainer></Cyan-FlexContainer>
+### 子节点属性
+你可以在flex-container的子节点上添加flex1~flex5的class，来修改它的宽度或高度，控制它占据剩余空间的比例
+
+## ratio-container
+ratio-container用于创建一个比例容器，这在不确定外在容器宽度的时候尤其有用。你只需要为一个节点增加ratio-container的class即可，支持1：5到5：1的比例结构，默认为1：1,通常情况下我们只需要默认的即可；
+
+:::danger
+注意：位于ratio-container下的DOM节点会被设置为宽高百分百的绝对定位，因此你必须保证它下面至少有一个子节点用于放置你所要放置的内容；
+:::
+
+<Cyan-RatioContainer></Cyan-RatioContainer>
+
+## scroll-container
+如果你的项目是在移动端使用，那么为一个节点添加scroll-container类即可轻松的建立一个滚动的容器，内部的所有子节点将横向排列，你只需要为每个子节点设置宽度即可。下面的案例请使用移动端查看效果。
+<Cyan-ScrollContainer></Cyan-ScrollContainer>
+
 

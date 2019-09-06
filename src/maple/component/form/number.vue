@@ -114,6 +114,12 @@ export default {
 	    beforeChange:Function,
 	    width:[Number,String],
 	},
+	data(){
+		return {
+			_canSub:this.canSub,
+			_canAdd:this.canAdd
+		}
+	},
 	computed:{
 		canMax(){
 			if(this.max||this.max===0){

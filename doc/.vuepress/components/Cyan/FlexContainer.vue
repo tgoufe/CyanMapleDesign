@@ -1,8 +1,8 @@
 <template>
     <div>
-        <p>demo</p>
+        <p class="text-red text-bolder">下面的案例展示了flex-container支持的布局结构，尝试添加不同的属性看看效果。</p>
         <div class=" demo" :class="[container,{reverse,round,center,left,right,top,line,bottom,vfull,hfull}]">
-            <span v-for="(item,index) in list" :key="index" class="item"> {{item}}</span>
+            <span v-for="(item,index) in list" :key="index" class="item" :class="{'flex1':index===1&&flex1}"> {{item}}</span>
         </div>
         <div class="form">
             <div class="form-group">
@@ -23,7 +23,9 @@
                 <cmui-checkbox v-model="vfull" target-class="square">vfull</cmui-checkbox>
                 <cmui-checkbox v-model="hfull" target-class="square">hfull</cmui-checkbox>
             </div>
-
+            <div class="form-group">
+                <cmui-checkbox v-model="flex1" :flex="true" target-class="switch">为block2添加flex1的class</cmui-checkbox>
+            </div>
         </div>
     </div>
 
@@ -50,6 +52,7 @@
                 bottom:false,
                 vfull:false,
                 hfull:false,
+                flex1:false,
             }
         }
     }
@@ -58,7 +61,15 @@
 <style scoped>
     .item{
         padding:10px;
-        background-color: #b19eee;
+    }
+    .item:nth-child(1){
+        background-color: #ee352c;
+    }
+    .item:nth-child(2){
+        background-color: #46eee1;
+    }
+    .item:nth-child(3){
+        background-color: #eee43b;
     }
     .demo{
         background-color: #c7ffcf;

@@ -1,6 +1,6 @@
 <template>
 <div class="pos-r cmui-input form flex-container">
-    <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='left'&&(label||$slots.default)">
+    <span class="cmui-input__label cmui-form__label" v-if="align==='left'&&(label||$slots.default)">
     <slot></slot>
     <template v-if="!$slots.default">{{label}}</template>
     </span>
@@ -24,7 +24,7 @@
         <span v-if="append" v-text="append"></span>
     </div>
     </div>
-    <span :class="{checked:slefValue}" class="cmui-input__label cmui-form__label" v-if="align==='right'&&(label||$slots.default)">
+    <span class="cmui-input__label cmui-form__label" v-if="align==='right'&&(label||$slots.default)">
     <slot></slot>
     <template v-if="!$slots.default">{{label}}</template>
     </span>
