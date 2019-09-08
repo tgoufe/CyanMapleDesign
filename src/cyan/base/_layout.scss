@@ -6,12 +6,12 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
  * grid
  */
 %container{
+	@include clearfix;
 	position: relative;
-    @include clearfix;
 }
 %grid_item{
-	float:left;
 	position: relative;
+	float:left;
     min-height: 1px;
 }
 %grid_space{
