@@ -1,5 +1,5 @@
 # 布局辅助
-## float
+## 设置float
 
 
 | 类名        | 作用     |
@@ -10,7 +10,7 @@
 
 
 
-## position
+## 设置position
 | 类名 | 作用 |
 | ---- | ---- |
 |pos-r      | 设置position为relative |
@@ -18,7 +18,7 @@
 |pos-f      | 设置position为fixed |
 |pos-s      | 设置position为sticky |
 
-## 定位
+## position辅助
 
 |   类名   |   作用   |
 | ---- | ---- |
@@ -28,7 +28,7 @@
 |abs-{position}|在某个方向上绝对定位，你可以使用top,right,bottom,left,full,center六个值当中的任意一个代替position|
 |fixed-{position}|在某个方向上固定定位，你可以使用top,right,bottom,left,full,center六个值当中的任意一个代替position|
 
-## 溢出
+## 设置overflow
 |   类名   |   作用   |
 | ---- | ---- |
 |overflow-h|溢出隐藏|
@@ -38,7 +38,7 @@
 ```html
 <body class="overflow-xh">body不会出现横向滚动条</body>
 ```
-## 结构
+## 设置display
 |   类名   |   作用   |
 | ---- | ---- |
 |dis-b|display:block|
