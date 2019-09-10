@@ -93,66 +93,66 @@
 </style>
 <script>
 import mixin from "./mixin.js";
+
 export default {
-  props: {
-    type: { type: String, default: "text" },
-    value: { type: String, default: "" },
-    reset: { type: Boolean, default: true },
-    prepend: String,
-    append: String,
-    width:[Number,String],
-    prependDisabled: { type: Boolean, default: false },
-    appendDisabled: { type: Boolean, default: false },
-    changeType:{type:Boolean,default:false}
-  },
-  mixins: [mixin],
-  methods: {
-    resetInput: function() {
-      const target = this.$refs.input;
-      target.value = this.value = "";
-      target.focus();
-      this.$emit("reset", target, this);
-      this.$emit("input", "", target, this);
+    props: {
+        type: {type: String, default: "text"},
+        reset: {type: Boolean, default: true},
+        prepend: String,
+        append: String,
+        width: [Number, String],
+        prependDisabled: {type: Boolean, default: false},
+        appendDisabled: {type: Boolean, default: false},
+        changeType: {type: Boolean, default: false}
     },
-    handleInput(event) {
-        console.log(`input handleInput`);
-      let evt = window.event||event;
-      let target = evt.target||evt.srcElement;
-      let value = target.value;
-      if(this.type==='number'){
-        let rs=/(\-)?\d+\.?(\d+)?/.exec(value)
-        value=rs?rs[0]:''
-      }
-      // target.value=value;
-      this.$emit("input", value, target, this);
-      this.$nextTick(this.rendered);
+    mixins: [mixin],
+    methods: {
+        resetInput: function () {
+            const target = this.$refs.input;
+            target.value = this.value = "";
+            target.focus();
+            this.$emit("reset", target, this);
+            this.$emit("input", "", target, this);
+        },
+        handleInput(event) {
+            console.log(`input handleInput`);
+            let evt = window.event || event;
+            let target = evt.target || evt.srcElement;
+            let value = target.value;
+            if (this.type === 'number') {
+                let rs = /(\-)?\d+\.?(\d+)?/.exec(value)
+                value = rs ? rs[0] : ''
+            }
+            // target.value=value;
+            this.$emit("input", value, target, this);
+            this.$nextTick(this.rendered);
+        },
     },
-  },
-  computed: {
-    inputStyle() {
-      let style = {};
-      if (this.$slots.prepend || this.prepend || this.reverse) {
-        style.borderTopLeftRadius = "0px";
-        style.borderBottomLeftRadius = "0px";
-      }
-      if (this.$slots.append || this.append || this.reverse) {
-        style.borderTopRightRadius = "0px";
-        style.borderBottomRightRadius = "0px";
-      }
-      if (this.reset) {
-        style.paddingRight = "40px";
-      }
-      if (this.type === "search") {
-        style.paddingLeft = "40px";
-      }
-      if(this.width){
-        style.width=this.width+'px';
-      }
-      return style;
-    },
-      selfType(){
-        return this.type==='number'?'tel':this.type;
-      }
-  }
+    computed: {
+        inputStyle() {
+            let style = {};
+            if (this.$slots.prepend || this.prepend || this.reverse) {
+                style.borderTopLeftRadius = "0px";
+                style.borderBottomLeftRadius = "0px";
+            }
+            if (this.$slots.append || this.append || this.reverse) {
+                style.borderTopRightRadius = "0px";
+                style.borderBottomRightRadius = "0px";
+            }
+            if (this.reset) {
+                style.paddingRight = "40px";
+            }
+            if (this.type === "search") {
+                style.paddingLeft = "40px";
+            }
+            if (this.width) {
+                style.width = this.width + 'px';
+            }
+            return style;
+        },
+        selfType() {
+            return this.type === 'number' ? 'tel' : this.type;
+        }
+    }
 };
 </script>

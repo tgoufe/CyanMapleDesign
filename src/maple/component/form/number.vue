@@ -2,7 +2,7 @@
 	<cmui-input type="number"
 	ref="input"
 	:name="name"
-	v-model="value"
+	v-model="selfValue"
     :readonly="readonly"
     :placeholder="placeholder"
     :disabled="disabled"
@@ -10,8 +10,8 @@
     :label="label"
     :align="align"
     :reset="false"
-    :prepend-disabled="!canSub"
-	:append-disabled="!canAdd"
+    :prepend-disabled="!_canSub"
+	:append-disabled="!_canAdd"
 	:flex="flex"
 	:width="width"
     @input="handleInput"
@@ -35,42 +35,42 @@ export default {
 	methods:{
 	    changeNumber:function(num=0){
 	    	console.log(`number changeNumber`);
-	    	if((!this.canAdd&&num===1)||(!this.canSub&&num===-1)){
+	    	if((!this._canAdd&&num===1)||(!this._canSub&&num===-1)){
 	    		return
 	    	}
-	    	const value = this.value;
+	    	const value = this.selfValue;
 	    	const beforeChangeEvent=this.$listeners['before-change'];
 	    	let targetValue=+value+num;
 	    	targetValue=_.min([this.max,targetValue]);
 	        targetValue=_.max([this.min,targetValue]);
 	    	if(_.isFunction(beforeChangeEvent)){
-	    		this.canAdd=this.canSub=false;
+	    		this._canAdd=this._canSub=false;
 	    		new Promise((resolve,reject)=>{
 					beforeChangeEvent(targetValue,resolve,reject,this);
 				}).then(()=>{
-					this.value=targetValue;
+					this.selfValue=targetValue;
 					this.setBtnState();
-					this.$emit('input',this.value,this);
+					this.$emit('input',this.selfValue,this);
 				},()=>{
 					this.setBtnState();
-					this.$emit('input',this.value,this);
+					this.$emit('input',this.selfValue,this);
 				})
 	    	}else{
-	        	this.value=targetValue;
+	        	this.selfValue=targetValue;
 	        	this.setBtnState();
-		        this.$emit('input',this.value,this);
+		        this.$emit('input',this.selfValue,this);
 	    	}
 	    },
 	    setBtnState(isFirst=false){
-	    	console.log(`number setBtnState`,this.value);
-			this.canAdd=this.canSub=true;
-			if(+this.value===this.max){
-				this.canAdd=false;
-				!isFirst&&this.$emit('max',this.value,this);
+	    	console.log(`number setBtnState`,this.selfValue);
+			this._canAdd=this._canSub=true;
+			if(+this.selfValue===this.max){
+				this._canAdd=false;
+				!isFirst&&this.$emit('max',this.selfValue,this);
 			}
-			if(+this.value===this.min){
-				!isFirst&&this.$emit('min',this.value,this);
-				this.canSub=false;
+			if(+this.selfValue===this.min){
+				!isFirst&&this.$emit('min',this.selfValue,this);
+				this._canSub=false;
 			}
 		},
 		handleBlur(){
@@ -117,7 +117,8 @@ export default {
 	data(){
 		return {
 			_canSub:this.canSub,
-			_canAdd:this.canAdd
+			_canAdd:this.canAdd,
+			selfValue:this.value
 		}
 	},
 	computed:{
@@ -137,12 +138,19 @@ export default {
 		}
 	},
 	watch:{
-		value(){
+		value(value){
 			this.setBtnState();
+			this.selfValue=value;
 			console.log(arguments);
 		},
 		max(){this.setBtnState();},
 		min(){this.setBtnState();},
+		canSub(value){
+			this._canSub=!!value;
+		},
+		canAdd(value){
+			this._canAdd=!!value;
+		}
 	}
 };
 </script>

@@ -108,9 +108,29 @@ ratio-container用于创建一个比例容器，这在不确定外在容器宽�
 :::
 
 <Cyan-RatioContainer></Cyan-RatioContainer>
-
+```html
+<!--如果需要修改比例为1：2可以添加ratio-container-1x2，以此类推-->
+<div class="ratio-container">
+    <!--这里在比例容器中放置了图片容器，这种结构非常实用-->
+    <div class="img-container flex-x">
+        <img :src="imgurl" alt="">
+    </div>
+</div>
+```
 ## scroll-container
-如果你的项目是在移动端使用，那么为一个节点添加scroll-container类即可轻松的建立一个滚动的容器，内部的所有子节点将横向排列，你只需要为每个子节点设置宽度即可。下面的案例请使用移动端查看效果。
+如果你的项目是在移动端使用，那么为一个节点添加scroll-container类即可轻松的建立一个滚动的容器，内部的所有子节点将横向排列，你只需要为每个子节点设置宽度即可。
+:::tip
+下面的案例请使用移动端查看效果。
+:::
 <Cyan-ScrollContainer></Cyan-ScrollContainer>
+```html
+<div class="scroll-container">
+    <div style="width:100px;" v-for="(item,index) in list" :key="index">
+        <div class="img-container">
+            <img :src="item.imageUrl" alt="">
+        </div>
+    </div>
+</div>
+```
 
 

@@ -22,7 +22,7 @@
         },
         methods:{
             getImage(index){
-                return `https://github.com/tgoufe/curriculum/blob/master/image/IMG_10${66+index}.JPG?raw=true`
+                return `//zhang-yue.oss-cn-beijing.aliyuncs.com/bingshan/IMG_10${66+index}.JPG?raw=true`
             }
         }
     }
