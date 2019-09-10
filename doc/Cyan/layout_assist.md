@@ -27,7 +27,17 @@
 |fullcenter|绝对定位，完全居中|
 |abs-{position}|在某个方向上绝对定位，你可以使用top,right,bottom,left,full,center六个值当中的任意一个代替position|
 |fixed-{position}|在某个方向上固定定位，你可以使用top,right,bottom,left,full,center六个值当中的任意一个代替position|
+```html
+<!--使用vcenter hcenter fullcenter abs-{position}需要为外层容器增加pos-r-->
+<div class="pos-r">
+    <div class="vcenter"></div>
+    <div class="abs-bottom"></div>
+</div>
+<!--使用fixed-{position}可以直接使用-->
+<div class="fixed-bottom"></div>
 
+```
+<Cyan-Position></Cyan-Position>
 ## 设置overflow
 |   类名   |   作用   |
 | ---- | ---- |

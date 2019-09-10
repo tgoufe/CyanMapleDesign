@@ -13,7 +13,7 @@
             bottom,
             left,
             right}">
-                <img src="https://user-gold-cdn.xitu.io/2019/9/3/16cf5c687c6af804?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="">
+                <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g6uw84o18wj30ku0dwdjl.jpg" alt="">
 
             </div>
         </div>
