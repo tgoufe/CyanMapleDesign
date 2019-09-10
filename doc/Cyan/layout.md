@@ -1,6 +1,6 @@
 # Container
 :::tip
-Layout 主要用于配置页面的布局，通过该样式组，可以快速的搭建页面的布局，需要注意的是我们所有的盒模型均是border-box结构的。
+Cyan提供了强大到丧心病狂（偷瞄顾俊老师一眼）的布局能力，这里展示了6个大的布局系统的使用，需要注意的是我们所有的盒模型均是border-box结构的。
 :::
 ## grid-container
 如果你使用过bootstrap，那么你可以直接上手grid布局了，这是经典的网格布局，支持12列和15列两种方式展示，12列使用span作为关键字，15列使用col作为关键字。
@@ -61,15 +61,8 @@ box container和grid container 几乎是相同的，区别在于box的网格之�
 </div>
 ```
 ## img-container
-imageContainer用于放置图片并提供了多种布局方式。你需要做的就是建立一个image-container的容器，并将img标签放置在里面，如果需要其他的样式还可以配合以下属性
-
-* full：图片撑满容器，会导致图片变形
-* flex-x：图片在X轴上撑满容器，可能导致图片被截取
-* flex-y：图片在Y轴上撑满容器，可能导致图片被截取
-* radius：给容器设置圆角
-* round：将容器制作成圆形
-* border：给图片添加边框
-* top bottom left right:设置图片在容器中的位置，可以组合使用
+imageContainer用于放置图片并提供了多种布局方式。你需要做的就是建立一个image-container的容器，并将img标签放置在里面，如果需要其他的样式可以搭配DEMO中展示的class.
+<Cyan-ImgContainer></Cyan-ImgContainer>
 ```html
 <!--无论图片多大，均在容器内居中显示；-->
 <div class="img-container">
