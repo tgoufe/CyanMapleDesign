@@ -330,6 +330,10 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 .dis-i{
 	display:inline-block;
 }
+.dis-t{display:table}
+.dis-it,.text-container{
+	display:inline-table;
+}
 .dis-n{
 	display:none;
 }

@@ -54,6 +54,8 @@
 |dis-b|display:block|
 |dis-i|display:inline|
 |dis-n|display:none|
+|dis-t|display:table|
+|dis-it|display:inline-table|
 ```html
 <div class="dis-n"></div>
 ```

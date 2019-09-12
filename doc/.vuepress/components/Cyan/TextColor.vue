@@ -1,12 +1,11 @@
 <template>
     <div>
-        <p :class="[list]">点击下方的配置，查看文本的颜色变化</p>
+        <p :class="className">点击下方的配置，查看文本的颜色变化</p>
         <div class="form">
-
             <cmui-radio v-for="(value,key) in list"
                         :key="key"
-                        :label="key"
-                        v-model="list[key]"
+                        :label="value"
+                        v-model="className"
                         name="color"
             >
             </cmui-radio>
@@ -23,16 +22,13 @@
         name: "TextColor",
         components:{cmuiCheckbox,cmuiRadio},
         data(){
-            let listColor=[
+            let list=[
                 'red','orange','yellow','green','coffee','blue','purple',
-                'black','darker','dark','lighter','light','white'
-            ];
-            let list={};
-            listColor.forEach(item=>{
-                list[`text-${item}`]=false
-            });
+                'black','darker','dark','light','lighter','white'
+            ].map(item=>`text-${item}`);
             return{
-                list
+                list,
+                className:''
             }
         }
     }
