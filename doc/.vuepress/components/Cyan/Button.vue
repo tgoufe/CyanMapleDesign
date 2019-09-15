@@ -1,21 +1,28 @@
 <template>
     <div>
-        <p :class="className">点击下方的配置，查看文本的颜色变化</p>
-        <span class="btn" :class="[className,{reverse,radius,block}]">this is a btn</span>
+        <p>点击下方的配置，查看按钮变化</p>
+        <span class="btn" :class="[colorName,sizeName,{reverse,radius,block}]" v-if="!group">this is a btn</span>
+        <div class="btn-group" v-else>
+            <span class="btn" :class="[colorName,sizeName,{reverse,radius}]">this is a btn</span>
+            <span class="btn" :class="[colorName,sizeName,{reverse,radius}]">this is a btn</span>
+            <span class="btn" :class="[colorName,sizeName,{reverse,radius}]">this is a btn</span>
+        </div>
         <div class="form">
+            <span>设置按钮颜色</span>
             <cmui-radio v-for="(value,key) in list"
                         :key="key"
                         :label="value"
-                        v-model="className"
+                        v-model="colorName"
                         name="color"
             >
             </cmui-radio>
             <div>
-                <cmui-radio v-for="(value,key) in list"
+                <span>设置按钮尺寸</span>
+                <cmui-radio v-for="(value,key) in size"
                             :key="key"
-                            :label="value"
-                            v-model="className"
-                            name="color"
+                            :label="value||'default'"
+                            v-model="sizeName"
+                            name="size"
                 >
                 </cmui-radio>
             </div>
@@ -24,6 +31,7 @@
             <cmui-checkbox :flex="true" v-model="reverse" target-class="switch">reverse</cmui-checkbox>
             <cmui-checkbox :flex="true" v-model="radius" target-class="switch">radius</cmui-checkbox>
             <cmui-checkbox :flex="true" v-model="block" target-class="switch">block</cmui-checkbox>
+            <cmui-checkbox :flex="true" v-model="group" target-class="switch">查看按钮组效果</cmui-checkbox>
         </div>
     </div>
 
@@ -43,11 +51,13 @@
             ];
             return{
                 list,
-                size:'',
-                className:'',
+                size:['','big','small'],
+                colorName:'',
+                sizeName:'',
                 reverse:false,
                 radius:false,
-                block:false
+                block:false,
+                group:false
             }
         }
     }

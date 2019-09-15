@@ -2,9 +2,7 @@ $from-control-size:nth(map-get($btn-size-list,'base'),1) - $border-radius-base *
 input,select,textarea {
     // font-family: 'Helvetica Neue',Helvetica,sans-serif;
     -webkit-tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: transparent;
     &:focus{
-        -webkit-tap-highlight-color: transparent;
         -webkit-tap-highlight-color: transparent;
     }
 }
@@ -361,7 +359,7 @@ input{
         >*{
             margin-left:-1px;
         }
-        &.inputGroup-radius{
+        &.radius{
             >*{
                 &:first-child{
                     border-radius:$border-radius-base 0 0 $border-radius-base;
@@ -374,7 +372,7 @@ input{
                 @extend .flex1;
             }
         }
-        &.inputGroup-reverse{
+        &.reverse{
             .input_addon{
                 @extend .btn.reverse;
             }
