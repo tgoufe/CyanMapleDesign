@@ -165,6 +165,7 @@ select和text-area支持下面三种辅助class
 </div>
 
 ## 表单组
+你可以使用inputGroup类将表单元素进行包裹，从而形成按钮组的样式，如果像你需要在其中加入提示性的文字，可以使用input_addon类，它继承于按钮组件，这意味着你可以在input_addon上使用按钮的全部拓展class
 ```html
 <div class="inputGroup">
     <div class="input_addon"></div>
@@ -175,8 +176,13 @@ select和text-area支持下面三种辅助class
 ```
 <div class="form">
     <div class="inputGroup radius">
+        <select>
+            <option>http://</option>
+            <option>https://</option>
+        </select>
         <div class="input_addon">www</div>
-        <input type="text">
+        <input type="text" placeholder="bingshangroup">
         <div class="input_addon">com</div>
+        <div class="input_addon blue">转到</div>
     </div>
 </div>

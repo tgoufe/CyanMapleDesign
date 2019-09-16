@@ -90,8 +90,18 @@ imageContainer用于放置图片并提供了多种布局方式。你需要做的
 * 表示位置：使用top bottom left right center line中的一个或多个来表示位置，你可以将flex容器想象成一个九宫格，你只需要描述你你希望的位置在哪个方向即可
 * 表示尺寸：使用vfull或hfull来表示子元素在横向铺满或纵向铺满
 <Cyan-FlexContainer></Cyan-FlexContainer>
-### 子节点属性
+### 子节点尺寸
 你可以在flex-container的子节点上添加flex1~flex5的class，来修改它的宽度或高度，控制它占据剩余空间的比例
+
+### 子节位置
+为容器设置top,left等表示方向的class会整体修改所有子节点的排列，如果你只是想修改某一个子元素的位置，可以直接在该子元素上添加top,bottom,right,left四个class中的一个或多个。
+```html
+<div class="flex-container">
+    <span>1</span>
+    <span class="bottom left">该节点将位于左下角</span>
+    <span>3</span>
+</div>
+```
 
 ## 比例容器：ratio-container
 ratio-container用于创建一个比例容器，这在不确定外在容器宽度的时候尤其有用。你只需要为一个节点增加ratio-container的class即可，支持1：5到5：1的比例结构，默认为1：1,通常情况下我们只需要默认的即可；

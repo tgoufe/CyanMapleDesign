@@ -14,6 +14,7 @@
                         :label="value"
                         v-model="colorName"
                         name="color"
+                        class="marginr30"
             >
             </cmui-radio>
             <div>

@@ -118,7 +118,7 @@
   }
 }
 @each $btnSizeName,$btnSizeValue in $btn-size-list{
-  @if(#{$btnSizeName}!='base'){
+  @if $btnSizeName!='base'{
     .btn.#{$btnSizeName}{
       @include button-size(nth($btnSizeValue,1),nth($btnSizeValue,2),nth($btnSizeValue,3));
     }

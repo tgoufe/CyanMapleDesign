@@ -21,7 +21,7 @@ let cyanList=getFiles('./doc/Cyan', false).reduce((rs, {path, name}) => {
         rs.push(`Cyan/${name}`)
     }
     return rs;
-},[]);
+},['Cyan/']);
 module.exports = {
     title: '欢迎使用CyanMaple',
     description: 'Just playing around',

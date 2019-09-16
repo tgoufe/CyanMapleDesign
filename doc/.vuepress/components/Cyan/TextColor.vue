@@ -7,6 +7,7 @@
                         :label="value"
                         v-model="className"
                         name="color"
+                        class="marginr30"
             >
             </cmui-radio>
         </div>
