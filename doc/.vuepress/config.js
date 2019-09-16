@@ -12,35 +12,40 @@ function getFiles(filePath,deep=true){
 }
 let componentsList=getFiles('./doc',false).reduce((rs,{path,name})=>{
     if(/\.md$/.test(name)&&name!=='README.md'){
-        rs.push(`${name}`)
+        rs.push(`${name}`);
     }
     return rs;
-},[]);
+},['']);
 let cyanList=getFiles('./doc/Cyan', false).reduce((rs, {path, name}) => {
     if(/\.md$/.test(name)&&name!=='README.md'){
-        rs.push(`Cyan/${name}`)
+        rs.push(`${name}`);
     }
     return rs;
-},['Cyan/']);
+},['']);
 module.exports = {
     title: '欢迎使用CyanMaple',
     description: 'Just playing around',
     serviceWorker:true,
     themeConfig:{
-        sidebar:[
-            '/',
-            {
-                title:'Cyan',
-                children:cyanList,
-            },
-            '/methodsAPI.md',
-            {
-                title:'组件',
-                children:componentsList
-            },
-
-        ],
+        // sidebar:[
+        //     '/',
+        //     {
+        //         title:'Cyan',
+        //         children:cyanList,
+        //     },
+        //     '/methodsAPI.md',
+        //     {
+        //         title:'组件',
+        //         children:componentsList
+        //     },
+        //
+        // ],
+        sidebar: {
+            '/Cyan/': cyanList,
+            '/': componentsList
+        },
         nav:[
+            {text:'Cyan',link:'/Cyan/'},
             {text:'冰山工作室官网',items:[
                     {text:'官网',link:'http://www.bingshangroup.com'},
                     {text:'陪你读书',link:'https://www.ximalaya.com/jiaoyu/3740790/'},
