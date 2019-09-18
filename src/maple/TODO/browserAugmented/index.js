@@ -6,6 +6,6 @@ $(function(){
 		changePage();
 		return false;
 	});
-	click增强;
-	滚动监听增强;
+	// click增强;
+	// 滚动监听增强;
 });

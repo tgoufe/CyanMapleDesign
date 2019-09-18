@@ -46,36 +46,36 @@ import {Listener, listener} from './listener.js';
 /**
  * ---------- 通用工具 ----------
  * */
-import util     from './util/index.js';
+import util                 from './util/index.js';
 
 /**
  * ---------- 全局运行时检测 ----------
  * */
 // 运行参数
-import url      from '../runtime/url.js';
+import url                  from './runtime/url.js';
 
 // 运行设备、系统、内核、浏览器
-import device   from '../runtime/device.js';
+import device       from './runtime/device.js';
 
 /**
  * ---------- 数据层 ----------
  * */
-import Model    from './model/index.js';
+import Model        from './model/index.js';
 
 /**
  * ---------- View 监控对象 ----------
  * */
-import view     from './view/index.js';
+import view         from './view/index.js';
 
 /**
  * ---------- Router 路由控制 ----------
  * */
-import Router   from './router/index.js';
+import Router       from './router/index.js';
 
 /**
  * ---------- 获取地理位置 ----------
  * */
-import position from './position.js';
+import position     from './position.js';
 
 /**
  * todo 实验性功能
@@ -89,7 +89,7 @@ import * as animate from './animate/index.js';
 /**
  * ---------- 注册后台 worker ----------
  * */
-import register from './register/index.js';
+import register     from './register/index.js';
 
 /**
  * ---------- 桌面通知 ----------

@@ -1,8 +1,8 @@
 'use strict';
 
-import url          from '../../runtime/url.js';
-import merge        from '../util/merge.js';
-import {listener}   from '../listener.js';
+import url        from '../runtime/url.js';
+import merge      from '../util/merge.js';
+import {listener} from '../listener.js';
 
 /**
  * 路由默认配置
