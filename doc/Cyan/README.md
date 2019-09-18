@@ -1,4 +1,6 @@
 # 概览
+## Cyan是什么
+Cyan是一套对常用的页面样式高度抽离CSS框架。内部封装了大量的class，确使用了很少的名称，通过这些class的组合即可完成绝大多数的页面布局需求。
 ## 核心思想
 在我们日常的开发中经常为起名字而烦恼，很多时候会出现开发人员A需要起一个名字，但是又不知道如何翻译，所以使用翻译软件来获取对应的英文名，等到开发人员B在查看的时候发现这个名字不认识，再用翻译软件翻译回来的情况。这是非常痛苦的过程。
 :::tip
@@ -114,6 +116,57 @@
 </div>
 </div>
 
-在上面的案例中你可以看到，我们没有为任何的DOM节点设置符合业务逻辑的名称，也几乎没有写任何额外的CSS（除了使用style调整图片容器的尺寸），就完成了列表的布局。
+在上面的案例中你可以看到，我们没有为任何的DOM节点设置符合业务逻辑的名称，也几乎没有写任何额外的CSS（除了使用style调整图片容器的尺寸），就完成了列表的布局。因为抛弃了业务逻辑，因此这样的结构可以作为任何模块使用，比如用户列表，视频列表等。
 
+从另一个角度来讲，当你阅读一段Cyan的组合结构代码的时候，你的脑海中可以清晰的浮现出它最后呈现的页面效果，但是你完全不知道它用于什么模块，如果要解决这个问题，你可以在DOM中增加类似productList这样的class来标注它的用途
+## 业务逻辑命名引用
+:::tip
+我们并不阻止你使用包含业务的名称对DOM节点进行命名，事实上适当的业务命名会提升代码的可读性，只不过我们认为命名和重复的书写样式是一件麻烦的事情，从而提供了一种方法让你可以在不命名的情况下依旧可以高效完成工作，如果你觉得这种结构不适用你的需求，可以引用Cyan的Sass拓展包。
+:::
+```html
+<div class="productList">
+    <div class="productItem">
+        <div class="productImg">
+            <img src="" alt="">
+        </div>
+        <span class="productName"></span>
+        <div class="productInfo">
+            <div class="info_img"></div>
+            <div class="info_oldPrice"></div>      
+            <div class="info_newPrice"></div>      
+        </div>
+    </div>
+</div>
+```
+```scss
+@import cyan/extend;
+.productList{
+    @extend list;
+    .productItem{@extend list-item;}
+    .productImg{ @extend ratio-container img-container;}
+    .productName{@extend text-limit2 fs-13;}
+    .productInfo{
+        @extend flex-container margint10;
+        .info_img{@extend img-container round;width:40px}
+        .info_oldPrice{@extend text-delete text-light marginl10}
+        .info_newPrice{@extend text-red fs-13 right}
+    }
+}
+```
+## 使用建议
+在使用Cyan的时候，你有下面三种方式去完成你的页面。如何使用完全取决于你的习惯和需求
 
+1.只使用Cyan提供的class，完全不使用业务逻辑命名，在需要微调的地方使用行内样式进行调整。
+
+    优点：1.开发速度快 2.后期修改方便 3.仅通过源码即可知道最后的呈现效果。
+    缺点：1.DOM节点中的class非常多 2.通过源码无法了解该模块的用途。
+2.使用业务逻辑命名，在样式文件中引用Cyan的拓展包。
+
+    优点：1.不需要增加大量class 2.从命名可以看出业务场景。
+    缺点：1.起名是个麻烦事 2.嵌套结构如果修改也比较麻烦 3.并不是所有的结构都能通过拓展包完成
+
+3.使用Cyan提供的class，同时添加业务逻辑命名，即将两种方式混合使用。微调的地方使用业务名称对应的额外样式文件
+
+    优点：1.开发速度快 2.主要样式修改方便 3.通过源码可以了解业务，也可以了解效果
+    缺点：1.节点中的class多 2.需要起名 3.细节样式和主要样式分离，修改要查找两个地方
+    

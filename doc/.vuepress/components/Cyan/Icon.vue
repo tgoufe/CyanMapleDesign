@@ -76,7 +76,7 @@
     ];
     import '../../../../src/cyan/CMUI_doc.scss';
     export default {
-        name: "Import",
+        name: "Icon",
         data(){
             return{
                 data

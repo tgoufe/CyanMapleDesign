@@ -1,8 +1,7 @@
 <template>
     <div>
-        <p>请在下方的表格中点击你不认识或者不理解其作用的单词</p>
         <div style="overflow: hidden;padding:1px;margin-top:20px">
-            <span class="word" v-for="item in data" @click="itemClick">{{item}}</span>
+            <span class="word" v-for="item in data">{{item}}</span>
         </div>
 
     </div>
@@ -21,15 +20,6 @@
             return {
                 data,
                 text:'在下方的表格中点击你认识或者可以理解其作用的单词'
-            }
-        },
-        methods:{
-            itemClick(event){
-                if(event.target.innerText==='cyan'){
-                    alert(123)
-                }else {
-                    event.target.classList.toggle('active')
-                }
             }
         }
     }
