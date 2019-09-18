@@ -1,5 +1,5 @@
 <template>
-    <label class="cmui-iput_container" :class="{'flex-container':flex}">
+    <label class="cmui-checkbox" :class="{'flex-container':flex}">
       <span :class="{checked:slefValue}" class="cmui-check__label" v-if="align==='left'">
         <slot></slot>
         <template v-if="!$slots.default">{{label}}</template>
@@ -29,36 +29,29 @@
 </style>
 <script type="text/javascript">
 import mixin from "./mixin.js";
+import _ from 'lodash';
 export default {
   mixins: [mixin],
   props: {
     path:String
   },
   computed: {
-    slefValue() {
-      let value = this.value;
-      if(_.isArray(value)){
-        let dom=this.$refs.checkbox;
-        let isEveryTrue=_.every(value,item=>{
-          if(_.isObject(item)){
-            return _.get(item,this.path)===true;
-          }else{
-            return item===true;
+    slefValue:{
+      get(){
+        let value=this.value;
+        return _.isArray(value)?
+                _.every(value,item=>(_.isObject(item)?_.get(item,this.path):item)===true):
+                value;
+      },
+      set(value){
+        if(_.isArray(value)){
+          let dom=this.$refs.checkbox;
+          let allTrue=_.every(value,item=>(_.isObject(item)?_.get(item,this.path):item)===true);
+          let allFalse=_.every(value,item=>(_.isObject(item)?_.get(item,this.path):item)===false);
+          if(dom){
+            dom.indeterminate=!(allTrue||allFalse);
           }
-        })
-        let isEveryFalse=_.every(value,item=>{
-          if(_.isObject(item)){
-            return _.get(item,this.path)===false;
-          }else{
-            return item===false;
-          }
-        })
-        if(dom){
-          dom.indeterminate=!(isEveryTrue||isEveryFalse);
         }
-        return isEveryTrue;
-      }else{
-        return value;
       }
     }
   },
@@ -75,7 +68,7 @@ export default {
           if (_.isArray(this.value)) {
             let length = this.value.length;
             if (_.every(this.value, _.isBoolean)) {
-              this.value = _.fill(new Array(length), value);
+              this.value = new Array(length).fill(value);
             } else {
               _.forEach(this.value, item => {
                 _.set(item,this.path,value)
@@ -93,7 +86,7 @@ export default {
         if (_.isArray(this.value)) {
           let length = this.value.length;
           if (_.every(this.value, _.isBoolean)) {
-            this.value = _.fill(new Array(length), value);
+            this.value = new Array(length).fill(value);
           } else {
             _.forEach(this.value, item => {
               _.set(item,this.path,value)
