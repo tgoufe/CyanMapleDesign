@@ -6,7 +6,7 @@
 ```
 ├── CMUI                     
 ├── build
-├── demo                      //实际开发目录
+├── demo                      //DEMO文件夹
 │   ├── headComponent
 │   ├── img
 │   ├── index
@@ -29,13 +29,7 @@ npm install
 ```console
 npm start 
 ```
-## 可能出现的问题
-打包或编译失败：
-1.全局安装打包工具parcel
-2.删除node_modules文件夹
-3.删除package.json中的devDependencies中的内容
-4.安装autoprefixer和node-sass:npm i node-sass autoprefixer -D
-5.直接执行npm run start,第一次执行需要几分钟时间来安装依赖并生成缓存，之后速度回很快
+
 # api
 [全局方法](doc/methodsAPI.md)
 ## 组件应用

@@ -1,13 +1,13 @@
 {
   "name": "cyanmaple",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "cmui",
   "main": "CMUI/index.js",
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.config_dev.js",
-    "cyan": "parcel build src/cyan/cmui.scss -d CMUI",
+    "cyan": "gulp sass",
     "maple": "webpack --config build/webpack.config_pro.js",
-    "theme": "parcel build src/maple/theme.scss -d CMUI ",
+    "theme": "gulp theme",
     "doc": "vuepress dev doc"
   },
   "files": [
@@ -40,6 +40,10 @@
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
     "html-webpack-plugin": "^3.2.0",
     "import-local": "^2.0.0",
     "lodash": "^4.17.11",
@@ -66,5 +70,9 @@
     "lodash": "^4.17.15",
     "swiper": "^4.2.6",
     "vue": "^2.5.16"
-  }
+  },
+  "browserslist": [
+    "iOS >= 8",
+    "Android >= 4"
+  ]
 }

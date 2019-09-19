@@ -1,75 +1,83 @@
 .border{
 	border:1px solid $border-color-default;
-	&l{border-left:1px solid $border-color-default;}
-	&r{border-right:1px solid $border-color-default;}
-	&t{border-top:1px solid $border-color-default;}
-	&b{border-bottom:1px solid $border-color-default;}
-	&h{border-left:1px solid $border-color-default;border-right:1px solid $border-color-default;}
-	&v{border-top:1px solid $border-color-default;border-bottom:1px solid $border-color-default;}
+	overflow: hidden;
+	&t,&v{border-top:1px solid $border-color-default; }
+	&b,&v{border-bottom:1px solid $border-color-default; }
+	&l,&h{border-left:1px solid $border-color-default; }
+	&r,&h{border-right:1px solid $border-color-default; }
+	&.item,&.itemv,&.itemh{
+		border:none;
+	}
 	&.item{
 		>*{
 			border:1px solid $border-color-default;
 		}
 	}
 	&.itemv{
-		>*{
+		>*:not(:first-child){
 			border-top:1px solid $border-color-default;
-			&:first-child{
-				border-top:none;
-			}
 		}
 	}
 	&.itemh{
-		>*{
+		>*:not(:first-child){
 			border-left:1px solid $border-color-default;
-			&:first-child{
-				border-left:none;
+		}
+	}
+	&.round{
+		&,&.item >*{
+			border-radius:375px;
+		}
+	}
+	&.radius{
+		&,&.item >*{
+			border-radius:$border-radius-base;
+		}
+	}
+	//light
+	&.light{
+		&, &t, &r, &b, &l, &.item >*, &.itemh >*, &.itemv >*{
+			position:relative;
+			border:none;
+			&::before{
+				position: absolute;
+				width:200%;
+				height:200%;
+				border: 1px solid transparent;
+				transform: scale(.5);
+				transform-origin: 0 0;
+				content:'';
+			}
+		}
+		&, &.item >*{
+			&::before{border-color:$border-color-default; }
+		}
+		&.itemh >*{
+			&::before{border-left-color:$border-color-default; }
+			&:first-child::before{content:none;}
+		}
+		&.itemv >*{
+			&::before{border-top-color:$border-color-default; }
+			&:first-child::before{content:none;}
+		}
+		&.item,&.itemh,&.itemv{&::before{content:none;}}
+		&.radius{
+			&,
+			&.item >*{
+				&::before{border-radius: $border-radius-base * 2; }
+			}
+		}
+		&.round{
+			&,&.item >*{
+				&::before{border-radius: 750px; }
 			}
 		}
 	}
-	&.round,&-round{
-		border-radius:50%;
-	}
-	&.radius,&-radius{
-		border-radius:$border-radius-base;
-	}
+	&t,&v{&.light{&::before{border-top-color:$border-color-default;}}}
+	&b,&v{&.light{&::before{border-bottom-color:$border-color-default;}}}
+	&r,&h{&.light{&::before{border-right-color:$border-color-default;}}}
+	&l,&h{&.light{&::before{border-left-color:$border-color-default;}}}
 }
 .shadow{
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
-	border-color: rgba(0, 0, 0, 0.09);
-}
-@if(not $isPC){
-	.bordert.light,.borderr.light,.borderb.light,.borderl.light{
-		position:relative;
-		&:before{
-			content:"";
-			display:block;
-			position:absolute;
-			top:0;
-			left:0;
-			bottom:0;
-			right:0;
-			background-color:map-get($grayList,'lighter');
-		}
-	}
-	.bordert.light:before{
-		bottom:auto;
-		height:1px;
-		transform: scaleY(.5);
-	}
-	.borderr.light:before{
-		left:auto;
-		width:1px;
-		transform: scaleX(.5);
-	}
-	.borderb.light:before{
-		top:auto;
-		height:1px;
-		transform: scaleY(.5);
-	}
-	.borderl.light:before{
-		right:auto;
-		width:1px;
-		transform: scaleX(.5);
-	}
+	border-color: rgba(0, 0, 0, .09);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .09);
 }

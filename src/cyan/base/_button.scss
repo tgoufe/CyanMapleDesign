@@ -1,8 +1,9 @@
 @mixin button-variant($color, $background, $border) {
+  border-color: $border;
   color: $color;
   background-color: $background;
-  border-color: $border;
-  @if($isPC){
+
+  @if ($isPC){
     &:focus,
     &.focus {
       color: $color;
@@ -117,7 +118,7 @@
   }
 }
 @each $btnSizeName,$btnSizeValue in $btn-size-list{
-  @if(#{$btnSizeName}!='base'){
+  @if $btnSizeName!='base'{
     .btn.#{$btnSizeName}{
       @include button-size(nth($btnSizeValue,1),nth($btnSizeValue,2),nth($btnSizeValue,3));
     }
