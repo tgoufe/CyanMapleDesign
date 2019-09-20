@@ -43,4 +43,5 @@ module.exports = {
             {text:'官网博客',link:'http://www.bingshangroup.com/blog2'}
         ]
     }
+
 };

@@ -4,6 +4,7 @@ $isPC:true;
 //@import "base/normalize";
 @import "base/baseIcon";
 @import "base/layout";
+blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre, td, textarea, th, ul{margin:initial;padding:initial;list-style:initial;}
 th, td {
   border: 1px solid #dfe2e5;
   padding: 0.6em 1em;
