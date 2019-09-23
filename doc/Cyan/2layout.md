@@ -62,6 +62,8 @@ box container和grid container 几乎是相同的，区别在于box的网格之�
 ```
 ## 图片容器：img-container
 imageContainer用于放置图片并提供了多种布局方式。你需要做的就是建立一个image-container的容器，并将img标签放置在里面，如果需要其他的样式可以搭配DEMO中展示的class.
+
+默认情况下会以图片的最长边进行显示。
 <Cyan-ImgContainer></Cyan-ImgContainer>
 ```html
 <!--无论图片多大，均在容器内居中显示；-->

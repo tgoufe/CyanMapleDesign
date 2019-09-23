@@ -26,7 +26,7 @@
 </script>
 
 <style scoped>
-    .word{padding:5px;float:left;border:1px solid #ff913e;margin-left:-1px;margin-top:-1px;width:80px;text-align: center;
+    .word{padding:5px;float:left;border:1px solid #ff913e;margin-left:-1px;margin-top:-1px;width:82px;text-align: center;
         position: relative;user-select: none;line-height:30px;}
     .word.active::before{
         content:'ok️';

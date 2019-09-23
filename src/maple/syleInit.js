@@ -1,72 +1,26 @@
-/*(function flexible (window, document) {
-	var docEl = document.documentElement
-	var dpr = window.devicePixelRatio || 1
-
-	// adjust body font size
-	function setBodyFontSize () {
-		if (document.body) {
-			document.body.style.fontSize = (12 * dpr) + 'px'
-		}
-		else {
-			document.addEventListener('DOMContentLoaded', setBodyFontSize)
-		}
-	}
-	setBodyFontSize();
-
-	// set 1rem = viewWidth / 10
-	function setRemUnit () {
-		var rem = docEl.clientWidth / 10
-		docEl.style.fontSize = rem + 'px'
-	}
-
-	setRemUnit()
-
-	// reset rem unit on page resize
-	window.addEventListener('resize', setRemUnit)
-	window.addEventListener('pageshow', function (e) {
-		if (e.persisted) {
-			setRemUnit()
-		}
-	})
-
-	// detect 0.5px supports
-	if (dpr >= 2) {
-		var fakeBody = document.createElement('body')
-		var testElement = document.createElement('div')
-		testElement.style.border = '.5px solid transparent'
-		fakeBody.appendChild(testElement)
-		docEl.appendChild(fakeBody)
-		if (testElement.offsetHeight === 1) {
-			docEl.classList.add('hairlines')
-		}
-		docEl.removeChild(fakeBody)
-	}
-}(window, document));*/
-let isMobile=/iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion);
-(function(window, document){
+;(function(window,document){
 	if(!window||!document){
-		return;
+		return
 	}
+	//set isMobile
+	let isMobile=/iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion);
 	if(isMobile){
 		document.scrollingElement.style.fontSize='10vw';
 		document.body.style.fontSize='14px';
 	}
-})(window, document);
-(function(window, document){
-	if(!window||!document){
-		return;
-	}
+	//insert style
 	let cmuiStyle = document.createElement('style');
 	document.head.appendChild(cmuiStyle);
 	let cssRules=cmuiStyle.sheet.cssRules;
 	let cssRulesLen=cssRules.length;
-	let PMstore=new Set;
-	let reg=/\b((padding|margin)[trblvh]?|top|bottom|right|left)(-n)?\d+\b/g;
-	let nameObject={t:['Top'],l:['Left'],'r':['Right'],b:['Bottom'],v:['Top','Bottom'],h:['Left','Right']};
-	function setStyle(selector,name,value){
+	function insertStyle(selector,name,value){
 		cmuiStyle.sheet.insertRule(selector+'{}', cssRulesLen);
 		cmuiStyle.sheet.cssRules[cssRulesLen++].style[name]=value;
 	}
+	//set pm
+	let PMstore=new Set;
+	let reg=/\b((padding|margin)[trblvh]?|top|bottom|right|left)(-n)?\d+\b/g;
+	let nameObject={t:['Top'],l:['Left'],'r':['Right'],b:['Bottom'],v:['Top','Bottom'],h:['Left','Right']};
 	function setPMBySet(set){
 		for(let item of set){
 			let [key,name,pos,isN,value]=/(padding|margin)([trblvh])?(-n)?(\d+)/.exec(item)||
@@ -74,15 +28,25 @@ let isMobile=/iphone|ipad|android|micromessenger/i.test(window.navigator.appVers
 			value=isMobile?`${value/75}rem`:`${value}px`;
 			if(pos){
 				nameObject[pos].forEach(posName=>{
-					setStyle('.'+key,`${name}${posName}`,(isN?'-':'')+value);
+					insertStyle('.'+key,`${name}${posName}`,(isN?'-':'')+value);
 				});
 			}else {
-				setStyle('.'+key,`${name}`,(isN?'-':'')+value);
+				insertStyle('.'+key,`${name}`,(isN?'-':'')+value);
 			}
 		}
 	}
-	function resetPM(dom=document){
-		console.log(dom);
+	function setPMByClass(className){
+		let PMstore_temp=new Set;
+		let match=[...className].join(' ').match(reg);
+		match&&match.forEach(item=>{
+			if(!PMstore.has(item)){
+				PMstore.add(item);
+				PMstore_temp.add(item);
+			}
+		});
+		setPMBySet(PMstore_temp);
+	}
+	function setPMByDom(dom=document){
 		let PMstore_temp=new Set;
 		let domList=dom.querySelectorAll('[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom]')||[];
 		[...domList].forEach(item=>{
@@ -96,31 +60,64 @@ let isMobile=/iphone|ipad|android|micromessenger/i.test(window.navigator.appVers
 		});
 		setPMBySet(PMstore_temp);
 	}
-	new MutationObserver(mutations => {
-		console.log(mutations);
-		let temp=new Set;
-		mutations.reduce((rs,item)=>{
-			if(item.type==='attributes'){
-				temp.add(item.target.parentNode);
-			}else if(item.type==='childList'&&item.addedNodes.length){
-				temp.add(item.target);
-			}
-		},{});
-		([...temp]).forEach(resetPM);
-	}).observe(document.body, {
-		childList: true,
-		subtree: true,
-		attributeFilter: ['class']
-	});
-
-	if(document.readyState === "complete"){
-		// obs();
-		resetPM();
+	function obs(){
+		new MutationObserver(mutations => {
+			let temp=new Set;
+			let classList=new Set;
+			mutations.reduce((rs,item)=>{
+				if(item.type==='attributes'){
+					([...item.target.classList]).forEach(className=>classList.add(className))
+				}else if(item.type==='childList'&&item.addedNodes.length){
+					temp.add(item.target);
+				}
+			},{});
+			([...temp]).forEach(setPMByDom);
+			classList.size&&setPMByClass(classList);
+		}).observe(document.body, {
+			childList: true,
+			subtree: true,
+			attributeFilter: ['class']
+		});
 	}
-	else{
-		document.addEventListener('DOMContentLoaded',()=>{
-			// obs();
-			resetPM();
-		},false);
+	//set initCMUI
+	function addMethod(name, fn) {
+		let oldObject = window[name];
+		window[name] = function() {
+			if (fn.length === arguments.length) return fn.apply(this, arguments);
+			if (typeof oldObject === 'function') return oldObject.apply(this, arguments);
+		}
 	}
-})(window, document);
+	addMethod('initCMUI',initByAuto);
+	addMethod('initCMUI',initByNumber);
+	addMethod('initCMUI',initByRange);
+	function initByAuto(){
+		if(document.readyState === "complete"){
+			obs();
+			setPMByDom();
+		}
+		else{
+			document.addEventListener('DOMContentLoaded',()=>{
+				obs();
+				setPMByDom();
+			},false);
+		}
+	}
+	function setStep(number,step=1){
+		let data=new Set;
+		for(let i=0;i<number;i+=step){
+			['padding','margin'].forEach(name=>{
+				['t','r','b','l','h','v'].forEach(pos=>{
+					data.add(`${name}${pos}${i}`)
+				});
+				data.add(`${name}${i}`)
+			})
+		}
+		setPMBySet(data)
+	}
+	function initByNumber(number){
+		setStep(number)
+	}
+	function initByRange(number,step){
+		setStep(number,step)
+	}
+})(window,document);
