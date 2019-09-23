@@ -1,0 +1,18 @@
+@each $name,$key in ('top':'t','left':'l','right':'r','bottom':'b','base':''){
+  @for $i from 0 through $layoutNumber{
+    @each $prop in ('margin','padding'){
+      @if $name!='base'{
+        .#{$prop}#{$key}#{$i * 10}{#{$prop}-#{$name}:getLayoutSize($i,1);}
+        .#{$prop}#{$key}-n#{$i * 10}{#{$prop}-#{$name}:getLayoutSize($i,-1);}
+        .#{$prop}h#{$i * 10}{@extend .#{$prop}l#{$i * 10};@extend .#{$prop}r#{$i * 10}}
+        .#{$prop}v#{$i * 10}{@extend .#{$prop}t#{$i * 10};@extend .#{$prop}b#{$i * 10}}
+      }@else{
+        .#{$prop}#{$i * 10}{#{$prop}:getLayoutSize($i,1);}
+      }
+    }
+    @if $name!='base'{
+      .#{$name}#{$i * 10}{#{$name}:getLayoutSize($i,1)}
+      .#{$name}-n#{$i * 10}{#{$name}:getLayoutSize($i,-1)}
+    }
+  }
+}

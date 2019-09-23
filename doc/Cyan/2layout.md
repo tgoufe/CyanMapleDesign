@@ -2,7 +2,7 @@
 :::tip
 Cyan提供了强大到丧心病狂（偷瞄顾俊老师一眼）的布局能力，这里展示了6个大的布局系统的使用，需要注意的是我们所有的盒模型均是border-box结构的。
 :::
-## 网格容器：grid-container
+## 网格容器：container
 如果你使用过bootstrap，那么你可以直接上手grid布局了，这是经典的网格布局，支持12列和15列两种方式展示，12列使用span作为关键字，15列使用col作为关键字。
 
 网格之间存在10像素的间距。如果你想修改这个间距，可以修改_variables.scss中的$container_padding。如果你想使用更小的间距，可以添加mini类，这样会让间距减小一半（默认是5像素）
@@ -62,6 +62,8 @@ box container和grid container 几乎是相同的，区别在于box的网格之�
 ```
 ## 图片容器：img-container
 imageContainer用于放置图片并提供了多种布局方式。你需要做的就是建立一个image-container的容器，并将img标签放置在里面，如果需要其他的样式可以搭配DEMO中展示的class.
+
+默认情况下会以图片的最长边进行显示。
 <Cyan-ImgContainer></Cyan-ImgContainer>
 ```html
 <!--无论图片多大，均在容器内居中显示；-->

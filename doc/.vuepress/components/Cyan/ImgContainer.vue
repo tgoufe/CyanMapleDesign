@@ -1,7 +1,8 @@
 <template>
     <div>
         <p class="text-red text-bolder">下面的案例展示了一个在宽高为200的img-container内放置一张图片的情景，尝试切换下面给出的属性并查看效果</p>
-        <div class="ratio-container" style="background-color: #00b3ee;max-width:200px">
+        <div class="flex-container">
+        <div class="ratio-container" style="background-color: #aaa;width:200px;">
             <div class="img-container" :class="{
             full,
             'flex-x':flexx,
@@ -13,9 +14,24 @@
             bottom,
             left,
             right}">
-                <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g6uw84o18wj30ku0dwdjl.jpg" alt="">
-
+                <img src="http://zhang-yue.oss-cn-beijing.aliyuncs.com/bingshan/300500.png" alt="">
             </div>
+        </div>
+        <div class="ratio-container" style="background-color: #aaa;width:200px;">
+            <div class="img-container" :class="{
+            full,
+            'flex-x':flexx,
+            'flex-y':flexy,
+            radius,
+            round,
+            border,
+            top,
+            bottom,
+            left,
+            right}">
+                <img src="http://zhang-yue.oss-cn-beijing.aliyuncs.com/bingshan/500300.png" alt="">
+            </div>
+        </div>
         </div>
         <div class="form">
             <cmui-checkbox v-model="full" :flex="true" target-class="switch"><span class="text-bolder text-blue">full:</span>图片撑满容器，会导致图片变形</cmui-checkbox>

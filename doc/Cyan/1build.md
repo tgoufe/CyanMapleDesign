@@ -32,5 +32,5 @@ npm run cyan
 ## 移动端配合
 Cyan的默认配置中$isPC为false，即面向于移动端的开发。使用rem布局，因此需要设置页面的根节点font-size。请在HTML中的head标签内引入相关的JS文件。
 ```html
-<script src="https://unpkg.com/cyanmaple/CMUI/flexible.js"></script>
+<script src="https://unpkg.com/cyanmaple/CMUI/styleInit.js"></script>
 ```

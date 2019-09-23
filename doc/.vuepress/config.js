@@ -25,21 +25,10 @@ let cyanList=getFiles('./doc/Cyan', false).reduce((rs, {path, name}) => {
 module.exports = {
     title: '欢迎使用CyanMaple',
     description: 'Just playing around',
+    base:'/cmui/',
+    dest:'../cmui',
     serviceWorker:true,
     themeConfig:{
-        // sidebar:[
-        //     '/',
-        //     {
-        //         title:'Cyan',
-        //         children:cyanList,
-        //     },
-        //     '/methodsAPI.md',
-        //     {
-        //         title:'组件',
-        //         children:componentsList
-        //     },
-        //
-        // ],
         sidebar: {
             '/Cyan/': cyanList,
             '/': componentsList
@@ -51,7 +40,8 @@ module.exports = {
                     {text:'陪你读书',link:'https://www.ximalaya.com/jiaoyu/3740790/'},
                     {text:'立体二维码',link:'http://www.bingshangroup.com#/qc'}
                 ]},
-            {text:'官网博客',link:'http://www.bingshangroup.com/blog'}
+            {text:'官网博客',link:'http://www.bingshangroup.com/blog2'}
         ]
     }
+
 };
