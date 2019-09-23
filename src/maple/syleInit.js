@@ -70,6 +70,7 @@
 		});
 		for(let item of PMstore_temp){
 			let [key,name,pos,isN,value]=/(padding|margin)([trblvh])?(-n)?(\d+)/.exec(item);
+
 			if(pos){
 				nameObject[pos].forEach(posName=>{
 					setStyle('.'+key,`${name}${posName}`,(isN?'-':'')+value+'px')
