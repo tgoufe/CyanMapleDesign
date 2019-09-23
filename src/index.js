@@ -1,4 +1,4 @@
-import Alert from './components/alert/index.js';
+import Alert from '@components/alert/index.js';
 function Maple(){
     return new Maple.prototype.init();
 }
@@ -12,8 +12,11 @@ const install=function(Vue){
 		Vue.component(component.name, component);
 	});
 };
-if(window&&document){
+if(typeof window !== 'undefined' && typeof document !== 'undefined'){
 	window.maple=Maple;
+}
+if (typeof window !== 'undefined' && window.Vue) {
+	install(window.Vue);
 }
 export default{
 	install,

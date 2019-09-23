@@ -106,7 +106,7 @@
 	import device from '@methods/device.js';
 	let scrollRec;
 	export default{
-		name:'popup',
+		name:'cmui-popup',
 		props:{
 			visible:{type:Boolean,default:false},
 			maskEvent:{type:Boolean,default:true},

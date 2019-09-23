@@ -25,7 +25,7 @@
 	</cmui-popup>
 </template>
 <script>
-	import cmuiPopup from '../popup/main.vue';
+	import cmuiPopup from '@components/popup/main.vue';
 	export default {
 		name:'cmui-alert',
 		props:{
@@ -39,7 +39,7 @@
 			visible:{type:Boolean,default:false},
 			targetClass:{type:String,default:''}
 		},
-		compontents:{
+		components:{
 			cmuiPopup
 		},
 		data:function(){
