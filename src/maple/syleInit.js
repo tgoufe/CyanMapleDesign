@@ -1,4 +1,4 @@
-(function flexible (window, document) {
+/*(function flexible (window, document) {
 	var docEl = document.documentElement
 	var dpr = window.devicePixelRatio || 1
 
@@ -41,7 +41,17 @@
 		}
 		docEl.removeChild(fakeBody)
 	}
-}(window, document));
+}(window, document));*/
+let isMobile=/iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion);
+(function(window, document){
+	if(!window||!document){
+		return;
+	}
+	if(isMobile){
+		document.scrollingElement.style.fontSize='10vw';
+		document.body.style.fontSize='14px';
+	}
+})(window, document);
 (function(window, document){
 	if(!window||!document){
 		return;
@@ -51,47 +61,66 @@
 	let cssRules=cmuiStyle.sheet.cssRules;
 	let cssRulesLen=cssRules.length;
 	let PMstore=new Set;
+	let reg=/\b((padding|margin)[trblvh]?|top|bottom|right|left)(-n)?\d+\b/g;
+	let nameObject={t:['Top'],l:['Left'],'r':['Right'],b:['Bottom'],v:['Top','Bottom'],h:['Left','Right']};
 	function setStyle(selector,name,value){
 		cmuiStyle.sheet.insertRule(selector+'{}', cssRulesLen);
 		cmuiStyle.sheet.cssRules[cssRulesLen++].style[name]=value;
 	}
-	function resetPM(dom=document.body){
-		let PMstore_temp=new Set;
-		let domList=dom.querySelectorAll('[class*=padding],[class*=margin]');
-		let nameObject={t:['Top'],l:['Left'],'r':['Right'],b:['Bottom'],v:['Top','Bottom'],h:['Left','Right']};
-		[...domList].forEach(item=>{
-			item.className.match(/\b(padding|margin)[trblvh]?(-n)?\d+\b/g)
-				.forEach(item=>{
-					if(!PMstore.has(item)){
-						PMstore.add(item);
-						PMstore_temp.add(item);
-					}
-				});
-		});
-		for(let item of PMstore_temp){
-			let [key,name,pos,isN,value]=/(padding|margin)([trblvh])?(-n)?(\d+)/.exec(item);
-
+	function setPMBySet(set){
+		for(let item of set){
+			let [key,name,pos,isN,value]=/(padding|margin)([trblvh])?(-n)?(\d+)/.exec(item)||
+			/(top|left|right|bottom)()?(-n)?(\d+)/.exec(item);
+			value=isMobile?`${value/75}rem`:`${value}px`;
 			if(pos){
 				nameObject[pos].forEach(posName=>{
-					setStyle('.'+key,`${name}${posName}`,(isN?'-':'')+value+'px')
+					setStyle('.'+key,`${name}${posName}`,(isN?'-':'')+value);
 				});
 			}else {
-				setStyle('.'+key,`${name}`,(isN?'-':'')+value+'px')
+				setStyle('.'+key,`${name}`,(isN?'-':'')+value);
 			}
 		}
 	}
-	const mutationObserver = new MutationObserver(mutations => {
-		([...new Set(mutations.map(item=>item.target))]).forEach(resetPM);
-	});
-	function obs(){
-		mutationObserver.observe(document.body, {
-			childList: true,
-			subtree: true,
-			attributeFilter: ['class']
+	function resetPM(dom=document){
+		console.log(dom);
+		let PMstore_temp=new Set;
+		let domList=dom.querySelectorAll('[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom]')||[];
+		[...domList].forEach(item=>{
+			let match=item.className.match(reg);
+			match&&match.forEach(item=>{
+				if(!PMstore.has(item)){
+					PMstore.add(item);
+					PMstore_temp.add(item);
+				}
+			});
 		});
+		setPMBySet(PMstore_temp);
 	}
-	document.addEventListener('DOMContentLoaded',()=>{
-		obs();
+	new MutationObserver(mutations => {
+		console.log(mutations);
+		let temp=new Set;
+		mutations.reduce((rs,item)=>{
+			if(item.type==='attributes'){
+				temp.add(item.target.parentNode);
+			}else if(item.type==='childList'&&item.addedNodes.length){
+				temp.add(item.target);
+			}
+		},{});
+		([...temp]).forEach(resetPM);
+	}).observe(document.body, {
+		childList: true,
+		subtree: true,
+		attributeFilter: ['class']
+	});
+
+	if(document.readyState === "complete"){
+		// obs();
 		resetPM();
-	}, false);
+	}
+	else{
+		document.addEventListener('DOMContentLoaded',()=>{
+			// obs();
+			resetPM();
+		},false);
+	}
 })(window, document);
