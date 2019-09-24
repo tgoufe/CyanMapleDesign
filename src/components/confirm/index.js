@@ -1,24 +1,27 @@
-import Alert from './main';
+import Component from './main';
 import _ from 'lodash';
 let CURRENT = null;
-let id = 'cmui-alert-' + _.uniqueId();
-let defaultsOptions = _.mapValues(Alert.props,item=>item.default);
+let id = 'cmui-confirm-' + _.uniqueId();
+let defaultsOptions = _.mapValues(Component.props,item=>item.default);
 let setCurrent = _.once(function(Vue) {
-  let dom=document.createElement('cmui-alert');
+  let dom=document.createElement('cmui-confirm');
   dom.id=id;
   document.body.appendChild(dom);
   CURRENT=new Vue({
     el:'#'+id
   }).$children[0];
 });
-Alert.install = function(Vue,Maple) {
-  Vue.component(Alert.name, Alert);
-  function alert(){
+Component.install = function(Vue,Maple) {
+  Vue.component(Component.name, Component);
+  function confirm(){
+    setCurrent(Vue);
     let options = {};
     if (arguments) {
       if (arguments.length > 1) {
-        options.okFn = _.filter(arguments, _.isFunction)[0];
-        options.callback = _.filter(arguments, _.isFunction)[1];
+        let fnList = _.filter(arguments, _.isFunction);
+        options.okFn = fnList[0];
+        options.cancelFn = fnList[1];
+        options.callback = fnList[2];
         let stringList = _.filter(arguments, item => (typeof item).match(/string|number|boolean/)).map(item => item.toString());
         options.content = _.last(stringList);
         if (stringList.length > 1) {
@@ -37,7 +40,6 @@ Alert.install = function(Vue,Maple) {
       return CURRENT;
     }
     options = _.defaults(_.find(arguments, _.isPlainObject), options, defaultsOptions);
-    setCurrent(Vue,options);
     _.forEach(options, (value, key) => {
       CURRENT[key] = value;
     });
@@ -49,7 +51,7 @@ Alert.install = function(Vue,Maple) {
     }
     return CURRENT;
   }
-  Vue.prototype.alert=Maple.alert=alert;
+  Vue.prototype.confirm=Maple.confirm=confirm;
 };
 
-export default Alert;
+export default Component;
