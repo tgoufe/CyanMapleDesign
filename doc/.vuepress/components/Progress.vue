@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import cmuiProgress from '../../../src/maple/component/progress/progress.vue';
+    import cmuiProgress from '../../../src/maple/components/progress/main.vue';
     import '../../../src/cyan/CMUI_doc.scss';
     export default {
         name: "Progress",

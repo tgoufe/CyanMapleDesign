@@ -10,10 +10,11 @@
     </cmui-list-item>
 </template>
 <script>
-    import cmuiListItem from "@components/list-item/main.vue";
+    import cmuiListItem from "../list-item/main.vue";
+    import cmuiList from "../list/main.vue";
     import _ from 'lodash';
-    import cmuiList from "@components/list/main.vue";
     export default{
+        name:'cmui-list-group',
         inject:['bus'],
         components:{
             cmuiListItem,

@@ -9,12 +9,6 @@
         <router-link to="/list/loop" class="btn block radius blue">
             循环嵌套列表
         </router-link>
-        <p>sdfsdfd</p>
-        <div class="list list-col2">
-            <div class="list-item" v-for="i in [1,2,3,4,5]">
-                123
-            </div>
-        </div>
     </div>
 </template>
 <script type="text/javascript">

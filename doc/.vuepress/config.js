@@ -42,6 +42,13 @@ module.exports = {
                 ]},
             {text:'官网博客',link:'http://www.bingshangroup.com/blog2'}
         ]
+    },
+    configureWebpack: {
+        resolve: {
+            alias: {
+                '@components': '../../../src/maple/components'
+            }
+        }
     }
 
 };

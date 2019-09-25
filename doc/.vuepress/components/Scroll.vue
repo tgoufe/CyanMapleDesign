@@ -17,8 +17,8 @@
 </template>
 
 <script>
-    import cmuiScroll from '../../../src/maple/component/scroll/scroll.vue';
-    import cmuiScrollItem from '../../../src/maple/component/scroll/scroll-item.vue';
+    import cmuiScroll from '../../../src/maple/components/scroll/main.vue';
+    import cmuiScrollItem from '../../../src/maple/components/scroll-item/main.vue';
     import '../../../src/cyan/CMUI_doc.scss';
     let i=1;
     export default {

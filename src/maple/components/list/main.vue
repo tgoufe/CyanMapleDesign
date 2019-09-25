@@ -111,7 +111,7 @@
                 function outHeight(dom){
                     let propObj=window.getComputedStyle(dom);
                     return ['marginTop','marginBottom','borderTopWidth','borderBottomWidth','height'].reduce((rs,prop)=>{
-                        return rs+=~~propObj[prop]
+                        return rs+=parseInt(propObj[prop])
                     },0)
                 }
                 this.indexItemHeight =this.indexItemHeight || outHeight(event.target);

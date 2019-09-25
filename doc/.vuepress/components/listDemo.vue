@@ -45,9 +45,9 @@
 </template>
 
 <script>
-    import cmuiList from '../../../src/maple/component/list/list.vue';
-    import cmuiListGroup from '../../../src/maple/component/list/list-group.vue';
-    import cmuiListItem from '../../../src/maple/component/list/list-item.vue';
+    import cmuiList from '../../../src/maple/components/list/main.vue';
+    import cmuiListGroup from '../../../src/maple/components/list-group/main.vue';
+    import cmuiListItem from '../../../src/maple/components/list-item/main.vue';
     import '../../../src/cyan/CMUI_doc.scss';
     export default {
         name: "listDemo",

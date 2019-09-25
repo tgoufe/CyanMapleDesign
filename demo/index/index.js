@@ -2,9 +2,9 @@ import './index.scss';
 import '../../src/maple/theme.scss'
 import '../../src/pageComponent/head/index.js';
 import componentList from './componentList.vue';
-import badge from './badge.vue';
-import type from './type.vue';
-import button from './button.vue';
+
+
+
 import collapse from './collapse.vue';
 import tabbar from './tabbar.vue';
 import affix from './affix.vue';
@@ -39,9 +39,6 @@ import captcha from './ui/captcha.vue';
 import countdown from './ui/countdown.vue';
 const routes = [
     {path: '/componentList/:id', component: componentList},
-    {path: '/badge/', component: badge},
-    {path: '/type/', component: type},
-    {path: '/button/', component: button},
     {path: '/collapse/', component: collapse},
     {path: '/tabbar/', component: tabbar},
     {path: '/affix/', component: affix},
@@ -82,9 +79,6 @@ window.vm = new Vue({
     data: {
         headTitle: 'CYANMAPLE',
         imageList:_.times(6,i=>location.origin+'/image/white'+i+'.jpg')
-    },
-    watch:{
-
     },
     methods: {
         goback() {

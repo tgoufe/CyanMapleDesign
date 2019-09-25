@@ -22,7 +22,7 @@
 
 <script>
     import '../../../../src/cyan/CMUI_doc.scss';
-    import cmuiNumber from '../../../../src/maple/component/form/number.vue';
+    import cmuiNumber from '../../../../src/maple/components/form/number.vue';
     export default {
         name: "flexContainer",
         components:{cmuiNumber},

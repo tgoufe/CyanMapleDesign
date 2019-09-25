@@ -6,7 +6,7 @@
                 <div class="margint20">CYANMAPLE(CMUI)是一套我们尽量使用非常简单的单词来对功能或效果进行描述，以保证你可以付出非常小的学习成本，快速上手一的一套前端框架。</div>
                 <div class="margint30">版本号1.01</div>
             </div>
-            
+
         </div>
         <div class="paddingh30" :class="!topTitle && 'childTheme'">
             <cmui-list :col="1">
@@ -16,46 +16,16 @@
                             <div class="lh-28" :class="topTitle ? 'marginr20' : 'paddingt50 paddingb20'"><i class="baseIcon" :class="item.icon" style="font-size: 24px;"></i></div>
                             <div class="fs-14 text-center" :class="!topTitle && 'text-dark'">{{item.title}}</div>
                         </div>
-                        
+
                         <i class="baseIcon baseIcon-right" style="color:#D9D9D9" v-show="topTitle"></i>
                     </router-link>
                 </cmui-list-item>
             </cmui-list>
         </div>
-
-        <!--date docDemo-->
-        <!--<cmui-date-picker @select="test"></cmui-date-picker>-->
     </div>
 </template>
 <script>
     const componentData = {
-        base: {
-            pageTitle: '基础组件',
-            topTitle: false,
-            list:[
-                {
-                    title: 'badge',
-                    icon: 'baseIcon-base_badge',
-                    path: '/badge'
-                },
-                {
-                    title: 'button',
-                    icon: 'baseIcon-base_button',
-                    path: '/button'
-                },
-                {
-                    title: 'layout',
-                    icon: 'baseIcon-base_layout',
-                    path: '/layout'
-                },
-                {
-                    title: 'type',
-                    icon: 'baseIcon-base_type',
-                    path: '/type'
-                }
-            ]
-            // list: ['badge', 'button', 'layout', 'type']
-        },
         ui: {
             pageTitle: 'UI组件',
             list: [
@@ -152,12 +122,6 @@
                 }
             ]
         },
-        page: {
-            pageTitle: '页面组件',
-            list: [
-                
-            ]
-        },
         form: {
         pageTitle: '表单组件',
         list: [
@@ -192,17 +156,13 @@
                 path: '/checkbox'
             }
         ]
-        // list: ['input','select','number','radio','textarea','checkbox']
         },
         default: {
             pageTitle: 'CYANMAPLE',
             topTitle: true,
             list: [
-                {title: '基础组件',icon:'baseIcon-default_compare', path: '/componentList/base'},
                 {title: 'UI组件',icon:'baseIcon-default_easelCopy', path: '/componentList/ui'},
                 {title: '表单组件',icon:'baseIcon-default_grid3', path: '/componentList/form'},
-                {title: '页面组件',icon:'baseIcon-defalut_faceFilter', path: '/componentList/page'},
-                // {title: '业务组件', path: '/componentList/business'}
             ]
         }
     }
@@ -221,11 +181,6 @@
             return {
                 list,
                 topTitle
-            }
-        },
-        methods:{
-            test(value){
-                console.log(arguments)
             }
         },
         watch: {
