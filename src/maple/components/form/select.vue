@@ -42,7 +42,7 @@
     </div>
 </template>
 <style type="text/css" lang="scss">
-@import "../../cyan/variables";
+@import "../../../cyan/variables";
 .cmui-select {
   .cmui-select__prepend,
   .cmui-select__append {

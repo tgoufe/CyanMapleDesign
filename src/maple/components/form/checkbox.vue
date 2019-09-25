@@ -20,7 +20,7 @@
     </label>
 </template>
 <style type="text/css" lang="scss">
-  @import "../../cyan/variables";
+  @import "../../../cyan/variables";
 .cmui-check__label {
   &.checked {
     color: $form-color-base;

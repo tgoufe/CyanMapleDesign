@@ -31,7 +31,7 @@
 </div>
 </template>
 <style type="text/css" lang="scss">
-@import "../../cyan/variables";
+@import "../../../cyan/variables";
 .cmui-input {
   .cmui-input__prepend,
   .cmui-input__append {
