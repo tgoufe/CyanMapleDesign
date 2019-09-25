@@ -6,13 +6,13 @@
 	let isMobile=/iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion);
 	function setFontSize(){
 		if(document.body){
-			document.scrollingElement.style.fontSize='10vw';
+			document.scrollingElement.style.fontSize=isMobile?'10vw':'75px';
 			document.body.style.fontSize='14px';
 		}else{
 			document.addEventListener('DOMContentLoaded', setFontSize)
 		}
 	}
-	isMobile&&setFontSize();
+	setFontSize();
 	//insert style
 	let cmuiStyle = document.createElement('style');
 	document.head.appendChild(cmuiStyle);
