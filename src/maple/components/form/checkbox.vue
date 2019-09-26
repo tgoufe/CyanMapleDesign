@@ -36,23 +36,34 @@ export default {
   props: {
     path:String
   },
+  data:function(){
+    return{
+      indeterminate:false
+    }
+  },
+  watch:{
+    indeterminate(value){
+      console.log(value)
+      let dom=this.$refs.checkbox;
+      if(dom){
+        dom.indeterminate=value;
+      }
+    }
+  },
   computed: {
     slefValue:{
       get(){
         let value=this.value;
-        return _.isArray(value)?
-                _.every(value,item=>(_.isObject(item)?_.get(item,this.path):item)===true):
-                value;
+        if(_.isArray(value)){
+          let allTrue=_.every(this.value,item=>(_.isObject(item)?_.get(item,this.path):item)===true);
+          let allFalse=_.every(this.value,item=>(_.isObject(item)?_.get(item,this.path):item)===false);
+          this.indeterminate=!(allTrue||allFalse);
+          return allTrue;
+        }
+        return !!value;
       },
       set(value){
-        if(_.isArray(value)){
-          let dom=this.$refs.checkbox;
-          let allTrue=_.every(value,item=>(_.isObject(item)?_.get(item,this.path):item)===true);
-          let allFalse=_.every(value,item=>(_.isObject(item)?_.get(item,this.path):item)===false);
-          if(dom){
-            dom.indeterminate=!(allTrue||allFalse);
-          }
-        }
+
       }
     }
   },
@@ -93,11 +104,11 @@ export default {
               _.set(item,this.path,value)
             });
           }
+        }else{
+          this.$emit("input", value,this);
         }
-        this.$emit("input", value,this);
         this.$emit("change", value,this);
       }
-
     }
   }
 };

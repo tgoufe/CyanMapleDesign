@@ -2,7 +2,7 @@
 home: true
 heroImage: https://zhang-yue.oss-cn-beijing.aliyuncs.com/bingshan/1212.png
 actionText: 快速上手 →
-actionLink: /guide/
+actionLink: /methods/device
 features:
 - title: 描述型样式库
   details: 还原设计稿为何要思考？API为何要记忆？你看到的是什么，想到的是什么，直接写出来就好了。

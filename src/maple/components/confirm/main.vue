@@ -7,7 +7,7 @@
 			:target-class="`cmui-dialog__container cmui-confirm__container ${targetClass}`"
 	>
 		<div class="cmui-dialog__title cmui-confirm__title" v-if="title||$slots.top">
-			<template v-html="title" v-if="!$slots.top"></template>
+			<div v-html="title" v-if="!$slots.top"></div>
 			<slot name="top" v-else></slot>
 		</div>
 		<div class="cmui-dialog__warp cmui-confirm__warp">

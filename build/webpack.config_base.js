@@ -6,7 +6,7 @@ module.exports = {
     mode:'production',
     output: {
         filename: '[name].js',
-        path: resolve('CMUI'),
+        path: resolve('../../code/cmui_test'),
     },
     plugins: [
         new VueLoaderPlugin(),
@@ -25,8 +25,8 @@ module.exports = {
             vue:resolve('dist/lib/vue_2.5.13_vue.min.js'),
             router:resolve('dist/lib/vue-router_3.0.1_vue-router.min.js'),
             flexible:resolve('dist/lib/flexible.js'),
-            "@components":path.resolve("src/components"),
-            "@methods":path.resolve("src/methods"),
+            "@components":path.resolve("src/maple/components"),
+            "@methods":path.resolve("src/maple/methods"),
             "@cyan":path.resolve("src/cyan"),
         }
     },

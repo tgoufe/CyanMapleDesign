@@ -6,7 +6,7 @@
 			:mask-event="false"
 			:target-class="`cmui-dialog__container cmui-alert__container ${targetClass}`">
 			<div class="cmui-dialog__title cmui-alert__title" v-if="title||$slots.top">
-				<template v-html="title" v-if="!$slots.top"></template>
+				<div v-html="title" v-if="!$slots.top"></div>
 				<slot name="top" v-else></slot>
 			</div>
 			<div class="cmui-dialog__warp cmui-alert__warp">
@@ -14,7 +14,7 @@
 					<slot v-if="$slots.default"></slot>
 				</div>
 				<div class="cmui-dialog__body cmui-alert__body scroll-container-y" v-if="content||!$slots.default" :style="bodyStyle" v-html="content">
-					
+
 				</div>
 			</div>
 			<div class="cmui-dialog__buttons cmui-alert__buttons">
@@ -63,7 +63,7 @@
 					this.visible=false;
 					(typeof this.okFn==='function')&&this.okFn()
 				}
-				
+
 			}
 		}
 	}

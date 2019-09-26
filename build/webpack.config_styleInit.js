@@ -9,6 +9,6 @@ module.exports = merge(baseWebpackConfig,{
     entry,
     output: {
         filename: 'styleInit.js',
-        path: resolve('CMUI'),
+        path: resolve('../../code/cmui_test'),
     },
 });
