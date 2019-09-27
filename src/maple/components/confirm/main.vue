@@ -29,8 +29,31 @@
 </template>
 <script>
 	import cmuiPopup from '@components/popup/main.vue';
+	import _ from 'lodash';
 	export default {
 		name:'cmui-confirm',
+		methodName:'confirm',
+		argumentsRole(options,args,CURRENT){
+			if (args.length > 1) {
+				let fnList = _.filter(args, _.isFunction);
+				options.okFn = fnList[0];
+				options.cancelFn = fnList[1];
+				options.callback = fnList[2];
+				let stringList = _.filter(args, item => (typeof item).match(/string|number|boolean/)).map(item => item.toString());
+				options.content = _.last(stringList);
+				if (stringList.length > 1) {
+					options.title = stringList[0];
+				}
+			} else {
+				if ((typeof args[0]).match(/string|number|boolean/)) {
+					options.content = args[0];
+				} else if (_.isObject(args[0])) {
+					options = args[0];
+				} else {
+					return CURRENT;
+				}
+			}
+		},
 		props:{
 			title: {type:String,default:''},
 			content: {type:String,default:''},

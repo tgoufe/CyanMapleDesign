@@ -12,9 +12,42 @@
 </template>
 <script>
 	import cmuiPopup from '@components/popup/main.vue';
-	import {isFunction,isObject,defaults} from 'lodash';
+	import _ from 'lodash';
 	export default {
 		name:'cmui-actions',
+		methodName:'actions',
+		argumentsRole(options,args,CURRENT){
+			if(args.length>1){
+				let fnList=_.filter(args,_.isFunction);
+				options.selectFn=fnList[0];
+				options.cancelFn=fnList[1];
+				let styleList=_.filter(args,_.isPlainObject);
+				if(styleList.length===1){
+					options.itemStyle=styleList[0];
+				}
+				let stringList=_.filter(args,item=>(typeof item).match(/string|number|boolean/)).map(item=>item.toString());
+				stringList.forEach((item,index)=>{
+					let rs={text:item};
+					let style=_.get(styleList,index);
+					if(style){
+						rs.style=style;
+					}
+					options.items.push(rs);
+				});
+				let arrArg=_.find(args,_.isArray);
+				if(arrArg){
+					options.items=arrArg;
+				}
+			}else{
+				if( (typeof args[0]).match(/string|number|boolean/)){
+					options.items.push({text:args[0]});
+				}else if(_.isArray(args[0])){
+					options.items=args[0];
+				}else if(_.isFunction(args[0])){
+					return actions(args[0]());
+				}
+			}
+		},
 		props: {
 			items: { type: Array, default: [] },
 			cancelText: { type: Array, default: '取消' },
@@ -38,17 +71,17 @@
 			cancel: function() {
 				this.visible=false;
 				this.$emit('cancel', this);
-				isFunction(this.cancelFn) && this.cancelFn()
+				_.isFunction(this.cancelFn) && this.cancelFn()
 			},
 			itemEvent: function(item, index) {
 				this.visible=false;
 				this.$emit('select', item, index, this);
-				isFunction(this.selectFn) && this.selectFn(item, index);
+				_.isFunction(this.selectFn) && this.selectFn(item, index);
 			},
 			getActionText(value, index) {
-				if (isFunction(value)) {
+				if (_.isFunction(value)) {
 					return this.getActionText(value());
-				} else if (isObject(value)) {
+				} else if (_.isObject(value)) {
 					value.text = value.text || index;
 					return String(value.text);
 				} else {
@@ -56,7 +89,7 @@
 				}
 			},
 			getActionStyle(itemStyle,baseStyle){
-				return defaults(itemStyle,baseStyle)
+				return _.defaults(itemStyle,baseStyle)
 			}
 		}
 	}

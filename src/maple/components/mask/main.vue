@@ -1,5 +1,5 @@
 <template>
-	<div class="mask" :class="position" @click="cancel()" v-show="showCmuiDialog">
+	<div class="mask" :class="position" @click="cancel()" v-show="visible">
 		<div class="mask-content"
 			 v-html="content"
 			 @click.stop.prevent='function(){}'
@@ -11,8 +11,20 @@
 	</div>
 </template>
 <script>
+	import _ from 'lodash';
 	export default{
 		name:'cmui-mask',
+		methodName:'mask',
+		argumentsRole(options,args,CURRENT){
+			var argString=_.filter(args,_.isString);
+			options.position=_.find(argString,item=>{
+				return _.every(item.split(' ').filter(i=>i.length),i=>{
+					return /^(top|left|bottom|right|center|between)$/.test(i);
+				});
+			});
+			options.content=_.find(argString,item=>item!==options.position);
+			options.callback=_.find(args,_.isFunction);
+		},
 		props:{
 			position:{type:String,default:'center'},
 			content:{type:String,default:''},
@@ -21,12 +33,12 @@
 		},
 		data:function(){
 			return {
-				showCmuiDialog:false
+				visible:false
 			}
 		},
 		methods:{
 			cancel(){
-				this.showCmuiDialog=false;
+				this.visible=false;
 				document.body.classList.remove('overflow-h');
 				(typeof this.closeFn==='function')&&this.closeFn($(this.$el))
 			}

@@ -1,7 +1,7 @@
 <template>
 	<cmui-popup
 			position="center"
-			:visible.sync="showCmuiDialog"
+			:visible.sync="visible"
 			class="cmui-notice"
 			:mask-event="false"
 			:target-class="`cmui-notice__container cmui-dialog__container ${targetClass}`"
@@ -13,8 +13,29 @@
 </template>
 <script>
 	import cmuiPopup from '@components/popup/main.vue';
+	import _ from 'lodash';
 	export default {
 		name:'cmui-notice',
+		methodName:'notice',
+		argumentsRole(options,args,CURRENT){
+			if(args.length>1){
+				options.callback=_.filter(args,_.isFunction)[0];
+				var stringList=_.filter(args,item=>(typeof item).match(/string|number|boolean/)).map(item=>item.toString());
+				options.content=stringList[0];
+				if(stringList.length>1){
+					options.timeout=_.last(_.filter(args,_.isNumber))|0;
+				}
+			}else{
+				if( (typeof args[0]).match(/string|number|boolean/)){
+					options.content=args[0];
+				}else if(_.isObject(args[0])){
+					options=args[0];
+				}else{
+					return CURRENT;
+				}
+			}
+		},
+
 		props:{
 			content: {type:String,default:''},
 			className: {type:String,default:''},
@@ -25,7 +46,7 @@
 		data:function(){
 			let dom=document.documentElement;
 			return {
-				showCmuiDialog:false,
+				visible:false,
 				bodyStyle:{
 					'max-height':dom.clientHeight*.72-69-parseInt(getComputedStyle(dom).fontSize)+'px'
 				}
@@ -36,7 +57,7 @@
 		},
 		methods: {
 			cancel: function(){
-				this.showCmuiDialog=false;
+				this.visible=false;
 				(typeof this.closeFn==='function')&&this.closeFn()
 			}
 		}

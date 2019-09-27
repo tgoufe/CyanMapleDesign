@@ -111,6 +111,13 @@
 	}
 	export default {
 		name:'cmui-picker',
+		methodName:'picker',
+		argumentsRole(options,args){
+			options.title=_.find(args,_.isString);
+			options.data=_.find(args,_.isArray);
+			options.rightFn=_.find(args,_.isFunction);
+			options.leftFn=_.filter(args,_.isFunction)[1];
+		},
 		props:{
 			data:{type:Array,default:[]}
 			, selectIndex:{type:Array,default:[]}
@@ -122,6 +129,7 @@
 			, rightText:{type:String,default:'确定'}
 		},
 		data:function(){
+			console.log(this.data)
 			return getInitData(this.data,this.selectIndex);
 		},
 		components: {
