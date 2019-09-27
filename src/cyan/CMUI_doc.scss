@@ -5,10 +5,12 @@ $isPC:true;
 @import "base/baseIcon";
 @import "base/layout";
 blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre, td, textarea, th, ul{margin:initial;padding:initial;list-style:initial;}
+ul{padding-left:1.2em}
 th, td {
   border: 1px solid #dfe2e5;
   padding: 0.6em 1em;
 }
+a:hover{text-underline: none}
 html,body{overflow-x: hidden;font-size:16px !important;}
 .cmui-list-index span{margin:20 px}
 @import "base/type";

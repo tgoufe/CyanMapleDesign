@@ -1,11 +1,48 @@
-# CyanMaple
-## 安装
+# 概述
+CyanMaple的前身是2012年使用less语言编写的WEB端响应式框架，名为feebless，后在2015年转为SASS语言重写，并加入VUE组件功能。针对移动端进行了大量的优化并用于实际项目的开发。简称CMUI。从这段发展历史中你可以看到这套框架并不包含高深的新技术，但是在实际的开发中你会发现它比任何你曾经用过的框架都简介高效。让你爱不释手。
+::: danger 警告
+虽然我们的简称是CMUI，你也可以在GitHub上找到一个名为CMUI的前端框架，但并非我们的CyanMaple，请使用时注意。
+:::
+# 使用
+CyanMaple包含三个部分：[**Cyan**](/cyan/)、[**Maple方法**](/methods/)和[**CMUI组件**](/components/)
 
-## 使用样式
+Cyan是一个功能强大的CSS库，我们称之为描述性样式库，你可以单独引用到你的项目里。在不借助任何其他框架，组件甚至在不写任何额外的CSS样式的情况下即可完成绝大部分的UI需求。
 
-## 使用组件
+Maple方法中涵盖了在前端开发中常用的方法，这些方法能够帮助你快速完成功能。我们也会陆续加入更多的方法。
 
-## 使用方法
+Maple组件是基于VUE封装的常用组件，和其他UI库相比，这里提供的组件并不算多，原因很简单：因为根本不需要。因为绝大多数UI问题都可以被Cyan解决掉，因此这里只对下面三种情况进行了组件封装。
 
-## 按需引用
+* Cyan解决不了的UI问题
+* Cyan可以解决但是结构复杂的UI问题
+* 需要调用JS来处理事件的UI问题
+
+:::warning 使用CyanMaple的注意事项与解决方案
+Cyan采用的盒模型为box-border,并且是全局使用，如果你的项目使用其他形式的盒模型可能会受到影响。
+
+    解决方案：
+    删除src/cyan/base/_layout.scss顶部的盒模型代码，代码如下
+    *,*:before,*:after{
+      box-sizing: border-box;
+    }
+    为需要使用到Cyan的外层容器的class增加cmuiBox
+
+Maple中的组件依赖于lodash，因此你需要保证你的项目在全局环境下引入lodash。
+
+    解决方案：
+    删除webpack中externals的lodash属性，
+    externals:{
+        'lodash':'window._',
+    },
+    
+删除externals会将lodash打包到生成的JS文件内，会导致文件的增大
+:::
+
+请选择你需要了解和学习的内容：建议从Cyan开始
+
+[Cyan](/cyan/)
+
+[maple方法](/methods/)
+
+[CMUI组件](/components/)
+
 

@@ -30,7 +30,7 @@ module.exports = {
             '/Cyan/': getlist('Cyan'),
             '/components/':getlist('components'),
             '/methods/':getlist('methods'),
-            '/': ['']
+            '/': []
         },
         nav:[
             {text:'样式',link:'/Cyan/'},
