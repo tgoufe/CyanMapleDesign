@@ -1,3 +1,4 @@
+@import '../extend';
 $from-control-size:nth(map-get($btn-size-list,'base'),1) - $border-radius-base * 2;
 input,select,textarea {
     // font-family: 'Helvetica Neue',Helvetica,sans-serif;
@@ -103,32 +104,51 @@ input{
         &[type=checkbox],&[type=radio]{
             display: inline-block;
             position:relative;
-            width: $from-control-size;
-            height: $from-control-size;
-            border: 0;
-            font-size: 0;
             outline: 0!important;
-            background-color: transparent;
             -webkit-appearance: none;
-            &:before{
+            &::before{
                 font-family: "iconfont";
-                font-size: $from-control-size;
                 font-weight: 400;
-                line-height: 1;
                 text-decoration: none;
-                color: #e0e0e0;
-                border-radius: 0;
                 background: 0 0;
                 -webkit-font-smoothing: antialiased;
-                display:block;
-                // @include translateY(($from-control-size - 20) );
                 transition: color .2s cubic-bezier(.645,.045,.355,1);
+            }
+            &[label]{
+                width:auto !important;
+                display: inline-flex;
+                align-items: center;
+                &::after{
+                    content:attr(label);
+                    margin-left:.133333333rem;
+                    font-size:$font-size-base;
+                }
+                &:not([class*=btn]):checked::after{
+                    color:$form-color-base;
+                }
+                &:disabled::after{
+                    color:map-get($grayList,'lighter') !important;
+                }
             }
             &:disabled:before{
                 color:map-get($grayList,'lighter') !important;
             }
-            &:checked:before,&:indeterminate:before{
-                color:$form-color-base;
+            &:not([class*=btn]){
+                width: $from-control-size;
+                height: $from-control-size;
+                border: 0;
+                font-size: 0;
+                background-color: transparent;
+                &:before{
+                    font-size: $from-control-size;
+                    line-height: 1;
+                    color: #e0e0e0;
+                    border-radius: 0;
+                    display:block;
+                }
+                &:checked:before,&:indeterminate:before{
+                    color:$form-color-base;
+                }
             }
         }
         &[type=radio]{
@@ -231,7 +251,7 @@ input{
         }
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
           @if $btnSizeName!='base'{
-              &.#{$btnSizeName}{
+                &.#{$btnSizeName}{
                 &:not([type=checkbox]),&:not([type=radio]){
                   //padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
                   &~{
@@ -244,11 +264,20 @@ input{
                 }
               }
             &[type=checkbox],&[type=radio]{
-                &.#{$btnSizeName}{
-                    width:nth($btnSizeValue,1) - $border-radius-base * 2;
-                    height:nth($btnSizeValue,1) - $border-radius-base * 2;
-                    &:before{
-                        font-size: nth($btnSizeValue,1) - $border-radius-base * 2;
+                &:not([class*=btn]){
+                    &.#{$btnSizeName}{
+                        width:nth($btnSizeValue,1) - $border-radius-base * 2;
+                        height:nth($btnSizeValue,1) - $border-radius-base * 2;
+                        &:before{
+                            font-size: nth($btnSizeValue,1) - $border-radius-base * 2;
+                        }
+                    }
+                }
+                &.btn{
+                    &.#{$btnSizeName}{
+                        &::after{
+                            font-size:nth($btnSizeValue,3);
+                        }
                     }
                 }
             }
@@ -394,7 +423,7 @@ input{
                 }
                 &[type=checkbox],&[type=radio]{
                     &:before{
-                       color:$colorValue; 
+                       color:$colorValue;
                     }
                 }
                 &[type=checkbox]{
