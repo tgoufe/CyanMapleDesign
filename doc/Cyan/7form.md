@@ -28,6 +28,7 @@
     </label>
 </div>
 
+
 ## radio
 为radio节点增加以下class可以获得额外的展示样式，我们提供了三种样式供你使用，分别是默认的点样式，square方形样式，right对号样式，每种样式均可以和reverse组合进行翻转，共计6种样式
 |类名|作用|
@@ -105,11 +106,12 @@ select和text-area支持下面三种辅助class
 |radius|增加圆角
 <div class="form">
     <label>select
-        <select>
+        <select style="width:200px">
             <option>1</option>
             <option>2</option>
         </select>
     </label>
+    <br>
     <label>textarea
         <textarea/>
     </label>
@@ -185,4 +187,126 @@ select和text-area支持下面三种辅助class
         <div class="input_addon">com</div>
         <div class="input_addon blue">转到</div>
     </div>
+</div>
+
+## 标签的前置和后置
+表单元素的使用通常是需要配合label标签的，默认情况下会使用下对齐的方式
+
+输入
+```html
+<div class="form">
+    <label for="">首选项</label>
+    <input type="checkbox">
+</div>
+```
+输出
+<div class="form">
+    <label for="">首选项</label>
+    <input type="checkbox">
+</div>
+但是大多数情况UI的需求是垂直居中对齐，如果要达到这样的效果可以将input元素包裹在label标签中
+
+***
+
+输入
+```html
+<div class="form">
+    <label for="">
+        文本居左显示
+        <input type="checkbox">
+    </label>
+    <label for="">
+        <input type="checkbox">
+        文本居右显示
+    </label>
+</div>
+```
+输出
+<div class="form">
+    <label for="">文本居左显示
+        <input type="checkbox">
+    </label>
+    <label for="">
+        <input type="checkbox">
+        文本居右显示
+    </label>
+</div>
+
+***
+
+## label属性调用
+另一种简单使用方式是为input元素增加label属性，这样可以直接将文本标签添加在元素右侧，通常情况是使用在radio标签或者CheckBox标签上。
+
+输入
+```html
+<div class="form">
+   <input type="checkbox" checked label="default" />
+   <input type="checkbox" checked label="square" class="square"/>
+   <input type="checkbox" checked label="reverse" class="square reverse"/>
+   <input type="checkbox" checked label="small" class="small"/>
+</div>
+```
+输出
+
+<div class="form flex-container left">
+    <input type="checkbox" checked label="default" class="marginr20"/>
+    <input type="checkbox" checked label="square" class="marginr20 square"/>
+    <input type="checkbox" checked label="reverse" class="marginr20 square reverse"/>
+    <input type="checkbox" checked label="small" class="marginr20 small"/>
+</div>
+
+:::warning
+注意：switch结构的checkbox不支持label属性
+:::
+
+## 和btn类组合
+将表单尺寸继承于按钮除了前文说到的同时使用时保持美观之外，另一个重要的因素就是将btn的类应用到表单元素上（通常为CheckBox和radio），这样的组合可以创造更多的效果，也是比较常见的效果。
+```html
+<div class="form">
+    <input type="checkbox" class="btn red" label="首选项">
+    <input type="checkbox" class="btn orange reverse" label="首选项">
+    <input type="checkbox" class="btn blue reverse square radius" label="首选项">
+    <input type="checkbox" class="btn coffee small" label="首选项">
+    <input type="checkbox" class="btn green big square" label="首选项">
+</div>
+```
+<div class="form">
+    <input type="checkbox" class="btn red" label="首选项">
+    <input type="checkbox" class="btn orange reverse" label="首选项">
+    <input type="checkbox" class="btn blue reverse square radius" label="首选项">
+    <input type="checkbox" class="btn coffee small" label="首选项">
+    <input type="checkbox" class="btn green big square" label="首选项">
+</div>
+
+:::tip
+CheckBox和radio继承于btn，意味着你可以在上面使用[btn所有的拓展类](/Cyan/6button/)
+:::
+
+## 按钮组表单
+btn可以使用[按钮组](Cyan/6button.html#标签组)，CheckBox和radio继承于btn，当然也可以使用
+
+输入
+```html
+<div class="form btn-group">
+    <input type="checkbox" class="btn blue reverse square radius" label="北京">
+    <input type="checkbox" class="btn blue reverse square radius" label="上海">
+    <input type="checkbox" class="btn blue reverse square radius" label="广州">
+    <input type="checkbox" disabled class="btn blue reverse square radius" label="深圳">
+</div>
+```
+输出
+<div class="form btn-group">
+    <input type="checkbox" class="btn blue reverse square radius" label="北京">
+    <input type="checkbox" class="btn blue reverse square radius" label="上海">
+    <input type="checkbox" checked class="btn blue reverse square radius" label="广州">
+    <input type="checkbox" class="btn blue reverse square radius" label="深圳" disabled>
+</div>
+
+small radio
+
+<div class="form btn-group margint20">
+    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="北京">
+    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="上海">
+    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="广州">
+    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="深圳">
 </div>

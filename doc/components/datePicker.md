@@ -1,6 +1,6 @@
-# dataPicker
+# datePicker
 
-dataPicker组件用于创建倒计时效果。
+datePicker组件用于创建倒计时效果。
 
 ### props
 
@@ -20,5 +20,5 @@ dataPicker组件用于创建倒计时效果。
 | select  |点击具体日期的时候触发|moment对象
 
 ### 样式接口
-<<< @/src/maple/component/datePicker/_styleInterface.scss
+<<< @/src/maple/components/date-picker/_styleInterface.scss
 

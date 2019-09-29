@@ -1,4 +1,4 @@
-# shake
+# 设备晃动控制
 调用系统的陀螺仪实现摇一摇功能
 ## 快捷调用
 maple.shake(startFn,[endFn,interval,eontinuEvent])
