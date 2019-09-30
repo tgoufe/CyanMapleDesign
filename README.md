@@ -30,21 +30,12 @@ npm install
 npm start 
 ```
 
-# api
-[全局方法](doc/methodsAPI.md)
-## 组件应用
-* [actions](doc/actions.md)
-* [affix](doc/affix.md)
-* [alert](doc/alert.md)
-* [captcha](doc/captcha.md)
-* [confirm](doc/confirm.md)
-* [popup](doc/popup.md)
 ## 贡献
 欢迎给我们提issue或PR。
 
 ## 网站博客
 - [冰山官网](http://www.bingshangroup.com)
 - [你从没见过的二维码](http://www.bingshangroup.com/#/qc)
-- [官网博客](http://www.bingshangroup.com/blog)
+- [官网博客](http://www.bingshangroup.com/blog2)
 ## LICENSE
 [MIT](LICENSE)
