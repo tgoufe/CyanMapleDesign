@@ -1,10 +1,10 @@
 <template>
     <div>
-        <p class="text-red text-bolder">下面的案例展示了flex-container支持的布局结构，尝试添加不同的属性看看效果。</p>
         <div class=" demo" :class="[container,{reverse,round,center,left,right,top,line,bottom,vfull,hfull}]">
             <span v-for="(item,index) in list" :key="index" class="item" :class="[classList[index]]"> {{item}}</span>
         </div>
         <div class="form">
+            <p class="text-red">下面的选项用于容器节点的class</p>
             <div class="form-group">
                 <span>排列方向(必选)：</span>
                 <cmui-radio name="align" v-model="container" label="flex-container"></cmui-radio>
@@ -23,8 +23,9 @@
                 <cmui-checkbox class="marginr30" v-model="vfull" target-class="square">vfull</cmui-checkbox>
                 <cmui-checkbox class="marginr30" v-model="hfull" target-class="square">hfull</cmui-checkbox>
             </div>
+            <p class="text-red">下面的选项用于修改子节点的class</p>
             <div class="form-group">
-                <label for=""><span class="marginr10">为</span>
+                <label for=""><span>为</span>
                     <select name=""  style="width:auto" class="marginr10" v-model="blockControl">
                         <option value="0">block1</option>
                         <option value="1">block2</option>
@@ -33,13 +34,13 @@
                 </label>
                 <label for="">
                     设置top
-                    <input type="checkbox" class="marginr30" v-model="controlTop" @change="setItemClass('top',controlTop)">
+                    <input type="checkbox"  v-model="controlTop" @change="setItemClass('top',controlTop)">
                     bottom
-                    <input type="checkbox" class="marginr30" v-model="controlBottom"  @change="setItemClass('bottom',controlBottom)">
+                    <input type="checkbox"  v-model="controlBottom"  @change="setItemClass('bottom',controlBottom)">
                     right
-                    <input type="checkbox" class="marginr30" v-model="controlRight" @change="setItemClass('right',controlRight)">
+                    <input type="checkbox"  v-model="controlRight" @change="setItemClass('right',controlRight)">
                     left
-                    <input type="checkbox" class="marginr30" v-model="controlLeft" @change="setItemClass('left',controlLeft)">
+                    <input type="checkbox"  v-model="controlLeft" @change="setItemClass('left',controlLeft)">
                     控制占用比例
                     <select name=""  style="width:auto" class="marginh10" v-model="controlFlex" @change="setItemClass(controlFlex)">
                         <option value="">无</option>
@@ -119,18 +120,19 @@
 <style scoped>
     .item{
         padding:10px;
+        color:white;
     }
     .item:nth-child(1){
-        background-color: #ee352c;
+        background-color: #ee5e5e;
     }
     .item:nth-child(2){
-        background-color: #46eee1;
+        background-color: #6f6dee;
     }
     .item:nth-child(3){
-        background-color: #eee43b;
+        background-color: #86ee91;
     }
     .demo{
-        background-color: #c7ffcf;
+        background-color: #c7edff;
         min-height:200px;
     }
 </style>

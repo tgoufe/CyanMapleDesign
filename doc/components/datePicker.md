@@ -11,8 +11,8 @@ datePicker组件用于创建倒计时效果。
 |now|[String,Number]|当前时间|本地时间
 |border|[Boolean,String]|true|是否显示分割线，如果是字符串标识分割线颜色
 
-### Demo
-<<< @/demo/docDemo/dataPicker.vue
+
+
 ### event
 
 | 事件名称  |触发时间|参数

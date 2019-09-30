@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p class="text-red text-bolder">比例容器DEMO</p>
         <p>下面是一个用网格建立的宽度375的容器，我们在里面放置N列，然后在每列放置一个1：1的容器用于展示图片，这种结构经常在移动端的商城里见到，在下面的案例里我们将比例容器和图片容器混合使用，来实现一个固定比例的列表</p>
         <div class="tip custom-block"><p>修改横线比例和纵向比例，然后查看DOM结构的class变化。</p></div>
         <div class="demo clearfix">
