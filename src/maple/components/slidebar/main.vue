@@ -34,7 +34,7 @@
         this.transDisX=dis;
     }
     export default{
-        name:'cmui-slidbar',
+        name:'cmui-slidebar',
         data:function(){
             return{
                 transDisX:0,
