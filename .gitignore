@@ -8,7 +8,6 @@
 .cache/
 .DS_Store
 .idea
-CMUI
 demo/.DS_Store
 demo/img
 dist/*

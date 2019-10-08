@@ -2,23 +2,6 @@
 
 ![CyanMapleDesign logo](http://xuqiang.cc/wp-content/uploads/2018/03/cmlogo.png)
 
-## 项目目录
-```
-├── CMUI                     
-├── build
-├── demo                      //DEMO文件夹
-│   ├── headComponent
-│   ├── img
-│   ├── index
-│   └── tabbar
-├── dist                      //编译后文件
-├── node_modules              //依赖模块
-└── src                       //库文件
-    ├── cyan                  //UI组件库(CyanMapleDesign)
-    ├── libs                  //第三方工具库
-    ├── maple                 //JS组件库（CyanMapleDesign）
-    └── pageComponent         //特殊组件库（业务定制组件）
-```
         
 ## 快速开始
 ### Install
@@ -27,7 +10,7 @@ npm install
 ```
 ### start
 ```console
-npm start 
+npm run start 
 ```
 
 ## 贡献

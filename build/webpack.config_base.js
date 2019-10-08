@@ -6,7 +6,7 @@ module.exports = {
     mode:'production',
     output: {
         filename: '[name].js',
-        path: resolve('../../code/cmui_test'),
+        path: resolve('/CMUI'),
     },
     plugins: [
         new VueLoaderPlugin(),
@@ -45,7 +45,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env'],
                     }
                 }
             },

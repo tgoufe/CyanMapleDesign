@@ -23,7 +23,7 @@
     	},
         methods: {
             actions() {
-                maple.actions('拍照','从相册选择',item=>maple.alert(`你点击了${item.text}`))
+                maple.actions(['拍照','从相册选择'],item=>maple.alert(`你点击了${item.text}`))
             },
             actions2() {
                 maple.actions('拍照','从相册选择',{cancelText:''})

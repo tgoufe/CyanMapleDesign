@@ -17,6 +17,7 @@
 		name:'cmui-actions',
 		methodName:'actions',
 		argumentsRole(options,args,CURRENT){
+			options.items=[]
 			if(args.length>1){
 				let fnList=_.filter(args,_.isFunction);
 				options.selectFn=fnList[0];
