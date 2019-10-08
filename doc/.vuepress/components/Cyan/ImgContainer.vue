@@ -50,8 +50,8 @@
 
 <script>
     import '../../../../src/cyan/CMUI_doc.scss';
-    import cmuiCheckbox from '../../../../src/maple/component/form/checkbox.vue';
-    import cmuiRadio from '../../../../src/maple/component/form/radio.vue';
+    import cmuiCheckbox from '../../../../src/maple/components/form/checkbox.vue';
+    import cmuiRadio from '../../../../src/maple/components/form/radio.vue';
     export default {
         name: "ImgContainer",
         components:{cmuiCheckbox,cmuiRadio},

@@ -98,7 +98,7 @@
                 cityList,
                 checkedIndex:_.fill(Array(cityList.length),false),
                 targetClassList:['small','big','square','reverse','switch'].map(item=>({text:item,value:false})),
-                demoList:['北京','上海','广州','深圳'].map(item=>({label:item,value:true})),
+                demoList:['北京','上海','广州','深圳'].map(item=>({label:item,value:false})),
         }
         },
         computed:{
@@ -108,7 +108,7 @@
           checkedCity(){
             return this.cityList.filter((item,index)=>this.checkedIndex[index]===true)
           }
-          
+
         },
         methods:{
             xxx(value,resolve,reject){

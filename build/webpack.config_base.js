@@ -1,11 +1,12 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 let {resolve}=require('./utils');
+const path=require('path');
 module.exports = {
     mode:'production',
     output: {
         filename: '[name].js',
-        path: resolve('CMUI'),
+        path: resolve('/CMUI'),
     },
     plugins: [
         new VueLoaderPlugin(),
@@ -23,7 +24,10 @@ module.exports = {
             jquery:resolve('dist/lib/jquery_3.2.1_jquery.min.js'),
             vue:resolve('dist/lib/vue_2.5.13_vue.min.js'),
             router:resolve('dist/lib/vue-router_3.0.1_vue-router.min.js'),
-            flexible:resolve('dist/lib/flexible.js')
+            flexible:resolve('dist/lib/flexible.js'),
+            "@components":path.resolve("src/maple/components"),
+            "@methods":path.resolve("src/maple/methods"),
+            "@cyan":path.resolve("src/cyan"),
         }
     },
     module: {
@@ -41,7 +45,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env'],
                     }
                 }
             },

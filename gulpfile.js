@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const sass = require("gulp-sass");
 const postcss    = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
-function compile(inputPath,outputPath="dist/"){
+function compile(inputPath,outputPath="CMUI/"){
     gulp.src(inputPath)
         .pipe( sourcemaps.init() )
         .pipe(sass({outputStyle: 'compressed'}))
@@ -19,7 +19,6 @@ gulp.task("sass",async() =>{
     compile("src/cyan/cmuiMobile.scss");
     compile("src/cyan/cmuiPC.scss");
     compile("src/cyan/cmuiAnimate.scss");
-
 });
 gulp.task("theme",async() =>{
     compile("src/maple/theme.scss");

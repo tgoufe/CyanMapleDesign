@@ -12,7 +12,6 @@
 
 <script>
     import '../../../../src/cyan/CMUI_doc.scss';
-    import cmuiNumber from '../../../../src/maple/component/form/number.vue';
     export default {
         name: "ScrollContainer",
         data(){

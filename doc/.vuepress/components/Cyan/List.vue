@@ -17,8 +17,8 @@
 
 <script>
     import '../../../../src/cyan/CMUI_doc.scss';
-    import cmuiNumber from '../../../../src/maple/component/form/number.vue';
-    import cmuiCheckbox from '../../../../src/maple/component/form/checkbox.vue';
+    import cmuiNumber from '../../../../src/maple/components/form/number.vue';
+    import cmuiCheckbox from '../../../../src/maple/components/form/checkbox.vue';
     export default {
         name: "Position",
         components:{cmuiNumber,cmuiCheckbox},

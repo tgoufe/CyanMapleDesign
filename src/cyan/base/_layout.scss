@@ -1,6 +1,11 @@
 *,*:before,*:after{
   box-sizing: border-box;
 }
+.cmuiBox{//盒模型补充
+	*,*:before,*:after{
+		box-sizing: border-box;
+	}
+}
 blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre, td, textarea, th, ul{margin:0;padding:0;list-style:none;}
 /**
  * grid
@@ -41,7 +46,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.mini{
 		margin-left:$container_padding* -1 / 2;
 		margin-right:$container_padding* -1 / 2;
-		
+
 	}
 }
 @for $i from 1 through 15{

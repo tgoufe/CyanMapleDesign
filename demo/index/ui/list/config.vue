@@ -23,9 +23,6 @@
 
             </cmui-number>
             <cmui-slidebar v-model="options.space" :step="1" class="margint20" :range="50"></cmui-slidebar>
-            <!-- <cmui-number v-model="options.space">
-
-            </cmui-number> -->
         </div>
     </div>
 </template>
@@ -39,7 +36,7 @@
               space:10
             },
             list:_.times(10,i=>{
-                return location.origin+'/image/black'+i+'.jpg';
+                return location.origin+'/dist/image/black'+i+'.jpg';
             })
           }
         }

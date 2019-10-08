@@ -10,38 +10,46 @@ function getFiles(filePath,deep=true){
         )
     },[])
 }
-let componentsList=getFiles('./doc',false).reduce((rs,{path,name})=>{
-    if(/\.md$/.test(name)&&name!=='README.md'){
-        rs.push(`${name}`);
-    }
-    return rs;
-},['']);
-let cyanList=getFiles('./doc/Cyan', false).reduce((rs, {path, name}) => {
-    if(/\.md$/.test(name)&&name!=='README.md'){
-        rs.push(`${name}`);
-    }
-    return rs;
-},['']);
+function getlist(name){
+    return getFiles('./doc/'+name, false).reduce((rs, {path, name}) => {
+        if(/\.md$/.test(name)&&name!=='README.md'){
+            rs.push(`${name}`);
+        }
+        return rs;
+    },['']);
+}
 module.exports = {
-    title: '欢迎使用CyanMaple',
-    description: 'Just playing around',
+    title: 'CyanMaple',
+    description: '高速的描述型框架，简单不简单',
     base:'/cmui/',
     dest:'../cmui',
     serviceWorker:true,
+    evergreen: true,
     themeConfig:{
         sidebar: {
-            '/Cyan/': cyanList,
-            '/': componentsList
+            '/Cyan/': getlist('Cyan'),
+            '/components/':getlist('components'),
+            '/methods/':getlist('methods'),
+            '/': []
         },
         nav:[
-            {text:'Cyan',link:'/Cyan/'},
-            {text:'冰山工作室官网',items:[
+            {text:'样式',link:'/Cyan/'},
+            {text:'组件',link:'/components/'},
+            {text:'方法',link:'/methods/'},
+            {text:'官网',items:[
                     {text:'官网',link:'http://www.bingshangroup.com'},
                     {text:'陪你读书',link:'https://www.ximalaya.com/jiaoyu/3740790/'},
                     {text:'立体二维码',link:'http://www.bingshangroup.com#/qc'}
                 ]},
-            {text:'官网博客',link:'http://www.bingshangroup.com/blog2'}
+            {text:'技术博客',link:'http://www.bingshangroup.com/blog2'}
         ]
+    },
+    configureWebpack: {
+        resolve: {
+            alias: {
+                '@components': '../../../src/maple/components'
+            }
+        }
     }
 
 };

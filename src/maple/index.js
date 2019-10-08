@@ -1,57 +1,100 @@
-import maple from './core';
-// import { cookie } from './cache/cookie';
-// maple.cookie = cookie;
-// import { sessionData } from './cache/session';
-// maple.sessionData = sessionData;
-// import { localData } from './cache/local';
-// maple.localData = localData;
-import url from './url';
-maple.url = url;
-import log from './log';
-maple.log = log;
-import load from './load';
-maple.load = load;
-import scrollBar from './scroll_bar';
-maple.scrollBar = scrollBar;
-import device from './device';
-maple.device = device;
-import style from './style';
-maple.style = style;
-import time from './time';
-maple.time = time;
-import shake from './shake';
-maple.shake=shake;
-import {isInView} from './dom';
-maple.isInView=isInView;
-import component from './component';
-import alert     from './component/alert/index.js';
-import confirm   from './component/confirm/index.js';
-import notice    from './component/notice/index.js';
-import actions   from './component/actions/index.js';
-import mask      from './component/mask/index.js';
-import message   from './component/message/index.js';
-import slider    from './component/slider/index.js';
-import list      from './component/list/index.js';
-import tabbar    from './component/tabbar/index.js';
-import form      from './component/form/index.js';
-
-import picker from './component/pick/index.js';
-maple.notice = notice;
-maple.alert = alert;
-maple.confirm = confirm;
-maple.actions = actions;
-maple.mask = mask;
-maple.slider = slider;
-maple.tabbar = tabbar;
-maple.list = list;
-maple.form = form;
-
-maple.message = message;
-maple.picker=picker;
-for(let i in component){
-    Vue.component(i,component[i]);
+import Alert from '@components/alert/index.js';
+import Popup from '@components/popup/index.js';
+import Actions from '@components/actions/index.js';
+import Confirm from '@components/confirm/index.js';
+import Notice from '@components/notice/index.js';
+import Affix from '@components/affix/index.js';
+import Captcha from '@components/captcha/index.js';
+import Collapse from '@components/collapse/index.js';
+import CollapseItem from '@components/collapse-item/index.js';
+import Countdown from '@components/countdown/index.js';
+import {Checkbox, Input, Number, Radio, Select, Textarea} from '@components/form/index.js';
+import Picker from '@components/picker/index.js';
+import Img from '@components/img/index.js';
+import Slider from '@components/slider/index.js';
+import SliderItem from '@components/slider-item/index.js';
+import List from '@components/list/index.js';
+import ListItem from '@components/list-item/index.js';
+import ListGroup from '@components/list-group/index.js';
+import Progress from '@components/progress/index.js';
+import DatePicker from '@components/date-picker/index.js';
+import Mask from '@components/mask/index.js';
+import Slidebar from '@components/slidebar/index.js';
+import Scroll from '@components/scroll/index.js';
+import ScrollItem from '@components/scroll-item/index.js';
+import Tabbar from '@components/tabbar/index.js';
+//methods
+import methods from './methods/index.js';
+function Maple(){
+    return new Maple.prototype.init();
 }
-export default (window.maple = maple);
-
-
-
+Maple.prototype.init=function(){};
+Maple.prototype.init.prototype=Maple.prototype;
+const components=[
+	Alert,
+	Popup,
+	Actions,
+	Confirm,
+	Notice,
+	Affix,
+	Captcha,
+	Collapse,
+	CollapseItem,
+	Countdown,
+	Checkbox, Input, Number, Radio, Select, Textarea,//form
+	Picker,
+	Img,
+	Slider,
+	SliderItem,
+	List,
+	ListItem,
+	ListGroup,
+	Progress,
+	DatePicker,
+	Mask,
+	Slidebar,
+	Scroll,
+	ScrollItem,
+	Tabbar
+];
+const install=function(Vue){
+	if (install.installed) return;
+	components.forEach(function(component) {
+		component.install(Vue,Maple);
+	});
+	_.assign(Maple,methods);
+};
+if(typeof window !== 'undefined' && typeof document !== 'undefined'){
+	window.maple=Maple;
+}
+if (typeof window !== 'undefined' && window.Vue) {
+	install(window.Vue);
+}
+export default{
+	install,
+	Alert,
+	Popup,
+	Actions,
+	Confirm,
+	Notice,
+	Affix,
+	Captcha,
+	Collapse,
+	CollapseItem,
+	Countdown,
+	Checkbox, Input, Number, Radio, Select, Textarea,//form
+	Picker,
+	Img,
+	Slider,
+	SliderItem,
+	List,
+	ListItem,
+	ListGroup,
+	Progress,
+	DatePicker,
+	Mask,
+	Slidebar,
+	Scroll,
+	ScrollItem,
+	Tabbar
+};

@@ -26,7 +26,7 @@ export default {
             maple.alert('这是一个简单的弹窗')
         },
         alert2() {
-            maple.alert('这是标题', '这是内容')
+            maple.alert('<span>这是标题</span>', '这是内容')
         },
         alert3() {
             maple.alert('下面是一段非常长的内容', _.pad('', 1000, '非常长的内容'))
