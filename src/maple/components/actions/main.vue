@@ -11,7 +11,7 @@
 	</cmui-popup>
 </template>
 <script>
-	import cmuiPopup from '@components/popup/main.vue';
+	import cmuiPopup from '../popup/main.vue';
 	import _ from 'lodash';
 	export default {
 		name:'cmui-actions',

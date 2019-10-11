@@ -1,4 +1,4 @@
 import Component from './main';
-import dialogInstall from '@components/dialogClass/index';
+import dialogInstall from '../dialogClass/index';
 dialogInstall(Component);
 export default Component;

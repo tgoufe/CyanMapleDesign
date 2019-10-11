@@ -25,7 +25,7 @@
     }
 </style>
 <script>
-    import {isNumber,mapValues,padStart} from 'lodash';
+    import _ from 'lodash';
     export default{
         name:'cmui-countdown',
         props:{
@@ -42,7 +42,7 @@
         mounted(){
             var vm=this,
                 intervalTime = this.showMilli?100:1000;
-            if(isNumber(this.endTime)&&isNumber(this.nowTime)&&this.endTime>this.nowTime){
+            if(_.isNumber(this.endTime)&&_.isNumber(this.nowTime)&&this.endTime>this.nowTime){
                 vm.nowTime+=intervalTime;
                 this.timer=setInterval(function(){
                     vm.nowTime+=intervalTime;
@@ -70,7 +70,7 @@
                         if(this.showMilli){
                             obj.millSec = Math.floor((countDownTime / 100) % 10)
                         }
-                        this.contentList=mapValues(obj,item=>padStart(item,2,0))
+                        this.contentList=_.mapValues(obj,item=>_.padStart(item,2,0))
                     }
                 }
             },

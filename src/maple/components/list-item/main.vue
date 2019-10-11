@@ -27,12 +27,7 @@
     }
 </style>
 <script>
-    import {
-        remove,
-        isArray,
-        findIndex,
-        isNumber,
-    } from 'lodash';
+    import _ from 'lodash';
     export default {
         name:'cmui-list-item',
         // mixins:[baseMixin],
@@ -61,21 +56,21 @@
             this.index=this.bus.children.push(this)-1;
         },
         destroyed(){
-            remove(this.bus.children,this);
+            _.remove(this.bus.children,this);
         },
         methods:{
             itemStyle(){
                 let width
                     ,   col=this.bus.parent.realCol
-                    ,   colCount=(isArray(col)?col.length:col)||1
+                    ,   colCount=(_.isArray(col)?col.length:col)||1
                     ,   clear=this.index%colCount===0?'left':undefined
                     ,   padding=this.bus.parent.realSpace /2 +'rem'
                     ,   boxShadow=this.bus.parent.boxShadow
                     ,   backgroundColor=this.bgcolor;
                 ;
-                if(isNumber(col)&&col!==1){
+                if(_.isNumber(col)&&col!==1){
                     width=100/col+'%';
-                }else if(isArray(col)){
+                }else if(_.isArray(col)){
                     let total=col.reduce((pre,next)=>pre+next);
                     width=100*col[this.index%col.length]/total+'%';
                 }

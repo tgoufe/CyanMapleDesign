@@ -42,8 +42,8 @@
 </template>
 
 <script>
-    import cmuiList from '@components/list/main.vue';
-    import cmuiListItem from '@components/list-item/main.vue';
+    import cmuiList from '../list/main.vue';
+    import cmuiListItem from '../list-item/main.vue';
     import day from 'dayjs';
     export default {
         components:{cmuiList,cmuiListItem},

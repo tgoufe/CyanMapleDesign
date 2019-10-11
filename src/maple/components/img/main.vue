@@ -8,17 +8,13 @@
 </template>
 <script>
     import imagePreView from './imagePreView';
-    import {ready,isInView} from '@methods/dom';
-    import {
-        inRange,
-        debounce,
-        remove
-    } from 'lodash';
+    import {ready,isInView} from '../../methods/dom';
+    import _ from 'lodash';
     let lazyLoadList=[];
     let windowHeight=window.screen.availHeight;
     let windowWidth=window.screen.availWidth;
     let checkFinish=true;
-    const checkLazyLoadImage=debounce(function(){
+    const checkLazyLoadImage=_.debounce(function(){
         if(checkFinish){
             checkFinish=false;
             for(let i=0;i<lazyLoadList.length;i++ ){
@@ -79,7 +75,7 @@
             checkLazyLoadImage();
         },
         destroyed(){
-            remove(lazyLoadList,this);
+            _.remove(lazyLoadList,this);
         }
     };
 </script>

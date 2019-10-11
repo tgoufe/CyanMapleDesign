@@ -7,13 +7,21 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: resolve('/CMUI'),
+        libraryTarget: 'umd',
+        library: 'cmui'
     },
     plugins: [
         new VueLoaderPlugin(),
         // new BundleAnalyzerPlugin()
     ],
     externals:{
-        'lodash':'window._',
+        // 'lodash':'window._',
+        lodash: {
+            commonjs: 'lodash',
+            commonjs2: 'lodash',
+            amd: 'lodash',
+            root: '_'
+        }
     },
     devServer: {
         disableHostCheck: true
@@ -21,10 +29,6 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            jquery:resolve('dist/lib/jquery_3.2.1_jquery.min.js'),
-            vue:resolve('dist/lib/vue_2.5.13_vue.min.js'),
-            router:resolve('dist/lib/vue-router_3.0.1_vue-router.min.js'),
-            flexible:resolve('dist/lib/flexible.js'),
             "@components":path.resolve("src/maple/components"),
             "@methods":path.resolve("src/maple/methods"),
             "@cyan":path.resolve("src/cyan"),

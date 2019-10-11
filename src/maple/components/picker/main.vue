@@ -55,7 +55,7 @@
 </style>
 
 <script>
-	import cmuiPopup from '@components/popup/main.vue';
+	import cmuiPopup from '../popup/main.vue';
 	import _ from 'lodash';
 	import Swiper from 'swiper';
 	function formatWheelData(wheelData,lengthStore){

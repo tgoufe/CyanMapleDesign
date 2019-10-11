@@ -1,13 +1,7 @@
-import {
-    uniqueId,
-    assign,
-    includes,
-    get,
-    defer
-} from 'lodash';
+import _ from 'lodash';
 function ImagePreView(ImageList,index=0,options){
     let vm=this;
-	const id=uniqueId('preView_');
+	const id=_.uniqueId('preView_');
 	const tpl=`
         <transition name="fade" id="${id}">
 		    <div class="fixed-full flex-container cmui-image-preView" v-if="show" @click="preViewListClick($event)" @touchmove.stop.prevent="function(){}">
@@ -27,12 +21,12 @@ function ImagePreView(ImageList,index=0,options){
         data:{
             preViewList_temp:[].concat(ImageList),
             show:false,
-            options:assign({initialSlide:index},options)
+            options:_.assign({initialSlide:index},options)
         },
         methods:{
             preViewListClick:function(event){
                 event.stopPropagation();
-                if(!includes(get(event,'target.classList'),'swiper-pagination-bullet')&&get(this,'$children[0]')){
+                if(!_.includes(_.get(event,'target.classList'),'swiper-pagination-bullet')&&_.get(this,'$children[0]')){
                     this.$children[0].$destroy();
                     this.show=false;
                     this.$nextTick(function(){
@@ -43,7 +37,7 @@ function ImagePreView(ImageList,index=0,options){
             }
         },
         mounted(){
-            defer(()=>{
+            _.defer(()=>{
                 this.show=true;
                 vm.$emit('preview',true);
             });

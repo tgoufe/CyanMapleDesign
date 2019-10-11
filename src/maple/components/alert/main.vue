@@ -25,7 +25,7 @@
 	</cmui-popup>
 </template>
 <script>
-	import cmuiPopup from '@components/popup/main.vue';
+	import cmuiPopup from '../popup/main.vue';
 	export default {
 		name:'cmui-alert',
 		methodName:'alert',

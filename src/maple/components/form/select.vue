@@ -104,7 +104,7 @@
 </style>
 <script>
 import mixin from "./mixin.js";
-import cmuiPicker from "@components/picker/main.vue";
+import cmuiPicker from "../picker/main.vue";
 function formateData(data){
   if(!_.isArray(data)){
     return [];

@@ -103,7 +103,7 @@
 }
 </style>
 <script type="text/javascript">
-	import device from '@methods/device.js';
+	import device from '../../methods/device.js';
 	let scrollRec;
 	export default{
 		name:'cmui-popup',

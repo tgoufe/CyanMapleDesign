@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const sass = require("gulp-sass");
 const postcss    = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
-function compile(inputPath,outputPath="CMUI/"){
+function compile(inputPath,outputPath="CMUI/style"){
     gulp.src(inputPath)
         .pipe( sourcemaps.init() )
         .pipe(sass({outputStyle: 'compressed'}))

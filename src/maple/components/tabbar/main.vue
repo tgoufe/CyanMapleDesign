@@ -2,9 +2,9 @@
     @import "theme";
 </style>
 <script>
-    import cmuiTabbarNav from '@components/tabbar/nav.vue';
-    import cmuiTabbarPane from '@components/tabbar/pane.vue';
-    import cmuiRender from '@components/base/render';
+    import cmuiTabbarNav from '../tabbar/nav.vue';
+    import cmuiTabbarPane from '../tabbar/pane.vue';
+    import cmuiRender from '../base/render';
     export default{
         name:'cmui-tabbar',
         components:{
