@@ -1,6 +1,6 @@
 function dialogInstall(Component){
     let {name,props,methodName,argumentsRole}=Component;
-    let defaultsOptions = _.mapValues(props,item=>item.default);
+    let defaultsOptions = _.mapValues(props,item=>_.isFunction(item.default)?item.default():item.default);
     let timeHandle;
     let id = `${name}-` + _.uniqueId();
     let setCurrent = _.once(function(Vue) {
@@ -46,7 +46,10 @@ function dialogInstall(Component){
             }
             return CURRENT;
         }
-        Vue.prototype[methodName]=Maple[methodName]=dialog;
+        Vue.prototype[methodName]=dialog;
+        if(Maple){
+            Maple[methodName]=dialog;
+        }
     };
     return Component;
 }

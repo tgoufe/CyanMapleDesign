@@ -10,7 +10,7 @@
     "maple": "cross-env NODE_ENV=production && node ./build/rollup.maple",
     "theme": "gulp theme",
     "doc": "vuepress dev doc",
-    "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build"
+    "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && node ./build/cli.build.js"
   },
   "files": [
     "src/",
@@ -40,6 +40,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
     "@babel/runtime": "^7.0.0",
+    "@vue/cli-service": "^3.12.0",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.2",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -67,7 +68,6 @@
     "rollup-plugin-alias": "^2.0.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-filesize": "^6.2.0",
     "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -82,6 +82,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.0.0",
+    "tasksfile": "^5.1.0",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.5.17",

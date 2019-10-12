@@ -47,13 +47,13 @@
             lazySrc:{type:String,default:base64_1x1},
             errorSrc:{type:String,default:base64_1x1},
             preView:{type:Boolean,default:false},
-            preViewList:{type:Array,default:[]},
+            preViewList:{type:Array,default(){return []}},
             preViewIndex:{type:Number,default:0},
-            preViewOptions:{type:Object,default:{}}
+            preViewOptions:{type:Object,default(){return{}}}
         },
-        computed:{
-            realSrc(){
-                return this.lazyLoad?this.lazySrc:this.src
+        data(){
+            return {
+                realSrc:this.lazyLoad?this.lazySrc:this.src
             }
         },
         methods:{
@@ -65,7 +65,7 @@
                 }
             },
             srcError(){
-                this[this.lazyLoad?'lazySrc':'src']=this.errorSrc
+                this[this.lazyLoad?'lazySrc':'realSrc']=this.errorSrc
             }
         },
         created(){

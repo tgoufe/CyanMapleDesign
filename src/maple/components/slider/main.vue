@@ -185,7 +185,7 @@
         },
         props: {
             id:{type:String,default:_.uniqueId('cmui-slider_')},
-            watch: { type: Object, default: {} },
+            watch: { type: Object, default(){return {}}},
             theme: { type: Number, default: 0 },
             options: { type: Object, default: null},
             loop: { type: Boolean, default: false },

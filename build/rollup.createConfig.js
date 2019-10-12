@@ -9,12 +9,10 @@ const replace = require('rollup-plugin-replace');
 const json = require('rollup-plugin-json');
 const postcss = require('rollup-plugin-postcss');
 const alias = require('rollup-plugin-alias');
-const filesize = require('rollup-plugin-filesize');
 const cssenv = require('postcss-preset-env');
 const cssnano = require('cssnano');
 const simplevars = require('postcss-simple-vars');
 const nested = require('postcss-nested');
-const cssnext = require('postcss-cssnext');
 const fs = require('fs');
 
 const { getAssetsPath, fsExistsSync, chalkConsole } = require('./utils');
@@ -23,7 +21,6 @@ const {
   env,
   styleOutputPath,
   outputPath,
-  clearConsole,
   externalMap,
   banner
 } = require('./rollup.config');
@@ -47,8 +44,8 @@ function createPlugins({ min } = {}) {
     }),
     babel({
       runtimeHelpers: true,
-      plugins: ['@babel/plugin-external-helpers'],
-      externalHelpers: true,
+      // plugins: ['@babel/plugin-external-helpers'],
+      externalHelpers: false,
       exclude,
       presets: ["@babel/preset-env"]
     }),

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const chalk = require('chalk');
 const {getAssetsPath,fsExistsSync,getFiles}=require('./utils');
-const {esDir,outputPath,rollupFormatTypes,addons}=require('./rollup.config');
+const {esDir,outputPath,addons}=require('./rollup.config');
 const { build } = require('./rollup.createConfig');
 const inquirer = require('inquirer');
 
@@ -23,9 +23,11 @@ const inquirerInput = [
         name: "format",
         choices: [
             new inquirer.Separator(`将打包到${outputPath}文件夹下`),
+            new inquirer.Separator(`cjs用于使用import进行引用`),
+            new inquirer.Separator(`umd用于使用使用script标签进行引用`),
             {name: "cjs"},
             {name: "umd",checked: true},
-            new inquirer.Separator(`将打包到${esDir}文件夹下`),
+            new inquirer.Separator(`将打包到${esDir}文件夹下，用于现代浏览器的ES6引用`),
             {name: "es"},
         ],
         validate(value,next){
@@ -34,26 +36,21 @@ const inquirerInput = [
             }
             return true;
         }
-    },
-    {
-        type: "confirm",
-        message: "是否输出未压缩文件",
-        name: "min",
     }
 ];
-inquirer.prompt(inquirerInput).then(({format,min})=>{
+inquirer.prompt(inquirerInput).then(({format})=>{
     let rollupFormatTypes=[];
     format.forEach(item=>{
         rollupFormatTypes.push({
             format:item,
-            min:true,
+            min:false,
             suffix:`.${item==='cjs'?'common':item}.js`
         });
-        if(min){
+        if(item==='umd'){
             rollupFormatTypes.push({
                 format:item,
-                min:false,
-                suffix:`.${item==='cjs'?'common':item}.min.js`
+                min:true,
+                suffix:`.${item}.min.js`
             })
         }
     });

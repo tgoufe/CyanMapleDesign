@@ -1,5 +1,5 @@
 <template>
-	<cmui-popup position="bottom" :visible.sync="visible" :target-style="{height:'auto'}" class="cmui-actions" target-class="cmui-actions__container">
+	<cmui-popup position="bottom" :visible.sync="visible" :target-style="{height:'auto'}" class="cmui-actions " target-class="cmui-actions__container">
 		<div class="cmui-actions__title" v-html="title" v-if="title" slot="top">
 		</div>
 		<div class="cmui-actions__group">
@@ -50,8 +50,8 @@
 			}
 		},
 		props: {
-			items: { type: Array, default: [] },
-			cancelText: { type: Array, default: '取消' },
+			items: { type: Array, default: function(){return []} },
+			cancelText: { type: String, default: '取消' },
 			cancelFn: { type: Function, default: null },
 			cancelStyle: { type: Object, default: null },
 			itemStyle: { type: Object, default: null },
