@@ -13,7 +13,7 @@ function compile(inputPath,outputPath="CMUI/style"){
 gulp.task("sass",async() =>{
     //copy font
     gulp.src("src/cyan/font/*")
-        .pipe(gulp.dest("dist/font"));
+        .pipe(gulp.dest("CMUI/style/font"));
     //compile sass
     compile("src/cyan/CMUI.scss");
     compile("src/cyan/cmuiMobile.scss");
