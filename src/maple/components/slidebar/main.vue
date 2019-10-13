@@ -39,7 +39,8 @@
             return{
                 transDisX:0,
                 barInfo:null,
-                dotInfo:null
+                dotInfo:null,
+                selfValue:this.value
             }
         },
         props:{
@@ -82,13 +83,13 @@
                         value-=c;
                     }
                 }
-                this.value=value;
-                this.$emit('input',value)
+                this.selfValue=value;
+                this.$emit('input',this.selfValue)
             },
             endHandle(e){
                 this.barInfo=null;
                 this.dotInfo=null;
-                this.$emit('change',this.value);
+                this.$emit('change',this.selfValue);
             }
         }
     }

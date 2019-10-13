@@ -1,3 +1,4 @@
+
 const fs = require('fs')
 const chalk = require('chalk')
 const { getAssetsPath, fsExistsSync, getFiles } = require('./utils')
@@ -16,6 +17,7 @@ let componentsList = getFiles('./src/maple/components')
   .filter(item => /index\.js$/.test(item.name))
 let pkg = []
 const inquirerInput = [
+
   {
     type: 'checkbox',
     message: '请选择打包文件结构:',

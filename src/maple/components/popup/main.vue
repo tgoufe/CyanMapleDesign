@@ -111,8 +111,8 @@
 			visible:{type:Boolean,default:false},
 			maskEvent:{type:Boolean,default:true},
 			position:{type:String,default:'right'},
-			targetStyle:Object,
-			targetClass:Array,
+			targetStyle:{type:Object,default:null},
+			targetClass:{type:String,default:''},
 			stopPageScroll:{type:Boolean,default:true}
 		},
 		data:function(){

@@ -10,7 +10,7 @@ module.exports = {
     }
   },
   css: {
-    extract: false,
+    extract: false
     // loaderOptions: {
     //   sass: {
     //     javascriptEnabled: true
