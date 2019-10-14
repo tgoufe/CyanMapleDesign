@@ -22,7 +22,7 @@ module.exports = {
   chainWebpack: (config) => {
     config.module
       .rule('js')
-      .include.add(path.join(__dirname,'src/maple'))
+      .include.add(path.join(__dirname, 'src/maple'))
       .end()
       .use('babel')
       .loader('babel-loader')

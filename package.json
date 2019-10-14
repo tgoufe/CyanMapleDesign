@@ -7,6 +7,7 @@
   "scripts": {
     "start": "npm run cyan && npm run theme && vue-cli-service serve",
     "lint": "vue-cli-service lint",
+    "lint:prettier": "cross-env prettier --write \"src/maple/**/*.js\" \"src/maple/**/*.vue\" --loglevel warn",
     "cyan": "gulp sass",
     "maple": "cross-env NODE_ENV=production && node ./build/rollup.maple",
     "theme": "gulp theme",
@@ -50,6 +51,7 @@
     "postcss-nested": "^4.1.2",
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
+    "prettier": "^1.18.2",
     "rollup": "^1.23.1",
     "rollup-plugin-alias": "^2.0.1",
     "rollup-plugin-babel": "^4.3.3",
