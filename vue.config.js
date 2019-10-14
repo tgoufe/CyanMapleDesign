@@ -1,4 +1,5 @@
 const buildConfig = require('./build/config')
+const path = require('path')
 module.exports = {
   lintOnSave: !buildConfig.isProduct,
   runtimeCompiler: true,
@@ -10,22 +11,28 @@ module.exports = {
     }
   },
   css: {
-    extract: false
-    // loaderOptions: {
-    //   sass: {
-    //     javascriptEnabled: true
-    //   }
-    // }
+    extract: false,
+    loaderOptions: {
+      sass: {
+        // javascriptEnabled: true,
+        // fiber: require('fibers')
+      }
+    }
   },
   chainWebpack: (config) => {
-    // config.module
-    //   .rule('js')
-    //   .include.add(/src/)
-    //   .use('babel')
-    //   .loader('babel-loader')
-    //   .tap((options) => {
-    //     return options
-    //   }).end()
+    config.module
+      .rule('js')
+      .include.add(path.join(__dirname,'src/maple'))
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap((options) => {
+        return options
+      })
+    let { alias } = buildConfig
+    Object.keys(alias).forEach(item => {
+      config.resolve.alias.set(item, alias[item])
+    })
     config.plugins.delete('preload')
     config.plugins.delete('prefetch')
     config.extensions = buildConfig.resolve

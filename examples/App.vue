@@ -7,13 +7,12 @@
 
 <script>
 import headBar from './components/head'
-import _ from 'lodash'
 import '../CMUI/style/CMUI.css'
 import '../CMUI/style/theme.css'
 import styleinit from '../src/maple/styleInit'
 styleinit()
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     headBar
   }

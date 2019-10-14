@@ -5,7 +5,7 @@
   "private": false,
   "main": "CMUI/lib/index.common.js",
   "scripts": {
-    "start": "npm run cyan && vue-cli-service serve",
+    "start": "npm run cyan && npm run theme && vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "cyan": "gulp sass",
     "maple": "cross-env NODE_ENV=production && node ./build/rollup.maple",

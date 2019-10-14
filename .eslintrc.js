@@ -13,7 +13,8 @@ module.exports = {
     'vue/no-side-effects-in-computed-properties': 'off',
     'vue/attribute-hyphenation': 'off',
     'vue/html-indent':'off',
-    'vue/max-attributes-per-line':'off'
+    'vue/max-attributes-per-line':'off',
+    'vue/name-property-casing':'off'
   },
   parserOptions: {
     parser: 'babel-eslint'

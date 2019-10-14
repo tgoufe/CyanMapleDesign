@@ -1,3 +1,4 @@
+const {resolve} =require('./utils')
 module.exports = {
   esDir: 'es',
   examplesPort: '8090',
@@ -7,6 +8,9 @@ module.exports = {
   ],
   isProduct: ['production', 'prod'].includes(process.env.NODE_ENV),
   env: process.env.NODE_ENV,
+  alias: {
+    '@components': resolve('src/maple/components')
+  },
   resolve: ['.js', '.vue', '.json'],
   styleOutputPath: 'style',
   outputPath: 'lib',
