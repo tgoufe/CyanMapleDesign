@@ -1,9 +1,9 @@
 <template>
   <transition name="cmui-popup">
-    <div class="cmui-popup fixed-full" v-show="visible">
+    <div v-show="visible" class="cmui-popup fixed-full">
       <!-- <transition name="fade"> -->
       <div class="cmui-popup__mask abs-full" @click="maskClick">
-        <slot name="mask"></slot>
+        <slot name="mask" />
       </div>
       <!-- </transition> -->
       <div
@@ -16,13 +16,13 @@
           :class="[targetClass, { 'flex-container-col': useFlex }]"
         >
           <div class="cmui-popup__top">
-            <slot name="top"></slot>
+            <slot name="top" />
           </div>
-          <div class="cmui-popup__main flex1 scroll-container-y" ref="main">
-            <slot></slot>
+          <div ref="main" class="cmui-popup__main flex1 scroll-container-y">
+            <slot />
           </div>
           <div class="cmui-popup__bottom">
-            <slot name="bottom"></slot>
+            <slot name="bottom" />
           </div>
         </div>
       </div>
@@ -133,61 +133,53 @@
 }
 </style>
 <script type="text/javascript">
-import device from "../../methods/device.js";
-let scrollRec;
+import device from '../../methods/device.js'
+let scrollRec
 export default {
-  name: "cmui-popup",
+  name: 'cmui-popup',
   props: {
     visible: { type: Boolean, default: false },
     maskEvent: { type: Boolean, default: true },
-    position: { type: String, default: "right" },
+    position: { type: String, default: 'right' },
     targetStyle: { type: Object, default: null },
-    targetClass: { type: String, default: "" },
+    targetClass: { type: String, default: '' },
     stopPageScroll: { type: Boolean, default: true }
   },
   data: function() {
-    let isIos = device.os === "ios";
-    let ua = /OS\s(\d+)/.exec(window.navigator.userAgent);
+    let isIos = device.os === 'ios'
+    let ua = /OS\s(\d+)/.exec(window.navigator.userAgent)
     return {
       useFlex: !(ua && isIos && parseInt(ua[1] < 9))
-    };
-  },
-  methods: {
-    maskClick() {
-      if (this.maskEvent) {
-        this.visible = false;
-      }
     }
   },
   computed: {
     _position() {
-      return this.position.match(/(top|right|left|bottom|center)\b/g);
+      return this.position.match(/(top|right|left|bottom|center)\b/g)
     },
     _contentStyle() {
-      let width, height;
-      let position = this._position.join(" ");
+      let width, height
+      let position = this._position.join(' ')
       switch (position) {
-        case "top":
-          width = "100%";
+        case 'top':
+          width = '100%'
           // height="60%";
-          break;
-        case "bottom":
-          width = "100%";
+          break
+        case 'bottom':
+          width = '100%'
           // height="60%";
-          break;
-        case "left":
-          height = "100%";
-          width = "80%";
-          break;
-        case "right":
-          height = "100%";
-          width = "80%";
-          break;
+          break
+        case 'left':
+          height = '100%'
+          width = '80%'
+          break
+        case 'right':
+          height = '100%'
+          width = '80%'
+          break
       }
-      return { width, height };
+      return { width, height }
     }
   },
-  mounted() {},
   watch: {
     visible: {
       immediate: true,
@@ -195,18 +187,26 @@ export default {
         if (this.stopPageScroll) {
           if (value) {
             scrollRec =
-              document.documentElement.scrollTop || document.body.scrollTop;
-            document.body.style.top = -scrollRec + "px";
-            document.body.classList.add("fixed-full");
+              document.documentElement.scrollTop || document.body.scrollTop
+            document.body.style.top = -scrollRec + 'px'
+            document.body.classList.add('fixed-full')
           } else {
-            document.body.style.removeProperty("top");
-            document.body.classList.remove("fixed-full");
-            document.documentElement.scrollTop = scrollRec;
+            document.body.style.removeProperty('top')
+            document.body.classList.remove('fixed-full')
+            document.documentElement.scrollTop = scrollRec
           }
         }
-        this.$emit("update:visible", value);
+        this.$emit('update:visible', value)
+      }
+    }
+  },
+  mounted() {},
+  methods: {
+    maskClick() {
+      if (this.maskEvent) {
+        this.visible = false
       }
     }
   }
-};
+}
 </script>

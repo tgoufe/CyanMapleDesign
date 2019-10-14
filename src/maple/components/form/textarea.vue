@@ -1,42 +1,42 @@
 <template>
   <div class="cmui-textarea pos-r form flex-container" :class="positionClass">
     <span
+      v-if="align === 'left' && (label || $slots.default)"
       :class="{ checked: slefValue }"
       class="cmui-input__label cmui-form__label"
-      v-if="align === 'left' && (label || $slots.default)"
     >
-      <slot></slot>
+      <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
     <div class="pos-r" :class="{ flex1: !flex }">
       <textarea
-        :maxlength="max"
         ref="textarea"
-        :name="name"
         v-model="value"
+        :maxlength="max"
+        :name="name"
         :readonly="readonly"
         :placeholder="placeholder"
         :disabled="disabled"
         :class="[targetClass, 'hide-scrollBar']"
+        :style="targetStyle"
         @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
         @change="handleChange"
-        :style="targetStyle"
-      ></textarea>
+      />
       <div
         v-if="max >= 0"
         class="pos-a text-light"
         style="right:12px;bottom:4px;"
         v-text="value.length + '/' + max"
-      ></div>
+      />
     </div>
     <span
+      v-if="align === 'right' && (label || $slots.default)"
       :class="{ checked: slefValue }"
       class="cmui-input__label cmui-form__label"
-      v-if="align === 'right' && (label || $slots.default)"
     >
-      <slot></slot>
+      <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
   </div>
@@ -47,63 +47,63 @@
 }
 </style>
 <script>
-import mixin from "./mixin.js";
+import mixin from './mixin.js'
 export default {
-  name: "cmui-textarea",
+  name: 'cmui-textarea',
+  mixins: [mixin],
   props: {
     auto: { type: Boolean, default: false },
     max: { type: Number, default: -1 },
     space: { type: Number, default: 20 },
     width: [Number, String]
   },
-  mixins: [mixin],
   data: function() {},
+  computed: {
+    targetStyle() {
+      let style = {}
+      if (this.width) {
+        style.width = parseInt(this.width) + 'px'
+      }
+      return style
+    },
+    positionClass() {
+      if (_.includes(this.targetClass.split(' '), 'center')) {
+        return ''
+      } else if (_.includes(this.targetClass.split(' '), 'bottom')) {
+        return 'bottom'
+      } else {
+        return 'top'
+      }
+    }
+  },
   methods: {
     rendered() {
-      this.setTextAreaHeight();
+      this.setTextAreaHeight()
     },
     setTextAreaHeight() {
       if (this.auto) {
-        const target = this.$refs.textarea;
-        const $target = $(target);
-        let dom = $("<textarea/>");
+        const target = this.$refs.textarea
+        const $target = $(target)
+        let dom = $('<textarea/>')
         let style = {};
-        ["fontSize", "lineHeight", "width", "border", "padding"].forEach(
+        ['fontSize', 'lineHeight', 'width', 'border', 'padding'].forEach(
           item => {
-            style[item] = $target.css(item);
+            style[item] = $target.css(item)
           }
-        );
-        dom.css(style);
-        dom.val(target.value).appendTo("body");
-        target.style.height = dom[0].scrollHeight + "px";
-        dom.remove();
+        )
+        dom.css(style)
+        dom.val(target.value).appendTo('body')
+        target.style.height = dom[0].scrollHeight + 'px'
+        dom.remove()
       }
     },
     handlePaste(e) {
-      const target = this.$refs.textarea;
+      const target = this.$refs.textarea
       if (this.max) {
-        target.value = target.value.slice(0, this.max);
+        target.value = target.value.slice(0, this.max)
       }
-      this.$emit("input", target.value, target, this);
-    }
-  },
-  computed: {
-    targetStyle() {
-      let style = {};
-      if (this.width) {
-        style.width = parseInt(this.width) + "px";
-      }
-      return style;
-    },
-    positionClass() {
-      if (_.includes(this.targetClass.split(" "), "center")) {
-        return "";
-      } else if (_.includes(this.targetClass.split(" "), "bottom")) {
-        return "bottom";
-      } else {
-        return "top";
-      }
+      this.$emit('input', target.value, target, this)
     }
   }
-};
+}
 </script>

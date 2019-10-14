@@ -1,21 +1,21 @@
 <template>
   <div class="pos-r cmui-select form flex-container">
     <span
+      v-if="align === 'left' && (label || $slots.default)"
       :class="{ checked: slefValue }"
       class="cmui-select__label cmui-form__label"
-      v-if="align === 'left' && (label || $slots.default)"
     >
-      <slot></slot>
+      <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
     <div class="flex-container" :class="{ flex1: !flex }">
       <!-- 前置 -->
       <div
+        v-if="$slots.prepend || prepend"
         class="cmui-select__prepend flex-container"
         :class="[targetClass, { disabled: prependDisabled }]"
-        v-if="$slots.prepend || prepend"
       >
-        <slot name="prepend" v-if="$slots.prepend"></slot>
+        <slot v-if="$slots.prepend" name="prepend" />
         <span v-if="prepend">{{ prepend }}</span>
       </div>
       <!-- 主体 -->
@@ -24,47 +24,47 @@
         :class="{ flex1: !label || !$slots.default }"
       >
         <select
+          v-model="selfValue"
           :style="inputStyle"
           :name="name"
           :readonly="readonly"
           :placeholder="placeholder"
           :disabled="disabled && picker"
           :class="targetClass"
-          v-model="selfValue"
           @focus="handleFocus"
           @blur="handleBlur"
           @change="handleChange"
         >
           <option
-            :value="item.value"
             v-for="item in selfData"
+            :value="item.value"
             v-text="item.text"
-          ></option>
+          />
         </select>
-        <div class="abs-full" @click="visible = !visible" v-if="picker"></div>
+        <div v-if="picker" class="abs-full" @click="visible = !visible" />
         <cmui-picker
+          v-if="picker"
           :visible.sync="visible"
           :data="data"
           @select="select"
-          v-if="picker"
-        ></cmui-picker>
+        />
       </div>
       <!-- 后置 -->
       <div
+        v-if="$slots.append || append"
         class="cmui-select__append flex-container"
         :class="[targetClass, { disabled: appendDisabled }]"
-        v-if="$slots.append || append"
       >
-        <slot name="append" v-if="$slots.append"></slot>
-        <span v-if="append" v-text="append"></span>
+        <slot v-if="$slots.append" name="append" />
+        <span v-if="append" v-text="append" />
       </div>
     </div>
     <span
+      v-if="align === 'right' && (label || $slots.default)"
       :class="{ checked: slefValue }"
       class="cmui-select__label cmui-form__label"
-      v-if="align === 'right' && (label || $slots.default)"
     >
-      <slot></slot>
+      <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
   </div>
@@ -132,24 +132,25 @@
 }
 </style>
 <script>
-import mixin from "./mixin.js";
-import cmuiPicker from "../picker/main.vue";
+import mixin from './mixin.js'
+import cmuiPicker from '../picker/main.vue'
 function formateData(data) {
   if (!_.isArray(data)) {
-    return [];
+    return []
   } else {
     return data.map(item => {
       if (_.isPlainObject(item)) {
-        return _.defaults(item, { text: "", value: undefined });
+        return _.defaults(item, { text: '', value: undefined })
       } else {
-        return { text: item.toString(), value: item.valueOf() };
+        return { text: item.toString(), value: item.valueOf() }
       }
-    });
+    })
   }
 }
 export default {
-  name: "cmui-select",
+  name: 'cmui-select',
   components: { cmuiPicker },
+  mixins: [mixin],
   props: {
     reset: { type: Boolean, default: true },
     prepend: String,
@@ -164,44 +165,43 @@ export default {
     return {
       visible: false,
       selfValue: this.value
-    };
+    }
   },
-  mixins: [mixin],
   computed: {
     inputStyle() {
-      let style = {};
+      let style = {}
       if (this.$slots.prepend || this.prepend || this.reverse) {
-        style.borderTopLeftRadius = "0px";
-        style.borderBottomLeftRadius = "0px";
+        style.borderTopLeftRadius = '0px'
+        style.borderBottomLeftRadius = '0px'
       }
       if (this.$slots.append || this.append || this.reverse) {
-        style.borderTopRightRadius = "0px";
-        style.borderBottomRightRadius = "0px";
+        style.borderTopRightRadius = '0px'
+        style.borderBottomRightRadius = '0px'
       }
       if (this.reset) {
-        style.paddingRight = "40px";
+        style.paddingRight = '40px'
       }
-      if (this.type === "search") {
-        style.paddingLeft = "40px";
+      if (this.type === 'search') {
+        style.paddingLeft = '40px'
       }
       if (this.width) {
-        style.width = this.width + "px";
+        style.width = this.width + 'px'
       }
-      return style;
+      return style
     },
     selfData() {
-      return formateData(this.data);
+      return formateData(this.data)
     }
   },
   methods: {
     select(data) {
-      this.$emit("input", data[0].value);
+      this.$emit('input', data[0].value)
     },
     handleChange() {
-      const target = event.target;
-      this.$emit("change", this.selfValue, target, this);
-      this.$emit("input", this.selfValue, target, this);
+      const target = event.target
+      this.$emit('change', this.selfValue, target, this)
+      this.$emit('input', this.selfValue, target, this)
     }
   }
-};
+}
 </script>

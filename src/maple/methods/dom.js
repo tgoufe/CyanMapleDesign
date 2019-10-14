@@ -1,33 +1,33 @@
 function isInView(dom) {
-  let { top, left, height, width } = dom.getBoundingClientRect();
+  let { top, left, height, width } = dom.getBoundingClientRect()
   let offsetY =
-    top - (document.body.scrollTop || document.documentElement.scrollTop);
+    top - (document.body.scrollTop || document.documentElement.scrollTop)
   let offsetX =
-    left - (document.body.scrollLeft || document.documentElement.scrollLeft);
-  let inY = offsetY >= 0 && offsetY < height;
-  let inX = offsetX >= 0 && offsetX < width;
-  return inY && inX;
+    left - (document.body.scrollLeft || document.documentElement.scrollLeft)
+  let inY = offsetY >= 0 && offsetY < height
+  let inX = offsetX >= 0 && offsetX < width
+  return inY && inX
 }
 function ready(fn) {
   if (!window || !document) {
-    return;
+    return
   }
   if (document.addEventListener) {
     document.addEventListener(
-      "DOMContentLoaded",
+      'DOMContentLoaded',
       function() {
         // document.removeEventListener('DOMContentLoaded',arguments.callee, false);
-        fn();
+        fn()
       },
       false
-    );
+    )
   } else if (document.attachEvent) {
-    document.attachEvent("onreadystatechange", function() {
-      if (document.readyState == "complete") {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState == 'complete') {
         // document.detachEvent('onreadystatechange', arguments.callee);
-        fn();
+        fn()
       }
-    });
+    })
   }
 }
-export { isInView, ready };
+export { isInView, ready }
