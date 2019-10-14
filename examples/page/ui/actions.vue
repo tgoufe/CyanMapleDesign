@@ -1,42 +1,46 @@
 <template>
     <div>
-        <div class="tag-container example">
-            <a href="javascript:void(0)" class="btn blue radius block" @click="actions">
-                简单的案例
-            </a>
-            <a href="javascript:void(0)" class="btn blue radius block" @click="actions2">
-                隐藏取消按钮
-            </a>
-            <a href="javascript:void(0)" class="btn blue radius block" @click="actions3">
-                自定义的样式
-            </a>
-        </div>
+        <span class="btn blue block radius" @click="simple()">
+            simple Demo
+        </span>
+        <span class="btn blue block radius" @click="title()">
+            with title
+        </span>
+        <span class="btn blue block radius" @click="noCancel()">
+            without cancel
+        </span>
     </div>
 </template>
-<script>
-export default {
-  name: 'affix',
-    	data: function() {
-    		return {
-    			items: _.times(10, index => `items${index}`),
-    			visible: false
-    		}
-    	},
-  methods: {
-    actions() {
-      maple.actions(['拍照', '从相册选择'], item => maple.alert(`你点击了${item.text}`))
-    },
-    actions2() {
-      maple.actions('拍照', '从相册选择', { cancelText: '' })
-    },
-    actions3() {
-            	maple.actions(_.times(20, index => {
-            		return {
-            			text: `当前item字号为${index + 10}px`,
-            			style: { fontSize: index + 10 + 'px' }
-            		}
-            	}), (item, index) => maple.alert(`你点击了第${index}项`), { title: '我是标题' })
+<script type="text/javascript">
+    import _ from 'lodash'
+    import alert from '@components/alert/index.js'
+    import actions from '@components/actions/index.js'
+    import popup from '@components/popup/index.js'
+    import vue from 'vue'
+    vue.config.warnHandler=new Function
+    vue.use(actions)
+    vue.use(popup)
+    vue.use(alert)
+    export default {
+        name:'actions',
+        methods:{
+            simple(){
+                this.actions(
+                    ['拍照', '从相册选择'], 
+                    item => this.alert(`你点击了${item}`)
+                )
+            },
+            title(){
+                this.actions({
+                    items:_.times(10,index=>index+1),
+                    title:'this is title'
+                },data=>{
+                    this.alert(data)
+                })
+            },
+            noCancel(){
+                this.actions('拍照', '从相册选择', { cancelText: '' })
+            }
+        }
     }
-  }
-}
 </script>
