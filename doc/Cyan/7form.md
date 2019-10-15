@@ -310,3 +310,19 @@ small radio
     <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="广州">
     <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="深圳">
 </div>
+
+## 自定义按钮颜色
+btn还可以自定义颜色，加上customColor并且写入想要的颜色属性color。
+
+```html
+<div class="form">
+    <input type="checkbox" class="btn customColor reverse" label="自定颜色1" style="color:#8e1d1d">
+    <input type="checkbox" class="btn customColor radius" label="自定颜色2" style="color:#6767d2">
+    <input type="checkbox" class="btn customColor" label="自定颜色3" style="color:#2ba02b">
+</div>
+```
+<div class="form margint20">
+    <input type="checkbox" class="btn customColor reverse" label="自定颜色1" style="color:#8e1d1d">
+    <input type="checkbox" class="btn customColor radius" label="自定颜色2" style="color:#6767d2">
+    <input type="checkbox" class="btn customColor" label="自定颜色3" style="color:#2ba02b">
+</div>

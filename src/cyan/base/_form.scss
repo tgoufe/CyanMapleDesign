@@ -280,6 +280,40 @@ input{
                         }
                     }
                 }
+                &.customColor{
+                    border-color:currentColor;
+                    &:not(.reverse){
+                        background-color:currentColor;
+                        color:#fff;
+                        &::before,&::after{
+                            color:#fff;
+                        } 
+                    }
+                    @if ($isPC){
+                        &:focus,
+                        &.focus {
+                           opacity: .5;
+                        }
+                        &:hover {
+                           opacity: .5;
+                        }
+                        &:active,
+                        &.active
+                        {
+                           opacity: .5;
+                          &:hover,
+                          &:focus,
+                          &.focus {
+                             opacity: .67;
+                          }
+                        }
+                        &:active,
+                        &.active
+                        {
+                          background-image: none;
+                        }
+                    }
+                }
             }
             &[type=checkbox].switch.#{$btnSizeName}{
                 width:(nth($btnSizeValue,1) - $border-radius-base * 2 - 3) * 2 - $border-radius-base + 2;
