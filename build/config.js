@@ -9,7 +9,11 @@ module.exports = {
   isProduct: ['production', 'prod'].includes(process.env.NODE_ENV),
   env: process.env.NODE_ENV,
   alias: {
-    '@components': resolve('src/maple/components')
+    '@components': resolve('src/maple/components'),
+    '@maple': resolve('src/maple'),
+    '@cyan': resolve('src/cyan'),
+    '@theme': resolve('src/maple/theme'),
+    '@assets': resolve('examples/assets')
   },
   resolve: ['.js', '.vue', '.json'],
   styleOutputPath: 'style',

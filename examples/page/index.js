@@ -1,9 +1,12 @@
 const routerContext = require.context('./', true, /\.vue$/)
+const themeContext = require.context('@theme', true, /\.scss$/)
+const themeList = themeContext.keys().map(key => key.slice(2, -5))
 const path = require('path')
 let folder = { base: [] }
 let routerAdd = []
 routerContext.keys().forEach(key => {
   let routerPath = '/' + key.slice(2, -4).replace(/\/(\w)/g, (w, $1) => $1.toUpperCase())
+  routerPath = key.slice(1, -4)
   let fileName = key.slice(key.lastIndexOf('/') + 1, -4)
   let rs = {
     path: routerPath,
@@ -27,5 +30,6 @@ routerContext.keys().forEach(key => {
 export default {
   routerContext,
   folder,
-  routerAdd
+  routerAdd,
+  themeList
 }

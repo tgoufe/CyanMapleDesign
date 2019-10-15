@@ -2,33 +2,35 @@
   <cmui-popup
     position="center"
     :visible.sync="selfVisible"
-    class="cmui-alert"
+    class="cmui-alert cmui-dialog"
     :mask-event="false"
     :target-class="
       `cmui-dialog__container cmui-alert__container ${targetClass}`
     "
   >
-    <div
-      v-if="title || $slots.top"
-      class="cmui-dialog__title cmui-alert__title"
-    >
-      <div v-if="!$slots.top" v-html="title" />
-      <slot v-else name="top" />
-    </div>
-    <div class="cmui-dialog__warp cmui-alert__warp">
+    <div class="cmui-dialog__content cmui-alert__content">
       <div
-        v-if="!content || $slots.default"
-        class="cmui-dialog__body cmui-alert__body scroll-container-y"
-        :style="bodyStyle"
+              v-if="title || $slots.top"
+              class="cmui-dialog__title cmui-alert__title"
       >
-        <slot v-if="$slots.default" />
+        <div v-if="!$slots.top" v-html="title"></div>
+        <slot v-else name="top" />
       </div>
-      <div
-        v-if="content || !$slots.default"
-        class="cmui-dialog__body cmui-alert__body scroll-container-y"
-        :style="bodyStyle"
-        v-html="content"
-      />
+      <div class="cmui-dialog__warp cmui-alert__warp">
+        <div
+                v-if="!content || $slots.default"
+                class="cmui-dialog__body cmui-alert__body scroll-container-y"
+                :style="bodyStyle"
+        >
+          <slot v-if="$slots.default" />
+        </div>
+        <div
+                v-if="content || !$slots.default"
+                class="cmui-dialog__body cmui-alert__body scroll-container-y"
+                :style="bodyStyle"
+                v-html="content"
+        ></div>
+      </div>
     </div>
     <div class="cmui-dialog__buttons cmui-alert__buttons">
       <div
@@ -38,7 +40,7 @@
         :style="okDisable ? okDisableStyle : okStyle"
         @click="cancel()"
         v-html="okText"
-      />
+      ></div>
       <slot v-else name="bottom" />
     </div>
   </cmui-popup>

@@ -21,18 +21,18 @@
         class="cmui-picker__wrapper flex-container vfull overflow-h"
       >
         <div
-          v-for="(data, index) in pickerData"
+          v-for="(item, index) in pickerData"
           :key="index"
           class="flex1 swiper-container"
         >
           <ul class="cmui-picker__scroll swiper-wrapper">
             <li
-              v-for="(item, index) in data"
-              :key="index"
+              v-for="(inner, indexInner) in item"
+              :key="indexInner"
               class="cmui-picker__item text-center swiper-slide text-limit1"
               style="height:auto"
             >
-              {{ item.text }}
+              {{ inner.text }}
             </li>
           </ul>
         </div>
@@ -149,8 +149,8 @@ export default {
     cmuiPopup
   },
   props: {
-    data: { type: Array, default: [] },
-    selectIndex: { type: Array, default: [] },
+    data: { type: Array, default: () => [] },
+    selectIndex: { type: Array, default: () => [] },
     visible: { type: Boolean, default: false },
     rightFn: { type: Function, default: null },
     leftFn: { type: Function, default: null },
@@ -226,7 +226,7 @@ export default {
         }
         this.updateData(index + 1, this.pickerSelectIndex[index + 1])
       } else {
-        for (let item; (item = this.pickerData[++index]);) {
+        while (this.pickerData[++index]) {
           this.pickerData.splice(index, 1, this.wheelStore[index])
         }
       }

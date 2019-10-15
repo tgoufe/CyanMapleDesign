@@ -1,3 +1,4 @@
+import _ from 'lodash'
 function dialogInstall(Component) {
   let { name, props, methodName, argumentsRole } = Component
   let defaultsOptions = _.mapValues(props, item =>
@@ -32,7 +33,6 @@ function dialogInstall(Component) {
         options,
         defaultsOptions
       )
-      console.log(options)
       _.forEach(options, (value, key) => {
         CURRENT[key] = value
       })
@@ -44,7 +44,6 @@ function dialogInstall(Component) {
       }
       timeHandle && clearTimeout(timeHandle)
       if (options.timeout) {
-        console.log(options)
         timeHandle = setTimeout(() => {
           clearTimeout(timeHandle)
           CURRENT.cancel()

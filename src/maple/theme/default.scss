@@ -1,28 +1,104 @@
 $mainColor:#00BABA;
 .cmui-popup{
   .cmui-popup__mask{}
-  .cmui-popup__container{}
-  .cmui-popup__content{}
+  .cmui-popup__container{
+    &.center{
+      .cmui-popup__content{
+        border-radius:16px
+      }
+    }
+    &.bottom{
+      .cmui-popup__content{
+        border-radius:16px 16px 0 0;
+      }
+    }
+    &.top{
+      .cmui-popup__content{
+        border-radius:0 0 16px 16px;
+      }
+    }
+    &.left{
+      .cmui-popup__content{
+        border-radius:0 16px 16px 0;
+      }
+    }
+    &.right{
+      .cmui-popup__content{
+        border-radius:16px 0 0 16px;
+      }
+    }
+  }
+  .cmui-popup__content{
+  }
   .cmui-popup__top{}
   .cmui-popup__main{}
   .cmui-popup__bottom{}
 }
 .cmui-actions{
+  .cmui-actions__container{
+    padding:16px;
+  }
   .cmui-actions__title{}
   .cmui-actions__group{
-    .cmui-actions__button{}
+    .cmui-actions__button{
+      text-align:center;
+      line-height:48px;
+      font-size:17px;
+      background-color: rgba(0,0,0,0.04);
+      &:first-child{
+        border-radius: 12px 12px 0 0;
+      }
+      &:last-child{
+        border-radius: 0 0 12px 12px;
+      }
+      & + .cmui-actions__button{
+        border-top:1px solid #ebebeb
+      }
+    }
   }
   .cmui-actions__cancel{
-    .cmui-actions__button{}
+    .cmui-actions__button{
+      margin-top:8px;
+      text-align:center;
+      line-height:56px;
+      font-size:20px;
+      color:white;
+      background: #00BABA;
+      border-radius: 12px;
+    }
   }
 }
 .cmui-dialog{
-  .cmui-dialog__title{}
+  .cmui-dialog__container{
+    width:100%;
+    margin:0 32px;
+  }
+  .cmui-dialog__content{
+    padding:32px 16px;
+  }
+  .cmui-dialog__title{
+    font-size:17px;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom:8px;
+    line-height:24px;
+  }
   .cmui-dialog__warp{
-    .cmui-dialog__body{}
+    .cmui-dialog__body{
+      font-size:13px;
+      text-align:center;
+    }
   }
   .cmui-dialog__buttons{
-    .cmui-dialog__button{}
+    border-top:1px solid #ebebeb;
+    .cmui-dialog__button{
+      line-height:48px;
+      text-align:center;
+      color:$mainColor;
+      & + .cmui-dialog__button{
+        border-left:1px solid #ebebeb;
+      }
+    }
   }
 }
 .cmui-alert{
@@ -40,7 +116,11 @@ $mainColor:#00BABA;
     .cmui-confirm__body{}
   }
   .cmui-confirm__buttons{
-    .cmui-confirm__button{}
+    .cmui-confirm__button{
+      &.cancel{
+        color:black
+      }
+    }
   }
 }
 .cmui-notice{

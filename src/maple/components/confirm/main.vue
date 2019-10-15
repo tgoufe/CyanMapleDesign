@@ -1,35 +1,38 @@
 <template>
   <cmui-popup
     position="center"
-    class="cmui-confirm"
+    class="cmui-confirm cmui-dialog"
     :mask-event="false"
     :visible.sync="selfVisible"
     :target-class="
       `cmui-dialog__container cmui-confirm__container ${targetClass}`
     "
   >
-    <div
-      v-if="title || $slots.top"
-      class="cmui-dialog__title cmui-confirm__title"
-    >
-      <div v-if="!$slots.top" v-html="title" />
-      <slot v-else name="top" />
-    </div>
-    <div class="cmui-dialog__warp cmui-confirm__warp">
+    <div class="cmui-dialog__content cmui-confirm__content">
       <div
-        v-if="!content || $slots.default"
-        class="cmui-dialog__body cmui-alert__body scroll-container-y"
-        :style="bodyStyle"
+              v-if="title || $slots.top"
+              class="cmui-dialog__title cmui-confirm__title"
       >
-        <slot v-if="$slots.default" />
+        <div v-if="!$slots.top" v-html="title" />
+        <slot v-else name="top" />
       </div>
-      <div
-        v-if="content || !$slots.default"
-        class="cmui-dialog__body cmui-alert__body scroll-container-y"
-        :style="bodyStyle"
-        v-html="content"
-      />
+      <div class="cmui-dialog__warp cmui-confirm__warp">
+        <div
+                v-if="!content || $slots.default"
+                class="cmui-dialog__body cmui-alert__body scroll-container-y"
+                :style="bodyStyle"
+        >
+          <slot v-if="$slots.default" />
+        </div>
+        <div
+                v-if="content || !$slots.default"
+                class="cmui-dialog__body cmui-alert__body scroll-container-y"
+                :style="bodyStyle"
+                v-html="content"
+        />
+      </div>
     </div>
+
     <div
       slot="bottom"
       class="cmui-dialog__buttons cmui-confirm__buttons flex-container"
