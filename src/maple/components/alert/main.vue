@@ -44,6 +44,7 @@
   </cmui-popup>
 </template>
 <script>
+import _ from 'lodash'
 import cmuiPopup from '../popup/main.vue'
 export default {
   name: 'cmui-alert',

@@ -20,6 +20,7 @@
         :style="getActionStyle(item.style, itemStyle)"
         @click="itemEvent(item, index)"
         v-html="getActionText(item, index)"
+        :key="index"
       />
     </div>
     <div v-if="cancelText" slot="bottom" class="cmui-actions__cancel">
@@ -69,7 +70,7 @@ export default {
       } else if (_.isArray(args[0])) {
         options.items = args[0]
       } else if (_.isFunction(args[0])) {
-        return actions(args[0]())
+        return this.argumentsRole(args[0]())
       }
     }
   },

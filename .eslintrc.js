@@ -14,7 +14,8 @@ module.exports = {
     'vue/attribute-hyphenation': 'off',
     'vue/html-indent': 'off',
     'vue/max-attributes-per-line': 'off',
-    'vue/name-property-casing': 'off'
+    'vue/name-property-casing': 'off',
+    'vue/no-v-html':'off'
   },
   parserOptions: {
     parser: 'babel-eslint'

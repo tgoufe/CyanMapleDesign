@@ -51,7 +51,7 @@ var device = function() {
   return result
 }
 var ua = navigator.userAgent
-var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/)
+var android = ua.match(/(Android);?[\s/]+([\d.]+)?/)
 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/)
 var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/)
 var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/)
