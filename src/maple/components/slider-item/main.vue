@@ -1,10 +1,10 @@
 <template>
   <div class="swiper-slide">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 <script>
 export default {
-  name: "cmui-slider-item"
-};
+  name: 'cmui-slider-item'
+}
 </script>

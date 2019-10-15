@@ -2,8 +2,8 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    browser:true,
-    es6:true
+    browser: true,
+    es6: true
   },
   extends: ['plugin:vue/recommended', '@vue/standard'],
   rules: {
@@ -12,9 +12,9 @@ module.exports = {
     'space-before-function-paren': 'off',
     'vue/no-side-effects-in-computed-properties': 'off',
     'vue/attribute-hyphenation': 'off',
-    'vue/html-indent':'off',
-    'vue/max-attributes-per-line':'off',
-    'vue/name-property-casing':'off'
+    'vue/html-indent': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/name-property-casing': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint'
