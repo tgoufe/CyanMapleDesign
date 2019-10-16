@@ -16,12 +16,13 @@
 </template>
 
 <script>
-
+import '@cyan/CMUI.scss'
 export default {
   name: '',
   data() {
     return {
       list: [
+        { name: 'cyan', path: '/cyan' },
         { name: 'UI组件', path: '/ui' },
         { name: '表单组件', path: '/form' },
         { name: '主题选择', path: '/theme' }

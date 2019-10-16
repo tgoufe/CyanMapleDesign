@@ -9,7 +9,6 @@
 
 <script>
 import headBar from './components/head'
-import '../CMUI/style/CMUI.css'
 import maple from '@maple/index.js'
 import vue from 'vue'
 import '@theme/default.scss'

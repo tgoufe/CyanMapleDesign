@@ -287,7 +287,7 @@ input{
                         color:#fff;
                         &::before,&::after{
                             color:#fff;
-                        } 
+                        }
                     }
                     @if ($isPC){
                         &:focus,
@@ -438,7 +438,7 @@ input{
         }
         &.reverse{
             .input_addon{
-                @extend .btn.reverse;
+                @extend .btn,.reverse;
             }
         }
     }
