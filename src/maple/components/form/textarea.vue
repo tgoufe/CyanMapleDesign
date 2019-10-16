@@ -48,6 +48,7 @@
 </style>
 <script>
 import mixin from './mixin.js'
+import _ from 'lodash'
 export default {
   name: 'cmui-textarea',
   mixins: [mixin],
@@ -55,7 +56,7 @@ export default {
     auto: { type: Boolean, default: false },
     max: { type: Number, default: -1 },
     space: { type: Number, default: 20 },
-    width: [Number, String]
+    width: { type: [Number, String], default: 0 }
   },
   data: function() {},
   computed: {

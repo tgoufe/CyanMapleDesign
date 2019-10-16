@@ -39,15 +39,15 @@ ready(function() {
     windowWidth = window.screen.availWidth
   })
 })
-const base64_1x1 =
+const base64Data =
   'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
 export default {
   name: 'cmui-img',
   props: {
-    src: { type: String, default: base64_1x1 },
+    src: { type: String, default: base64Data },
     lazyLoad: { type: Boolean, default: false },
-    lazySrc: { type: String, default: base64_1x1 },
-    errorSrc: { type: String, default: base64_1x1 },
+    lazySrc: { type: String, default: base64Data },
+    errorSrc: { type: String, default: base64Data },
     preView: { type: Boolean, default: false },
     preViewList: {
       type: Array,

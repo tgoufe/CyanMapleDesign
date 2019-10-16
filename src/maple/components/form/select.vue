@@ -36,7 +36,8 @@
           @change="handleChange"
         >
           <option
-            v-for="item in selfData"
+            v-for="(item,index) in selfData"
+            :key="index"
             :value="item.value"
             v-text="item.text"
           />
@@ -134,6 +135,7 @@
 <script>
 import mixin from './mixin.js'
 import cmuiPicker from '../picker/main.vue'
+import _ from 'lodash'
 function formateData(data) {
   if (!_.isArray(data)) {
     return []
@@ -153,13 +155,13 @@ export default {
   mixins: [mixin],
   props: {
     reset: { type: Boolean, default: true },
-    prepend: String,
-    append: String,
+    prepend: { type: String, default: '' },
+    append: { type: String, default: '' },
     prependDisabled: { type: Boolean, default: false },
     appendDisabled: { type: Boolean, default: false },
-    data: Array,
+    data: { type: Array, default: () => [] },
     picker: { type: Boolean, default: false },
-    width: [Number, String]
+    width: { type: [Number, String], default: 0 }
   },
   data: function() {
     return {

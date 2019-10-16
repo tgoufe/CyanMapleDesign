@@ -1,30 +1,38 @@
 $mainColor:#00BABA;
+$baseHeight:48px;
+$baseRadius:16px;
+$innerRadius:12px;
+%baseBtn{
+  line-height:48px;
+  font-size:17px;
+  text-align:center;
+}
 .cmui-popup{
   .cmui-popup__mask{}
   .cmui-popup__container{
     &.center{
       .cmui-popup__content{
-        border-radius:16px
+        border-radius:$baseRadius
       }
     }
     &.bottom{
       .cmui-popup__content{
-        border-radius:16px 16px 0 0;
+        border-radius:$baseRadius $baseRadius 0 0;
       }
     }
     &.top{
       .cmui-popup__content{
-        border-radius:0 0 16px 16px;
+        border-radius:0 0 $baseRadius $baseRadius;
       }
     }
     &.left{
       .cmui-popup__content{
-        border-radius:0 16px 16px 0;
+        border-radius:0 $baseRadius $baseRadius 0;
       }
     }
     &.right{
       .cmui-popup__content{
-        border-radius:16px 0 0 16px;
+        border-radius:$baseRadius 0 0 $baseRadius;
       }
     }
   }
@@ -41,15 +49,13 @@ $mainColor:#00BABA;
   .cmui-actions__title{}
   .cmui-actions__group{
     .cmui-actions__button{
-      text-align:center;
-      line-height:48px;
-      font-size:17px;
+      @extend %baseBtn;
       background-color: rgba(0,0,0,0.04);
       &:first-child{
-        border-radius: 12px 12px 0 0;
+        border-radius: $innerRadius $innerRadius 0 0;
       }
       &:last-child{
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 $innerRadius $innerRadius;
       }
       & + .cmui-actions__button{
         border-top:1px solid #ebebeb
@@ -59,12 +65,10 @@ $mainColor:#00BABA;
   .cmui-actions__cancel{
     .cmui-actions__button{
       margin-top:8px;
-      text-align:center;
-      line-height:56px;
-      font-size:20px;
+      @extend %baseBtn;
       color:white;
       background: #00BABA;
-      border-radius: 12px;
+      border-radius: $innerRadius;
     }
   }
 }
@@ -92,8 +96,7 @@ $mainColor:#00BABA;
   .cmui-dialog__buttons{
     border-top:1px solid #ebebeb;
     .cmui-dialog__button{
-      line-height:48px;
-      text-align:center;
+      @extend %baseBtn;
       color:$mainColor;
       & + .cmui-dialog__button{
         border-left:1px solid #ebebeb;

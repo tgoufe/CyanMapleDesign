@@ -35,12 +35,12 @@
     <transition name="fade">
       <div v-show="showYearList" class="abs-full  scroll-container-y yearList">
         <div
-          v-for="(year, key) in yearList"
+          v-for="(yearValue, key) in yearList"
           :key="key"
           class="yearItem"
-          @click="setYear(year)"
+          @click="setYear(yearValue)"
         >
-          <span>{{ year }}</span>
+          <span>{{ yearValue }}</span>
         </div>
       </div>
     </transition>
@@ -60,6 +60,7 @@
 <script>
 import cmuiList from '../list/main.vue'
 import cmuiListItem from '../list-item/main.vue'
+import _ from 'lodash'
 import day from 'dayjs'
 export default {
   name: 'cmui-data-picker',

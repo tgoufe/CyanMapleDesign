@@ -1,11 +1,12 @@
 <style lang="scss"></style>
 <script>
+import _ from 'lodash'
 export default {
   name: 'cmui-tabbar-nav',
   props: {
-    items: Array,
-    activeIndex: Number,
-    itemStyle: Object
+    items: { type: Array, default: () => [] },
+    activeIndex: { type: Number, default: 0 },
+    itemStyle: { type: Object, default: () => ({}) }
   },
   methods: {
     itemEvent(event, item, index) {
@@ -35,7 +36,7 @@ export default {
         _.get(item, 'data.attrs.title') ||
           _.filter(
             item.children,
-            inner => _.get(inner, 'data.attrs.slot') == 'title'
+            inner => _.get(inner, 'data.attrs.slot') === 'title'
           ) ||
           ''
       )

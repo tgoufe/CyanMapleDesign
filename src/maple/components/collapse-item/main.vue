@@ -40,7 +40,7 @@ export default {
   },
   mixins: [mixin],
   props: {
-    title: String
+    title: { type: String, default: '' }
   },
   data() {
     return {

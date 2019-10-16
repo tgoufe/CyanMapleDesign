@@ -23,7 +23,7 @@ function ready(fn) {
     )
   } else if (document.attachEvent) {
     document.attachEvent('onreadystatechange', function() {
-      if (document.readyState == 'complete') {
+      if (document.readyState === 'complete') {
         // document.detachEvent('onreadystatechange', arguments.callee);
         fn()
       }

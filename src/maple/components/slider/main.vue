@@ -29,6 +29,7 @@
 <script type="text/javascript">
 import Swiper from 'swiper'
 import themeList from './themeList.json'
+import _ from 'lodash'
 import sliderList from './sliderList'
 function optionsMaker(options, themeName) {
   let themeOptions = _.get(themeList, themeName)
@@ -121,7 +122,6 @@ let sliderObserve = new (class {
     this.subscribeList = []
   }
   observeControl(vm) {
-    let _this = this
     let controlName = vm.control
     if (controlName && _.isString(controlName)) {
       this.refList.forEach(item => {

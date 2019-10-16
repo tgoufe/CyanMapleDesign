@@ -1,10 +1,11 @@
 <style lang="scss"></style>
 <script>
+import _ from 'lodash'
 export default {
   name: 'cmui-tabbar-pane',
   props: {
-    items: Array,
-    activeIndex: Number
+    items: { type: Array, default: () => [] },
+    activeIndex: { type: Number, default: 0 }
   },
   render(h) {
     let { activeIndex } = this

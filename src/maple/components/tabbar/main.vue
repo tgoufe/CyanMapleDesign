@@ -5,6 +5,7 @@
 import cmuiTabbarNav from '../tabbar/nav.vue'
 import cmuiTabbarPane from '../tabbar/pane.vue'
 import cmuiRender from '../base/render'
+import _ from 'lodash'
 export default {
   name: 'cmui-tabbar',
   components: {
@@ -15,8 +16,8 @@ export default {
   props: {
     col: { type: [String, Number], default: 'auto' },
     activeIndex: { type: Number, default: 0 },
-    nav: { type: Array, default: [false, false] },
-    watch: null,
+    nav: { type: Array, default: () => [false, false] },
+    watch: { type: [Array, Object], default: () => null },
     position: { type: String, default: 'top' }
   },
   data: function() {

@@ -2,7 +2,7 @@ import device from './device.js'
 import { isInView, ready } from './dom.js'
 import load from './load.js'
 import log from './log.js'
-import scroll_bar from './scroll_bar.js'
+import scrollBar from './scroll_bar.js'
 import shake from './shake.js'
 import style from './style.js'
 import time from './time.js'
@@ -16,7 +16,7 @@ export default {
   ready,
   load,
   log,
-  scroll_bar,
+  scrollBar,
   shake,
   style,
   time,

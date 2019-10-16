@@ -15,12 +15,12 @@
     <div class="cmui-actions__group">
       <div
         v-for="(item, index) in items"
+        :key="index"
         class="cmui-actions__button"
         :class="{ active: activeIndex === index }"
         :style="getActionStyle(item.style, itemStyle)"
         @click="itemEvent(item, index)"
         v-html="getActionText(item, index)"
-        :key="index"
       />
     </div>
     <div v-if="cancelText" slot="bottom" class="cmui-actions__cancel">

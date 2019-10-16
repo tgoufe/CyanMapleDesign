@@ -43,7 +43,7 @@ export default {
   name: 'cmui-checkbox',
   mixins: [mixin],
   props: {
-    path: String
+    path: { type: String, default: '' }
   },
   data: function() {
     return {

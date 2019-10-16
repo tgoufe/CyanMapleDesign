@@ -41,7 +41,7 @@ export default {
     cancel() {
       this.visible = false
       document.body.classList.remove('overflow-h')
-      typeof this.closeFn === 'function' && this.closeFn($(this.$el))
+      typeof this.closeFn === 'function' && this.closeFn(this.$el)
     }
   }
 }

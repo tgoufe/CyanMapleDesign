@@ -53,7 +53,7 @@ export default {
   methods: {
     setActiveNames(activeNames) {
       activeNames = [].concat(activeNames)
-      let value = this.onlyone ? activeNames[0] : activeNames
+      // let value = this.onlyone ? activeNames[0] : activeNames
       this.activeNames = activeNames
     },
     itemClick(item) {

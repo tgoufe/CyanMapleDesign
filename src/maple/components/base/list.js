@@ -1,3 +1,4 @@
+import _ from 'lodash'
 let ListObject = {}
 export default class List {
   constructor(name, vm) {

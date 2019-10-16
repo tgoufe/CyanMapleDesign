@@ -63,7 +63,7 @@ export default {
     let _this = this
     this.$nextTick(function() {
       _this.swiper = new Swiper(container, {
-        direction: _this.direction == 'v' ? 'vertical' : 'horizontal',
+        direction: _this.direction === 'v' ? 'vertical' : 'horizontal',
         slidesPerView: +_this.col || 'auto',
         freeMode: _this.freeMode,
         on: {

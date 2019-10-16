@@ -10,6 +10,7 @@
         <div class="indexWarp flex-container-col scroll-container-y">
           <span
             v-for="(item, i) in groupList"
+            :key="i"
             :class="{ active: i === activeIndex }"
             @touchstart="indexEvent($event, i)"
             @touchmove.stop.prevent="scrollOnIndex($event)"
@@ -23,6 +24,7 @@
 </template>
 <script>
 import baseMixin from '../mixin.js'
+import _ from 'lodash'
 export default {
   name: 'cmui-list',
   mixins: [baseMixin],
@@ -30,7 +32,7 @@ export default {
     col: { type: [Number, Array], default: 1 },
     space: { type: Number, default: 0 },
     border: { type: [Boolean, String], default: false },
-    target: Object,
+    target: { type: Object, default: () => ({}) },
     index: { type: [Boolean, Function], default: false }
   },
   data: function() {
@@ -84,9 +86,10 @@ export default {
       }
     },
     boxShadow() {
-      if (this.border && this.realSpace == 0) {
+      if (this.border && this.realSpace === 0) {
         return '0px 0px 0px 1px ' + this.borderColor
       }
+      return ''
     },
     noPaddingbFrom() {
       let itemLen = this.$slots.default.filter(

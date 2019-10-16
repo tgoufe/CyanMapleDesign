@@ -140,9 +140,9 @@ export default {
   props: {
     type: { type: String, default: 'text' },
     reset: { type: Boolean, default: true },
-    prepend: String,
-    append: String,
-    width: [Number, String],
+    prepend: { type: String, default: '' },
+    append: { type: String, default: '' },
+    width: { type: [Number, String], default: 0 },
     prependDisabled: { type: Boolean, default: false },
     appendDisabled: { type: Boolean, default: false },
     changeType: { type: Boolean, default: false }
@@ -187,7 +187,7 @@ export default {
       let target = evt.target || evt.srcElement
       let value = target.value
       if (this.type === 'number') {
-        let rs = /(\-)?\d+\.?(\d+)?/.exec(value)
+        let rs = /(-)?\d+\.?(\d+)?/.exec(value)
         value = rs ? rs[0] : ''
       }
       // target.value=value;

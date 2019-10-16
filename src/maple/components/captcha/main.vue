@@ -3,6 +3,7 @@
     <div class="cmui-captcha__warp flex-container center" @click="inputStart">
       <div
         v-for="(item, index) in length"
+        :key="index"
         class="cmui-captcha__item ratio-container pos-r"
         :class="{ active: index === activeIndex }"
       >

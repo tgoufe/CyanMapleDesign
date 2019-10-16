@@ -2,6 +2,7 @@
   <div class="cmui-countdown flex-container">
     <div
       v-for="(value, key) in contentList"
+      :key="key"
       class="countdown-container"
       :class="key"
     >

@@ -28,6 +28,7 @@
 <script>
 import cmuiInput from './input.vue'
 import mixin from './mixin.js'
+import _ from 'lodash'
 export default {
   name: 'cmui-number',
   components: {
@@ -86,7 +87,8 @@ export default {
     }
   },
   created() {
-    this.setBtnState.call(this, true)
+    this.setBtnState(true)
+    // this.setBtnState.call(this, true)
   },
   methods: {
     changeNumber: function(num = 0) {

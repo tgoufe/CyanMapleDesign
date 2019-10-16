@@ -2,7 +2,7 @@
     <div>
         <div class="example tag-container">
             <cmui-list v-bind="options">
-                <cmui-list-item v-for="(item,key) in list" :key="key" class="bg-white">
+                <cmui-list-item v-for="(item,key) in blackList" :key="key" class="bg-white">
                     <div class="ratio-container">
                         <div class="img-container flex-x">
                             <img :src="item">
@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+import img from '@assets/img.js'
 export default {
   data: function() {
     return {
@@ -33,9 +34,7 @@ export default {
         col: 5,
         space: 10
       },
-      list: _.times(10, i => {
-        return '@assets/black0.jpg'
-      })
+      blackList: img.blackList
     }
   }
 }

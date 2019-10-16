@@ -13,7 +13,7 @@
               v-if="title || $slots.top"
               class="cmui-dialog__title cmui-alert__title"
       >
-        <div v-if="!$slots.top" v-html="title"></div>
+        <div v-if="!$slots.top" v-html="title" />
         <slot v-else name="top" />
       </div>
       <div class="cmui-dialog__warp cmui-alert__warp">
@@ -29,7 +29,7 @@
                 class="cmui-dialog__body cmui-alert__body scroll-container-y"
                 :style="bodyStyle"
                 v-html="content"
-        ></div>
+        />
       </div>
     </div>
     <div class="cmui-dialog__buttons cmui-alert__buttons">
@@ -40,7 +40,7 @@
         :style="okDisable ? okDisableStyle : okStyle"
         @click="cancel()"
         v-html="okText"
-      ></div>
+      />
       <slot v-else name="bottom" />
     </div>
   </cmui-popup>

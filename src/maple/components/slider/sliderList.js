@@ -1,4 +1,5 @@
 import Swiper from 'swiper'
+import _ from 'lodash'
 var sliderMethodsList = [
   'disableMousewheelControl',
   'enableMousewheelControl',
@@ -93,7 +94,7 @@ CMUI_SliderList.prototype.remove = function() {
       swiper.destroy(false, true)
       container.remove()
       this[index] = null
-      if (this != sliderList) {
+      if (this !== sliderList) {
         sliderList[baseIndex] = null
       }
     }
