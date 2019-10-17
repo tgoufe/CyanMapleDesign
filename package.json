@@ -12,7 +12,8 @@
     "maple": "cross-env NODE_ENV=production && node ./build/rollup.maple",
     "theme": "gulp theme",
     "doc": "vuepress dev doc",
-    "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && node ./build/cli.build.js"
+    "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && node ./build/cli.build.js",
+    "build:demo": "vue-cli-service build"
   },
   "files": [
     "src/",

@@ -28,7 +28,7 @@
             class="flex-container center"
             @click="select(item)"
             v-text="item.string"
-          />
+          ></span>
         </div>
       </cmui-list-item>
     </cmui-list>
@@ -63,7 +63,7 @@ import cmuiListItem from '../list-item/main.vue'
 import _ from 'lodash'
 import day from 'dayjs'
 export default {
-  name: 'cmui-data-picker',
+  name: 'cmui-date-picker',
   components: { cmuiList, cmuiListItem },
   props: {
     from: { type: Number, default: 1970 },

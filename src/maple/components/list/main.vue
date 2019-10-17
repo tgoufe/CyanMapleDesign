@@ -15,7 +15,7 @@
             @touchstart="indexEvent($event, i)"
             @touchmove.stop.prevent="scrollOnIndex($event)"
             v-text="indexFormat(item.title)"
-          />
+          ></span>
         </div>
       </div>
       <slot />
@@ -100,20 +100,20 @@ export default {
     }
   },
   mounted() {
-    let parentNode = this.$el
-    let baseNode = this.$el.firstChild
     if (!this.index) {
       return
     }
-    while (parentNode.clientHeight >= baseNode.clientHeight) {
-      if (parentNode === document.body) {
-        parentNode = document
-        break
-      }
-      parentNode = parentNode.parentNode
-    }
+    // let parentNode = this.$el
+    // let baseNode = this.$el.firstChild
+    // while (parentNode.clientHeight >= baseNode.clientHeight) {
+    //   if (parentNode === document.body) {
+    //     parentNode = document
+    //     break
+    //   }
+    //   parentNode = parentNode.parentNode
+    // }
     let _this = this
-    parentNode.addEventListener(
+    document.addEventListener(
       'scroll',
       _.throttle(function() {
         _this.activeIndex = _this.groupList.filter(

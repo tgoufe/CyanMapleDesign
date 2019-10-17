@@ -49,7 +49,6 @@
   .cmui-popup__content {
     max-width: 100%;
     max-height: 100%;
-    background-color: white;
     pointer-events: auto;
   }
   .cmui-popup__top {

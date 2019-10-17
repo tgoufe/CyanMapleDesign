@@ -1,6 +1,7 @@
 const buildConfig = require('./build/config')
 const path = require('path')
 module.exports = {
+  publicPath: './',
   lintOnSave: !buildConfig.isProduct,
   runtimeCompiler: true,
   pages: {

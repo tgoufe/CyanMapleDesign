@@ -25,6 +25,7 @@ export default {
         { name: 'cyan', path: '/cyan' },
         { name: 'UI组件', path: '/ui' },
         { name: '表单组件', path: '/form' },
+        { name: '公共方法', path: '/methods' },
         { name: '主题选择', path: '/theme' }
       ]
     }

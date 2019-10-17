@@ -1,3 +1,4 @@
+import _ from 'lodash'
 function enterFullScreen(element = document.documentElement) {
   for (let methodName of [
     'requestFullscreen',
@@ -33,9 +34,9 @@ if (window && document) {
   exitFullScreen()
 }
 export default function fullScreen(element = document.documentElement) {
-  if (element === false) {
-    exitFullScreen()
-  } else {
+  if (_.isBoolean(element)) {
+    element ? enterFullScreen() : exitFullScreen()
+  } else if (_.isElement(element)) {
     enterFullScreen(element)
   }
 }
