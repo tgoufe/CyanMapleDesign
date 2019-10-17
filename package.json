@@ -5,7 +5,7 @@
   "private": false,
   "main": "CMUI/lib/index.common.js",
   "scripts": {
-    "start": "npm run cyan && npm run theme && vue-cli-service serve",
+    "start": "npm run cyan && npm run theme && vue-cli-service serve --open",
     "lint": "vue-cli-service lint",
     "lint:prettier": "cross-env prettier --write \"src/maple/**/*.js\" \"src/maple/**/*.vue\" --loglevel warn",
     "cyan": "gulp sass",
@@ -53,6 +53,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
     "rollup": "^1.23.1",
     "rollup-plugin-alias": "^2.0.1",
     "rollup-plugin-babel": "^4.3.3",

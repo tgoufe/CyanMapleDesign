@@ -1,4 +1,4 @@
-const {resolve} =require('./utils')
+const { resolve } = require('./utils')
 module.exports = {
   esDir: 'es',
   examplesPort: '8090',
@@ -20,7 +20,6 @@ module.exports = {
   outputPath: 'lib',
   clearConsole: this.isProduct,
   externalMap: {
-    vue: 'Vue',
     _: 'lodash'
   }
 }

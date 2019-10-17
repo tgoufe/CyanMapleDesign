@@ -4,6 +4,7 @@
     <transition :name="transitionName">
       <router-view class="padding30 child-view" style="width:100%" />
     </transition>
+    <cmui-actions :visible.sync="visible" :items="['a']"></cmui-actions>
   </div>
 </template>
 
@@ -13,7 +14,7 @@ import maple from '@maple/index.js'
 import vue from 'vue'
 import '@theme/default.scss'
 import styleinit from '../src/maple/styleInit'
-vue.config.warnHandler = new Function()
+// vue.config.warnHandler = new Function()
 styleinit()
 maple.install(vue)
 export default {
@@ -23,7 +24,8 @@ export default {
   },
   data() {
     return {
-      transitionName: 'slide-left'
+      transitionName: 'slide-left',
+      visible:true
     }
   },
   watch: {
