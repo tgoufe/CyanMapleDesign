@@ -2,7 +2,7 @@
   <div class="cmui-textarea pos-r form flex-container" :class="positionClass">
     <span
       v-if="align === 'left' && (label || $slots.default)"
-      :class="{ checked: slefValue }"
+      :class="{ checked: value }"
       class="cmui-input__label cmui-form__label"
     >
       <slot />
@@ -23,13 +23,13 @@
         @focus="handleFocus"
         @blur="handleBlur"
         @change="handleChange"
-      />
+      ></textarea>
       <div
         v-if="max >= 0"
         class="pos-a text-light"
         style="right:12px;bottom:4px;"
         v-text="value.length + '/' + max"
-      />
+      ></div>
     </div>
     <span
       v-if="align === 'right' && (label || $slots.default)"
@@ -58,7 +58,6 @@ export default {
     space: { type: Number, default: 20 },
     width: { type: [Number, String], default: 0 }
   },
-  data: function() {},
   computed: {
     targetStyle() {
       let style = {}

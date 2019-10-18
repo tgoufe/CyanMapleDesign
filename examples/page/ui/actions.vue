@@ -24,8 +24,8 @@ export default {
     },
     title() {
       this.actions({
-        items: _.times(10, index => index + 1),
-        title: 'this is title'
+        items: _.times(10, index => `测试文本${index}`),
+        title: '这里是标题'
       }, data => {
         this.alert(data)
       })

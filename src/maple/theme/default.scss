@@ -48,7 +48,13 @@ $innerRadius:8px;
     background-color: white;
     padding:16px;
   }
-  .cmui-actions__title{}
+  .cmui-actions__title{
+    text-align: center;
+    font-size:17px;
+    line-height:24px;
+    font-weight:bolder;
+    margin-bottom:16px;
+  }
   .cmui-actions__group{
     .cmui-actions__button{
       @extend %baseBtn;
