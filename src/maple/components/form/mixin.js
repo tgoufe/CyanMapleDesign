@@ -45,7 +45,7 @@ export default {
     disabled: { type: Boolean, default: false },
     readonly: { type: Boolean, default: false },
     placeholder: String,
-    value: [String, Boolean, Number],
+    value: { type: [String, Boolean, Number, Array], default: () => '' },
     name: String,
     target: Object,
     targetClass: { type: String, default: '' },

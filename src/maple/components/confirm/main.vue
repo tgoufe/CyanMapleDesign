@@ -29,7 +29,7 @@
                 class="cmui-dialog__body cmui-alert__body scroll-container-y"
                 :style="bodyStyle"
                 v-html="content"
-        />
+        ></div>
       </div>
     </div>
 
@@ -45,14 +45,14 @@
           :style="okDisable ? okDisableStyle : okStyle"
           @click="!okDisable && ok()"
           v-html="okText"
-        />
+        ></div>
         <div
           class="cmui-confirm__button cancel cmui-dialog__button flex1"
           :class="{ cancelDisable: cancelDisable }"
           :style="cancelDisable ? cancelDisableStyle : cancelStyle"
           @click="!cancelDisable && cancel()"
           v-html="cancelText"
-        />
+        ></div>
       </template>
       <slot v-else name="bottom" />
     </div>
@@ -120,10 +120,14 @@ export default {
     }
   },
   computed: {
-    selfVisible() {
-      let value = !!this.visible
-      this.$emit('update:visible', value)
-      return value
+    selfVisible: {
+      get() {
+        return this.visible
+      },
+      set(value) {
+        this.visible = value
+        this.$emit('update:visible', value)
+      }
     }
   },
   methods: {

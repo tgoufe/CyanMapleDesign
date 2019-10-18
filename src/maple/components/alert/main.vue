@@ -29,7 +29,7 @@
                 class="cmui-dialog__body cmui-alert__body scroll-container-y"
                 :style="bodyStyle"
                 v-html="content"
-        />
+        ></div>
       </div>
     </div>
     <div class="cmui-dialog__buttons cmui-alert__buttons">
@@ -40,7 +40,7 @@
         :style="okDisable ? okDisableStyle : okStyle"
         @click="cancel()"
         v-html="okText"
-      />
+      ></div>
       <slot v-else name="bottom" />
     </div>
   </cmui-popup>
@@ -99,16 +99,20 @@ export default {
     }
   },
   computed: {
-    selfVisible() {
-      let value = !!this.visible
-      this.$emit('update:visible', value)
-      return value
+    selfVisible: {
+      get() {
+        return this.visible
+      },
+      set(value) {
+        this.visible = value
+        this.$emit('update:visible', value)
+      }
     }
   },
   methods: {
     cancel: function() {
       if (!this.okDisable) {
-        this.visible = false
+        this.selfVisible = false
         typeof this.okFn === 'function' && this.okFn()
       }
     }

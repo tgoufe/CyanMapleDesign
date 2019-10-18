@@ -41,11 +41,12 @@ export default {
   },
   data() {
     return {
-      contentList: { hour: '00', minute: '00', sec: '00' }
+      contentList: { hour: '00', minute: '00', sec: '00' },
+      selfTime: this.nowTime
     }
   },
   watch: {
-    nowTime(value) {
+    selfTime(value) {
       if (this.endTime && this.nowTime) {
         var countDownTime = this.endTime - value
         this.$emit('update', countDownTime, this)
@@ -74,11 +75,11 @@ export default {
     endTime(value) {
       var vm = this
       var intervalTime = this.showMilli ? 100 : 1000
-      if (this.endTime && this.nowTime && this.endTime > this.nowTime) {
+      if (this.endTime && this.selfTime && this.endTime > this.selfTime) {
         clearTimeout(this.timer)
-        vm.nowTime += intervalTime
+        vm.selfTime += intervalTime
         this.timer = setInterval(function() {
-          vm.nowTime += intervalTime
+          vm.selfTime += intervalTime
         }, intervalTime)
       }
     }
@@ -88,12 +89,12 @@ export default {
     var intervalTime = this.showMilli ? 100 : 1000
     if (
       _.isNumber(this.endTime) &&
-      _.isNumber(this.nowTime) &&
-      this.endTime > this.nowTime
+      _.isNumber(this.selfTime) &&
+      this.endTime > this.selfTime
     ) {
-      vm.nowTime += intervalTime
+      vm.selfTime += intervalTime
       this.timer = setInterval(function() {
-        vm.nowTime += intervalTime
+        vm.selfTime += intervalTime
       }, intervalTime)
     }
   },

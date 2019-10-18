@@ -1,6 +1,6 @@
 <template>
   <transition name="cmui-popup">
-    <div v-show="visible" class="cmui-popup fixed-full">
+    <div v-show="selfVisible" class="cmui-popup fixed-full">
       <!-- <transition name="fade"> -->
       <div class="cmui-popup__mask abs-full" @click="maskClick">
         <slot name="mask" />
@@ -177,16 +177,15 @@ export default {
           break
       }
       return { width, height }
-    }
-  },
-  watch: {
-    visible: {
-      immediate: true,
-      handler: function(value) {
+    },
+    selfVisible: {
+      get() {
+        return this.visible
+      },
+      set(value) {
         if (this.stopPageScroll) {
           if (value) {
-            scrollRec =
-              document.documentElement.scrollTop || document.body.scrollTop
+            scrollRec = document.documentElement.scrollTop || document.body.scrollTop
             document.body.style.top = -scrollRec + 'px'
             document.body.classList.add('fixed-full')
           } else {
@@ -196,6 +195,8 @@ export default {
           }
         }
         this.$emit('update:visible', value)
+        // this.visible = value
+        return value
       }
     }
   },
@@ -203,7 +204,7 @@ export default {
   methods: {
     maskClick() {
       if (this.maskEvent) {
-        this.visible = false
+        this.selfVisible = false
       }
     }
   }

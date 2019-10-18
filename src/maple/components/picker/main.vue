@@ -1,46 +1,39 @@
 <template>
-  <cmui-popup position="bottom" :visible.sync="visible" class="cmui-picker">
-    <div class="flex-container padding10">
-      <div class="cmui-picker__cancel">
-        <div class="cmui-picker__btn" @click="_cancel()">
-{{ leftText }}
-</div>
-      </div>
-      <div class="flex1 text-center cmui-picker__title">
-{{ title }}
-</div>
-      <div class="cmui-picker__ok">
-        <div class="cmui-picker__btn" @click="_ok()">
-{{ rightText }}
-</div>
-      </div>
-    </div>
-    <div class="pos-r cmui-picker_content">
-      <div
-        ref="wheelWrapper"
-        class="cmui-picker__wrapper flex-container vfull overflow-h"
-      >
-        <div
-          v-for="(item, index) in pickerData"
-          :key="index"
-          class="flex1 swiper-container"
-        >
-          <ul class="cmui-picker__scroll swiper-wrapper">
-            <li
-              v-for="(inner, indexInner) in item"
-              :key="indexInner"
-              class="cmui-picker__item text-center swiper-slide text-limit1"
-              style="height:auto"
-            >
-              {{ inner.text }}
-            </li>
-          </ul>
+    <cmui-popup position="bottom" :visible.sync="selfVisible" class="cmui-picker">
+        <div class="flex-container padding10">
+            <div class="cmui-picker__cancel">
+                <div class="cmui-picker__btn" @click="_cancel()">
+                {{ leftText }}
+                </div>
+            </div>
+            <div class="flex1 text-center cmui-picker__title">
+            {{ title }}
+            </div>
+            <div class="cmui-picker__ok">
+                <div class="cmui-picker__btn" @click="_ok()">
+                {{ rightText }}
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="cmui-picker__linet abs-top" />
-      <div class="cmui-picker__lineb abs-bottom" />
-    </div>
-  </cmui-popup>
+        <div class="pos-r cmui-picker_content">
+            <div ref="wheelWrapper" class="cmui-picker__wrapper flex-container vfull overflow-h">
+                <div v-for="(item, index) in pickerData" :key="index" class="flex1 swiper-container">
+                    <ul class="cmui-picker__scroll swiper-wrapper">
+                        <li
+                        v-for="(inner, indexInner) in item"
+                        :key="indexInner"
+                        class="cmui-picker__item text-center swiper-slide text-limit1"
+                        style="height:auto"
+                        >
+                        {{ inner.text }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cmui-picker__linet abs-top"></div>
+            <div class="cmui-picker__lineb abs-bottom"></div>
+        </div>
+    </cmui-popup>
 </template>
 <style lang="scss">
 $pickerHeight: 200px;
@@ -148,6 +141,25 @@ export default {
   components: {
     cmuiPopup
   },
+  computed: {
+    selfVisible: {
+      get() {
+        return this.visible
+      },
+      set(value) {
+        this.wheels = this.wheels || []
+        if (value && !this.wheels.length) {
+          this.$nextTick(() => {
+            _.forEach(this.pickerData, (item, index) => {
+              this.initWheel(index)
+            })
+          })
+        }
+        // this.visible = value
+        this.$emit('update:visible', value)
+      }
+    }
+  },
   props: {
     data: { type: Array, default: () => [] },
     selectIndex: { type: Array, default: () => [] },
@@ -159,24 +171,9 @@ export default {
     rightText: { type: String, default: '确定' }
   },
   data: function() {
-    console.log(this.data)
     return getInitData(this.data, this.selectIndex)
   },
   watch: {
-    visible: {
-      immediate: true,
-      handler(value) {
-        this.wheels = this.wheels || []
-        if (value && !this.wheels.length) {
-          this.$nextTick(() => {
-            _.forEach(this.pickerData, (item, index) => {
-              this.initWheel(index)
-            })
-          })
-        }
-        this.$emit('update:visible', value)
-      }
-    },
     data(value) {
       this.setData(value)
     }
@@ -269,24 +266,20 @@ export default {
       let data = this.getData()
       if (_.isFunction(this.rightFn)) {
         if (this.rightFn(data, this) !== false) {
-          this.visible = false
-          this.$emit('update:visible', false)
+          this.selfVisible = false
         }
       } else {
-        this.visible = false
-        this.$emit('update:visible', false)
+        this.selfVisible = false
       }
       this.$emit('select', data, this)
     },
     _cancel() {
       if (_.isFunction(this.leftFn)) {
         if (this.leftFn(this) !== false) {
-          this.visible = false
-          this.$emit('update:visible', false)
+          this.selfVisible = false
         }
       } else {
-        this.visible = false
-        this.$emit('update:visible', false)
+        this.selfVisible = false
       }
       this.$emit('cancel', this)
     }

@@ -4,7 +4,7 @@
     <transition :name="transitionName">
       <router-view class="padding30 child-view" style="width:100%" />
     </transition>
-    <cmui-actions :visible.sync="visible" :items="['a']"></cmui-actions>
+    <!--<cmui-actions :visible.sync="visible" :items="['a']"></cmui-actions>-->
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       transitionName: 'slide-left',
-      visible:true
+      visible: true
     }
   },
   watch: {

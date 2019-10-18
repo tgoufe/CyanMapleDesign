@@ -68,7 +68,7 @@ export default {
   props: {
     from: { type: Number, default: 1970 },
     to: { type: Number, default: new Date().getFullYear() },
-    now: { type: [String, Number], default: new Date() },
+    now: { type: Number, default: () => +new Date() },
     border: { type: [String, Boolean], default: true }
   },
   data: function() {
@@ -85,13 +85,13 @@ export default {
       })
     },
     year() {
-      return new Date(this.now).getFullYear()
+      return new Date(this.selfDate).getFullYear()
     },
     month() {
-      return new Date(this.now).getMonth()
+      return new Date(this.selfDate).getMonth()
     },
     dayList() {
-      const NOW = day(this.now)
+      const NOW = day(this.selfDate)
       const NOWMONTH = NOW.$M
       let preMonthDay = 8 + NOW.$W - (NOW.$D % 7)
       preMonthDay = preMonthDay > 7 ? preMonthDay % 7 : preMonthDay
@@ -113,11 +113,11 @@ export default {
   methods: {
     setYear(year) {
       console.log(this.year, year)
-      this.now = new Date(this.now).setFullYear(year)
+      this.selfDate = new Date(this.selfDate).setFullYear(year)
       this.showYearList = false
     },
     setMonth(month) {
-      this.now = new Date(this.now).setMonth(month)
+      this.selfDate = new Date(this.selfDate).setMonth(month)
       this.showMonthList = false
     },
     addYear() {

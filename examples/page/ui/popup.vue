@@ -12,21 +12,20 @@
     :mask-event="maskEvent"
     :stop-page-scroll="pageScroll"
     >
-
-        <a href="javascript:void(0)" class="btn red radius" @click="visible=!visible">关闭</a>
+<a href="javascript:void(0)" class="btn red radius" @click="visible=!visible">关闭</a>
     </cmui-popup>
 </div>
 </template>
 <script>
-    export default{
-      data:function(){
-        return{
-          visible:false,
-          popupPosition:['left','right','top','bottom','center'],
-          popupPositionValue:'center',
-          maskEvent:true,
-          pageScroll:true,
-        }
-      }
+export default {
+  data: function() {
+    return {
+      visible: false,
+      popupPosition: ['left', 'right', 'top', 'bottom', 'center'],
+      popupPositionValue: 'center',
+      maskEvent: true,
+      pageScroll: true
     }
+  }
+}
 </script>

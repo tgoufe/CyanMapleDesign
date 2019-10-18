@@ -1,7 +1,7 @@
 <template>
   <cmui-popup
     position="bottom"
-    :visible.sync="visible"
+    :visible.sync="selfVisible"
     :target-style="{ height: 'auto' }"
     class="cmui-actions "
     target-class="cmui-actions__container"
@@ -11,7 +11,7 @@
       slot="top"
       class="cmui-actions__title"
       v-html="title"
-    />
+    ></div>
     <div class="cmui-actions__group">
       <div
         v-for="(item, index) in items"
@@ -21,7 +21,7 @@
         :style="getActionStyle(item.style, itemStyle)"
         @click="itemEvent(item, index)"
         v-html="getActionText(item, index)"
-      />
+      ></div>
     </div>
     <div v-if="cancelText" slot="bottom" class="cmui-actions__cancel">
       <div
@@ -29,7 +29,7 @@
         :style="cancelStyle"
         @click="cancel"
         v-html="cancelText"
-      />
+      ></div>
     </div>
   </cmui-popup>
 </template>
@@ -93,19 +93,25 @@ export default {
   compontents: {
     cmuiPopup
   },
-  watch: {
-    visible(value) {
-      this.$emit('update:visible', value)
+  computed: {
+    selfVisible: {
+      get() {
+        return this.visible
+      },
+      set(value) {
+        this.visible = value
+        this.$emit('update:visible', value)
+      }
     }
   },
   methods: {
     cancel: function() {
-      this.visible = false
+      this.selfVisible = false
       this.$emit('cancel', this)
       _.isFunction(this.cancelFn) && this.cancelFn()
     },
     itemEvent: function(item, index) {
-      this.visible = false
+      this.selfVisible = false
       this.$emit('select', item, index, this)
       _.isFunction(this.selectFn) && this.selectFn(item, index)
     },

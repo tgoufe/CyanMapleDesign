@@ -8,7 +8,7 @@
       @touchstart.stop.prevent="function() {}"
       @touchmove.stop.prevent="function() {}"
       v-html="content"
-    />
+    ></div>
   </div>
 </template>
 <script>

@@ -1,7 +1,7 @@
 <template>
   <cmui-popup
     position="center"
-    :visible.sync="visible"
+    :visible.sync="selfVisible"
     class="cmui-notice"
     :mask-event="false"
     :target-class="
@@ -15,7 +15,7 @@
         :style="bodyStyle"
         :class="className"
         v-html="content"
-      />
+      ></div>
     </div>
   </cmui-popup>
 </template>
@@ -54,12 +54,12 @@ export default {
     className: { type: String, default: '' },
     timeout: { type: Number, default: 3000 },
     closeFn: { type: Function, default: function() {} },
-    targetClass: { type: String, default: '' }
+    targetClass: { type: String, default: '' },
+    visible: { type: Boolean, default: false },
   },
   data: function() {
     let dom = document.documentElement
     return {
-      visible: false,
       bodyStyle: {
         'max-height':
           dom.clientHeight * 0.72 -
@@ -69,9 +69,20 @@ export default {
       }
     }
   },
+  computed: {
+    selfVisible: {
+      get() {
+        return this.visible
+      },
+      set(value) {
+        this.visible = value
+        this.$emit('update:visible', value)
+      }
+    }
+  },
   methods: {
     cancel: function() {
-      this.visible = false
+      this.selfVisible = false
       typeof this.closeFn === 'function' && this.closeFn()
     }
   }

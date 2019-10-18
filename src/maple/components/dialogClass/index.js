@@ -6,15 +6,20 @@ function dialogInstall(Component) {
   )
   let timeHandle
   let id = `${name}-` + _.uniqueId()
+  let CURRENT = null
   let setCurrent = _.once(function(Vue) {
     let dom = document.createElement(name)
     dom.id = id
     document.body.appendChild(dom)
-    CURRENT = new Vue({
-      el: '#' + id
-    }).$children[0]
+    let Dialog=Vue.extend(Component)
+    CURRENT = new Dialog().$mount(dom)
+    // let dom = document.createElement(name)
+    // dom.id = id
+    // document.body.appendChild(dom)
+    // CURRENT = new Vue({
+    //   el: '#' + id
+    // }).$children[0]
   })
-  let CURRENT = null
   Component.install = function(Vue, Maple) {
     Vue.component(name, Component)
     function dialog() {

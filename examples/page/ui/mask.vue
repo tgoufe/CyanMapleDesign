@@ -25,7 +25,7 @@ contentStyle
 		</div>
 		<div class="tag-container config">
 			<cmui-input v-model="text">
-				 <span style="width:100px" class="dis-i">弹出的内容</span>
+				<span style="width:100px" class="dis-i">弹出的内容</span>
 			</cmui-input>
 			<div class="flex-container margint20">
 				<span style="width:100px" class="dis-i">内容位置</span>

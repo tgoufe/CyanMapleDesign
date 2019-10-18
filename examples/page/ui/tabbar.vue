@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="padding10">
-            <cmui-collapse onlyone="true" class="doc" :activeIndex="0">
+            <cmui-collapse :onlyone="true" class="doc" :activeIndex="0">
                 <cmui-collapse-item title="组件结构">
 					<pre>
                         &lt;cmui-tabbar&gt;

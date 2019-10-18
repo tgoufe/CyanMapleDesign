@@ -2,7 +2,7 @@
   <div class="pos-r cmui-select form flex-container">
     <span
       v-if="align === 'left' && (label || $slots.default)"
-      :class="{ checked: slefValue }"
+      :class="{ checked: value }"
       class="cmui-select__label cmui-form__label"
     >
       <slot />
@@ -40,7 +40,7 @@
             :key="index"
             :value="item.value"
             v-text="item.text"
-          />
+          ></option>
         </select>
         <div v-if="picker" class="abs-full" @click="visible = !visible" />
         <cmui-picker
@@ -62,7 +62,7 @@
     </div>
     <span
       v-if="align === 'right' && (label || $slots.default)"
-      :class="{ checked: slefValue }"
+      :class="{ checked: value }"
       class="cmui-select__label cmui-form__label"
     >
       <slot />
