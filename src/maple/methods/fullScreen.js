@@ -25,10 +25,6 @@ function exitFullScreen() {
     }
   }
 }
-if (window && document) {
-  enterFullScreen()
-  exitFullScreen()
-}
 export default function fullScreen(element = document.documentElement) {
   if (_.isBoolean(element)) {
     element ? enterFullScreen() : exitFullScreen()

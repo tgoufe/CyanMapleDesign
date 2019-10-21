@@ -41,7 +41,7 @@ Url.prototype.Init = function(url) {
   this.route = this.hash ? Url(this.hash) : {}
   return this
 }
-Url.prototype.init.prototype = Url.prototype
+Url.prototype.Init.prototype = Url.prototype
 Url.prototype.replace = function() {
   var key
   var argc = arguments[0]
@@ -157,6 +157,6 @@ Url.prototype.pack = function() {
     (this.hash ? '#' + this.hash : '')
   )
 }
-Url.prototype.init.call(Url)
+Url.prototype.Init.call(Url)
 
 export default Url
