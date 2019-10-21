@@ -55,7 +55,7 @@ export default {
     timeout: { type: Number, default: 3000 },
     closeFn: { type: Function, default: function() {} },
     targetClass: { type: String, default: '' },
-    visible: { type: Boolean, default: false },
+    visible: { type: Boolean, default: false }
   },
   data: function() {
     let dom = document.documentElement

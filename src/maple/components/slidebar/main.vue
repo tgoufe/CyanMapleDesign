@@ -1,10 +1,13 @@
 <template>
   <div
     class="cmui-slidebar"
-    :class="{ start: value === 0, end: value === this.range }"
+    :class="{ start: value === 0, end: value === range }"
   >
     <div class="cmui-slidebar__warp flex-container hfull">
-      <div ref="bar" class="cmui-slidebar__bar pos-r">
+      <div
+        ref="bar"
+        class="cmui-slidebar__bar pos-r"
+      >
         <div
           class="cmui-slidebar__progress"
           :style="{ width: transDisX + 'px' }"
@@ -30,7 +33,7 @@
 </style>
 <script type="text/javascript">
 import _ from 'lodash'
-function setDisFromValue(value) {
+function setDisFromValue (value) {
   let barInfo = this.$refs.bar.getBoundingClientRect()
   let dotInfo = this.$refs.dot.getBoundingClientRect()
   let dis = (value * (barInfo.width - dotInfo.width)) / this.range
@@ -45,7 +48,7 @@ export default {
     step: { type: Number, default: 0 },
     range: { type: Number, default: 100 }
   },
-  data: function() {
+  data: function () {
     return {
       transDisX: 0,
       barInfo: null,
@@ -54,26 +57,26 @@ export default {
     }
   },
   computed: {
-    transDis() {
+    transDis () {
       return {
         transform: `translate3d(${this.transDisX}px, -50%, 0px)`
       }
     }
   },
   watch: {
-    value(value) {
+    value (value) {
       setDisFromValue.call(this, value)
     }
   },
-  mounted() {
+  mounted () {
     setDisFromValue.call(this, this.value)
   },
   methods: {
-    startHandle(e) {
+    startHandle (e) {
       this.barInfo = this.$refs.bar.getBoundingClientRect()
       this.dotInfo = this.$refs.dot.getBoundingClientRect()
     },
-    moveHandle(e) {
+    moveHandle (e) {
       let dis = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX
       dis -= this.barInfo.x + this.dotInfo.width / 2
       dis = _.min([dis, this.barInfo.width - this.dotInfo.width])
@@ -92,7 +95,7 @@ export default {
       this.selfValue = value
       this.$emit('input', this.selfValue)
     },
-    endHandle(e) {
+    endHandle (e) {
       this.barInfo = null
       this.dotInfo = null
       this.$emit('change', this.selfValue)

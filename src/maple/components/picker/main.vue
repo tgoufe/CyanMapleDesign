@@ -141,6 +141,19 @@ export default {
   components: {
     cmuiPopup
   },
+  props: {
+    data: { type: Array, default: () => [] },
+    selectIndex: { type: Array, default: () => [] },
+    visible: { type: Boolean, default: false },
+    rightFn: { type: Function, default: null },
+    leftFn: { type: Function, default: null },
+    title: { type: String, default: '' },
+    leftText: { type: String, default: '取消' },
+    rightText: { type: String, default: '确定' }
+  },
+  data: function() {
+    return getInitData(this.data, this.selectIndex)
+  },
   computed: {
     selfVisible: {
       get() {
@@ -159,19 +172,6 @@ export default {
         this.$emit('update:visible', value)
       }
     }
-  },
-  props: {
-    data: { type: Array, default: () => [] },
-    selectIndex: { type: Array, default: () => [] },
-    visible: { type: Boolean, default: false },
-    rightFn: { type: Function, default: null },
-    leftFn: { type: Function, default: null },
-    title: { type: String, default: '' },
-    leftText: { type: String, default: '取消' },
-    rightText: { type: String, default: '确定' }
-  },
-  data: function() {
-    return getInitData(this.data, this.selectIndex)
   },
   watch: {
     data(value) {

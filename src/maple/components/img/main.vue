@@ -13,9 +13,8 @@ import { ready, isInView } from '../../methods/dom'
 import _ from 'lodash'
 let lazyLoadList = []
 let windowHeight = window.screen.availHeight
-let windowWidth = window.screen.availWidth
 let checkFinish = true
-const checkLazyLoadImage = _.debounce(function() {
+const checkLazyLoadImage = _.debounce(function () {
   if (checkFinish) {
     checkFinish = false
     for (let i = 0; i < lazyLoadList.length; i++) {
@@ -32,11 +31,10 @@ const checkLazyLoadImage = _.debounce(function() {
     checkFinish = true
   }
 }, 500)
-ready(function() {
+ready(function () {
   window.addEventListener('scroll', checkLazyLoadImage)
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', function () {
     windowHeight = window.screen.availHeight
-    windowWidth = window.screen.availWidth
   })
 })
 const base64Data =
@@ -51,41 +49,41 @@ export default {
     preView: { type: Boolean, default: false },
     preViewList: {
       type: Array,
-      default() {
+      default () {
         return []
       }
     },
     preViewIndex: { type: Number, default: 0 },
     preViewOptions: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     }
   },
-  data() {
+  data () {
     return {
       realSrc: this.lazyLoad ? this.lazySrc : this.src
     }
   },
-  created() {
+  created () {
     lazyLoadList.push(this)
   },
-  mounted() {
+  mounted () {
     checkLazyLoadImage()
   },
-  destroyed() {
+  destroyed () {
     _.remove(lazyLoadList, this)
   },
   methods: {
-    imgClick: function() {
+    imgClick: function () {
       if (this.preView) {
         let list = this.preViewList.length ? this.preViewList : this.src
         let index = this.preViewIndex
         imagePreView.call(this, list, index, this.preViewOptions)
       }
     },
-    srcError() {
+    srcError () {
       this[this.lazyLoad ? 'lazySrc' : 'realSrc'] = this.errorSrc
     }
   }

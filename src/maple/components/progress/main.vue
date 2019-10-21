@@ -5,8 +5,14 @@
       class="cmui-progress_warp"
       :style="warpStyle"
     >
-      <div class="cmui-progress_bar" :style="progressStyle">
-        <div class="cmui-progress_bg" :style="bgStyle" />
+      <div
+        class="cmui-progress_bar"
+        :style="progressStyle"
+      >
+        <div
+          class="cmui-progress_bg"
+          :style="bgStyle"
+        />
         <div
           v-if="!$slots.default || text"
           class="cmui-progress_info fullcenter"
@@ -15,9 +21,9 @@
           <template
             v-if="!$slots.default"
             class="fullcenter flex-container center"
-            >
-{{ text }}
-</template>
+          >
+            {{ text }}
+          </template>
         </div>
       </div>
     </div>
@@ -57,7 +63,7 @@
           v-if="!$slots.default"
           class="fullcenter flex-container center"
           >
-{{ text }}
+  {{ text }}
 </template>
       </div>
     </div>
@@ -89,18 +95,18 @@ export default {
     lineWidth: { type: Number, default: 2 },
     type: { type: String, default: 'line' }, // line top circle
     radius: { type: Boolean, default: true },
-    text: String,
+    text: { type: String, default: '' },
     size: { type: Number, default: 20 }
   },
   computed: {
-    warpStyle() {
+    warpStyle () {
       return {
         height: this.lineWidth + 'px',
         backgroundColor: this.bgcolor,
         'border-radius': this.radius ? '100px' : 'none'
       }
     },
-    progressStyle() {
+    progressStyle () {
       let width = Math.max(this.value, 0)
       width = Math.min(this.value, 100)
       return {
@@ -109,7 +115,7 @@ export default {
         'border-radius': this.radius ? '100px 0 0 100px' : 'none'
       }
     },
-    bgStyle() {
+    bgStyle () {
       let rs = {}
       rs.backgroundColor = this.color.split(/\s+/g)[0]
       rs.backgroundImage =
@@ -119,7 +125,7 @@ export default {
       rs.width = 10000 / width + '%'
       return rs
     },
-    sd() {
+    sd () {
       return (
         ((this.size - this.lineWidth) * Math.PI * this.value) / 100 + ' 1024'
       )

@@ -1,12 +1,19 @@
 <template>
-  <div class="cmui-affix-warp" :class="{ warpActive: affix }">
-    <div class="cmui-affix" :style="styles" :class="{ affixActive: affix }">
+  <div
+    class="cmui-affix-warp"
+    :class="{ warpActive: affix }"
+  >
+    <div
+      class="cmui-affix"
+      :style="styles"
+      :class="{ affixActive: affix }"
+    >
       <slot />
     </div>
   </div>
 </template>
 <script>
-function getScroll(target, top) {
+function getScroll (target, top) {
   const prop = top ? 'pageYOffset' : 'pageXOffset'
   const method = top ? 'scrollTop' : 'scrollLeft'
   let ret = target[prop]
@@ -15,7 +22,7 @@ function getScroll(target, top) {
   }
   return ret
 }
-function getOffset(element) {
+function getOffset (element) {
   const rect = element.getBoundingClientRect()
   const scrollTop = getScroll(window, true)
   const scrollLeft = getScroll(window)
@@ -35,10 +42,11 @@ export default {
       default: 0
     },
     bottom: {
-      type: Number
+      type: Number,
+      default: 0
     }
   },
-  data() {
+  data () {
     return {
       affix: false,
       styles: {},
@@ -46,7 +54,7 @@ export default {
     }
   },
   computed: {
-    offsetType() {
+    offsetType () {
       let type = 'top'
       if (this.bottom >= 0) {
         type = 'bottom'
@@ -54,16 +62,16 @@ export default {
       return type
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll, false)
     window.addEventListener('resize', this.handleScroll, false)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.handleScroll, false)
     window.removeEventListener('resize', this.handleScroll, false)
   },
   methods: {
-    handleScroll() {
+    handleScroll () {
       const affix = this.affix
       const scrollTop = getScroll(window, true)
       const elOffset = getOffset(this.$el)

@@ -1,5 +1,5 @@
 const buildConfig = require('./build/config')
-const path = require('path')
+// const path = require('path')
 module.exports = {
   publicPath: './',
   lintOnSave: !buildConfig.isProduct,
@@ -12,7 +12,7 @@ module.exports = {
     }
   },
   css: {
-    extract: false,
+    extract: true,
     loaderOptions: {
       sass: {
         // javascriptEnabled: true,
@@ -20,28 +20,29 @@ module.exports = {
       }
     }
   },
-  chainWebpack: (config) => {
-    config.module
-      .rule('js')
-      .include.add(path.join(__dirname, 'src/maple'))
-      .end()
-      .use('babel')
-      .loader('babel-loader')
-      .tap((options) => {
-        return options
-      })
+  chainWebpack: config => {
+    // config.module
+    //   .rule('js')
+    //   .include.add(path.join(__dirname, 'src/maple'))
+    //   .end()
+    //   .use('babel')
+    //   .loader('babel-loader')
+    //   .tap((options) => {
+    //     return options
+    //   })
     let { alias } = buildConfig
     Object.keys(alias).forEach(item => {
       config.resolve.alias.set(item, alias[item])
     })
-    config.plugins.delete('preload')
-    config.plugins.delete('prefetch')
-    config.extensions = buildConfig.resolve
+    // config.plugins.delete('preload')
+    // config.plugins.delete('prefetch')
+    // config.extensions = buildConfig.resolve
+    config.output.chunkFilename('js/[name].js')
   },
-  configureWebpack: (config) => {
-    if (buildConfig.isProduct) {
-      config.externals = buildConfig.externalMap
-    }
+  configureWebpack: config => {
+    // if (buildConfig.isProduct) {
+    //   config.externals = buildConfig.externalMap
+    // }
   },
   devServer: {
     port: buildConfig.examplesPort,
@@ -51,7 +52,7 @@ module.exports = {
     }
   },
   pluginOptions: {
-    lintStyleOnBuild: true,
-    stylelint: {}
+    // lintStyleOnBuild: true,
+    // stylelint: {}
   }
 }

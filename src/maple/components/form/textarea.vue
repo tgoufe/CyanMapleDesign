@@ -1,5 +1,8 @@
 <template>
-  <div class="cmui-textarea pos-r form flex-container" :class="positionClass">
+  <div
+    class="cmui-textarea pos-r form flex-container"
+    :class="positionClass"
+  >
     <span
       v-if="align === 'left' && (label || $slots.default)"
       :class="{ checked: value }"
@@ -8,7 +11,10 @@
       <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
-    <div class="pos-r" :class="{ flex1: !flex }">
+    <div
+      class="pos-r"
+      :class="{ flex1: !flex }"
+    >
       <textarea
         ref="textarea"
         v-model="value"
@@ -59,14 +65,14 @@ export default {
     width: { type: [Number, String], default: 0 }
   },
   computed: {
-    targetStyle() {
+    targetStyle () {
       let style = {}
       if (this.width) {
         style.width = parseInt(this.width) + 'px'
       }
       return style
     },
-    positionClass() {
+    positionClass () {
       if (_.includes(this.targetClass.split(' '), 'center')) {
         return ''
       } else if (_.includes(this.targetClass.split(' '), 'bottom')) {
@@ -77,27 +83,28 @@ export default {
     }
   },
   methods: {
-    rendered() {
+    rendered () {
       this.setTextAreaHeight()
     },
-    setTextAreaHeight() {
-      if (this.auto) {
-        const target = this.$refs.textarea
-        const $target = $(target)
-        let dom = $('<textarea/>')
-        let style = {};
-        ['fontSize', 'lineHeight', 'width', 'border', 'padding'].forEach(
-          item => {
-            style[item] = $target.css(item)
-          }
-        )
-        dom.css(style)
-        dom.val(target.value).appendTo('body')
-        target.style.height = dom[0].scrollHeight + 'px'
-        dom.remove()
-      }
+    setTextAreaHeight () {
+      // todo
+      // if (this.auto) {
+      //   const target = this.$refs.textarea
+      //   const $target = $(target)
+      //   let dom = $('<textarea/>')
+      //   let style = {};
+      //   ['fontSize', 'lineHeight', 'width', 'border', 'padding'].forEach(
+      //     item => {
+      //       style[item] = $target.css(item)
+      //     }
+      //   )
+      //   dom.css(style)
+      //   dom.val(target.value).appendTo('body')
+      //   target.style.height = dom[0].scrollHeight + 'px'
+      //   dom.remove()
+      // }
     },
-    handlePaste(e) {
+    handlePaste (e) {
       const target = this.$refs.textarea
       if (this.max) {
         target.value = target.value.slice(0, this.max)

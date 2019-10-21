@@ -34,10 +34,10 @@ import Tabbar from './components/tabbar/index.js'
 // methods
 import methods from './methods/index.js'
 function Maple() {
-  return new Maple.prototype.init()
+  return new Maple.prototype.Init()
 }
-Maple.prototype.init = function() {}
-Maple.prototype.init.prototype = Maple.prototype
+Maple.prototype.Init = function() {}
+Maple.prototype.Init.prototype = Maple.prototype
 const components = [
   Alert,
   Popup,

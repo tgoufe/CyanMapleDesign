@@ -7,9 +7,7 @@ function enterFullScreen(element = document.documentElement) {
     'webkitRequestFullscreen'
   ]) {
     if (element[methodName]) {
-      enterFullScreen = function(element = document.documentElement) {
-        element[methodName]()
-      }
+      element[methodName]()
       break
     }
   }
@@ -22,9 +20,7 @@ function exitFullScreen() {
     'webkitExitFullscreen'
   ]) {
     if (document[methodName]) {
-      exitFullScreen = function() {
-        document[methodName]()
-      }
+      document[methodName]()
       break
     }
   }

@@ -11,8 +11,8 @@
     :label="label"
     :align="align"
     :reset="false"
-    :prepend-disabled="!_canSub"
-    :append-disabled="!_canAdd"
+    :prepend-disabled="!canSubSelf"
+    :append-disabled="!canAddSelf"
     :flex="flex"
     :width="width"
     @input="handleInput"
@@ -20,8 +20,14 @@
     @blur="handleBlur"
     @change="handleChange"
   >
-    <span slot="prepend" @click="changeNumber(-1)">-</span>
-    <span slot="append" @click="changeNumber(1)">+</span>
+    <span
+      slot="prepend"
+      @click="changeNumber(-1)"
+    >-</span>
+    <span
+      slot="append"
+      @click="changeNumber(1)"
+    >+</span>
     <slot />
   </cmui-input>
 </template>
@@ -36,30 +42,30 @@ export default {
   },
   mixins: [mixin],
   props: {
-    max: Number,
-    min: Number,
+    max: { type: Number, default: 0 },
+    min: { type: Number, default: 0 },
     rule: RegExp,
     canAdd: { type: Boolean, default: true },
     canSub: { type: Boolean, default: true },
-    beforeChange: Function,
-    width: [Number, String]
+    beforeChange: { type: Function, default: null },
+    width: { type: [Number, String], default: '' }
   },
-  data() {
+  data () {
     return {
-      _canSub: this.canSub,
-      _canAdd: this.canAdd,
+      canSubSelf: this.canSub,
+      canAddSelf: this.canAdd,
       selfValue: this.value
     }
   },
   computed: {
-    canMax() {
+    canMax () {
       if (this.max || this.max === 0) {
         return this.value < this.max
       } else {
         return true
       }
     },
-    canMin() {
+    canMin () {
       if (this.min || this.min === 0) {
         return this.value > this.min
       } else {
@@ -68,32 +74,32 @@ export default {
     }
   },
   watch: {
-    value(value) {
+    value (value) {
       this.setBtnState()
       this.selfValue = value
       console.log(arguments)
     },
-    max() {
+    max () {
       this.setBtnState()
     },
-    min() {
+    min () {
       this.setBtnState()
     },
-    canSub(value) {
-      this._canSub = !!value
+    canSub (value) {
+      this.canSubSelf = !!value
     },
-    canAdd(value) {
-      this._canAdd = !!value
+    canAdd (value) {
+      this.canAddSelf = !!value
     }
   },
-  created() {
+  created () {
     this.setBtnState(true)
     // this.setBtnState.call(this, true)
   },
   methods: {
-    changeNumber: function(num = 0) {
+    changeNumber: function (num = 0) {
       console.log(`number changeNumber`)
-      if ((!this._canAdd && num === 1) || (!this._canSub && num === -1)) {
+      if ((!this.canAddSelf && num === 1) || (!this.canSubSelf && num === -1)) {
         return
       }
       const value = this.selfValue
@@ -102,7 +108,7 @@ export default {
       targetValue = _.min([this.max, targetValue])
       targetValue = _.max([this.min, targetValue])
       if (_.isFunction(beforeChangeEvent)) {
-        this._canAdd = this._canSub = false
+        this.canAddSelf = this.canSubSelf = false
         new Promise((resolve, reject) => {
           beforeChangeEvent(targetValue, resolve, reject, this)
         }).then(
@@ -122,26 +128,26 @@ export default {
         this.$emit('input', this.selfValue, this)
       }
     },
-    setBtnState(isFirst = false) {
+    setBtnState (isFirst = false) {
       console.log(`number setBtnState`, this.selfValue)
-      this._canAdd = this._canSub = true
+      this.canAddSelf = this.canSubSelf = true
       if (+this.selfValue === this.max) {
-        this._canAdd = false
+        this.canAddSelf = false
         !isFirst && this.$emit('max', this.selfValue, this)
       }
       if (+this.selfValue === this.min) {
         !isFirst && this.$emit('min', this.selfValue, this)
-        this._canSub = false
+        this.canSubSelf = false
       }
     },
-    handleBlur() {
+    handleBlur () {
       console.log(`number handleBlur`)
       const target = event.target
       const value = target.value
       this.changeNumber(0)
       this.$emit('blur', value, this)
     },
-    handleInput(event) {
+    handleInput (event) {
       console.log(`number handleInput`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
@@ -150,7 +156,7 @@ export default {
       this.$nextTick(this.rendered)
       this.setBtnState()
     },
-    handleChange(event) {
+    handleChange (event) {
       console.log(`number handleChange`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
@@ -159,7 +165,7 @@ export default {
       this.$emit('input', value, this)
       this.setBtnState()
     },
-    getInput() {
+    getInput () {
       return this.$children[0].$refs.input
     }
   }

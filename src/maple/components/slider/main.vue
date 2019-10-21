@@ -1,5 +1,8 @@
 <template>
-  <div v-if="visible" class="cmui-slider">
+  <div
+    v-if="visible"
+    class="cmui-slider"
+  >
     <div
       :id="id"
       ref="swiper-container"
@@ -12,8 +15,14 @@
         <!-- <div class="swiper-slider-append"></div> todo-->
       </div>
       <!-- Add Arrows -->
-      <div v-if="this.nav" class="swiper-button-next" />
-      <div v-if="this.nav" class="swiper-button-prev" />
+      <div
+        v-if="nav"
+        class="swiper-button-next"
+      />
+      <div
+        v-if="nav"
+        class="swiper-button-prev"
+      />
       <!-- Add pagination -->
       <div class="swiper-pagination" />
       <!-- Add scrollbar -->
@@ -31,7 +40,7 @@ import Swiper from 'swiper'
 import themeList from './themeList.json'
 import _ from 'lodash'
 import sliderList from './sliderList'
-function optionsMaker(options, themeName) {
+function optionsMaker (options, themeName) {
   let themeOptions = _.get(themeList, themeName)
   let propOptions = {}
   // set slidesPerView as col
@@ -121,7 +130,7 @@ let sliderObserve = new (class {
     this.refList = []
     this.subscribeList = []
   }
-  observeControl(vm) {
+  observeControl (vm) {
     let controlName = vm.control
     if (controlName && _.isString(controlName)) {
       this.refList.forEach(item => {
@@ -142,58 +151,20 @@ let sliderObserve = new (class {
       this.publish(vm.swiper, refName)
     }
   }
-  bindControl(controlSwiper, targetSwiper) {
+  bindControl (controlSwiper, targetSwiper) {
     targetSwiper.controller.control = controlSwiper
   }
-  publish(swiper, refName) {
+  publish (swiper, refName) {
     this.subscribeList.forEach(item => item(swiper, refName))
   }
 })()
 export default {
   name: 'cmui-slider',
-  data: function() {
-    return {
-      visible: true
-    }
-  },
-  computed: {
-    containerStyle() {
-      let rs = {}
-      if (this.height) {
-        rs.height = this.height
-      }
-      return rs
-    }
-  },
-  watch: {
-    watch: {
-      immediate: false,
-      handler(newValue, oldValue) {
-        if (this.loop) {
-          _.differenceWith(newValue, oldValue, _.isEqual).length &&
-            this.resetSwiper()
-        } else {
-          !_.isEqual(newValue, oldValue) && this.resetSwiper()
-        }
-      }
-    },
-    options: {
-      deep: true,
-      handler(newOptions, oldOptions) {
-        if (!_.isEqual(newOptions, oldOptions)) {
-          this.resetSwiper()
-        }
-      }
-    }
-  },
-  mounted() {
-    this.resetSwiper()
-  },
   props: {
     id: { type: String, default: _.uniqueId('cmui-slider_') },
     watch: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     },
@@ -211,12 +182,51 @@ export default {
     scrollbar: { type: Boolean, default: false },
     control: { type: String, default: '' }
   },
+  data: function () {
+    return {
+      visible: true
+    }
+  },
+  computed: {
+    containerStyle () {
+      let rs = {}
+      if (this.height) {
+        rs.height = this.height
+      }
+      return rs
+    }
+  },
+  watch: {
+    watch: {
+      immediate: false,
+      handler (newValue, oldValue) {
+        if (this.loop) {
+          _.differenceWith(newValue, oldValue, _.isEqual).length &&
+            this.resetSwiper()
+        } else {
+          !_.isEqual(newValue, oldValue) && this.resetSwiper()
+        }
+      }
+    },
+    options: {
+      deep: true,
+      handler (newOptions, oldOptions) {
+        if (!_.isEqual(newOptions, oldOptions)) {
+          this.resetSwiper()
+        }
+      }
+    }
+  },
+  mounted () {
+    this.resetSwiper()
+  },
+
   methods: {
-    destroy() {
+    destroy () {
       this.swiper && this.swiper.destroy(true, false)
       this.visible = false
     },
-    resetSwiper() {
+    resetSwiper () {
       this.$nextTick(() => {
         let hasInit = !!this.swiper
         if (hasInit) {
@@ -241,7 +251,7 @@ export default {
         }, 0)
       })
     },
-    update() {
+    update () {
       if (this.swiper) {
         this.swiper.update && this.swiper.update()
         this.swiper.navigation && this.swiper.navigation.update()
@@ -249,10 +259,10 @@ export default {
         this.swiper.pagination && this.swiper.pagination.update()
       }
     },
-    bindEvents() {
+    bindEvents () {
       let vm = this
       DEFAULT_EVENTS.forEach(eventName => {
-        this.swiper.on(eventName, function(...args) {
+        this.swiper.on(eventName, function (...args) {
           vm.$emit(eventName, ...args, vm.swiper)
           vm.$emit(
             eventName.replace(/([A-Z])/g, '-$1').toLowerCase(),

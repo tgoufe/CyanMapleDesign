@@ -61,11 +61,11 @@ var sliderPropsList = [
   'prevButton',
   'nextButton'
 ]
-function CMUI_SliderList() {
+function SliderList() {
   this.length = 0
 }
 sliderMethodsList.forEach(item => {
-  CMUI_SliderList.prototype[item] = function(arg) {
+  SliderList.prototype[item] = function(arg) {
     _.times(this.length).forEach(index => {
       if (this[index] instanceof Swiper) {
         this[index][item](arg)
@@ -75,17 +75,17 @@ sliderMethodsList.forEach(item => {
   }
 })
 sliderPropsList.forEach(item => {
-  CMUI_SliderList.prototype[item] = function() {
+  SliderList.prototype[item] = function() {
     return _.get(this, '[0]' + item)
   }
 })
-CMUI_SliderList.prototype.add = function(item) {
+SliderList.prototype.add = function(item) {
   if (item instanceof Swiper) {
     this[this.length++] = item
   }
   return this
 }
-CMUI_SliderList.prototype.remove = function() {
+SliderList.prototype.remove = function() {
   _.times(this.length, index => {
     var swiper = this[index]
     if (swiper instanceof Swiper) {
@@ -101,9 +101,9 @@ CMUI_SliderList.prototype.remove = function() {
   })
   return this
 }
-CMUI_SliderList.prototype.eq = function(index = 0) {
-  var temp = new CMUI_SliderList()
+SliderList.prototype.eq = function(index = 0) {
+  var temp = new SliderList()
   return temp.add(this[index])
 }
-var sliderList = new CMUI_SliderList()
-export { CMUI_SliderList, sliderList as default }
+var sliderList = new SliderList()
+export { SliderList, sliderList as default }

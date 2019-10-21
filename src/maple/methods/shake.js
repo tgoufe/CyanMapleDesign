@@ -33,7 +33,7 @@ let eventName = (function() {
     return false
   }
 })()
-class shakeHandle {
+class ShakeHandle {
   constructor(options) {
     this.handleList = _.filter(options, _.isFunction)
     this.handle = function(e) {
@@ -72,8 +72,8 @@ class shakeHandle {
 }
 export default function shake() {
   let options = {
-    startFn: _.filter(arguments, _.isFunction)[0] || new Function(),
-    endFn: _.filter(arguments, _.isFunction)[1] || new Function(),
+    startFn: _.filter(arguments, _.isFunction)[0] || function() {},
+    endFn: _.filter(arguments, _.isFunction)[1] || function() {},
     interval: _.filter(arguments, _.isNumber)[0] || 0, // 每次触发startFn的时间间隔
     continueEvent: _.filter(arguments, _.isBoolean)[0] || true // 摇动过程中是否持续执行startFn事件
   }
@@ -86,5 +86,5 @@ export default function shake() {
       trailing: false
     })
   }
-  return new shakeHandle(options)
+  return new ShakeHandle(options)
 }

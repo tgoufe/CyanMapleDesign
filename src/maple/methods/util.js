@@ -96,7 +96,7 @@ export let everyTime = options => {
   }
 }
 
-export let stopTime = () => {
+export let stopTime = options => {
   window.clearTimeout(cache[options.key])
   delete cache[options.key]
 }

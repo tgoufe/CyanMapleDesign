@@ -1,8 +1,8 @@
 import _ from 'lodash'
 function Url(url) {
-  return new Url.prototype.init(url)
+  return new Url.prototype.Init(url)
 }
-Url.prototype.init = function(url) {
+Url.prototype.Init = function(url) {
   var a = document.createElement('a')
   a.href = url || location.href
   this.source = url || location.href
@@ -29,13 +29,13 @@ Url.prototype.init = function(url) {
     }
     return ret
   })()
-  this.file = (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1]
+  this.file = (a.pathname.match(/\/([^/?#]+)$/i) || ['', ''])[1]
   this.hash = a.hash.replace('#', '')
-  this.path = a.pathname.replace(/^([^\/])/, '/$1')
-  this.relative = (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1]
+  this.path = a.pathname.replace(/^([^/])/, '/$1')
+  this.relative = (a.href.match(/tps?:\/\/[^/]+(.+)/) || ['', ''])[1]
   this.segments = a.pathname.replace(/^\//, '').split('/')
   this.isUrl = (function(url) {
-    var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i
+    var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:@&?=+,.!/~%$]*)?)$/i
     return !!regular.test(url)
   })(this.source)
   this.route = this.hash ? Url(this.hash) : {}

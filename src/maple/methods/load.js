@@ -1,15 +1,13 @@
 import _ from 'lodash'
 function BaseLoad(src, tagName, props = {}) {
   return !src
-    ? new Promise.resolve(null)
+    ? Promise.resolve(null)
     : new Promise((resolve, reject) => {
       let dom = document.createElement(tagName)
-      dom.src = src;
-      (function loop(props, target) {
+      dom.src = src
+      ;(function loop(props, target) {
         _.forEach(props, (value, key) => {
-          _.isObject(value)
-            ? loop(value, target[key])
-            : (target[key] = value)
+          _.isObject(value) ? loop(value, target[key]) : (target[key] = value)
         })
       })(props, dom)
       dom.onload = function() {
@@ -18,14 +16,14 @@ function BaseLoad(src, tagName, props = {}) {
         })
       }
       dom.onError = function() {
-        reject(null)
+        reject(new Error(''))
       }
       document.body.appendChild(dom)
     })
 }
 function load(type, url) {
   if (_.isObject(type)) {
-    ({ type, url } = type)
+    ;({ type, url } = type)
   }
   switch (type) {
     case 'js':

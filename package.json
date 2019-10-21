@@ -5,7 +5,7 @@
   "private": false,
   "main": "CMUI/lib/index.common.js",
   "scripts": {
-    "start": "npm run cyan && npm run theme && vue-cli-service serve --open",
+    "start": "vue-cli-service serve --open",
     "lint": "vue-cli-service lint",
     "lint:prettier": "cross-env prettier --write \"src/maple/**/*.js\" \"src/maple/**/*.vue\" --loglevel warn",
     "cyan": "gulp sass",

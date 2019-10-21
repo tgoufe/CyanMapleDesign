@@ -1,13 +1,22 @@
 <template>
-  <div ref="scroll" class="cmui-scroll swiper-container">
+  <div
+    ref="scroll"
+    class="cmui-scroll swiper-container"
+  >
     <div
       v-if="pullEvent"
       ref="pullStart"
       class="abs-top flex-container hfull"
       :style="pullStartStyle"
     >
-      <slot v-if="$slots.pullStart" name="pullStart" />
-      <p class="text-center" v-text="pullStartText" />
+      <slot
+        v-if="$slots.pullStart"
+        name="pullStart"
+      />
+      <p
+        class="text-center"
+        v-text="pullStartText"
+      />
     </div>
     <div class="swiper-wrapper">
       <slot />
@@ -17,8 +26,14 @@
       class="abs-bottom flex-container hfull"
       :style="pullEndStyle"
     >
-      <slot v-if="$slots.pullEnd" name="pullEnd" />
-      <p class="text-center" v-text="pullEndText" />
+      <slot
+        v-if="$slots.pullEnd"
+        name="pullEnd"
+      />
+      <p
+        class="text-center"
+        v-text="pullEndText"
+      />
     </div>
   </div>
 </template>
@@ -30,13 +45,13 @@ export default {
   props: {
     col: { type: [String, Number], default: 'auto' },
     direction: { type: String, default: 'h' },
-    watch: null,
+    watch: { type: [Array, Object], default: () => null },
     pullDis: { type: Number, default: 50 },
     pullEvent: { type: Boolean, default: true },
     freeMode: { type: Boolean, default: true },
-    pullText: Array
+    pullText: { type: Array, default: () => ([]) }
   },
-  data: function() {
+  data: function () {
     return {
       swiper: null,
       pullStartStyle: {
@@ -50,7 +65,7 @@ export default {
     }
   },
   watch: {
-    watch() {
+    watch () {
       if (this.swiper) {
         this.$nextTick(() => {
           this.swiper.update()
@@ -58,19 +73,19 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     let container = this.$refs.scroll
     let _this = this
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       _this.swiper = new Swiper(container, {
         direction: _this.direction === 'v' ? 'vertical' : 'horizontal',
         slidesPerView: +_this.col || 'auto',
         freeMode: _this.freeMode,
         on: {
-          progress(value) {
+          progress (value) {
             _this.updatePull(value, this.translate)
           },
-          touchEnd() {
+          touchEnd () {
             _this.updatePull(this.progress, this.translate, true)
             _.delay(_this.resetPull)
           }
@@ -79,11 +94,11 @@ export default {
       _this.$emit('rendered', this)
     })
   },
-  destroyed() {
+  destroyed () {
     this.swiper.destroy()
   },
   methods: {
-    updatePull(progress, translate, endHandel) {
+    updatePull (progress, translate, endHandel) {
       if (!this.pullEvent) {
         return
       }
@@ -120,7 +135,7 @@ export default {
       }
       this.$emit('pull', progress, this)
     },
-    resetPull() {
+    resetPull () {
       this.pullStartStyle.transform = 'translate(-100%)'
       this.pullEndStyle.transform = 'translate(-100%)'
     }

@@ -11,7 +11,7 @@ function dialogInstall(Component) {
     let dom = document.createElement(name)
     dom.id = id
     document.body.appendChild(dom)
-    let Dialog=Vue.extend(Component)
+    let Dialog = Vue.extend(Component)
     CURRENT = new Dialog().$mount(dom)
     // let dom = document.createElement(name)
     // dom.id = id
