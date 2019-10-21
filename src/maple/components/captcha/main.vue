@@ -1,6 +1,9 @@
 <template>
   <div class="cmui-captcha">
-    <div class="cmui-captcha__warp flex-container center" @click="inputStart">
+    <div
+      class="cmui-captcha__warp flex-container center"
+      @click="inputStart"
+    >
       <div
         v-for="(item, index) in length"
         :key="index"
@@ -9,18 +12,21 @@
       >
         <span class="flex-container center">
           <span
-            v-if="hide && index < value.length"
+            v-if="hide && index < selfValue.length"
             class="cmui-captcha__dot"
           />
-          <template v-else>{{ value[index] }}</template>
-          <span v-if="index === activeIndex" class="cmui-captcha__line" />
+          <template v-else>{{ selfValue[index] }}</template>
+          <span
+            v-if="index === activeIndex"
+            class="cmui-captcha__line"
+          />
         </span>
       </div>
     </div>
     <form action="">
       <input
         ref="input"
-        v-model="value"
+        v-model="selfValue"
         :type="type === 'number' ? 'tel' : 'text'"
         name=""
         class="cmui-captcha__input"
@@ -55,41 +61,68 @@ export default {
     hide: { type: Boolean, default: false },
     value: { type: String, default: '' }
   },
-  data: function() {
+  data: function () {
     return {
       activeIndex: -1
     }
   },
-  watch: {
-    value: {
-      immediate: true,
-      handler(newValue, oldValue) {
+  computed: {
+    selfValue: {
+      get () {
         if (this.type === 'number') {
-          if (!/^\d+$/.test(newValue) && newValue.length) {
-            this.value = /^\d+$/.test(oldValue) ? oldValue : ''
+          if (!/^\d+$/.test(this.value) && this.value.length) {
+            return ''
+          }
+        }
+        return this.value
+      },
+      set (value) {
+        if (this.type === 'number') {
+          if (!/^\d+$/.test(value) && value.length) {
             return
           }
         }
-        if (newValue.length >= this.length) {
+        if (value.length >= this.length) {
           this.inputEnd()
         }
         this.setActiveIndex()
+        this.$emit('input', value)
       }
     }
   },
+  // watch: {
+  //   value: {
+  //     immediate: true,
+  //     handler (newValue, oldValue) {
+  //       if (this.type === 'number') {
+  //         if (!/^\d+$/.test(newValue) && newValue.length) {
+  //           this.value = /^\d+$/.test(oldValue) ? oldValue : ''
+  //           return
+  //         }
+  //       }
+  //       if (newValue.length >= this.length) {
+  //         this.inputEnd()
+  //       }
+  //       this.setActiveIndex()
+  //     }
+  //   }
+  // },
+  created () {
+    this.setActiveIndex(-1)
+  },
   methods: {
-    inputStart() {
+    inputStart () {
       this.$refs.input.focus()
       this.setActiveIndex()
     },
-    inputEnd() {
+    inputEnd () {
       this.$refs.input.blur()
       this.$emit('inputEnd', this.value, this)
     },
-    inputBlur() {
+    inputBlur () {
       this.setActiveIndex(-1)
     },
-    setActiveIndex(index) {
+    setActiveIndex (index) {
       this.activeIndex = index ? -1 : this.value.length
     }
   }

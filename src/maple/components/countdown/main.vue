@@ -14,8 +14,6 @@
 .countdown-container {
   background-color: #232323;
   color: #ffffff;
-  padding: 1px 3px;
-  border-radius: 2px;
   position: relative;
 }
 .countdown-container:not(:last-child) {
@@ -25,7 +23,7 @@
   content: ":";
   color: #232323;
   position: absolute;
-  right: -7px;
+  left: 111%;
   top: 0;
 }
 </style>
@@ -39,14 +37,14 @@ export default {
     showMilli: { type: Boolean, default: false }, // 是否显示毫秒数，默认不显示
     showDay: { type: Boolean, default: false }
   },
-  data() {
+  data () {
     return {
       contentList: { hour: '00', minute: '00', sec: '00' },
       selfTime: this.nowTime
     }
   },
   watch: {
-    selfTime(value) {
+    selfTime (value) {
       if (this.endTime && this.nowTime) {
         var countDownTime = this.endTime - value
         this.$emit('update', countDownTime, this)
@@ -72,19 +70,19 @@ export default {
         }
       }
     },
-    endTime(value) {
+    endTime (value) {
       var vm = this
       var intervalTime = this.showMilli ? 100 : 1000
       if (this.endTime && this.selfTime && this.endTime > this.selfTime) {
         clearTimeout(this.timer)
         vm.selfTime += intervalTime
-        this.timer = setInterval(function() {
+        this.timer = setInterval(function () {
           vm.selfTime += intervalTime
         }, intervalTime)
       }
     }
   },
-  mounted() {
+  mounted () {
     var vm = this
     var intervalTime = this.showMilli ? 100 : 1000
     if (
@@ -93,12 +91,12 @@ export default {
       this.endTime > this.selfTime
     ) {
       vm.selfTime += intervalTime
-      this.timer = setInterval(function() {
+      this.timer = setInterval(function () {
         vm.selfTime += intervalTime
       }, intervalTime)
     }
   },
-  destroyed() {
+  destroyed () {
     clearTimeout(this.timer)
   }
 }
