@@ -42,8 +42,8 @@ export default {
   },
   mixins: [mixin],
   props: {
-    max: { type: Number, default: 0 },
-    min: { type: Number, default: 0 },
+    max: { type: Number, default: Infinity },
+    min: { type: Number, default: -Infinity },
     rule: RegExp,
     canAdd: { type: Boolean, default: true },
     canSub: { type: Boolean, default: true },
@@ -98,7 +98,6 @@ export default {
   },
   methods: {
     changeNumber: function (num = 0) {
-      console.log(`number changeNumber`)
       if ((!this.canAddSelf && num === 1) || (!this.canSubSelf && num === -1)) {
         return
       }
@@ -125,6 +124,7 @@ export default {
       } else {
         this.selfValue = targetValue
         this.setBtnState()
+        console.log(this.selfValue)
         this.$emit('input', this.selfValue, this)
       }
     },
