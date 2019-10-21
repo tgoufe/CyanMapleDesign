@@ -87,22 +87,20 @@ export default {
       this.setTextAreaHeight()
     },
     setTextAreaHeight () {
-      // todo
-      // if (this.auto) {
-      //   const target = this.$refs.textarea
-      //   const $target = $(target)
-      //   let dom = $('<textarea/>')
-      //   let style = {};
-      //   ['fontSize', 'lineHeight', 'width', 'border', 'padding'].forEach(
-      //     item => {
-      //       style[item] = $target.css(item)
-      //     }
-      //   )
-      //   dom.css(style)
-      //   dom.val(target.value).appendTo('body')
-      //   target.style.height = dom[0].scrollHeight + 'px'
-      //   dom.remove()
-      // }
+      if (this.auto) {
+        const target = this.$refs.textarea
+        const cloneTarget = document.createElement('textarea')
+        let style = window.getComputedStyle(target, null);
+        ['fontSize', 'lineHeight', 'width', 'border', 'padding'].forEach(
+          item => {
+            cloneTarget.style[item] = style[item]
+          }
+        )
+        cloneTarget.value = this.value
+        document.body.appendChild(cloneTarget)
+        target.style.height = cloneTarget.scrollHeight + 'px'
+        document.body.removeChild(cloneTarget)
+      }
     },
     handlePaste (e) {
       const target = this.$refs.textarea

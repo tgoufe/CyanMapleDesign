@@ -2,7 +2,7 @@
   <cmui-popup
     position="center"
     :visible.sync="selfVisible"
-    class="cmui-notice"
+    class="cmui-notice cmui-dialog"
     :mask-event="false"
     :target-class="
       `cmui-notice__container cmui-dialog__container ${targetClass}`
@@ -25,7 +25,7 @@ import _ from 'lodash'
 export default {
   name: 'cmui-notice',
   methodName: 'notice',
-  argumentsRole(options, args, CURRENT) {
+  argumentsRole (options, args, CURRENT) {
     if (args.length > 1) {
       options.callback = _.filter(args, _.isFunction)[0]
       var stringList = _.filter(args, item =>
@@ -53,11 +53,11 @@ export default {
     content: { type: String, default: '' },
     className: { type: String, default: '' },
     timeout: { type: Number, default: 3000 },
-    closeFn: { type: Function, default: function() {} },
+    closeFn: { type: Function, default: function () { } },
     targetClass: { type: String, default: '' },
     visible: { type: Boolean, default: false }
   },
-  data: function() {
+  data: function () {
     let dom = document.documentElement
     return {
       bodyStyle: {
@@ -71,17 +71,17 @@ export default {
   },
   computed: {
     selfVisible: {
-      get() {
+      get () {
         return this.visible
       },
-      set(value) {
+      set (value) {
         this.visible = value
         this.$emit('update:visible', value)
       }
     }
   },
   methods: {
-    cancel: function() {
+    cancel: function () {
       this.selfVisible = false
       typeof this.closeFn === 'function' && this.closeFn()
     }

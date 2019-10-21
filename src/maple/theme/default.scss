@@ -145,7 +145,19 @@ $innerRadius: 8px;
   }
 }
 .cmui-notice {
+  .cmui-popup__mask {
+    background-color: transparent;
+  }
+  .cmui-notice__container {
+    width: auto;
+  }
   .cmui-notice__warp {
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    line-height: 24px;
+    min-width: 56px;
+    border-radius: $baseRadius;
     .cmui-notice__body {
     }
   }

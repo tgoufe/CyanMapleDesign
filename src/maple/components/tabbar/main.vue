@@ -15,18 +15,19 @@ export default {
   },
   props: {
     col: { type: [String, Number], default: 'auto' },
-    activeIndex: { type: Number, default: 0 },
+    index: { type: Number, default: 0 },
     nav: { type: Array, default: () => [false, false] },
     watch: { type: [Array, Object], default: () => null },
     position: { type: String, default: 'top' }
   },
-  data: function() {
+  data: function () {
     return {
-      items: this.getItems()
+      items: this.getItems(),
+      activeIndex: this.index
     }
   },
   computed: {
-    realCol() {
+    realCol () {
       if (_.isString(this.col)) {
         if (this.col === 'auto' || this.col === 'flex') {
           return this.col
@@ -39,7 +40,7 @@ export default {
         return 'auto'
       }
     },
-    itemStyle() {
+    itemStyle () {
       let rs = {}
       let number
       if (_.isNumber(this.col)) {
@@ -52,10 +53,10 @@ export default {
       }
       return rs
     },
-    isVertical() {
+    isVertical () {
       return _.includes(['left', 'right'], this.position)
     },
-    headContainerClass() {
+    headContainerClass () {
       return {
         'scroll-container': !this.isVertical,
         'flex-container': this.realCol === 'flex' && !this.isVertical,
@@ -63,23 +64,26 @@ export default {
         'scroll-container-y': this.isVertical
       }
     },
-    showPreNav() {
+    showPreNav () {
       return !!_.get(this.nav, '[0]')
     },
-    showNextNav() {
+    showNextNav () {
       return !!_.get(this.nav, '[1]')
     },
-    extras() {
+    extras () {
       return this.$slots.extra || []
     }
   },
   watch: {
-    watch() {
+    watch () {
       this.updata()
+    },
+    activeIndex (index) {
+      this.$emit('update:index', index)
     }
   },
   methods: {
-    scrollAcitveIntoViewIfNeeded(isStart = true) {
+    scrollAcitveIntoViewIfNeeded (isStart = true) {
       const tabBar = this.$refs.nav.$el
       const activeItem = tabBar.children[this.activeIndex]
       const tabBarP = tabBar.getBoundingClientRect()
@@ -89,7 +93,7 @@ export default {
         activeItem.scrollIntoView(isStart)
       }
     },
-    changeToNext() {
+    changeToNext () {
       if (this.activeIndex < this.items.length - 1) {
         this.activeIndex++
         this.$nextTick(() => {
@@ -97,7 +101,7 @@ export default {
         })
       }
     },
-    changeToPre() {
+    changeToPre () {
       if (this.activeIndex > 0) {
         this.activeIndex--
         this.$nextTick(() => {
@@ -105,7 +109,7 @@ export default {
         })
       }
     },
-    changeToIndex(index = 0) {
+    changeToIndex (index = 0) {
       if (_.inRange(index, this.items.length)) {
         this.activeIndex = index
         this.$nextTick(() => {
@@ -113,31 +117,31 @@ export default {
         })
       }
     },
-    changeByStep(num = 1) {
+    changeByStep (num = 1) {
       if (_.inRange(this.activeIndex + num, this.items.length)) {
         this.activeIndex += num
       }
     },
-    getItems() {
+    getItems () {
       return _.filter(
         this.$slots.default,
         item => item.tag === 'cmui-tabbar-item'
       )
     },
-    updata() {
+    updata () {
       this.items = []
       this.$nextTick(() => {
         this.items = this.getItems()
       })
     },
-    extraEvent(event, item, index) {
+    extraEvent (event, item, index) {
       this.$emit('extra-click', this, item, index)
     },
-    navItem() {
+    navItem () {
       this.$emit('item-click', this, ...arguments)
     }
   },
-  render(h) {
+  render (h) {
     const {
       items,
       activeIndex,
