@@ -1,13 +1,12 @@
+import _ from 'lodash'
 let exportModule = window || {}
 let methodName = 'initCMUI'
+let checkDevice = () => /iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion) || document.scrollingElement.clientWidth < 770
+let isMobile = checkDevice()
 export default (function() {
   if (!window || !document) {
     return function() {}
   }
-  // set isMobile
-  let isMobile = /iphone|ipad|android|micromessenger/i.test(
-    window.navigator.appVersion
-  )
   function setFontSize() {
     if (document.body) {
       document.scrollingElement.style.fontSize = isMobile ? '10vw' : '75px'
@@ -69,8 +68,8 @@ export default (function() {
     let domList =
       dom.querySelectorAll(
         '[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom]'
-      ) || [];
-    [...domList].forEach(item => {
+      ) || []
+    ;[...domList].forEach(item => {
       let match = item.className.match(reg)
       match &&
         match.forEach(item => {
@@ -88,14 +87,14 @@ export default (function() {
       let classList = new Set()
       mutations.reduce((rs, item) => {
         if (item.type === 'attributes') {
-          [...item.target.classList].forEach(className =>
+          ;[...item.target.classList].forEach(className =>
             classList.add(className)
           )
         } else if (item.type === 'childList' && item.addedNodes.length) {
           temp.add(item.target)
         }
-      }, {});
-      [...temp].forEach(setPMByDom)
+      }, {})
+      ;[...temp].forEach(setPMByDom)
       classList.size && setPMByClass(classList)
     }).observe(document.body, {
       childList: true,
@@ -108,12 +107,34 @@ export default (function() {
     let oldObject = exportModule[name]
     exportModule[name] = function() {
       if (fn.length === arguments.length) return fn.apply(this, arguments)
-      if (typeof oldObject === 'function') { return oldObject.apply(this, arguments) }
+      if (typeof oldObject === 'function') {
+        return oldObject.apply(this, arguments)
+      }
     }
   }
   addMethod(methodName, initByAuto)
   addMethod(methodName, initByNumber)
   addMethod(methodName, initByRange)
+  let resetRule = _.debounce(() => {
+    if (checkDevice() !== isMobile) {
+      isMobile = checkDevice()
+      setFontSize()
+      _.forEach(cmuiStyle.sheet.rules, rule => {
+        let { style } = rule
+        let len = style.length
+        while (len--) {
+          let name = style[len].replace(/-(\w)/, (word, $1) => $1.toUpperCase())
+          let value = style[name].match(/\d+\.?\d+/g)[0]
+          if (isMobile) {
+            style[name] = value / 75 + 'rem'
+          } else {
+            style[name] = value * 75 + 'px'
+          }
+        }
+      })
+    }
+  }, 500)
+  window.addEventListener('resize', resetRule, false)
   function initByAuto() {
     if (document.body) {
       obs()
@@ -125,8 +146,8 @@ export default (function() {
   function setStep(number, step = 1) {
     let data = new Set()
     for (let i = 0; i < number; i += step) {
-      ['padding', 'margin'].forEach(name => {
-        ['t', 'r', 'b', 'l', 'h', 'v'].forEach(pos => {
+      ;['padding', 'margin'].forEach(name => {
+        ;['t', 'r', 'b', 'l', 'h', 'v'].forEach(pos => {
           data.add(`${name}${pos}${i}`)
         })
         data.add(`${name}${i}`)
