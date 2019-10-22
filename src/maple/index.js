@@ -31,6 +31,8 @@ import Slidebar from './components/slidebar/index.js'
 import Scroll from './components/scroll/index.js'
 import ScrollItem from './components/scroll-item/index.js'
 import Tabbar from './components/tabbar/index.js'
+import VirtualList from './components/virtualList/index.js'
+
 // methods
 import methods from './methods/index.js'
 function Maple() {
@@ -68,7 +70,8 @@ const components = [
   Slidebar,
   Scroll,
   ScrollItem,
-  Tabbar
+  Tabbar,
+  VirtualList
 ]
 const install = function(Vue) {
   if (install.installed) return
@@ -114,5 +117,6 @@ export default {
   Slidebar,
   Scroll,
   ScrollItem,
-  Tabbar
+  Tabbar,
+  VirtualList
 }
