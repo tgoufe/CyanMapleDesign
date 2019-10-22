@@ -6,7 +6,7 @@
 <style lang="scss" type="text/scss">
 .cmui-collapse-item__body,
 .cmui-collapse-item__header {
-  border: 1px solid #dfe6ec;
+  border: 1px solid transparent;
   margin-bottom: -1px;
 }
 .cmui-collapse-item {

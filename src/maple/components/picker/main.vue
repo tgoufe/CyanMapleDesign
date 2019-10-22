@@ -1,6 +1,6 @@
 <template>
-    <cmui-popup position="bottom" :visible.sync="selfVisible" class="cmui-picker">
-        <div class="flex-container padding10">
+    <cmui-popup position="bottom" :visible.sync="selfVisible" class="cmui-picker" target-class="cmui-picker__container">
+        <div class="flex-container cmui-picker__head">
             <div class="cmui-picker__cancel">
                 <div class="cmui-picker__btn" @click="_cancel()">
                 {{ leftText }}
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="pos-r cmui-picker_content">
+        <div class="pos-r cmui-picker__content">
             <div ref="wheelWrapper" class="cmui-picker__wrapper flex-container vfull overflow-h">
                 <div v-for="(item, index) in pickerData" :key="index" class="flex1 swiper-container">
                     <ul class="cmui-picker__scroll swiper-wrapper">

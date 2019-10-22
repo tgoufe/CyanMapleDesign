@@ -1,6 +1,12 @@
 <template>
     <div>
-        <cmui-date-picker @select="select">
+      <div class="form">
+        <label for="date">
+          请选择时间
+          <input type="text" @focus="focus" v-model="inputValue" style="font-size:16px;" ref="input">
+        </label>
+      </div>
+        <cmui-date-picker @select="select" :visible.sync="visible"></cmui-date-picker>
 
         </cmui-date-picker>
     </div>
@@ -9,9 +15,21 @@
 <script>
 export default {
   name: 'datePicker',
+  data(){
+    return {
+      visible:false,
+      inputValue:''
+    }
+  },
   methods:{
     select(day){
+      this.visible=false;
+      this.inputValue=day.format('YYYY-MM-DD')
       console.log(day)
+    },
+    focus(){
+      this.visible=true;
+      this.$refs.input.blur()
     }
   }
 }
