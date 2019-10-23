@@ -1,6 +1,4 @@
-<style lang="scss">
-@import "theme";
-</style>
+
 <script>
 import cmuiTabbarNav from '../tabbar/nav.vue'
 import cmuiTabbarPane from '../tabbar/pane.vue'
