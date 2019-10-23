@@ -10,7 +10,7 @@ export default (function() {
   function setFontSize() {
     if (document.body) {
       document.scrollingElement.style.fontSize = isMobile ? '10vw' : '75px'
-      document.body.style.fontSize = '14px'
+      document.body.style.fontSize = '15px'
     } else {
       document.addEventListener('DOMContentLoaded', setFontSize)
     }
