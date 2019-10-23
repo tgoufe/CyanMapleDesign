@@ -94,13 +94,13 @@
       >
         <div
           slot="title"
-          class="padding10 text-center paddingh20"
+          class=""
         >
           <span>{{ item.title }}</span>
         </div>
         <div
           slot="content"
-          class="padding10"
+          class=""
         >
           <span class="text-coffee">这里是标签{{ item.title }}对应的内容区域</span>
         </div>
