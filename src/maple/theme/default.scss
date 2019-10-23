@@ -12,33 +12,14 @@ $innerRadius: 0px;
   .cmui-popup__mask {
   }
   .cmui-popup__container {
-    &.center {
-      .cmui-popup__content {
-        border-radius: $baseRadius;
-      }
-    }
-    &.bottom {
-      .cmui-popup__content {
-        border-radius: $baseRadius $baseRadius 0 0;
-      }
-    }
-    &.top {
-      .cmui-popup__content {
-        border-radius: 0 0 $baseRadius $baseRadius;
-      }
-    }
-    &.left {
-      .cmui-popup__content {
-        border-radius: 0 $baseRadius $baseRadius 0;
-      }
-    }
-    &.right {
-      .cmui-popup__content {
-        border-radius: $baseRadius 0 0 $baseRadius;
-      }
-    }
+    &.center {.cmui-popup__content {}}
+    &.bottom { .cmui-popup__content { } }
+    &.top { .cmui-popup__content { } }
+    &.left { .cmui-popup__content { } }
+    &.right { .cmui-popup__content { } }
   }
   .cmui-popup__content {
+    background-color:white
   }
   .cmui-popup__top {
   }
@@ -101,7 +82,6 @@ $innerRadius: 0px;
   .cmui-dialog__container {
     width: 100%;
     margin: 0 32px;
-    background: white;
   }
   .cmui-dialog__content {
     padding: 32px 16px;
@@ -388,13 +368,23 @@ $innerRadius: 0px;
   }
 }
 .cmui-slidebar {
-  .cmui-slidebar__warp {
-    .cmui-slidebar__bar {
-      .cmui-slidebar__progress {
-      }
-      .cmui-slidebar__dot {
-      }
-    }
+  height:26px;
+  padding-top:12px;
+  .cmui-slidebar__warp{}
+  .cmui-slidebar__bar{
+    background-color: $gray;
+    height:2px;
+  }
+  .cmui-slidebar__progress{
+    background-color: $mainColor;
+    height:2px;
+  }
+  .cmui-slidebar__dot{
+    border-radius: 24px;
+    width:24px;
+    height:24px;
+    background: #FFFFFF;
+    box-shadow: 0 0 0px 0 rgba(0,0,0,0.20), 0 4px 4px 0 rgba(0,0,0,0.08), 0 0 4px 0 rgba(0,0,0,0.10);
   }
 }
 .cmui-slider {
