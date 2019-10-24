@@ -1,4 +1,6 @@
 import _ from 'lodash'
+import cmuiSlider from '../slider/main.vue'
+import cmuiSliderItem from '../slider-item/main.vue'
 function ImagePreView(ImageList, index = 0, options) {
   let vm = this
   const id = _.uniqueId('preView_')
@@ -14,10 +16,10 @@ function ImagePreView(ImageList, index = 0, options) {
 	    </transition>
 	`
   let dom = document.createElement('div')
-  dom.innerHTML = tpl
   document.body.appendChild(dom)
-  new Vue({
-    el: '#' + id,
+  let Vue = this.$root.constructor
+  return new Vue({
+    components: { cmuiSlider, cmuiSliderItem },
     data: {
       preViewList_temp: [].concat(ImageList),
       show: false,
@@ -47,7 +49,8 @@ function ImagePreView(ImageList, index = 0, options) {
           })
         }
       }
-    }
-  })
+    },
+    template: tpl
+  }).$mount(dom)
 }
 export default ImagePreView

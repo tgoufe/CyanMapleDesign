@@ -12,19 +12,19 @@ import imagePreView from './imagePreView'
 import { ready, isInView } from '../../methods/dom'
 import _ from 'lodash'
 let lazyLoadList = []
-let windowHeight = window.screen.availHeight
+let windowHeight = window.innerHeight
 let checkFinish = true
 const checkLazyLoadImage = _.debounce(function () {
   if (checkFinish) {
     checkFinish = false
     for (let i = 0; i < lazyLoadList.length; i++) {
       const { $el, src } = lazyLoadList[i]
-      const { inView, top } = isInView($el)
+      const inView = isInView($el)
       if (inView) {
         $el.src = src
         lazyLoadList.splice(i--, 1)
         continue
-      } else if (top > windowHeight) {
+      } else if ($el.getBoundingClientRect().top > windowHeight) {
         break
       }
     }
@@ -34,7 +34,7 @@ const checkLazyLoadImage = _.debounce(function () {
 ready(function () {
   window.addEventListener('scroll', checkLazyLoadImage)
   window.addEventListener('resize', function () {
-    windowHeight = window.screen.availHeight
+    windowHeight = window.innerHeight
   })
 })
 const base64Data =

@@ -1,12 +1,11 @@
 function isInView(dom) {
-  let { top, left, height, width } = dom.getBoundingClientRect()
-  let offsetY =
-    top - (document.body.scrollTop || document.documentElement.scrollTop)
-  let offsetX =
-    left - (document.body.scrollLeft || document.documentElement.scrollLeft)
-  let inY = offsetY >= 0 && offsetY < height
-  let inX = offsetX >= 0 && offsetX < width
-  return inY && inX
+  let { top, left, bottom, right } = dom.getBoundingClientRect()
+  let { innerHeight, innerWidth } = window
+  // let offsetY = top - (document.body.scrollTop || document.documentElement.scrollTop)
+  // let offsetX = left - (document.body.scrollLeft || document.documentElement.scrollLeft)
+  // let inY = offsetY >= 0 && offsetY < height
+  // let inX = offsetX >= 0 && offsetX < width
+  return top < innerHeight && bottom > 0 && left < innerWidth && right > 0
 }
 function ready(fn) {
   if (!window || !document) {
