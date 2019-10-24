@@ -5,7 +5,7 @@
   >
     <span
       v-if="align === 'left' && (label || $slots.default)"
-      :class="{ checked: value }"
+      :class="{ checked: slefValue }"
       class="cmui-input__label cmui-form__label"
     >
       <slot />
@@ -17,7 +17,7 @@
     >
       <textarea
         ref="textarea"
-        v-model="value"
+        v-model="slefValue"
         :maxlength="max"
         :name="name"
         :readonly="readonly"
@@ -34,7 +34,7 @@
         v-if="max >= 0"
         class="pos-a text-light"
         style="right:12px;bottom:4px;"
-        v-text="value.length + '/' + max"
+        v-text="slefValue.length + '/' + max"
       ></div>
     </div>
     <span
@@ -80,6 +80,14 @@ export default {
       } else {
         return 'top'
       }
+    },
+    slefValue: {
+      get() {
+        return this.value
+      },
+      set(value) {
+        this.$emit('input', value, this.$refs.textarea, this)
+      }
     }
   },
   methods: {
@@ -96,7 +104,7 @@ export default {
             cloneTarget.style[item] = style[item]
           }
         )
-        cloneTarget.value = this.value
+        cloneTarget.value = this.slefValue
         document.body.appendChild(cloneTarget)
         target.style.height = cloneTarget.scrollHeight + 'px'
         document.body.removeChild(cloneTarget)
@@ -107,7 +115,6 @@ export default {
       if (this.max) {
         target.value = target.value.slice(0, this.max)
       }
-      this.$emit('input', target.value, target, this)
     }
   }
 }
