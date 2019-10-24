@@ -14,6 +14,8 @@
             </cmui-number>
         </div>
         <div class="form tag-container config">
+          <div class="flex-container">
+          </div>
             <cmui-list :space="10">
                 <cmui-list-item>
                     <div class="flex-container">
@@ -91,9 +93,9 @@ export default {
     minHandle(value){
         maple.alert('最小值为'+value)
     },
-      aaa(name){
-        console.log(name)
-      }
+    inputHandle(name){
+      console.log(name)
+    }
   }
 };
 </script>
