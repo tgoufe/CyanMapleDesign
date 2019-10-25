@@ -15,7 +15,7 @@
       :name="name"
       :readonly="readonly"
       :class="[targetClass]"
-      :disabled="selfDisabled"
+      :disabled="disabled"
       @change="handleChange"
     >
     <span
@@ -47,8 +47,7 @@ export default {
   },
   data: function() {
     return {
-      indeterminate: false,
-      selfDisabled: this.disabled
+      indeterminate: false
     }
   },
   computed: {
@@ -74,6 +73,7 @@ export default {
   },
   watch: {
     indeterminate(value) {
+      console.log(value)
       let dom = this.$refs.checkbox
       if (dom) {
         dom.indeterminate = value
@@ -86,7 +86,7 @@ export default {
       const value = target.checked
       const beforeChangeEvent = this.$listeners['before-change']
       if (_.isFunction(beforeChangeEvent)) {
-        this.selfDisabled = true
+        this.disabled = true
         new Promise((resolve, reject) => {
           beforeChangeEvent(value, resolve, reject, this)
         }).then(
@@ -103,11 +103,11 @@ export default {
             }
             this.$emit('input', value, this)
             this.$emit('change', value, this)
-            this.selfDisabled = false
+            this.disabled = false
           },
           () => {
             target.checked = !target.checked
-            this.selfDisabled = false
+            this.disabled = false
           }
         )
       } else {
