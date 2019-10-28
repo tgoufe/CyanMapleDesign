@@ -6,7 +6,7 @@
     />
     <!-- <transition :name="transitionName"> -->
     <router-view
-      class="padding30 child-view"
+      class="child-view"
       style="width:100%"
     />
     <!-- </transition> -->

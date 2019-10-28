@@ -1,18 +1,25 @@
 <template>
-    <div class="list">
-        <div v-for="item in list" :key="item.name" class="list-item">
-            <router-link :to="item.path" class="padding30 flex-container text-dark">
-                <span>{{ item.name }}</span>
-                <i class="baseIcon baseIcon-right" />
-            </router-link>
+  <cmui-list v-bind="options">
+    <cmui-list-item v-for="item in list" :key="key" class="bg-white flex-container vfull hfull" style="height:33.3333vw">
+      <router-link :to="item.path" class="paddingt10 paddingb30 text-dark text-center flex-container-col" style="height:100%;">
+        <div class="flex2 flex-container bottom">
+          <i class="baseIcon baseIcon-home text-black" style="font-size: 24px;line-height: 30px;"></i>
         </div>
-    </div>
+        <div class="flex1 flex-container bottom" style="line-height: 22px;">{{ item.name }}</div>
+      </router-link>
+    </cmui-list-item>
+  </cmui-list>
 </template>
 <script>
 export default {
   name: 'Form',
   data() {
     return {
+      options: {
+        border: true,
+        col: 3,
+        space: 0
+      },
       list: [
         'checkbox',
         'input',

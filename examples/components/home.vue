@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="padding30">
         <img src="https://zhang-yue.oss-cn-beijing.aliyuncs.com/bingshan/1212.png" alt="">
         <p class="text-center padding20 bg-white">
             高速的描述型框架，简单不简单
