@@ -35,5 +35,7 @@ export default {
 </script>
 
 <style scoped>
-
+.cmui-list a:hover i{
+  color:#00BABA;
+}
 </style>
