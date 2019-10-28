@@ -11,7 +11,7 @@
                         <i class="baseIcon baseIcon-home" style="font-size: 24px;line-height: 30px;"></i>
                         <span class="fs-14 marginl30">{{ item.name }}</span>
                     </div>
-                    <i class="baseIcon baseIcon-right" />
+                    <i class="baseIcon baseIcon-right fs-10 text-light" />
                 </router-link>
             </div>
         </div>
