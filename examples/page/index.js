@@ -1,5 +1,5 @@
-const routerContext = require.context('./', false, /\.vue$/)
-const themeContext = require.context('@theme', false, /\.scss$/)
+const routerContext = require.context('./', true, /\.vue$/)
+const themeContext = require.context('@theme', true, /\.scss$/)
 const themeList = themeContext.keys().map(key => key.slice(2, -5))
 const path = require('path')
 let folder = { base: [] }
