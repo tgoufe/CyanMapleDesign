@@ -18,6 +18,7 @@ import headBar from './components/head'
 import maple from '@maple/index.js'
 import vue from 'vue'
 import '@theme/default.scss'
+import './assets/style.css'
 import styleinit from '../src/maple/styleInit'
 // vue.config.warnHandler = new Function()
 styleinit()
