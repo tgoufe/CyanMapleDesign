@@ -1,5 +1,5 @@
-const routerContext = require.context('./', true, /\.vue$/)
-const themeContext = require.context('@theme', true, /\.scss$/)
+const routerContext = require.context('./', true, /\.vue$/, 'lazy')
+const themeContext = require.context('@theme', true, /\.scss$/, 'lazy')
 const themeList = themeContext.keys().map(key => key.slice(2, -5))
 const path = require('path')
 let folder = { base: [] }
@@ -23,7 +23,8 @@ routerContext.keys().forEach(key => {
   routerAdd.push({
     path: routerPath,
     name: fileName,
-    component: () => import('../page/' + key.slice(2))
+    fullPath: key.slice(2)
+//    component: () => import('../page/' + key.slice(2))
   })
 })
 

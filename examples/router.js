@@ -10,6 +10,12 @@ export default new Router({
       name: 'home',
       component: home
     },
-    ...page.routerAdd
+    ...page.routerAdd.map(e => {
+      return {
+        path: e.path,
+        name: e.name,
+        component: () => import(`./page/${e.fullPath}`)
+      }
+    })
   ]
 })
