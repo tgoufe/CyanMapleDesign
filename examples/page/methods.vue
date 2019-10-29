@@ -1,6 +1,6 @@
 <template>
   <cmui-list v-bind="options">
-    <cmui-list-item v-for="item in list" :key="key" class="bg-white flex-container vfull hfull" style="height:33.3333vw">
+    <cmui-list-item v-for="item in list"  class="bg-white flex-container vfull hfull" style="height:33.3333vw">
       <router-link :to="item.path" class="paddingt10 paddingb30 text-dark text-center flex-container-col" style="height:100%;">
         <div class="flex2 flex-container bottom">
           <i class="baseIcon baseIcon-home text-black" style="font-size: 24px;line-height: 30px;"></i>
