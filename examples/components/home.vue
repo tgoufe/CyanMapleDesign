@@ -8,7 +8,7 @@
             <div v-for="item in list" :key="item.name" class="list-item margint30 bg-white">
                 <router-link :to="item.path" class="padding30 flex-container text-dark">
                     <div class="flex-container left text-black">
-                        <i class="baseIcon" :class="item.icon" style="font-size: 24px;line-height: 30px;"></i>
+                        <i class="" :class="item.icon" style="font-size: 24px;line-height: 30px;"></i>
                         <span class="fs-14 marginl30">{{ item.name }}</span>
                     </div>
                     <i class="baseIcon baseIcon-right fs-10 text-light" />
@@ -25,10 +25,10 @@ export default {
   data() {
     return {
       list: [
-        { name: 'cyan', path: '/cyan', icon:'baseIcon-home' },
-        { name: 'UI组件', path: '/ui', icon:'baseIcon-icon-ui' },
-        { name: '表单组件', path: '/forms', icon:'baseIcon-icon-forms' },
-        { name: '公共方法', path: '/methods', icon:'baseIcon-home' },
+        { name: 'cyan', path: '/cyan', icon:'uiIcon-mask' },
+        { name: 'UI组件', path: '/ui', icon:'uiIcon-ui' },
+        { name: '表单组件', path: '/forms', icon:'uiIcon-forms' },
+        { name: '公共方法', path: '/methods', icon:'uiIcon-mask' },
       ]
     }
   },
