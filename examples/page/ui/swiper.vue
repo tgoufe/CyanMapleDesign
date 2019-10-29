@@ -8,7 +8,7 @@
 							<img :src="item.src">
 						</div>
 						<div class="flex1">
-							<p>{{index}}</p>
+							<p>{{item.str}}</p>
 						</div>
 					</div>
 				</cmui-swiper>
@@ -17,15 +17,17 @@
 	</div>
 </template>
 <script type="text/javascript">
+  import img from '@assets/img.js'
+  import faker from 'faker';
 	export default{
 		data:function(){
-			let imgList=_.times(20,index=>{
-				return {
-					src:`${location.origin}/image/${index<10?'white':'black'}${index%10}.jpg`,
-					control:['删除','收藏']
-				}
-			})
-			return {imgList}
+			return {imgList:[...img.blackList,...img.whiteList].map(item=>{
+        return{
+          src:item,
+          str:faker.name.title(),
+          control:['删除','收藏']
+        }
+      })}
 		},
 		methods:{
 			handle(index,item,arg){

@@ -1,4 +1,7 @@
 # 设备晃动控制
+:::warning
+注意，由于系统的限制，shake方法仅在HTTPS下生效
+:::
 调用系统的陀螺仪实现摇一摇功能
 ## 快捷调用
 maple.shake(startFn,[endFn,interval,eontinuEvent])

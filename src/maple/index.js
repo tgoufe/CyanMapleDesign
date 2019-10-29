@@ -30,6 +30,7 @@ import Mask from './components/mask/index.js'
 import Slidebar from './components/slidebar/index.js'
 import Scroll from './components/scroll/index.js'
 import ScrollItem from './components/scroll-item/index.js'
+import Swiper from './components/swiper/index.js'
 import Tabbar from './components/tabbar/index.js'
 import VirtualList from './components/virtualList/index.js'
 
@@ -70,6 +71,7 @@ const components = [
   Slidebar,
   Scroll,
   ScrollItem,
+  Swiper,
   Tabbar,
   VirtualList
 ]
@@ -117,6 +119,7 @@ export default {
   Slidebar,
   Scroll,
   ScrollItem,
+  Swiper,
   Tabbar,
   VirtualList
 }

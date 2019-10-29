@@ -20,7 +20,7 @@ function getlist(name){
 }
 module.exports = {
     title: 'CyanMaple',
-    description: '高速的描述型框架，简单不简单',
+    description: '高效的描述型框架，简单不简单',
     base:'/cmui/',
     dest:'../cmui',
     serviceWorker:true,
