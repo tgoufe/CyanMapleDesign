@@ -107,6 +107,9 @@ input{
             position:relative;
             outline: 0!important;
             -webkit-appearance: none;
+            &:checked{
+                z-index: 1;
+            }
             &::before{
                 font-family: "iconfont";
                 font-weight: 400;
@@ -123,6 +126,12 @@ input{
                     content:attr(label);
                     margin-left:.133333333rem;
                     font-size:$font-size-base;
+                }
+                &.flex-container{
+                    &::after{
+                        margin-right:.133333333rem;
+                        margin-right:auto;
+                    }
                 }
                 &:not([class*=btn]):checked::after{
                     color:$form-color-base;
@@ -149,6 +158,62 @@ input{
                 }
                 &:checked:before,&:indeterminate:before{
                     color:$form-color-base;
+                }
+            }
+            &.btn{
+                background-color: white;
+                &:not(.reverse){
+                    &::after{
+                        margin-left: auto;
+                    }
+                    &::before{
+                        content:'';
+                    }
+                    &:checked{
+                        color:white;
+                        background-color:$form-color-base;
+                        border-color:$form-color-base;
+                    }
+                }
+                &.reverse{
+                   &:checked{
+                        color:$form-color-base;
+                        border-color:$form-color-base;
+                    } 
+                }
+            }
+            &.customColor{
+                border-color:currentColor;
+                &:not(.reverse){
+                    background-color:currentColor;
+                    color:#fff;
+                    &::before,&::after{
+                        color:#fff;
+                    }
+                }
+                @if ($isPC){
+                    &:focus,
+                    &.focus {
+                       opacity: .5;
+                    }
+                    &:hover {
+                       opacity: .5;
+                    }
+                    &:active,
+                    &.active
+                    {
+                       opacity: .5;
+                      &:hover,
+                      &:focus,
+                      &.focus {
+                         opacity: .67;
+                      }
+                    }
+                    &:active,
+                    &.active
+                    {
+                      background-image: none;
+                    }
                 }
             }
         }
@@ -252,18 +317,16 @@ input{
         }
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
           @if $btnSizeName!='base'{
-                &.#{$btnSizeName}{
-                &:not([type=checkbox]):not([type=radio]){
-                  padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
-                  &~{
-                      .input-reset,.input-changeType,.input-search{
-                          &:before{
-                              line-height:nth($btnSizeValue,1);
-                          }
+            &.#{$btnSizeName}:not([type=checkbox]):not([type=radio]){
+              padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
+              &~{
+                  .input-reset,.input-changeType,.input-search{
+                      &:before{
+                          line-height:nth($btnSizeValue,1);
                       }
                   }
-                }
               }
+            }
             &[type=checkbox],&[type=radio]{
                 &:not([class*=btn]){
                     &.#{$btnSizeName}{
@@ -278,40 +341,6 @@ input{
                     &.#{$btnSizeName}{
                         &::after{
                             font-size:nth($btnSizeValue,3);
-                        }
-                    }
-                }
-                &.customColor{
-                    border-color:currentColor;
-                    &:not(.reverse){
-                        background-color:currentColor;
-                        color:#fff;
-                        &::before,&::after{
-                            color:#fff;
-                        }
-                    }
-                    @if ($isPC){
-                        &:focus,
-                        &.focus {
-                           opacity: .5;
-                        }
-                        &:hover {
-                           opacity: .5;
-                        }
-                        &:active,
-                        &.active
-                        {
-                           opacity: .5;
-                          &:hover,
-                          &:focus,
-                          &.focus {
-                             opacity: .67;
-                          }
-                        }
-                        &:active,
-                        &.active
-                        {
-                          background-image: none;
                         }
                     }
                 }
@@ -456,8 +485,25 @@ input{
                     border-bottom-color:$colorValue;
                 }
                 &[type=checkbox],&[type=radio]{
-                    &:before{
+                    &:checked:before{
                        color:$colorValue;
+                    }
+                    &.btn{
+                        &:not(.reverse){
+                            &:checked{
+                                background-color:$colorValue;
+                                border-color:$colorValue;
+                            }
+                        }
+                        &.reverse{
+                           &:checked{
+                                color:$colorValue;
+                                border-color:$colorValue;
+                            } 
+                        }
+                    }
+                    &:not([class*=btn]):checked::after{
+                        color:$colorValue;
                     }
                 }
                 &[type=checkbox]{
@@ -466,6 +512,15 @@ input{
                             background: $colorValue;
                         }
                     }
+                }
+            }
+            select,textarea{
+                &:focus{
+                    border-color:$colorValue;
+                }
+                &.reverse:focus{
+                    border-color:transparent;
+                    border-bottom-color:$colorValue;
                 }
             }
         }
