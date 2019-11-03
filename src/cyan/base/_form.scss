@@ -118,7 +118,7 @@ input{
                 -webkit-font-smoothing: antialiased;
                 transition: color .2s cubic-bezier(.645,.045,.355,1);
             }
-            &[label]{
+            &[label]:not(.switch){
                 width:auto !important;
                 display: inline-flex;
                 align-items: center;
@@ -502,7 +502,7 @@ input{
                             } 
                         }
                     }
-                    &:not([class*=btn]):checked::after{
+                    &:not([class*=btn]):not(.switch):checked::after{
                         color:$colorValue;
                     }
                 }

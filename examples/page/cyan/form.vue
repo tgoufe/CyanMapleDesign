@@ -1,48 +1,82 @@
 <template>
-    <div class="form">
-        <p>input</p>
-        <input type="text">
-        <p>input reverse</p>
-        <input type="text" class="reverse">
+    <div class="form padding20" :class="[formColor]">
+        <div class="fixed-bottom bg-black padding20" style="z-index:1">
+            <div class="flex-container">
+                <span class="text-white marginr30">颜色选择</span>
+                <div class="ratio-container flex1 border"
+                v-for="item in colors"
+                :key="item"
+                :class='[`bg-${item}`]'
+                @click="formColor=item"
+                >
+                </div>
+            </div>
+            <div class="btn-group margint20 flex-container">
+                <span class="text-white left">尺寸选择</span>
+                <div class="btn blue reverse" @click="size=''">默认</div>
+                <div class="btn blue reverse" @click="size='small'">small</div>
+                <div class="btn blue reverse" @click="size='big'">big</div>
+            </div>
+        </div>
+        
+        
         <p>checkbox</p>
-        <input type="checkbox" checked>
-        <p>checkbox reverse</p>
-        <input type="checkbox" checked class="reverse">
-        <p>checkbox square</p>
-        <input type="checkbox" checked class="square">
-        <p>checkbox square reverse</p>
-        <input type="checkbox" checked class="square reverse">
-        <p>checkbox switch</p>
-        <input type="checkbox" class="switch" checked>
+        <div class="list border">
+            <div class="list-item padding20 flex-container" v-for="item in checkboxData" :key="item">
+                <span class="left">{{item||'默认'}}</span>
+                <input type="checkbox" :class="[item,size]" checked label="选项">
+            </div>
+        </div>
+
         <p>radio</p>
-        <input type="radio" checked>
-        <p>radio reverse</p>
-        <input type="radio" checked class="reverse">
-        <p>radio square</p>
-        <input type="radio" checked class="square">
-        <p>radio square reverse</p>
-        <input type="radio" checked class="square reverse">
+        <div class="list border">
+            <div class="list-item padding20 flex-container" v-for="item in ratioData" :key="item">
+                <span class="left">{{item=='0'?'默认':item}}</span>
+                <input type="radio" :class="[item,size]" :name="item" class="marginr30" checked label="选项">
+                <input type="radio" :class="[item,size]" :name="item" label="选项">
+            </div>
+        </div>
+        <p>input</p>
+        <input type="text" :class="size" placeholder="请输入内容">
+        
+        <p>input reverse</p>
+        <input type="text" class="reverse" :class="size" placeholder="请输入内容">
         <p>select</p>
-        <select name="" id="">
-            <option :value="i" v-for="i in 5">{{i}}</option>
+        <select name="" id="" :class="size" placeholder="请输入内容">
+            <option :value="i" v-for="i in 5" :key="i">{{i}}</option>
         </select>
         <p>select reverse</p>
-        <select name="" id="" class="reverse">
-            <option :value="i" v-for="i in 5">{{i}}</option>
+        <select name="" id="" class="reverse" :class="size" placeholder="请输入内容">
+            <option :value="i" v-for="i in 5" :key="i">{{i}}</option>
         </select>
         <p>textarea</p>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea name="" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
         <p>textarea reverse</p>
-        <textarea name="" id="" cols="30" rows="10" class="reverse"></textarea>
+        <textarea name="" id="" cols="30" rows="10" class="reverse" placeholder="请输入内容"></textarea>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'form'
+  name: 'form',
+  data(){
+    return{
+        colors:[
+            '','red','orange','yellow','green','coffee','blue','purple'
+        ],
+        formColor:'',
+        checkboxData:[
+            '','reverse','square','square reverse','switch','btn','btn radius','btn reverse','btn reverse radius'
+        ],
+        ratioData:[
+            '0','reverse','square','square reverse','btn','btn radius','btn reverse','btn reverse radius'
+        ],
+        size:''
+    }
+  }
 }
 </script>
 
 <style scoped>
-
+.bg-{background-color: #00baba}
 </style>

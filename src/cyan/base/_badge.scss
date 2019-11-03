@@ -1,3 +1,8 @@
+@mixin badge-variant($color, $background, $border) {
+  border-color: $border;
+  color: $color;
+  background-color: $background;
+}
 @mixin badgeSize($height,$paddingh,$fontSize){
   min-width: $height;
   padding: ($height - $fontSize) / 2 $paddingh;
@@ -23,8 +28,13 @@
   vertical-align: middle;
   white-space: nowrap;
   text-align: center;
-  color:white;
-  background-color: map-get($grayList,'lighter');
+  @include badge-variant(white, #cccccc, #cccccc);
+  &.reverse{
+    @include badge-variant(#666, white, #cccccc);
+  }
+  &.light{
+    @include badge-variant(#666, #f7f7f7, #f7f7f7);
+  }
   position: relative;
   &:empty {
     display: none;
@@ -69,19 +79,21 @@
       }
     }
   }
-  @each $colorName,$colorValue in $bg_colorList{
-      &#{&-#{$colorName}},&.#{$colorName}{
+  @each $colorName,$colorValue in $colorList{
+      &.#{$colorName}{
         background-color:$colorValue;
-      }
-      &#{&}-flag#{&-#{$colorName}},&.flag.#{$colorName}{
-        &:before{
-          border-right-color: darken($colorValue,10%);
+        @include badge-variant(white, $colorValue, $colorValue);
+        &.light{
+          @include badge-variant($colorValue, scale-color($colorValue,$lightness: 70%), transparent);
         }
-      }
-      &#{&}-reverse#{&-#{$colorName}},&.reverse.#{$colorName}{
-        background-color:white;
-        border:1px solid map-get($colorList,#{$colorName});
-        color:map-get($colorList,#{$colorName});
+        &.reverse{
+          @include badge-variant($colorValue, white, $colorValue);
+        }
+        &.flag{
+          &:before{
+            border-right-color: darken($colorValue,10%);
+          }
+        }
       }
   }
 }

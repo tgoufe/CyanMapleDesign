@@ -1,28 +1,48 @@
 <template>
     <div>
-        <p>默认</p>
-        <div class="btn">默认</div>
-        <p>色彩</p>
-        <div v-for="color in colors" class="btn margin20" :class="[color]">btn</div>
-        <p>圆角</p>
-        <div v-for="color in colors" class="btn margin20 radius" :class="[color]">btn radius</div>
-        <p>翻转</p>
-        <div v-for="color in colors" class="btn margin20 reverse" :class="[color]">btn reverse</div>
-        <p>圆角+翻转</p>
-        <div v-for="color in colors" class="btn margin20 reverse radius" :class="[color]">radius reverse</div>
-        <p>尺寸</p>
-        <div class="margin20 btn small">small</div>
-        <div class="margin20 btn">default</div>
-        <div class="margin20 btn big">big</div>
-        <p>块</p>
-        <div class="btn green block reverse radius">block</div>
-        <div class="btn green block radius">block</div>
-        <p>组</p>
-        <div class="btn-group">
-            <div class="btn reverse blue radius">上一页</div>
-            <div class="btn reverse blue radius" v-for="i in 3">{{i}}</div>
-            <div class="btn reverse blue radius">下一页</div>
+      <div class="fixed-bottom bg-black padding20" style="z-index:1">
+            <div class="flex-container">
+                <span class="text-white marginr30">颜色选择</span>
+                <div class="ratio-container flex1 border"
+                v-for="item in colors"
+                :key="item"
+                :class='[`bg-${item}`]'
+                @click="selectColor=item"
+                >
+                </div>
+            </div>
+            <div class="btn-group margint20 flex-container">
+                <span class="text-white left">尺寸选择</span>
+                <div class="btn blue reverse" @click="size=''">默认</div>
+                <div class="btn blue reverse" @click="size='small'">small</div>
+                <div class="btn blue reverse" @click="size='big'">big</div>
+            </div>
+            <div class="form">
+             <cmui-checkbox
+             :flex="true"
+             target-class="switch"
+             class="text-white"
+             v-model="light">light</cmui-checkbox>
+             <cmui-checkbox
+             :flex="true"
+             target-class="switch"
+             class="text-white"
+             v-model="reverse">翻转</cmui-checkbox>
+             <cmui-checkbox
+             :flex="true"
+             target-class="switch"
+             class="text-white"
+             v-model="radius">圆角</cmui-checkbox>
+            </div>
         </div>
+        <div class="padding20">
+          <div class="btn"
+          :class="[size,selectColor,{light,radius,reverse}]"
+          >这是一个按钮</div>
+        </div>
+        <p class="text-red">
+          备注：light模式下不支持reverse
+        </p>
     </div>
 </template>
 
@@ -39,7 +59,12 @@ export default {
         'coffee',
         'blue',
         'purple'
-      ]
+      ],
+      size:'',
+      light:false,
+      selectColor:'',
+      reverse:false,
+      radius:false
     }
   }
 }
