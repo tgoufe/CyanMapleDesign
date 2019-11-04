@@ -77,11 +77,13 @@ input{
             background-color: #fff;
             border: 1px solid map-get($grayList,'lighter');
             transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-
             &:focus{
                 border-color: $form-color-base;
                 outline: 0;
                 font-size:16px;
+            }
+            &.custom:focus{
+              border-color: currentColor;
             }
             &.radius{
                 border-radius: $border-radius-base;
@@ -161,7 +163,11 @@ input{
                 }
             }
             &.btn{
-                background-color: white;
+                &:not(:checked){
+                  color:#666;
+                  background-color: #ccc;
+                  border-color:#ccc;
+                }
                 &:not(.reverse){
                     &::after{
                         margin-left: auto;
@@ -173,48 +179,104 @@ input{
                         color:white;
                         background-color:$form-color-base;
                         border-color:$form-color-base;
+                        &.light{
+                          color:$form-color-base;
+                          background-color:scale-color($form-color-base,$lightness: 70%);
+                          border-color:transparent;
+                        }
                     }
                 }
                 &.reverse{
+                  background-color: white;
                    &:checked{
                         color:$form-color-base;
                         border-color:$form-color-base;
                     } 
                 }
             }
-            &.customColor{
-                border-color:currentColor;
+            &.custom{
+              position: relative;
+              &:not(.btn){
+                &:checked{
+                  &::after,&::before{
+                    color:currentColor !important;
+                  }
+                }
+                &:not(:checked):after{
+                  color:initial;
+                }
+              }
+              &.btn{
+                &.light{
+                  &:checked:not(.reverse){
+                    background-color:white;
+                    border-color:white;
+                    &:after{
+                      color:currentColor;
+                    }
+                    &::before{
+                      position: absolute;
+                      left:-1px;
+                      right:-1px;
+                      top:-1px;
+                      bottom:-1px;
+                      background-color:currentColor;
+                      opacity: .3;
+                    }
+                  }
+                }
                 &:not(.reverse){
-                    background-color:currentColor;
-                    color:#fff;
-                    &::before,&::after{
-                        color:#fff;
+                    &:checked{
+                        color:inherit;
+                        background-color:currentColor;
+                        border-color:currentColor;
+                    }
+                    &::after{
+                      color:white
                     }
                 }
-                @if ($isPC){
-                    &:focus,
-                    &.focus {
-                       opacity: .5;
+                &.reverse{
+                    &:checked{
+                        color:currentColor;
+                        border-color:currentColor;
                     }
-                    &:hover {
-                       opacity: .5;
-                    }
-                    &:active,
-                    &.active
-                    {
-                       opacity: .5;
-                      &:hover,
-                      &:focus,
-                      &.focus {
-                         opacity: .67;
-                      }
-                    }
-                    &:active,
-                    &.active
-                    {
-                      background-image: none;
+                    &:not(:checked){
+                      color:#666 !important;
                     }
                 }
+              }
+                // border-color:currentColor;
+                // &:not(.reverse){
+                //     background-color:currentColor;
+                //     color:#fff;
+                //     &::before,&::after{
+                //         color:#fff;
+                //     }
+                // }
+                // @if ($isPC){
+                //     &:focus,
+                //     &.focus {
+                //        opacity: .5;
+                //     }
+                //     &:hover {
+                //        opacity: .5;
+                //     }
+                //     &:active,
+                //     &.active
+                //     {
+                //        opacity: .5;
+                //       &:hover,
+                //       &:focus,
+                //       &.focus {
+                //          opacity: .67;
+                //       }
+                //     }
+                //     &:active,
+                //     &.active
+                //     {
+                //       background-image: none;
+                //     }
+                // }
             }
         }
         &[type=radio]{
@@ -299,6 +361,9 @@ input{
                     &:before{
                         content: '';
                         background: $form-color-base;
+                    }
+                    &.custom::before{
+                      background: currentColor;
                     }
                     &:after{
                         @include translate($from-control-size - 7,0px );
@@ -475,46 +540,53 @@ input{
         color:$form-color-base;
     }
     @each $colorName,$colorValue in $colorList{
-        &.#{$colorName}{
-            input{
-                &:focus{
-                    border-color:$colorValue;
+        &.#{$colorName} input,input.#{$colorName}{
+            &:focus{
+                border-color:$colorValue;
+            }
+            &.reverse:focus{
+                border-color:transparent;
+                border-bottom-color:$colorValue;
+            }
+            &[type=checkbox],&[type=radio]{
+                &:checked:before{
+                    color:$colorValue;
                 }
-                &.reverse:focus{
-                    border-color:transparent;
-                    border-bottom-color:$colorValue;
-                }
-                &[type=checkbox],&[type=radio]{
-                    &:checked:before{
-                       color:$colorValue;
-                    }
-                    &.btn{
-                        &:not(.reverse){
-                            &:checked{
-                                background-color:$colorValue;
-                                border-color:$colorValue;
-                            }
-                        }
-                        &.reverse{
-                           &:checked{
-                                color:$colorValue;
-                                border-color:$colorValue;
-                            } 
+                &.btn{
+                    &:not(.reverse){
+                        &:checked{
+                            background-color:$colorValue;
+                            border-color:$colorValue;
                         }
                     }
-                    &:not([class*=btn]):not(.switch):checked::after{
+                    &.reverse{
+                        &:checked{
+                            color:$colorValue;
+                            border-color:$colorValue;
+                        } 
+                    }
+                    &.light{
+                      &:checked{
                         color:$colorValue;
+                        background-color:scale-color($colorValue,$lightness: 70%);
+                        border-color:transparent;
+                      } 
                     }
                 }
-                &[type=checkbox]{
-                    &:checked{
-                        &.switch:before{
-                            background: $colorValue;
-                        }
+                &:not([class*=btn]):not(.switch):checked::after{
+                    color:$colorValue;
+                }
+            }
+            &[type=checkbox]{
+                &:checked{
+                    &.switch:before{
+                        background: $colorValue;
                     }
                 }
             }
-            select,textarea{
+        }
+        &.#{$colorName}{
+          select,textarea{
                 &:focus{
                     border-color:$colorValue;
                 }

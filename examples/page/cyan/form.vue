@@ -18,8 +18,6 @@
                 <div class="btn blue reverse" @click="size='big'">big</div>
             </div>
         </div>
-        
-        
         <p>checkbox</p>
         <div class="list border">
             <div class="list-item padding20 flex-container" v-for="item in checkboxData" :key="item">
@@ -66,10 +64,10 @@ export default {
         ],
         formColor:'',
         checkboxData:[
-            '','reverse','square','square reverse','switch','btn','btn radius','btn reverse','btn reverse radius'
+            '','reverse','square','square reverse','switch','btn','btn radius','btn light','btn light radius','btn reverse','btn reverse radius'
         ],
         ratioData:[
-            '0','reverse','square','square reverse','btn','btn radius','btn reverse','btn reverse radius'
+            '0','reverse','square','square reverse','btn','btn radius','btn light','btn light radius','btn reverse','btn reverse radius'
         ],
         size:''
     }
