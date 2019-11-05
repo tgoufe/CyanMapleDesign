@@ -1,122 +1,171 @@
-$mainColor:#00BABA;
-.cmui-actions{
-  .cmui-actions__title{}
-  .cmui-actions__group{
-    .cmui-actions__button{}
+$mainColor: #00baba;
+.cmui-popup {
+  .cmui-popup__mask {
   }
-  .cmui-actions__cancel{
-    .cmui-actions__button{}
+  .cmui-popup__container {
   }
-}
-.cmui-dialog{
-  .cmui-dialog__title{}
-  .cmui-dialog__warp{
-    .cmui-dialog__body{}
+  .cmui-popup__content {
   }
-  .cmui-dialog__buttons{
-    .cmui-dialog__button{}
+  .cmui-popup__top {
+  }
+  .cmui-popup__main {
+  }
+  .cmui-popup__bottom {
   }
 }
-.cmui-alert{
-  .cmui-alert__title{}
-  .cmui-alert__warp{
-    .cmui-alert__body{}
+.cmui-actions {
+  .cmui-actions__title {
   }
-  .cmui-alert__buttons{
-    .cmui-alert__button{}
+  .cmui-actions__group {
+    .cmui-actions__button {
+    }
   }
-}
-.cmui-confirm{
-  .cmui-confirm__title{}
-  .cmui-confirm__warp{
-    .cmui-confirm__body{}
-  }
-  .cmui-confirm__buttons{
-    .cmui-confirm__button{}
+  .cmui-actions__cancel {
+    .cmui-actions__button {
+    }
   }
 }
-.cmui-notice{
-  .cmui-notice__warp{
-    .cmui-notice__body{}
+.cmui-dialog {
+  .cmui-dialog__title {
+  }
+  .cmui-dialog__warp {
+    .cmui-dialog__body {
+    }
+  }
+  .cmui-dialog__buttons {
+    .cmui-dialog__button {
+    }
   }
 }
-.cmui-captcha{
-  .cmui-captcha__warp{
-    .cmui-captcha__item{
-      &:not(:last-child){}
-      &.active{
-        .cmui-captcha__line{}
+.cmui-alert {
+  .cmui-alert__title {
+  }
+  .cmui-alert__warp {
+    .cmui-alert__body {
+    }
+  }
+  .cmui-alert__buttons {
+    .cmui-alert__button {
+    }
+  }
+}
+.cmui-confirm {
+  .cmui-confirm__title {
+  }
+  .cmui-confirm__warp {
+    .cmui-confirm__body {
+    }
+  }
+  .cmui-confirm__buttons {
+    .cmui-confirm__button {
+    }
+  }
+}
+.cmui-notice {
+  .cmui-notice__warp {
+    .cmui-notice__body {
+    }
+  }
+}
+.cmui-captcha {
+  .cmui-captcha__warp {
+    .cmui-captcha__item {
+      &:not(:last-child) {
       }
-      .cmui-captcha__dot{}
-    }
-  }
-}
-.cmui-countdown{
-  .countdown-container{
-    &.day{
-      &::after{}
-    }
-    &.hour{
-      &::after{}
-    }
-    &.minute{
-      &::after{}
-    }
-    &.sec{
-      &::after{}
-    }
-    &.millSec{
-      &::after{}
-    }
-  }
-}
-.cmui-picker{
-  .cmui-picker__cancel{
-    .cmui-picker__btn{}
-  }
-  .cmui-picker__ok{
-    .cmui-picker__btn{}
-  }
-  .cmui-picker_content{
-    .cmui-picker__wrapper{
-      .cmui-picker__scroll{
-        .cmui-picker__item{}
+      &.active {
+        .cmui-captcha__line {
+        }
       }
-    }
-    .cmui-picker__linet{}
-    .cmui-picker__lineb{}
-  }
-}
-.cmui-progress{
-  .cmui-progress_warp{
-    .cmui-progress_bar{
-      .cmui-progress_bg{}
-      .cmui-progress_info{}
-    }
-  }
-}
-.cmui-slidebar{
-  .cmui-slidebar__warp{
-    .cmui-slidebar__bar{
-      .cmui-slidebar__progress{}
-      .cmui-slidebar__dot{}
-    }
-  }
-}
-.cmui-slider{}
-.cmui-tabbar{
-  .cmui-tabbar__head{
-    .cmui-tabbar__pre{}
-    .cmui-tabbar__next{}
-    .cmui-tabbar__nav{
-      .cmui-tabbar__head-item{
-        &.active{}
+      .cmui-captcha__dot {
       }
     }
   }
-  .cmui-tabbar__content{
-    .cmui-tabbar__pane{
-      .cmui-tabbar__pane-item{}
+}
+.cmui-countdown {
+  .countdown-container {
+    &.day {
+      &::after {
+      }
+    }
+    &.hour {
+      &::after {
+      }
+    }
+    &.minute {
+      &::after {
+      }
+    }
+    &.sec {
+      &::after {
+      }
+    }
+    &.millSec {
+      &::after {
+      }
+    }
+  }
+}
+.cmui-picker {
+  .cmui-picker__cancel {
+    .cmui-picker__btn {
+    }
+  }
+  .cmui-picker__ok {
+    .cmui-picker__btn {
+    }
+  }
+  .cmui-picker_content {
+    .cmui-picker__wrapper {
+      .cmui-picker__scroll {
+        .cmui-picker__item {
+        }
+      }
+    }
+    .cmui-picker__linet {
+    }
+    .cmui-picker__lineb {
+    }
+  }
+}
+.cmui-progress {
+  .cmui-progress_warp {
+    .cmui-progress_bar {
+      .cmui-progress_bg {
+      }
+      .cmui-progress_info {
+      }
+    }
+  }
+}
+.cmui-slidebar {
+  .cmui-slidebar__warp {
+    .cmui-slidebar__bar {
+      .cmui-slidebar__progress {
+      }
+      .cmui-slidebar__dot {
+      }
+    }
+  }
+}
+.cmui-slider {
+}
+.cmui-tabbar {
+  .cmui-tabbar__head {
+    .cmui-tabbar__pre {
+    }
+    .cmui-tabbar__next {
+    }
+    .cmui-tabbar__nav {
+      .cmui-tabbar__head-item {
+        &.active {
+        }
+      }
+    }
+  }
+  .cmui-tabbar__content {
+    .cmui-tabbar__pane {
+      .cmui-tabbar__pane-item {
+      }
     }
   }
 }

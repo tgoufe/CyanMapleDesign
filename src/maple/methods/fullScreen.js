@@ -1,41 +1,34 @@
-function enterFullScreen(element=document.documentElement){
-    for(let methodName of[
-        'requestFullscreen',
-        'mozRequestFullScreen',
-        'msRequestFullscreen',
-        'webkitRequestFullscreen'
-    ]){
-        if(element[methodName]){
-            enterFullScreen=function(element=document.documentElement){
-                element[methodName]()
-            };
-            break;
-        }
+import _ from 'lodash'
+function enterFullScreen(element = document.documentElement) {
+  for (let methodName of [
+    'requestFullscreen',
+    'mozRequestFullScreen',
+    'msRequestFullscreen',
+    'webkitRequestFullscreen'
+  ]) {
+    if (element[methodName]) {
+      element[methodName]()
+      break
     }
+  }
 }
-function exitFullScreen(){
-    for(let methodName of [
-        'exitFullscreen',
-        'msExitFullscreen',
-        'mozCancelFullScreen',
-        'webkitExitFullscreen'
-    ]){
-        if(document[methodName]){
-            exitFullScreen=function(){
-                document[methodName]();
-            };
-            break;
-        }
+function exitFullScreen() {
+  for (let methodName of [
+    'exitFullscreen',
+    'msExitFullscreen',
+    'mozCancelFullScreen',
+    'webkitExitFullscreen'
+  ]) {
+    if (document[methodName]) {
+      document[methodName]()
+      break
     }
+  }
 }
-if(window&&document){
-    enterFullScreen();
-    exitFullScreen();
-}
-export default function fullScreen(element=document.documentElement) {
-    if(element===false){
-        exitFullScreen()
-    }else{
-        enterFullScreen(element)
-    }
+export default function fullScreen(element = document.documentElement) {
+  if (_.isBoolean(element)) {
+    element ? enterFullScreen() : exitFullScreen()
+  } else if (_.isElement(element)) {
+    enterFullScreen(element)
+  }
 }

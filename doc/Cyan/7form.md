@@ -178,7 +178,7 @@ select和text-area支持下面三种辅助class
 ```
 <div class="form">
     <div class="inputGroup radius">
-        <select>
+        <select style="width:auto">
             <option>http://</option>
             <option>https://</option>
         </select>
@@ -263,19 +263,17 @@ select和text-area支持下面三种辅助class
 将表单尺寸继承于按钮除了前文说到的同时使用时保持美观之外，另一个重要的因素就是将btn的类应用到表单元素上（通常为CheckBox和radio），这样的组合可以创造更多的效果，也是比较常见的效果。
 ```html
 <div class="form">
-    <input type="checkbox" class="btn red" label="首选项">
-    <input type="checkbox" class="btn orange reverse" label="首选项">
-    <input type="checkbox" class="btn blue reverse square radius" label="首选项">
-    <input type="checkbox" class="btn coffee small" label="首选项">
-    <input type="checkbox" class="btn green big square" label="首选项">
+    <input type="checkbox" class="btn" label="默认">
+    <input type="checkbox" class="btn reverse" label="翻转">
+    <input type="checkbox" class="btn reverse square radius" label="翻转圆角方形">
+    <input type="checkbox" class="btn light radius" label="light">
 </div>
 ```
 <div class="form">
-    <input type="checkbox" class="btn red" label="首选项">
-    <input type="checkbox" class="btn orange reverse" label="首选项">
-    <input type="checkbox" class="btn blue reverse square radius" label="首选项">
-    <input type="checkbox" class="btn coffee small" label="首选项">
-    <input type="checkbox" class="btn green big square" label="首选项">
+    <input type="checkbox" class="btn" label="默认">
+    <input type="checkbox" class="btn reverse" label="翻转">
+    <input type="checkbox" class="btn reverse square radius" label="翻转圆角方形">
+    <input type="checkbox" class="btn light radius" label="light">
 </div>
 
 :::tip
@@ -288,25 +286,41 @@ btn可以使用[按钮组](Cyan/6button.html#标签组)，CheckBox和radio继承
 输入
 ```html
 <div class="form btn-group">
-    <input type="checkbox" class="btn blue reverse square radius" label="北京">
-    <input type="checkbox" class="btn blue reverse square radius" label="上海">
-    <input type="checkbox" class="btn blue reverse square radius" label="广州">
-    <input type="checkbox" disabled class="btn blue reverse square radius" label="深圳">
+    <input type="checkbox" class="btn reverse square radius" label="北京">
+    <input type="checkbox" class="btn reverse square radius" label="上海">
+    <input type="checkbox" class="btn reverse square radius" label="广州">
+    <input type="checkbox" disabled class="btn reverse square radius" label="深圳">
 </div>
 ```
 输出
 <div class="form btn-group">
-    <input type="checkbox" class="btn blue reverse square radius" label="北京">
-    <input type="checkbox" class="btn blue reverse square radius" label="上海">
-    <input type="checkbox" checked class="btn blue reverse square radius" label="广州">
-    <input type="checkbox" class="btn blue reverse square radius" label="深圳" disabled>
+    <input type="checkbox" class="btn reverse square radius" label="北京">
+    <input type="checkbox" class="btn reverse square radius" label="上海">
+    <input type="checkbox" checked class="btn reverse square radius" label="广州">
+    <input type="checkbox" class="btn reverse square radius" label="深圳" disabled>
 </div>
 
 small radio
 
 <div class="form btn-group margint20">
-    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="北京">
-    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="上海">
-    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="广州">
-    <input type="radio" name="smallRadio" class="btn blue reverse small radius" label="深圳">
+    <input type="radio" name="smallRadio" class="btn reverse small radius" label="北京">
+    <input type="radio" name="smallRadio" class="btn reverse small radius" label="上海">
+    <input type="radio" name="smallRadio" class="btn reverse small radius" label="广州">
+    <input type="radio" name="smallRadio" class="btn reverse small radius" label="深圳">
+</div>
+
+## 自定义按钮颜色
+btn还可以自定义颜色，加上custom并且写入想要的颜色属性color。
+
+```html
+<div class="form">
+    <input type="checkbox" class="btn custom reverse" label="自定颜色1" style="color:#8e1d1d">
+    <input type="checkbox" class="btn custom radius" label="自定颜色2" style="color:#6767d2">
+    <input type="checkbox" class="btn custom" label="自定颜色3" style="color:#2ba02b">
+</div>
+```
+<div class="form margint20">
+    <input type="checkbox" class="btn custom reverse" label="自定颜色1" style="color:#8e1d1d">
+    <input type="checkbox" class="btn custom radius" label="自定颜色2" style="color:#6767d2">
+    <input type="checkbox" class="btn custom" label="自定颜色3" style="color:#2ba02b">
 </div>

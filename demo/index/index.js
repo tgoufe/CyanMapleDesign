@@ -1,7 +1,7 @@
 import './index.scss';
 import '../../src/maple/theme.scss'
 import '../../src/cyan/CMUI.scss'
-import '../../src/pageComponent/head/index.js';
+import '../head/index.js';
 import componentList from './componentList.vue';
 
 

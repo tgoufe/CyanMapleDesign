@@ -7,27 +7,27 @@
     &:focus,
     &.focus {
       color: $color;
-      background-color: darken($background, 10%);
-          border-color: darken($border, 25%);
+      background-color: rgba($background, .5);
+          border-color: rgba($border, .75);
     }
     &:hover {
       color: $color;
-      background-color: darken($background, 10%);
-          border-color: darken($border, 12%);
+      background-color: rgba($background, .5);
+          border-color: rgba($border, .62);
     }
     &:active,
     &.active
     {
       color: $color;
-      background-color: darken($background, 10%);
-          border-color: darken($border, 12%);
+      background-color: rgba($background, .5);
+          border-color: rgba($border, .62);
 
       &:hover,
       &:focus,
       &.focus {
         color: $color;
-        background-color: darken($background, 17%);
-            border-color: darken($border, 25%);
+        background-color: rgba($background, .67);
+            border-color: rgba($border, .75);
       }
     }
     &:active,
@@ -75,7 +75,7 @@
   border: 1px solid transparent;
   white-space: nowrap;
   line-height:26px;
-  @include button-variant(map-get($grayList,'dark'), #eceeef, map-get($grayList,'lighter'));
+  @include button-variant(white, #cccccc, #cccccc);
   @include button-size(nth(map-get($btn-size-list,'base'),1),nth(map-get($btn-size-list,'base'),2),nth(map-get($btn-size-list,'base'),3));
   @include user-select(none);
   @if($isPC){
@@ -92,7 +92,10 @@
     border-radius: $border-radius-base;
   }
   &.reverse{
-    @include button-variant(map-get($grayList,'dark'), white, map-get($grayList,'lighter'));
+    @include button-variant(#666, white, #cccccc);
+  }
+  &.light{
+    @include button-variant(#666, #f7f7f7, #f7f7f7);
   }
   @if($isPC){
     &:hover,
@@ -130,11 +133,14 @@ a.btn {
     pointer-events: none; 
   }
 }
-@each $colorName,$colorValue in $bg_colorList{
+@each $colorName,$colorValue in $colorList{
   .btn.#{$colorName}{
     @include button-variant(white, $colorValue, $colorValue);
+    &.light{
+      @include button-variant($colorValue, scale-color($colorValue,$lightness: 70%), transparent);
+    }
     &.btn-reverse,&.reverse{
-      @include button-variant(map-get($colorList,#{$colorName}), white, $colorValue);
+      @include button-variant($colorValue, white, $colorValue);
     }
   }
 }

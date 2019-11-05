@@ -90,7 +90,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 }
 .img-container{
 	@extend .flex-container;
-	@extend .flex-container.center;
+	@extend .flex-container,.center;
     overflow: hidden;
     img{
     	max-height: 100%;
@@ -166,14 +166,16 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.reverse{@include flex-direction(row-reverse);}
 }
 .flex-container-col{
-	@extend .flex-container;
+	@include display-flex();
 	@include flex-direction();
-	&.round{@include justify-content(space-around); }
+	@include align-items();
+	@include justify-content();
 	&.center{@include justify-content(center); }
-	&.left{@include align-items(flex-start); }
-	&.right{@include align-items(flex-end); }
+	&.left{@include align-items(flex-start); @include justify-content()}
+	&.right{@include align-items(flex-end); @include justify-content()}
 	&.top{@include justify-content(flex-start); }
 	&.bottom{@include justify-content(flex-end); }
+	&.round{@include justify-content(space-around); }
 	&.vfull{&>*{@include flex(); } }
 	&.hfull{@include align-items(stretch) }
 	&.leftCenter{@include align-items(flex-start);@include justify-content(center);}

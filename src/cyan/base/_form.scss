@@ -77,10 +77,13 @@ input{
             background-color: #fff;
             border: 1px solid map-get($grayList,'lighter');
             transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-
             &:focus{
                 border-color: $form-color-base;
                 outline: 0;
+                font-size:16px;
+            }
+            &.custom:focus{
+              border-color: currentColor;
             }
             &.radius{
                 border-radius: $border-radius-base;
@@ -106,6 +109,9 @@ input{
             position:relative;
             outline: 0!important;
             -webkit-appearance: none;
+            &:checked{
+                z-index: 1;
+            }
             &::before{
                 font-family: "iconfont";
                 font-weight: 400;
@@ -114,7 +120,7 @@ input{
                 -webkit-font-smoothing: antialiased;
                 transition: color .2s cubic-bezier(.645,.045,.355,1);
             }
-            &[label]{
+            &[label]:not(.switch){
                 width:auto !important;
                 display: inline-flex;
                 align-items: center;
@@ -122,6 +128,12 @@ input{
                     content:attr(label);
                     margin-left:.133333333rem;
                     font-size:$font-size-base;
+                }
+                &.flex-container{
+                    &::after{
+                        margin-right:.133333333rem;
+                        margin-right:auto;
+                    }
                 }
                 &:not([class*=btn]):checked::after{
                     color:$form-color-base;
@@ -149,6 +161,122 @@ input{
                 &:checked:before,&:indeterminate:before{
                     color:$form-color-base;
                 }
+            }
+            &.btn{
+                &:not(:checked){
+                  color:#666;
+                  background-color: #ccc;
+                  border-color:#ccc;
+                }
+                &:not(.reverse){
+                    &::after{
+                        margin-left: auto;
+                    }
+                    &::before{
+                        content:'';
+                    }
+                    &:checked{
+                        color:white;
+                        background-color:$form-color-base;
+                        border-color:$form-color-base;
+                        &.light{
+                          color:$form-color-base;
+                          background-color:scale-color($form-color-base,$lightness: 70%);
+                          border-color:transparent;
+                        }
+                    }
+                }
+                &.reverse{
+                  background-color: white;
+                   &:checked{
+                        color:$form-color-base;
+                        border-color:$form-color-base;
+                    } 
+                }
+            }
+            &.custom{
+              position: relative;
+              &:not(.btn){
+                &:checked{
+                  &::after,&::before{
+                    color:currentColor !important;
+                  }
+                }
+                &:not(:checked):after{
+                  color:initial;
+                }
+              }
+              &.btn{
+                &.light{
+                  &:checked:not(.reverse){
+                    background-color:white;
+                    border-color:white;
+                    &:after{
+                      color:currentColor;
+                    }
+                    &::before{
+                      position: absolute;
+                      left:-1px;
+                      right:-1px;
+                      top:-1px;
+                      bottom:-1px;
+                      background-color:currentColor;
+                      opacity: .3;
+                    }
+                  }
+                }
+                &:not(.reverse){
+                    &:checked{
+                        color:inherit;
+                        background-color:currentColor;
+                        border-color:currentColor;
+                    }
+                    &::after{
+                      color:white
+                    }
+                }
+                &.reverse{
+                    &:checked{
+                        color:currentColor;
+                        border-color:currentColor;
+                    }
+                    &:not(:checked){
+                      color:#666 !important;
+                    }
+                }
+              }
+                // border-color:currentColor;
+                // &:not(.reverse){
+                //     background-color:currentColor;
+                //     color:#fff;
+                //     &::before,&::after{
+                //         color:#fff;
+                //     }
+                // }
+                // @if ($isPC){
+                //     &:focus,
+                //     &.focus {
+                //        opacity: .5;
+                //     }
+                //     &:hover {
+                //        opacity: .5;
+                //     }
+                //     &:active,
+                //     &.active
+                //     {
+                //        opacity: .5;
+                //       &:hover,
+                //       &:focus,
+                //       &.focus {
+                //          opacity: .67;
+                //       }
+                //     }
+                //     &:active,
+                //     &.active
+                //     {
+                //       background-image: none;
+                //     }
+                // }
             }
         }
         &[type=radio]{
@@ -234,6 +362,9 @@ input{
                         content: '';
                         background: $form-color-base;
                     }
+                    &.custom::before{
+                      background: currentColor;
+                    }
                     &:after{
                         @include translate($from-control-size - 7,0px );
                     }
@@ -251,18 +382,16 @@ input{
         }
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
           @if $btnSizeName!='base'{
-                &.#{$btnSizeName}{
-                &:not([type=checkbox]),&:not([type=radio]){
-                  //padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
-                  &~{
-                      .input-reset,.input-changeType,.input-search{
-                          &:before{
-                              line-height:nth($btnSizeValue,1);
-                          }
+            &.#{$btnSizeName}:not([type=checkbox]):not([type=radio]){
+              padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
+              &~{
+                  .input-reset,.input-changeType,.input-search{
+                      &:before{
+                          line-height:nth($btnSizeValue,1);
                       }
                   }
-                }
               }
+            }
             &[type=checkbox],&[type=radio]{
                 &:not([class*=btn]){
                     &.#{$btnSizeName}{
@@ -329,7 +458,6 @@ input{
         background-image: url("data:image/png;base64,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") ;
         }
         padding-right:$padding-base-horizontal + 16px;
-        width:auto;
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
             @if $btnSizeName!='base'{
                 &.#{$btnSizeName}{
@@ -404,7 +532,7 @@ input{
         }
         &.reverse{
             .input_addon{
-                @extend .btn.reverse;
+                @extend .btn,.reverse;
             }
         }
     }
@@ -412,26 +540,59 @@ input{
         color:$form-color-base;
     }
     @each $colorName,$colorValue in $colorList{
+        &.#{$colorName} input,input.#{$colorName}{
+            &:focus{
+                border-color:$colorValue;
+            }
+            &.reverse:focus{
+                border-color:transparent;
+                border-bottom-color:$colorValue;
+            }
+            &[type=checkbox],&[type=radio]{
+                &:checked:before{
+                    color:$colorValue;
+                }
+                &.btn{
+                    &:not(.reverse){
+                        &:checked{
+                            background-color:$colorValue;
+                            border-color:$colorValue;
+                        }
+                    }
+                    &.reverse{
+                        &:checked{
+                            color:$colorValue;
+                            border-color:$colorValue;
+                        } 
+                    }
+                    &.light{
+                      &:checked{
+                        color:$colorValue;
+                        background-color:scale-color($colorValue,$lightness: 70%);
+                        border-color:transparent;
+                      } 
+                    }
+                }
+                &:not([class*=btn]):not(.switch):checked::after{
+                    color:$colorValue;
+                }
+            }
+            &[type=checkbox]{
+                &:checked{
+                    &.switch:before{
+                        background: $colorValue;
+                    }
+                }
+            }
+        }
         &.#{$colorName}{
-            input{
+          select,textarea{
                 &:focus{
                     border-color:$colorValue;
                 }
                 &.reverse:focus{
                     border-color:transparent;
                     border-bottom-color:$colorValue;
-                }
-                &[type=checkbox],&[type=radio]{
-                    &:before{
-                       color:$colorValue;
-                    }
-                }
-                &[type=checkbox]{
-                    &:checked{
-                        &.switch:before{
-                            background: $colorValue;
-                        }
-                    }
                 }
             }
         }

@@ -1,37 +1,33 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "rules": {
-        "indent": [
-            0,
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            0,
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "strict": [
-            0
-        ],
-        "curly": [
-            2,
-            "all"
-        ],
-        "eqeqeq": 2,
-        "no-undef":0
+  root: true,
+  env: {
+    node: true,
+    browser: true,
+    es6: true
+  },
+  extends: ['plugin:vue/recommended', '@vue/standard'],
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-tabs': 'off',
+    'space-before-function-paren': 'off',
+    'vue/no-side-effects-in-computed-properties': 'off',
+    'vue/attribute-hyphenation': 'off',
+    'vue/html-indent': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/name-property-casing': 'off',
+    'vue/no-v-html': 'off',
+    'vue/html-self-closing':'off'
+  },
+  parserOptions: {
+    parser: 'babel-eslint'
+  },
+  overrides: [
+    {
+      files: ['**/__tests__/*.{j,t}s?(x)'],
+      env: {
+        jest: true
+      }
     }
-};
+  ]
+}
