@@ -9,6 +9,16 @@ module.exports = {
       entry: 'examples/main.js',
       template: 'public/index.html',
       filename: 'index.html'
+    },
+    xiaohongshu: {
+      entry: 'websiteDemo/xiaohongshu/main.js',
+      template: 'public/index.html',
+      filename: 'xiaohongshu.html'
+    },
+    wangyiyanxuan: {
+      entry: 'websiteDemo/wangyiyanxuan/main.js',
+      template: 'public/index.html',
+      filename: 'wangyiyanxuan.html'
     }
   },
   css: {

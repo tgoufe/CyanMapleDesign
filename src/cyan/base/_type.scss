@@ -84,7 +84,12 @@ i{
 	display: inline-block;
 }
 
-@each $colorName,$colorValue in $bg_colorList{
+@each $colorName,$colorValue in $colorList{
+	.bg-#{$colorName}{
+		background-color:$colorValue;
+	}
+}
+@each $colorName,$colorValue in $grayList{
 	.bg-#{$colorName}{
 		background-color:$colorValue;
 	}

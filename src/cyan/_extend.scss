@@ -172,7 +172,7 @@
     }
   }
 }
-@each $colorName,$colorValue in $bg_colorList{
+@each $colorName,$colorValue in $colorList{
   %btn%#{$colorName}{
     @include button-variant(white, $colorValue, $colorValue);
     &%btn-reverse,&%reverse{
@@ -249,7 +249,7 @@
       }
     }
   }
-  @each $colorName,$colorValue in $bg_colorList{
+  @each $colorName,$colorValue in $colorList{
       &#{&-#{$colorName}},&%#{$colorName}{
         background-color:$colorValue;
       }
