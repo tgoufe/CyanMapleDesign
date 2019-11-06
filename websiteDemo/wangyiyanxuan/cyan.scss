@@ -1,12 +1,8 @@
 $isPC:false !default;
 $colorList:(
-	'red': #ff4c48,
-	'orange': #ff9800,
-	'yellow': #ff6705,
-	'green': #2eb252,
-	'coffee': #853f3a,
-	'blue': #25aaff,
-	'purple': #7000C8
+	'red': #c43333,
+	'orange': #e36843,
+	'gold': #b4a078,
 );
 $grayList:(
 	'black': #000,
@@ -38,13 +34,13 @@ $border-color-default:      #eee !default;
 //button
 $btn-size-list:(//$height, $padding-horizontal, $font-size
 	'base':(36px,15px,16px),
-	'small':(28px,15px,14px),
+	'small':(25px,15px,13px),
 	'big':(44px,15px,16px)
 );
 //badge
 $badge-size-list:(//$height, $padding-horizontal, $font-size
 	'base':(20px,10px,12px),
-	'small':(16px,5px,10px),
+	'small':(11px,5px,10px),
 	'big':(24px,10px,13px)
 );
 //form
