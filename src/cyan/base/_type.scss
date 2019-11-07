@@ -13,12 +13,12 @@ body{
 	.text-#{$colorName}{
 		color:$colorValue;
 	}
-} 
+}
 @each $colorName,$colorValue in $grayList{
 	.text-#{$colorName}{
 		color:$colorValue;
 	}
-} 
+}
 /*text-Size*/
 @for $i from 10 through 20{
 	.fs-#{$i}{
@@ -61,6 +61,7 @@ body{
 	    display: -webkit-box;
 	    -webkit-box-orient: vertical;
 	    text-overflow: ellipsis;
+		white-space: initial;
 }
 @for $i from 1 through $layoutNumber{
 	.text-limit#{$i}{
