@@ -124,10 +124,12 @@ input{
                 width:auto !important;
                 display: inline-flex;
                 align-items: center;
+                //height:36px;
                 &::after{
                     content:attr(label);
                     margin-left:.133333333rem;
                     font-size:$font-size-base;
+                    position: static;
                 }
                 &.flex-container{
                     &::after{
@@ -163,6 +165,7 @@ input{
                 }
             }
             &.btn{
+                height:nth(map-get($btn-size-list,'base'),1);
                 &:not(:checked){
                   color:#666;
                   background-color: #ccc;
@@ -193,6 +196,7 @@ input{
                         border-color:$form-color-base;
                     }
                 }
+
             }
             &.custom{
               position: relative;
@@ -404,6 +408,7 @@ input{
                 }
                 &.btn{
                     &.#{$btnSizeName}{
+                        height:nth($btnSizeValue,1);
                         &::after{
                             font-size:nth($btnSizeValue,3);
                         }
