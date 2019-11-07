@@ -138,6 +138,9 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 		display: inline-block;
 		font-size: initial;
 	}
+	&.top>*{vertical-align: top}
+	&.center>*{vertical-align: middle}
+	&.bottom>*{vertical-align: bottom}
 	@extend .hide-scrollBar;
 }
 .flex-container{
