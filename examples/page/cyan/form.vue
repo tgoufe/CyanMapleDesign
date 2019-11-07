@@ -1,21 +1,27 @@
 <template>
     <div class="form padding20" :class="[formColor]">
-        <div class="fixed-bottom bg-black padding20" style="z-index:1">
+        <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1">
             <div class="flex-container">
-                <span class="text-white marginr30">颜色选择</span>
-                <div class="ratio-container flex1 border"
-                v-for="item in colors"
-                :key="item"
-                :class='[`bg-${item}`]'
-                @click="formColor=item"
-                >
+                <span class="text-white" style="min-width: 55px;">Color</span>
+                <div class="flex-container flex1">
+                    <div
+                    v-for="item in colors"
+                    :key="item"
+                    @click="formColor=item"
+                    class="baseIcon text-white text-center text-bolder fs-20" :class='[`bg-${item}`+` `+(formColor==item && `baseIcon-check`)]' style="width:32px;height:32px;border-radius:50%;border:2px solid #fff;"></div>
                 </div>
+                
             </div>
             <div class="btn-group margint20 flex-container">
-                <span class="text-white left">尺寸选择</span>
-                <div class="btn blue reverse" @click="size=''">默认</div>
-                <div class="btn blue reverse" @click="size='small'">small</div>
-                <div class="btn blue reverse" @click="size='big'">big</div>
+                <span class="text-white left" style="min-width: 55px;">Size</span>
+                <div class="flex-container flex1" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
+                    <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="size=''" :class="size==''?'badgeCurrent':'badgeDefault'">Default</div></div>
+                    <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="size='small'" :class="size=='small'?'badgeCurrent':'badgeDefault'">Small</div></div>
+                    <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="size='big'" :class="size=='big'?'badgeCurrent':'badgeDefault'">Big</div></div>
+                    
+                    
+                    
+                </div>
             </div>
         </div>
         <p>checkbox</p>
@@ -77,4 +83,14 @@ export default {
 
 <style scoped>
 .bg-{background-color: #00baba}
+.badgeCurrent{
+    width:100%;
+    border:2px solid white !important;
+    padding: 5px 10px !important;
+    background-color: #00BABA !important;
+}
+.badgeDefault{
+    background: none !important;
+    padding: 5px 10px !important;
+}
 </style>
