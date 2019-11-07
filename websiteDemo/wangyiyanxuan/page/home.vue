@@ -128,12 +128,13 @@
         <!--广告 活动-->
         <div class="paddingv20">
             <img src="https://yanxuan.nosdn.127.net/56ba53679b99c816de0ea6d36c995eb0.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-            <div class="scroll-container bg-white">
-                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" padding10">
+            <div class="scroll-container  bg-white">
+                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10">
                     <img style="width: 100%;" :src="e.img" alt="">
-                    <p class=" text-limit2 fs-10">{{e.name}}</p>
+                    <p class=" text-limit1 fs-10">{{e.name}}</p>
                     <p class="fs-10"><span>¥2309</span><span class="text-delete">¥9999</span></p>
-                    <p class="badge pill mini red reverse">限时购</p>
+                    <p class="badge pill mini red reverse" v-if="e.isLow">限时购</p>
+                    <!--<p class="badge pill mini red reverse" v-if="!e.isLow">限时购</p>-->
                 </div>
             </div>
         </div>
@@ -288,7 +289,7 @@
           },
           {
             img: 'https://yanxuan-item.nosdn.127.net/98a65ae2cf4a9c4aa9e03d2661d377ee.png?imageView&thumbnail=358y328&quality=95',
-            name: '日本电热暖水袋',
+            name: '日本电热暖水袋 精装',
             isHappy: true,
             isLow: false
           }
