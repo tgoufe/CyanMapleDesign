@@ -1,5 +1,5 @@
 <template>
-    <div class="form padding20" :class="[formColor]">
+    <div class="form" style="padding-bottom: 120px;" :class="[formColor]">
         <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1">
             <div class="flex-container">
                 <span class="text-white" style="min-width: 55px;">Color</span>
@@ -24,39 +24,47 @@
                 </div>
             </div>
         </div>
-        <p>checkbox</p>
+        <p class="title paddingv20 paddingh30">checkbox</p>
         <div class="list border">
-            <div class="list-item padding20 flex-container" v-for="item in checkboxData" :key="item">
+            <div class="list-item paddingv30 paddingh50 flex-container" v-for="item in checkboxData" :key="item">
                 <span class="left">{{item||'默认'}}</span>
                 <input type="checkbox" :class="[item,size]" checked label="选项">
             </div>
         </div>
 
-        <p>radio</p>
+        <p class="title paddingv20 paddingh30">radio</p>
         <div class="list border">
-            <div class="list-item padding20 flex-container" v-for="item in ratioData" :key="item">
+            <div class="list-item paddingv30 paddingh50 flex-container" v-for="item in ratioData" :key="item">
                 <span class="left">{{item=='0'?'默认':item}}</span>
                 <input type="radio" :class="[item,size]" :name="item" class="marginr30" checked label="选项">
                 <input type="radio" :class="[item,size]" :name="item" label="选项">
             </div>
         </div>
-        <p>input</p>
-        <input type="text" :class="size" placeholder="请输入内容">
-        
-        <p>input reverse</p>
-        <input type="text" class="reverse" :class="size" placeholder="请输入内容">
-        <p>select</p>
-        <select name="" id="" :class="size" placeholder="请输入内容">
-            <option :value="i" v-for="i in 5" :key="i">{{i}}</option>
-        </select>
-        <p>select reverse</p>
-        <select name="" id="" class="reverse" :class="size" placeholder="请输入内容">
-            <option :value="i" v-for="i in 5" :key="i">{{i}}</option>
-        </select>
-        <p>textarea</p>
-        <textarea name="" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
-        <p>textarea reverse</p>
-        <textarea name="" id="" cols="30" rows="10" class="reverse" placeholder="请输入内容"></textarea>
+        <p class="title paddingv20 paddingh30">input</p>
+        <div class="paddingv5 paddingh50">
+            <div class="fs-16 paddingv10">input</div>
+            <input type="text" class="borderBlack" :class="size" placeholder="请输入内容">
+            <div class="fs-16 paddingv10 margint20">input reverse</div>
+            <input type="text" class="borderBlackReverse reverse" :class="size" placeholder="请输入内容">
+        </div>
+        <p class="title paddingv20 paddingh30">select</p>
+        <div class="paddingv5 paddingh50">
+            <div class="fs-16 paddingv10">select</div>
+            <select class="borderBlack" name="" id="" :class="size" placeholder="请输入内容">
+                <option :value="i" v-for="i in 5" :key="i">{{i}}</option>
+            </select>
+            <div class="fs-16 paddingv10">select reverse</div>
+            <select name="" id="" class="reverse borderBlackReverse" :class="size" placeholder="请输入内容">
+                <option :value="i" v-for="i in 5" :key="i">{{i}}</option>
+            </select>
+        </div>
+        <p class="title paddingv20 paddingh30">textarea</p>
+        <div class="paddingv5 paddingh50">
+            <div class="fs-16 paddingv10">textarea</div>
+            <textarea class="borderBlack" name="" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
+            <div class="fs-16 paddingv10">textarea reverse</div>
+            <textarea name="" id="" cols="30" rows="10" class="reverse borderBlackReverse" placeholder="请输入内容"></textarea>
+        </div>
     </div>
 </template>
 
@@ -92,5 +100,17 @@ export default {
 .badgeDefault{
     background: none !important;
     padding: 5px 10px !important;
+}
+p.title{
+    font-size: 14px;
+    background: rgba(0,0,0,0.04);
+    color: #666666;
+    line-height: 20px;
+}
+.borderBlack{
+    border:1px solid black !important;
+}
+.borderBlackReverse{
+    border-bottom:1px solid black !important;
 }
 </style>
