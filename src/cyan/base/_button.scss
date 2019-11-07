@@ -2,7 +2,6 @@
   border-color: $border;
   color: $color;
   background-color: $background;
-
   @if ($isPC){
     &:focus,
     &.focus {
@@ -36,20 +35,6 @@
       background-image: none;
     }
   }
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
-      background-color: $background;
-          border-color: $border;
-    }
-  }
-
   .badge {
     color: $background;
     background-color: $color;
@@ -65,13 +50,13 @@
 }
 .btn {
   display: inline-block;
-  margin-bottom: 0; 
+  margin-bottom: 0;
   font-weight: 400;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
-  background-image: none; 
+  background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
   line-height:26px;
@@ -130,7 +115,7 @@
 a.btn {
   &.disabled,
   fieldset[disabled] & {
-    pointer-events: none; 
+    pointer-events: none;
   }
 }
 @each $colorName,$colorValue in $colorList{
