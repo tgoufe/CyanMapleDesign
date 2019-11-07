@@ -9,7 +9,7 @@ export default (function() {
   }
   function setFontSize() {
     if (document.body) {
-      document.scrollingElement.style.fontSize = isMobile ? '10vw' : '75px'
+      document.documentElement.style.fontSize = isMobile ? '10vw' : '75px'
       document.body.style.fontSize = '14px'
     } else {
       document.addEventListener('DOMContentLoaded', setFontSize)
@@ -22,8 +22,8 @@ export default (function() {
   let cssRules = cmuiStyle.sheet.cssRules
   let cssRulesLen = cssRules.length
   function insertStyle(selector, name, value) {
-    cmuiStyle.sheet.insertRule(selector + '{}', cssRulesLen)
-    cmuiStyle.sheet.cssRules[cssRulesLen++].style[name] = value
+    name = name.replace(/[A-Z]/g, i => `-${i.toLowerCase()}`)
+    cmuiStyle.sheet.insertRule(`${selector}{${name}:${value}}`, cssRulesLen)
   }
   // set pm
   let PMstore = new Set()
