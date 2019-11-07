@@ -11,24 +11,19 @@ export default new Router({
   routes: [
     {
       path: '/activity',
-      name: 'activity',
       component: activity
     },
     {
       path: '/',
-      name: 'home',
       component: home
     },  {
       path: '/view',
-      name: 'view',
       component: view
     },  {
       path: '/user',
-      name: 'user',
       component: user
     },  {
       path: '/kind',
-      name: 'kind',
       component: kind
     },
     ...page.routerAdd.map(e => {

@@ -211,7 +211,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 %ratioStyle{
 	position: relative;
 	&:before{
-		content:"";
+		content: '';
 		display:block;
 		height:0;
 		font-size: 0;
@@ -243,30 +243,25 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&:before{
 		padding-top:100%;
 	}
-}
-@for $i from 1 through $layoutNumber{
-	@for $k from 1 through $layoutNumber{
-		@if($i != $k){
-			.ratio-container-#{$i}x#{$k}{
-				@extend %ratioStyle;
-				&:before{
-					padding-top:$k/$i *100%;
+	@for $i from 1 through $layoutNumber{
+		@for $k from 1 through $layoutNumber{
+			@if($i != $k){
+				&[ratio='#{$i}/#{$k}']{
+					&:before{
+						padding-top:$k/$i *100%;
+					}
 				}
 			}
 		}
 	}
-}
-@each $name,$key in ('top':'t','left':'l','right':'r','bottom':'b','base':''){
-	@if $name!="base" {
-		.margin#{$key}a{margin-#{$name}:auto;}
-		.padding#{$key}a{padding-#{$name}:auto;}
-	}
-	@else{
-		.margina{margin:auto}
-		.paddinga{padding:auto}
+	.mask{
+		position: absolute;
 	}
 }
-
+.mask{
+	@extend .flex-container;
+	@extend .fixed-full;
+}
 .float-right{float:right}
 .float-left{float:left}
 .pos-r{position: relative}
@@ -334,4 +329,15 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 }
 .dis-n{
 	display:none;
+}
+@each $name,$key in ('top':'t','left':'l','right':'r','bottom':'b','base':''){
+	@if $name!="base" {
+		.margin#{$key}-a{margin-#{$name}:auto;}
+		.padding#{$key}-a{padding-#{$name}:auto;}
+		.#{$name}-a{#{$name}:auto}
+	}
+	@else{
+		.margin-a{margin:auto}
+		.padding-a{padding:auto}
+	}
 }

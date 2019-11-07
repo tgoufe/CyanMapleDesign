@@ -1,6 +1,6 @@
 <template>
     <div id="footeer" class="flex-container bg-white paddingh40 paddingv20" style="height: 1.30667rem;width: 100%;" >
-       <div class="text-center" v-for="(e, i) in icons" :class="{'text-red': changeRed == i}" :key="e" @click="change(e.url, i)">
+       <div class="text-center" v-for="(e, i) in icons" :class="{'text-red': changeRed == i}" :key="i" @click="change(e.url, i)">
            <i  :class="e.icon"></i>
            <p class="fs-10">{{e.name}}</p>
        </div>

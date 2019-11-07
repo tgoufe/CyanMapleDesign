@@ -25,10 +25,7 @@ export default {
         { name: 'copy', path: 'methods/copy' },
         { name: 'device', path: 'methods/device' },
         { name: 'fullScreen', path: 'methods/fullScreen' },
-        { name: 'log', path: 'methods/log' },
-        { name: 'shake', path: 'methods/shake' },
-        { name: 'time', path: 'methods/time' },
-        { name: 'url', path: 'methods/url' }
+        { name: 'log', path: 'methods/log' }
       ]
     }
   }

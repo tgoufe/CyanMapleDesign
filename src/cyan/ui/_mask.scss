@@ -11,8 +11,6 @@
 			}
 		}
 	}
-	@extend .flex-container;
-	@extend .fixed-full;
 	&.mask-transparent{
 		background-color:transparent;
 	}

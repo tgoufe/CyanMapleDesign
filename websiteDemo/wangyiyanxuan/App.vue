@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view class="paddingb100"></router-view>
     <cfooteer class="pos-f bottom0"></cfooteer>
   </div>
 </template>

@@ -16,7 +16,7 @@ export default {
 
 <style lang='scss' type="text/scss">
 body{
-      background: rgb(250, 250, 250);
+      background: #f3f3f3;
 }
 .radius{border-radius: 4px;overflow: hidden;}
 </style>
