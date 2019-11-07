@@ -198,7 +198,6 @@
 %badge{
   display: inline-block;
   @include badgeSize(nth(map-get($badge-size-list,'base'),1),nth(map-get($badge-size-list,'base'),2),nth(map-get($badge-size-list,'base'),3));
-  color: map-get($grayList,'darker');
   line-height: 1;
   vertical-align: middle;
   white-space: nowrap;
