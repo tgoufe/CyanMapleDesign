@@ -128,14 +128,36 @@
         <!--广告 活动-->
         <div class="paddingv20">
             <img src="https://yanxuan.nosdn.127.net/56ba53679b99c816de0ea6d36c995eb0.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-            <div class="scroll-container  bg-white">
+            <div class="scroll-container top  bg-white">
                 <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10">
                     <img style="width: 100%;" :src="e.img" alt="">
-                    <p class=" text-limit1 fs-10">{{e.name}}</p>
-                    <p class="fs-10"><span>¥2309</span><span class="text-delete">¥9999</span></p>
-                    <p class="badge pill mini red reverse" v-if="e.isLow">限时购</p>
-                    <!--<p class="badge pill mini red reverse" v-if="!e.isLow">限时购</p>-->
+                    <p class=" text-limit2 fs-10 padding5">{{e.name}}</p>
+                    <p class="fs-10"><span class="text-red">¥2309</span><span class="text-delete text-light marginl10">¥9999</span></p>
+                    <p class="badge pill red reverse small" v-if="e.isLow">限时购</p>
                 </div>
+            </div>
+        </div>
+        <div>
+            <img src="https://yanxuan.nosdn.127.net/4e76055d88abf3809c764d8e26656876.jpg?imageView&thumbnail=750x0&quality=75" alt="">
+            <div class="scroll-container top  bg-white">
+                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10">
+                    <img style="width: 100%;" :src="e.img" alt="">
+                    <p class=" text-limit2 fs-10 padding5">{{e.name}}</p>
+                    <p class="fs-10"><span class="text-red">¥2309</span><span class="text-delete text-light marginl10">¥9999</span></p>
+                    <p class="badge pill red reverse small" v-if="e.isLow">狂欢抢购</p>
+                </div>
+            </div>
+        </div>
+
+        <!--底部-->
+        <div class="bg-dark flex-container-col center" style="height: 140px;">
+            <div class="fs-12">
+                <span class="btn small reverse"  style="font-weight: 300;background-color: #666;border-color: white; color: white">下载APP</span>
+                <span class="btn small reverse marginl40"  style="font-weight: 300;background-color: #666;border-color: white; color: white">电脑版</span>
+            </div>
+            <div class="margint50 fs-12 text-light text-center">
+                <p> 网易公司版权所有 © 1997- 2019</p>
+                <p>食品经营许可证：JY13301080111719</p>
             </div>
         </div>
 
@@ -253,19 +275,19 @@
           },
           {
             img: 'https://yanxuan-item.nosdn.127.net/b84efaabc6c60e27975b6dff597dc907.png?imageView&thumbnail=358y328&quality=95',
-            name: '轻弹云朵居家拖鞋',
+            name: '轻弹云朵居家拖鞋居家拖鞋',
             isHappy: false,
             isLow: true
           },
           {
             img:'https://yanxuan-item.nosdn.127.net/0bcb514d17fabe7b4c23035b4b2a80fb.png?imageView&thumbnail=358y328&quality=95',
-            name: '轻弹云朵居家拖鞋',
+            name: '轻弹云朵居家拖鞋居家拖鞋',
             isHappy: false,
             isLow: true
           },
           {
             img: 'https://yanxuan-item.nosdn.127.net/12b0958ddd092403f0a8e87819ec9d67.png?imageView&thumbnail=358y328&quality=95',
-            name: '轻弹云朵居家拖鞋',
+            name: '轻弹云朵居家拖鞋居家拖鞋',
             isHappy: false,
             isLow: true
           },

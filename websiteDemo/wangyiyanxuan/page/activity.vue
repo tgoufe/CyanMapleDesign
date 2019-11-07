@@ -153,7 +153,19 @@ export default {
           name: '日本电热暖水袋',
           isHappy: true,
           isLow: false
-        }
+        },
+        {
+          img: 'https://yanxuan-item.nosdn.127.net/b84efaabc6c60e27975b6dff597dc907.png?imageView&thumbnail=358y328&quality=95',
+          name: '轻弹云朵居家拖鞋',
+          isHappy: false,
+          isLow: true
+        },
+        {
+          img:'https://yanxuan-item.nosdn.127.net/0bcb514d17fabe7b4c23035b4b2a80fb.png?imageView&thumbnail=358y328&quality=95',
+          name: '轻弹云朵居家拖鞋',
+          isHappy: false,
+          isLow: true
+        },
       ]
     }
   },
