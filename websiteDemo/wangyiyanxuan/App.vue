@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view class="paddingb100"></router-view>
-    <cfooteer class="pos-f bottom0"></cfooteer>
+    <cfooteer class="pos-f bottom0" v-if="path !== '/detail'"></cfooteer>
   </div>
 </template>
 
@@ -14,6 +14,15 @@ export default {
   },
   data () {
     return {
+      path: ''
+    }
+  },
+  watch:{
+    $route: {
+      handler (val, old) {
+        this.path = val.fullPath
+      },
+      deep: true
     }
   }
 }

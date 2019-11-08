@@ -6,6 +6,7 @@ import view from './page/view'
 import kind from './page/kind'
 import user from './page/user'
 import page from './page/index'
+import detail from './page/detail'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -25,6 +26,9 @@ export default new Router({
     },  {
       path: '/kind',
       component: kind
+    },{
+      path: '/detail',
+      component: detail
     },
     ...page.routerAdd.map(e => {
       return {

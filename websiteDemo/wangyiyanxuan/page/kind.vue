@@ -1,14 +1,14 @@
 <template>
     <div id="kind">
-        <div class="pos-r padding20 text-cente">
+        <div class="pos-r padding20 text-center">
             <i class="iconfont icon-search pos-a text-gray vcenter marginl10"></i>
-            <input style="width: 95%;outline: none;border: none;background-color: #ededed;line-height: 15px;" class="radius paddingv15 paddingh45" type="text" placeholder="搜索商品，共24041款好物">
+            <input style="width: 95%;outline: none;border: none;background-color: #ededed;line-height: 15px; border-radius: 5px" class=" paddingv15 paddingh60" type="text" placeholder="搜索商品，共24041款好物">
         </div>
-        <div class="flex-container fixed-bottom top100 vfull">
+        <div class="flex-container abs-bottom top100 vfull">
             <cmui-tabbar class="top" position="left" @item-click="toogle">
                 <cmui-tabbar-item v-for="(e, i) in navs" :key="i" :title="e" ></cmui-tabbar-item>
             </cmui-tabbar>
-            <div class="flex1 pos-r">
+            <div class="flex1 pos-r marginb80">
                 <div class="abs-full scroll-container-y top text-center padding20">
                     <img src="https://yanxuan.nosdn.127.net/fcb646136cabf0b597d41e459de631df.jpg?imageView&thumbnail=0x196" alt="">
                     <div class="list list-col3" v-if="currentNav">
