@@ -3,7 +3,6 @@
 @import "base/normalize";
 @import "base/baseIcon";
 @import "base/layout";
-@import "base/pm";
 @import "base/type";
 @import "base/button";
 @import "base/badge";
@@ -15,4 +14,10 @@
 @import "ui/notice";
 @import "ui/mask";
 @import "ui/popup";
-@import "effect/transition";
+
+p.title{
+    font-size: 14px;
+    background: rgba(0,0,0,0.04);
+    color: #666666;
+    line-height: 20px;
+}

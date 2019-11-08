@@ -138,6 +138,9 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 		display: inline-block;
 		font-size: initial;
 	}
+	&.top>*{vertical-align: top}
+	&.center>*{vertical-align: middle}
+	&.bottom>*{vertical-align: bottom}
 	@extend .hide-scrollBar;
 }
 .flex-container{
@@ -153,16 +156,16 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.bottom{@include align-items(flex-end) }
 	&.vfull{@include align-items(stretch) }
 	&.hfull{&>*{@include flex(); } }
-	&.leftCenter{@include justify-content(flex-start);}
-	&.leftTop{@include justify-content(flex-start);@include align-items(flex-start);}
-	&.leftBottom{@include justify-content(flex-start);@include align-items(flex-end)}
-	&.leftLine{@include justify-content(flex-start);@include align-items(baseline);}
-	&.rightCenter{@include justify-content(flex-end);}
-	&.rightTop{@include justify-content(flex-end);@include align-items(flex-start);}
-	&.rightBottom{@include justify-content(flex-end);@include align-items(flex-end);}
-	&.rightLine{@include justify-content(flex-end);@include align-items(baseline);}
-	&.topRound{@include justify-content(space-around);@include align-items(flex-start);}
-	&.bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
+	//&.leftCenter{@include justify-content(flex-start);}
+	//&.leftTop{@include justify-content(flex-start);@include align-items(flex-start);}
+	//&.leftBottom{@include justify-content(flex-start);@include align-items(flex-end)}
+	//&.leftLine{@include justify-content(flex-start);@include align-items(baseline);}
+	//&.rightCenter{@include justify-content(flex-end);}
+	//&.rightTop{@include justify-content(flex-end);@include align-items(flex-start);}
+	//&.rightBottom{@include justify-content(flex-end);@include align-items(flex-end);}
+	//&.rightLine{@include justify-content(flex-end);@include align-items(baseline);}
+	//&.topRound{@include justify-content(space-around);@include align-items(flex-start);}
+	//&.bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
 	&.reverse{@include flex-direction(row-reverse);}
 }
 .flex-container-col{
@@ -178,12 +181,12 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.round{@include justify-content(space-around); }
 	&.vfull{&>*{@include flex(); } }
 	&.hfull{@include align-items(stretch) }
-	&.leftCenter{@include align-items(flex-start);@include justify-content(center);}
-	&.leftTop{@include align-items(flex-start);@include justify-content(flex-start);}
-	&.leftBottom{@include align-items(flex-start);@include justify-content(flex-end);}
-	&.rightCenter{@include align-items(flex-end);@include justify-content(center);}
-	&.rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
-	&.rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
+	//&.leftCenter{@include align-items(flex-start);@include justify-content(center);}
+	//&.leftTop{@include align-items(flex-start);@include justify-content(flex-start);}
+	//&.leftBottom{@include align-items(flex-start);@include justify-content(flex-end);}
+	//&.rightCenter{@include align-items(flex-end);@include justify-content(center);}
+	//&.rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
+	//&.rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
 	&.reverse{@include flex-direction(column-reverse);}
 	&>span{
 		display:block;

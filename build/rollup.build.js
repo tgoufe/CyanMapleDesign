@@ -13,7 +13,7 @@ const inquirer = require('inquirer');
   !fsExistsSync(_path) && fs.mkdirSync(_path)
 })
 
-let componentsList = getFiles('./src/maple/components')
+let componentsList = [] || getFiles('./src/maple/components')
   .filter(item => /index\.js$/.test(item.name))
 let pkg = []
 const inquirerInput = [

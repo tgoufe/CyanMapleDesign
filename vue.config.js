@@ -17,7 +17,7 @@ module.exports = {
     },
     wangyiyanxuan: {
       entry: 'websiteDemo/wangyiyanxuan/main.js',
-      template: 'public/index.html',
+      template: 'websiteDemo/wangyiyanxuan/index.html',
       filename: 'wangyiyanxuan.html'
     },
     elem: {
