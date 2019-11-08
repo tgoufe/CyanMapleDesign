@@ -12,19 +12,46 @@
 			height:0
 		}
 	}
+	&.radius{
+		overflow: hidden;
+		border-radius: $border-radius-base * 2;
+		&::before{
+			border-radius: $border-radius-base * 2;
+		}
+	}
 	&.border{
 		border:none;
-		&:before{
-			content:"";
-			width:200%;
-			height:200%;
-			border:1px solid darken($border-color-default,10%);
-			position:absolute;
-			transform-origin: 0 0;
-			transform:scale(.5,.5);
+		&:not(.inner){
+			&::before{
+				content:"";
+				width:200%;
+				height:200%;
+				border:1px solid darken($border-color-default,10%);
+				position:absolute;
+				transform-origin: 0 0;
+				transform:scale(.5,.5);
+			}
 		}
-		&.radius:before{
-			border-radius: $border-radius-base * 2;
+		&.inner{
+			&:not([class*=list-col]){
+				.list-item{
+					&::before{
+						display: none;
+					}
+					&:last-child:after{
+						display: none;
+					}
+				}
+			}
+			@for $i from 1 through 9{
+				&.list-col#{$i}{
+					.list-item:nth-child(#{$i}n){
+						&::before{
+							display: none;
+						}
+					}
+				}
+			}
 		}
 		.list-item{
 			&:after{
@@ -37,7 +64,7 @@
 				transform: scaleY(.5);
 				background-color: darken($border-color-default,10%);
 			}
-			&:before{
+			&::before{
 				position: absolute;
 				right: 0;
 				bottom: 0;
@@ -54,11 +81,11 @@
 		margin-bottom:-1px;
 		margin-top:1px;
 	}
-	@for $i from 2 through 6{
+	@for $i from 1 through 9{
 		&.list-col#{$i} .list-item{
 			@extend %listItemStyle;
 			width:1/$i * 100%;
-			&:nth-child(#{$i}n):before{
+			&:nth-child(#{$i}n)::before{
 				width:0;
 			}
 			&:nth-child(#{$i}n+1){

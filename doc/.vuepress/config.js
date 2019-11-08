@@ -27,7 +27,20 @@ module.exports = {
     evergreen: true,
     themeConfig:{
         sidebar: {
-            '/Cyan/': getlist('Cyan'),
+            '/Cyan/': [
+                '',
+                'build',
+                'layout',
+                'list',
+                'layout_assist',
+                'offset',
+                'color_and_size',
+                'type',
+                'border',
+                'button',
+                'form',
+                'icon',
+            ],
             '/components/':getlist('components'),
             '/methods/':getlist('methods'),
             '/': []

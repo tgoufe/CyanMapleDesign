@@ -88,6 +88,9 @@ i{
 @each $colorName,$colorValue in $colorList{
 	.bg-#{$colorName}{
 		background-color:$colorValue;
+		&.light{
+			background-color:scale-color($colorValue,$lightness: 70%);
+		}
 	}
 }
 @each $colorName,$colorValue in $grayList{

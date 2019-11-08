@@ -222,23 +222,3 @@ ratio-container用于创建一个固定比例的容器，这在不确定外在�
     </div>
 </div>
 ```
-## 列表
-* list
-* list-item
-
-除了前面介绍过的6种容器之外，Cyan还提供了一个强大的list类用于快速建立行列结构，只需要为节点添加list类，同时为列表的都每一项添加list-item类即可。
-
-默认的情况下是一列显示的，如果你需要创建其他数量的列，直接添加list-col{num}类，num的范围为1～6。
-
-于此同时你可以使用border类为列表增加边框，使用radius类为边框设置圆角
-
-
-```html
-<!--这里设置了一个三列的列表 并且添加的边框和圆角-->
-<div class=“list list-col3 border radius”>
-	<!--列表的每一项需要添加list-item类-->
-	<div class=“list-item”>content</div>
-	<div class=“list-item”>content</div>
-</div>
-```
-<Cyan-List></Cyan-List>

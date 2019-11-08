@@ -20,6 +20,9 @@ gulp.task('sass', async () => {
   compile('src/cyan/cmuiPC.scss')
   compile('src/cyan/cmuiAnimate.scss')
 })
+gulp.task('copyCyan', async () => {
+  gulp.src('src/cyan/**/*').pipe(gulp.dest('CMUI/cyan'))
+})
 gulp.task('theme', async () => {
   compile('src/maple/theme.scss')
 })

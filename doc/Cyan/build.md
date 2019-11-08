@@ -8,13 +8,13 @@ npm i cyanmaple -S
 可以通过 unpkg.com/cyanmaple 获取到最新版本的资源，在页面上css文件即可开始使用。我们提供了4个样式文件，请根据你的需要选择其中之一
 ```html
 <!--完整的样式库，基于移动端，使用rem作为单位，包括基础样式，动画，组件样式，通常是配合maple组件使用-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/CMUI.css">
+<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmui.css">
 <!--仅包含基础样式库，基于移动端，使用rem作为单位-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/cmuiMobile.css">
+<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmuiMobile.css">
 <!--仅包含基础样式库，基于PC端，使用PX作为单位-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/cmuiPc.css">
+<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmuiPc.css">
 <!--动画样式库-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/cmuiAnimate.css">
+<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmuiAnimate.css">
 
 ```
 ## 本地编译
@@ -29,8 +29,18 @@ npm run cyan
 
 使用koala的时候需要将autoprefix勾选
 :::
-## 移动端配合
-Cyan的默认配置中$isPC为false，即面向于移动端的开发。使用rem布局，因此需要设置页面的根节点font-size。请在HTML中的head标签内引入相关的JS文件。
+## 动态样式
+如需进行动态样式的支持，需在项目中引入动态样式文件。
+### 浏览器引入
 ```html
-<script src="https://unpkg.com/cyanmaple/CMUI/styleInit.js"></script>
+<script src="https://unpkg.com/cyanmaple/CMUI/lib/styleInit.umd.min.js"></script>
+<script>
+styleInit()
+</script>
+
+```
+### 项目导入
+```console
+import styleInit from 'cyanMaple/src/maple/styleInit.js'
+styleInit()
 ```

@@ -29,6 +29,7 @@ export default {
         { name: 'UI组件', path: '/ui', icon:'uiIcon-ui' },
         { name: '表单组件', path: '/forms', icon:'uiIcon-forms' },
         { name: '公共方法', path: '/methods', icon:'uiIcon-mask' },
+        { name: '为何非用组件？', path: '/why', icon:'uiIcon-mask' },
       ]
     }
   },
