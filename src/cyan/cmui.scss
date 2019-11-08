@@ -21,3 +21,27 @@ p.title{
     color: #666666;
     line-height: 20px;
 }
+.form{
+	&.NewStyle{
+		input[type=checkbox].switch {
+			&:before{
+				height: 24px;
+				background: rgba(102,102,102,0.60);
+				
+			}
+			&:checked:before{
+				background-color: #00BABA !important;
+			}
+			&:after{
+				width: 18px;
+				height: 18px;
+			    left: 5px;
+    			top: 4px;
+    			background: #fff;
+			}
+		}
+		.cmui-check__label.checked {
+		    color: #fff;
+		}
+	}
+}
