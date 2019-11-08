@@ -101,10 +101,4 @@ export default {
     background: none !important;
     padding: 5px 10px !important;
 }
-p.title{
-    font-size: 14px;
-    background: rgba(0,0,0,0.04);
-    color: #666666;
-    line-height: 20px;
-}
 </style>

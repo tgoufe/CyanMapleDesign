@@ -14,3 +14,10 @@
 @import "ui/notice";
 @import "ui/mask";
 @import "ui/popup";
+
+p.title{
+    font-size: 14px;
+    background: rgba(0,0,0,0.04);
+    color: #666666;
+    line-height: 20px;
+}
