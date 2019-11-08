@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import '@cyan/CMUI.scss'
+import '@cyan/cmui.scss'
 export default {
   name: '',
   data() {

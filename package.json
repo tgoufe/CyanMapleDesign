@@ -15,7 +15,9 @@
     "theme": "gulp theme",
     "doc": "vuepress dev doc",
     "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && node ./build/cli.build.js",
-    "build:demo": "vue-cli-service build"
+    "build:demo": "vue-cli-service build",
+    "build:bate": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build"
+    
   },
   "files": [
     "src/",

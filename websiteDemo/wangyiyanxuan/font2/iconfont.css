@@ -1,10 +1,11 @@
-@font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1572867864062'); /* IE9 */
-  src: url('iconfont.eot?t=1572867864062#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAM4AAsAAAAABxwAAALsAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCAIF1ATYCJAMMCwgABCAFhG0HOhs/BsgOJQkShQSqAgFsBNUa2XO3TwDqA5ZVFKBC0sAkZGwcUXlAYVhH3+Va5gkL6JqCAgaF8LA5eMhPLiWF4NgTCQWsQJFqZV0rbA24nP4KKJB5luWyto49tMcA44ACHXOSFUhA3jB2wQvcTKBSr2SqxbXNbcgosXsFYo8kOJCxEJAkli4XShsmpvG4Tqc8u5A941r0/fhnJsrJlOTsgUu31bhR+c+DX6+ayWIS9QUE5XI2sGnkmIYkYl1jYi2NYFyNSoO2O79UErKlwv8FEikMU+lB/3gZUcourQbjMJnx88ATE/x6nSIDOSgtppZAdiNO88EhmucqG5PhW9a3N/aitp9MJW7b3F3fiTj08FZ826RVFU+/1X15bz+eX2QLufpQfX7rfP9esGpjZWsqcrWKH2B++9x2/L1kq3D9qfr4OnW2rbYt274VXYIwvjAzMyc6e1S77Fv7X0mT8+eswf+eiFmbgGX12hW1nJXQpb57c38XNtSVqd5VOVbO8Jr4mM27pPmvefv6OjrcPVU0oT5+pJ4oTZbHfmzv8uSu4oIUOdEQ1DV7nD1R3NCOacb++W+cbvvwcH1d8f/yqgR+/KS3R6phLqT8jpzBHy5OowgVhXaJGjuRJ3jGfUNDcnMHxDJUOh4K5Gn0Pd3UYlQSyrVMcJXpyZArN0wmzjRKVJmNUuXmodKUuulVmjAakSowaQ4g1LtAptZL5Oq9kInzhRKtflGqPnJUWh1hC1YZjZ3mKgYODm7sHMeSi/qJa+bmuLwFhGGvg+XVEa8DmCKFcUZqejldB35gSwxRRoRMzgkmjPpwLdgOvF6KA4zK4OKpIueBwrQ00vSmVBf1IbNFGODAATfMaRwmcaH8SNCYM1c+3wIIhnk5sA5WXbIDYBRS61iGVOkDyDqDfxDrUa5RjBBk4jgCIxjKB6sFNuB1EhQWaG4nAy5cKnFCLKBQGqpHhhpStzf5/m8TVLJXzyOLPJK0lzIwEccIZRIHBSE=') format('woff2'),
-  url('iconfont.woff?t=1572867864062') format('woff'),
-  url('iconfont.ttf?t=1572867864062') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('iconfont.svg?t=1572867864062#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+  font-family: 'iconfont';  /* project id 1493959 */
+  src: url('//at.alicdn.com/t/font_1493959_2mpuzll2bd9.eot');
+  src: url('//at.alicdn.com/t/font_1493959_2mpuzll2bd9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1493959_2mpuzll2bd9.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1493959_2mpuzll2bd9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1493959_2mpuzll2bd9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1493959_2mpuzll2bd9.svg#iconfont') format('svg');
 }
 
 .iconfont {
