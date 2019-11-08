@@ -99,12 +99,6 @@ p.title{
     color: #666666;
     line-height: 20px;
 }
-.borderBlack{
-    border:1px solid black !important;
-}
-.borderBlackReverse{
-    border-bottom:1px solid black !important;
-}
 input[type='color']::-webkit-color-swatch-wrapper{
   padding: 0;
 }
