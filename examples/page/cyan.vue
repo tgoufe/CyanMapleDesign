@@ -12,6 +12,7 @@
          <router-link to="cyan/formCustom" class="padding20 dis-b">自定义表单</router-link>
         <p>建站DEMO，在下面的案例中你将看到使用cyan的各种组合，在不使用JS和其他样式的情况下完成常见布局建设</p>
         <router-link to="cyan/demo/productList" class="padding20 dis-b">电商网站商品列表</router-link>
+        <router-link to="cyan/settingView/settingView" class="padding20 dis-b">可视化设置</router-link>
     </div>
 </template>
 
