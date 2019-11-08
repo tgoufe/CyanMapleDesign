@@ -1,5 +1,5 @@
 <template>
-    <div id="detail" style="height: 2000px;">
+    <div id="detail">
         <Cheader class="fixed-top bg-white" style="z-index: 20000;"></Cheader>
         <cmui-slider :loop="true" :page="true" :autoplay="true" class="margint95">
             <cmui-slider-item v-for="(e, i) in banner" :key="i">
@@ -60,7 +60,7 @@
             </div>
 
         </div>
-        <div  class="flex-container bg-white vfull pos-f bottom0" style="width: 100%;height: 1.4rem; font-weight: 300;">
+        <div  class="flex-container bg-white vfull pos-f bottom0" style="width: 100%;height: 1.4rem; font-weight: 300;z-index: 3000;">
             <i class="iconfont icon-phone borderr flex1 flex-container center" style="font-size: 30px;color: gray"></i>
             <p class="flex2 flex-container center">立即购买</p>
             <p  class="flex2 bg-red text-white flex-container center">加入购物车</p>
