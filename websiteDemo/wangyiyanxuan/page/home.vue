@@ -16,21 +16,21 @@
             </cmui-tabbar>
         </div>
         <!--banner-->
-        <cmui-slider :loop="true" :page="true" :autoplay="true" class="margint170">
+        <cmui-slider :loop="true" :page="true" :autoplay="true" class="margint170" >
             <cmui-slider-item v-for="(e, i) in banner" :key="i">
                 <img :src="e" alt="">
             </cmui-slider-item>
         </cmui-slider>
         <!--tip-->
         <div class="flex-container padding20 fs-10">
-            <p v-for="(e, i) in ['网易自营品牌', '30天无忧退货', '48小时快速退款']" class="text-container lh-1">
+            <p v-for="(e, i) in ['网易自营品牌', '30天无忧退货', '48小时快速退款']" class="text-container lh-1" >
                 <span><i class="iconfont icon-trade text-red  marginr10 fs-14"></i></span>
                 <span style="color: #333;" class=" text-vcenter">{{e}}</span>
             </p>
         </div>
         <!--kind-->
         <div class="list list-col5">
-            <div class="list-item text-center fs-11 padding10" style="font-weight: 300;" v-for="(e, i) in kinds" :key="i">
+            <div class="list-item text-center fs-11 padding10" style="font-weight: 300;" v-for="(e, i) in kinds" :key="i" @click="go">
                 <img :src="e.img" alt=""style="width: 85%;" class="marginb10">
                 <p>{{e.name}}</p>
             </div>
@@ -79,7 +79,7 @@
             </router-link>
         </div>
         <div class="list list-col2 paddingh20">
-            <div v-for="(e, i) in brand" :key="i" class="list-item">
+            <div v-for="(e, i) in brand" :key="i" class="list-item" @click="go">
                 <div class="padding3 pos-r" >
                     <img class="" style="" :src="e.img" alt="">
                     <div class="pos-a top20 text-center" style="width: 100%;">
@@ -115,7 +115,7 @@
 
         </div>
         <div class="list list-col4 bg-white paddingh20">
-            <div v-for="(e, i) in kindSale" :key="i" class="list-item  text-center" >
+            <div v-for="(e, i) in kindSale" :key="i" class="list-item  text-center" @click="go">
                 <div class="padding5">
                     <div class="padding10" style="background-color: #f5f5f5;">
                         <p class="fs-12">{{e.name}}</p>
@@ -129,7 +129,7 @@
         <div class="paddingv20">
             <img src="https://yanxuan.nosdn.127.net/56ba53679b99c816de0ea6d36c995eb0.jpg?imageView&thumbnail=750x0&quality=75" alt="">
             <div class="scroll-container top  bg-white">
-                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10">
+                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10" @click="go">
                     <img style="width: 100%;" :src="e.img" alt="">
                     <p class=" text-limit2 fs-10 padding5">{{e.name}}</p>
                     <p class="fs-10"><span class="text-red">¥2309</span><span class="text-delete text-light marginl10">¥9999</span></p>
@@ -140,7 +140,7 @@
         <div>
             <img src="https://yanxuan.nosdn.127.net/4e76055d88abf3809c764d8e26656876.jpg?imageView&thumbnail=750x0&quality=75" alt="">
             <div class="scroll-container top  bg-white">
-                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10">
+                <div v-for="(e, i) in productList" :key="i" style="width: 100px;" class=" paddingv20 paddingh10" @click="go">
                     <img style="width: 100%;" :src="e.img" alt="">
                     <p class=" text-limit2 fs-10 padding5">{{e.name}}</p>
                     <p class="fs-10"><span class="text-red">¥2309</span><span class="text-delete text-light marginl10">¥9999</span></p>
@@ -320,7 +320,11 @@
       }
     },
     created () {},
-    methods: {},
+    methods: {
+      go () {
+        this.$router.push(`/detail`)
+      }
+    },
   }
 </script>
 <style lang="scss">

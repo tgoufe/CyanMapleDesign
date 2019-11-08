@@ -19,6 +19,11 @@ module.exports = {
       entry: 'websiteDemo/wangyiyanxuan/main.js',
       template: 'websiteDemo/wangyiyanxuan/index.html',
       filename: 'wangyiyanxuan.html'
+    },
+    elem: {
+      entry: 'websiteDemo/elem/main.js',
+      template: 'public/index.html',
+      filename: 'elem.html'
     }
   },
   css: {

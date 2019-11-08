@@ -14,6 +14,15 @@ export default {
   },
   data () {
     return {
+      path: ''
+    }
+  },
+  watch:{
+    $route: {
+      handler (val, old) {
+        this.path = val.fullPath
+      },
+      deep: true
     }
   }
 }

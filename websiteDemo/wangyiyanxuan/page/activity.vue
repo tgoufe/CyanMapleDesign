@@ -10,7 +10,7 @@
     </div>
     <!--左/右-->
     <div class="padding20">
-      <div class="flex-container  marginb20 bg-white" v-for="(e, i) in recommends" :key="i" :class="isEven(i)">
+      <div class="flex-container  marginb20 bg-white" v-for="(e, i) in recommends" :key="i" :class="isEven(i)" @click="go">
         <div class="flex1">
           <img :src="e.img" alt="">
         </div>
@@ -37,7 +37,7 @@
     <!--两列-->
     <div class="padding10">
       <div class="list list-col2">
-        <div class="list-item padding5 " v-for="(e, i) in productList" :key="i">
+        <div class="list-item padding5 " v-for="(e, i) in productList" :key="i" @click="go">
           <div class=" text-center  bg-white">
             <div>
               <img :src="e.img" alt="">
@@ -174,6 +174,9 @@ export default {
       if ((index += 1) % 2 === 0) {
         return 'reverse'
       }
+    },
+    go () {
+      this.$router.push(`/detail`)
     }
   }
 }
