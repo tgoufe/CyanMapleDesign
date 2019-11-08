@@ -18,6 +18,10 @@
             <img :src="item.src"
                  alt
 />
+
+
+
+
             <p class="text-dark fs-12">
 {{ item.name }}
 </p>
