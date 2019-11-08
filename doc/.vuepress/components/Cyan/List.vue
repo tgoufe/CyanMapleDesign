@@ -1,10 +1,9 @@
 <template>
     <div>
-        <p>切换下方的选项，查看列表和对应代码中class的变化</p>
         <div class="bg-blue light padding20">
             <div class="list bg-white" :class="[`list-col${col}`,{border,radius,inner}]">
                 <div class="list-item" v-for="i in list" :key="i" style="padding:10px">
-                    item{{i+1}}
+                    {{text}}
                 </div>
             </div>
         </div>
@@ -15,20 +14,21 @@
             <cmui-checkbox :flex="true" label="inner" v-model="inner"></cmui-checkbox>
         </div>
     </div>
-
 </template>
 
 <script>
     import '../../../../src/cyan/CMUI_doc.scss';
     import cmuiNumber from '../../../../src/maple/components/form/number.vue';
     import cmuiCheckbox from '../../../../src/maple/components/form/checkbox.vue';
+    import faker from 'faker';
     export default {
         name: "Position",
         components:{cmuiNumber,cmuiCheckbox},
         data(){
             return{
+                text:faker.lorem.words(),
                 list:Array.from({length:12},(k,i)=>i),
-                col:1,
+                col:3,
                 border:false,
                 radius:false,
                 inner:false
