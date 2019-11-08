@@ -1,39 +1,39 @@
 <template>
 <div>
-    <p>layout</p>
-    <p>grid container</p>
-    <div class="container">
+    <p class="text-black fs-18 padding30">Layout</p>
+    <p class="title paddingv20 paddingh30">Grid container</p>
+    <div class="container fs-14 padding30" style="color: #00F8F8;">
         <div class="row">
             <div class="span4" v-for="item in 3">
-                <div class="gridDemo">span4</div>
+                <div class="gridDemo" style="background: #00BABA;">Span4</div>
             </div>
         </div>
         <div class="row margint20">
             <div class="span3" v-for="item in 4">
-                <div class="gridDemo">span3</div>
+                <div class="gridDemo" style="background: #007C7C;">Span3</div>
             </div>
         </div>
         <div class="row margint20">
             <div class="col3" v-for="item in 5">
-                <div class="gridDemo">col3</div>
+                <div class="gridDemo" style="background: #003E3E;">Col3</div>
             </div>
         </div>
     </div>
-    <p>box container</p>
-    <div class="box-container">
+    <p class="title paddingv20 paddingh30">Box container</p>
+    <div class="container fs-14 padding30" style="color: #00F8F8;">
         <div class="box-row">
             <div class="box-span4" v-for="item in 3">
-                <div class="gridDemo">span4</div>
+                <div class="gridDemo" style="background: #00BABA;">Span4</div>
             </div>
         </div>
         <div class="box-row margint20">
             <div class="box-span3" v-for="item in 4">
-                <div class="gridDemo">span3</div>
+                <div class="gridDemo" style="background: #007C7C;">Span3</div>
             </div>
         </div>
         <div class="box-row margint20">
             <div class="box-col3" v-for="item in 5">
-                <div class="gridDemo">col3</div>
+                <div class="gridDemo" style="background: #003E3E;">Col3</div>
             </div>
         </div>
     </div>
@@ -48,9 +48,10 @@ export default {
 
 <style scoped>
     .gridDemo{
-        background-color: #eeeeee;
-        line-height:30px;
+        line-height:32px;
         text-align:center;
-        box-shadow: 0 0 2px 0 #000000;
+    }
+    .box-row>div[class|="box"]:not(:last-child){
+        border-right:1px solid #00F8F8;
     }
 </style>
