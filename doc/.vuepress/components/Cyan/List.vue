@@ -22,7 +22,6 @@
     import cmuiCheckbox from '../../../../src/maple/components/form/checkbox.vue';
     import faker from 'faker';
     export default {
-        name: "Position",
         components:{cmuiNumber,cmuiCheckbox},
         data(){
             return{

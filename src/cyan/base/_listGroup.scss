@@ -13,8 +13,7 @@
 		}
 	}
 	&.radius{
-		overflow: hidden;
-		border-radius: $border-radius-base * 2;
+		border-radius: $border-radius-base;
 		&::before{
 			border-radius: $border-radius-base * 2;
 		}
