@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     offsetType () {
-      return this.bottom >= 0?'bottom':'top'
+      return this.bottom >= 0 ? 'bottom' : 'top'
     }
   },
   mounted () {
