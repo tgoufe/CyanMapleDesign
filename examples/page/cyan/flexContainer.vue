@@ -1,21 +1,19 @@
 <template>
 <div>
-    <p>你可以使用top left right bottom center reverse round hfull vfull这些class随意组合</p>
-    <p>横向布局</p>
+    <!-- <p class="text-white fs-18 paddingh50 paddingv30 bg-black">你可以使用top left right bottom center reverse round hfull vfull这些class随意组合</p> -->
+    <p class="text-black fs-18 paddingh50 paddingv30">横向布局</p>
     <div v-for="name in classList">
-        <p>{{name||'默认'}}</p>
+        <p class="title paddingv20 paddingh30">{{name||'默认'}}</p>
         <div class="flex-container" :class="name">
             <div class="flexDemo" v-for="i in 3">
-                {{i}}
             </div>
         </div>
     </div>
-    <p>纵向布局</p>
+    <p class="text-black fs-18 paddingh50 paddingv30">纵向布局</p>
     <div v-for="name in classList">
-        <p>{{name||'默认'}}</p>
+        <p class="title paddingv20 paddingh30">{{name||'默认'}}</p>
         <div class="flex-container-col" :class="name">
             <div class="flexDemo" v-for="i in 3">
-                {{i}}
             </div>
         </div>
     </div>
@@ -51,27 +49,23 @@ export default {
 
 <style scoped>
 .flexDemo{
-    min-width:30px;
     text-align: center;
-    line-height:30px;
+    min-width: 24px;
+    min-height: 24px;
 }
 .flexDemo:nth-child(1){
     background-color: #00BABA;
 }
 .flexDemo:nth-child(2){
-    background-color: #ba4153;
+    background-color: #007C7C;;
 }
 .flexDemo:nth-child(3){
-    background-color: #7bba7a;
+    background-color: #003E3E;;
 }
 .flex-container{
-    height:50px;
-    border:1px solid black;
-    margin-bottom:10px;
+    height:56px;
 }
 .flex-container-col{
-    height:120px;
-    border:1px solid black;
-    margin-bottom:10px;
+    height:96px;
 }
 </style>
