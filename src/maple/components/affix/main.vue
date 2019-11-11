@@ -43,7 +43,7 @@ export default {
     },
     bottom: {
       type: Number,
-      default: 0
+      default: -Infinity
     }
   },
   data () {
@@ -55,11 +55,7 @@ export default {
   },
   computed: {
     offsetType () {
-      let type = 'top'
-      if (this.bottom >= 0) {
-        type = 'bottom'
-      }
-      return type
+      return this.bottom >= 0?'bottom':'top'
     }
   },
   mounted () {
