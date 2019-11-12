@@ -27,7 +27,7 @@ export default (function() {
   }
   // set pm
   let PMstore = new Set()
-  let reg = /\b((padding|margin)[trblvh]?|top|bottom|right|left)(-n)?\d+\b/g
+  let reg = /\b((padding|margin|radius)[trblvh]?|top|bottom|right|left)(-n)?\d+\b/g
   let nameObject = {
     t: ['Top'],
     l: ['Left'],
@@ -39,8 +39,31 @@ export default (function() {
   function setPMBySet(set) {
     for (let item of set) {
       let [key, name, pos, isN, value] =
-        /(padding|margin)([trblvh])?(-n)?(\d+)/.exec(item) ||
+        /(padding|margin|radius)([trblvh])?(-n)?(\d+)/.exec(item) ||
         /(top|left|right|bottom)()?(-n)?(\d+)/.exec(item)
+      if (name === 'radius') {
+      // .radius2 {
+      //     border-radius: 2px;
+      //   }
+      // .radius2.list::before, .radius2.border.light.item > * {
+      //     border-radius: 4px;
+      // }
+      // .inputGroup input.radius2:first-child, .btn-group .btn.radius2:first-child, .badge-group .badge.radius2:first-child {
+      //     border-radius: 2px 0 0 2px;
+      //   }
+      // .inputGroup input.radius2:last-child, .btn-group .btn.radius2:last-child, .badge-group .badge.radius2:last-child {
+      //     border-radius: 0 2px 2px 0;
+      //   }
+        [
+          [`.${key}`, 'border-radius', `${value}px`],
+          [`.${key}.list::before, .${key}.border.light.item > *`, 'border-radius', `${value * 2}px`],
+          [`.inputGroup input.${key}:first-child, .btn-group .btn.${key}:first-child, .badge-group .badge.${key}:first-child`, 'border-radius', `${value}px`],
+          [`.inputGroup input.${key}:last-child, .btn-group .btn.${key}:last-child, .badge-group .badge.${key}:last-child`, 'border-radius', `${value}px`]
+        ].forEach(item => {
+          insertStyle(...item)
+        })
+        continue
+      }
       value = isMobile ? `${value / 75}rem` : `${value}px`
       if (pos) {
         nameObject[pos].forEach(posName => {
@@ -67,7 +90,7 @@ export default (function() {
     let PMstoreTemp = new Set()
     let domList =
       dom.querySelectorAll(
-        '[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom]'
+        '[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom],[class*=radius]'
       ) || []
     ;[...domList].forEach(item => {
       let match = item.className.match(reg)
