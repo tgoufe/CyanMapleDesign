@@ -24,41 +24,64 @@
             下方可领券，领券后再省15元，到手价73元
         </div>
         <!--介绍-->
-        <div class="padding25">
-            <p class="text-red text-bolder" style="font-size: 30px;">¥88</p>
-            <div class="flex-container paddingh15 paddingv20" style="background:#F0E7D3 ">
-                <div >
-                    <p class="fs-12" style="font-weight: 300;">
-                        <span class="a paddingv2 paddingh20 fs-10">专享95折</span>
-                        <span>超级会员价¥83.6，可省 <span class="text-red">¥4.4</span></span>
-                    </p>
-                    <p class="fs-11 margint20" style="color: #BEA36E;">
-                        专享价可叠券/满减，比普通会员到手价更低
-                    </p>
+        <div>
+            <div class="padding25">
+                <p class="text-red text-bolder" style="font-size: 30px;">¥88</p>
+                <div class="flex-container paddingh15 paddingv20" style="background:#F0E7D3 ">
+                    <div >
+                        <p class="fs-12" style="font-weight: 300;">
+                            <span class="a paddingv2 paddingh20 fs-10">专享95折</span>
+                            <span>超级会员价¥83.6，可省 <span class="text-red">¥4.4</span></span>
+                        </p>
+                        <p class="fs-11 margint20" style="color: #BEA36E;">
+                            专享价可叠券/满减，比普通会员到手价更低
+                        </p>
+                    </div>
+                    <div>
+                        <div class="btn small text-white radius" style="background-color: #CBB588;"> 立即开通</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="btn small text-white radius" style="background-color: #CBB588;"> 立即开通</div>
+                <div class="flex-container margint20">
+                    <div>
+                        <p class="fs-16 text-bolder">全家猫粮 1.8千克</p>
+                        <p class="fs-13 margint10" style="font-weight: 300;">推荐理由</p>
+                    </div>
+                    <div>
+                        <p class="text-red text-bolder fs-16">99.9%</p>
+                        <p class="fs-12 text-light">好评率</p>
+                    </div>
                 </div>
-            </div>
-            <div class="flex-container margint20">
-                <div>
-                    <p class="fs-16 text-bolder">全家猫粮 1.8千克</p>
-                    <p class="fs-13 margint10" style="font-weight: 300;">推荐理由</p>
+                <div style="background-color: #f7f7f7;color: #333; " class="padding20 radius margint10 fs-12 lh-2 ">
+                    <p>1 - 41%蛋白质，高比例肉源蛋白</p>
+                    <p>2 - 0谷物，减少碳水摄入，减少胃肠负担</p>
+                    <p>3 - 7种肉源，多种优质鱼肉源搭配</p>
                 </div>
-                <div>
-                    <p class="text-red text-bolder fs-16">99.9%</p>
-                    <p class="fs-12 text-light">好评率</p>
-                </div>
-            </div>
-            <div style="background-color: #f7f7f7;color: #333; " class="padding20 radius margint10 fs-12 lh-2 ">
-                <p>1 - 41%蛋白质，高比例肉源蛋白</p>
-                <p>2 - 0谷物，减少碳水摄入，减少胃肠负担</p>
-                <p>3 - 7种肉源，多种优质鱼肉源搭配</p>
-            </div>
-            <div class="flex-container-col margint10">
-                <img v-for="e in banner" :src="e" alt="">
             </div>
 
+            <div class="padding10  flex-container"  style="font-weight: 300;border-top: 10px solid #f7f7f7;border-bottom: 10px solid #f7f7f7">
+                <span class="padding20">购物返：新用户最高返 <span class="text-red">¥0.59回馈金 + 5积分</span></span>
+                <i class="iconfont icon-more"></i>
+            </div>
+            <div class="padding10  flex-container borderb" style="font-weight: 300;"
+                 v-for="(e, i) in ['请选择规格数量', '限制：该商品不可使用优惠券', '配送：请选择配送地址' ]">
+                <span class="padding20">{{e}}</span>
+                <i class="iconfont icon-more"></i>
+            </div>
+            <!--广告位-->
+            <div style="font-weight: 300;border-top: 10px solid #f7f7f7;border-bottom: 10px solid #f7f7f7">
+                <img src="https://yanxuan.nosdn.127.net/94215fb8fc4ee8fb5c16a250c41baaf8.jpg?imageView&thumbnail=750x0&quality=75" alt="">
+            </div>
+
+            <!--用户评价-->
+
+            <div class="padding10  flex-container borderb" style="font-weight: 300">
+                <span class="padding20">用户评价(66942)</span>
+                <span><span class="text-red">99.7%</span>好评率<i class="iconfont icon-more"></i></span>
+
+            </div>
+            <div class="flex-container-col margint20">
+                <img v-for="e in banner" :src="e" alt="">
+            </div>
         </div>
         <div  class="flex-container bg-white vfull pos-f bottom0" style="width: 100%;height: 1.4rem; font-weight: 300;z-index: 3000;">
             <i class="iconfont icon-phone borderr flex1 flex-container center" style="font-size: 30px;color: gray"></i>
