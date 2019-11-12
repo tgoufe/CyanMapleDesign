@@ -168,7 +168,6 @@ export default {
             })
           })
         }
-        // this.visible = value
         this.$emit('update:visible', value)
       }
     }

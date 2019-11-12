@@ -125,7 +125,6 @@ export default {
         return this.visible
       },
       set(value) {
-        this.visible = value
         this.$emit('update:visible', value)
       }
     }

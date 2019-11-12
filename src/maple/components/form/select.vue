@@ -48,7 +48,7 @@
           :visible.sync="visible"
           :data="data"
           @select="select"
-        />
+        ></cmui-picker>
       </div>
       <!-- 后置 -->
       <div
