@@ -157,6 +157,7 @@ export default {
   computed: {
     selfVisible: {
       get() {
+        this.setData(this.data)
         return this.visible
       },
       set(value) {
