@@ -85,8 +85,7 @@ input{
             &.custom:focus{
               border-color: currentColor;
             }
-            &.radius{
-                border-radius: $border-radius-base;
+            &[class*=radius]{
                 &.reverse{
                     border-radius:0;
                 }
@@ -522,15 +521,7 @@ input{
         >*{
             margin-left:-1px;
         }
-        &.radius{
-            >*{
-                &:first-child{
-                    border-radius:$border-radius-base 0 0 $border-radius-base;
-                }
-                &:last-child{
-                    border-radius:0 $border-radius-base $border-radius-base 0;
-                }
-            }
+        &[class*=radius]{
             input{
                 @extend .flex1;
             }

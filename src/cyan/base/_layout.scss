@@ -108,9 +108,6 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
     &.flex-y img{
     	max-height: none;
     }
-    &.radius{
-    	border-radius:$border-radius-base;
-    }
     &.round{
     	border-radius:$container_width;
     }

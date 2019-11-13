@@ -28,11 +28,6 @@
 			border-radius:375px;
 		}
 	}
-	&.radius{
-		&,&.item >*{
-			border-radius:$border-radius-base;
-		}
-	}
 	//light
 	&.light{
 		&, &t, &r, &b, &l, &.item >*, &.itemh >*, &.itemv >*{
@@ -60,12 +55,6 @@
 			&:first-child::before{content:none;}
 		}
 		&.item,&.itemh,&.itemv{&::before{content:none;}}
-		&.radius{
-			&,
-			&.item >*{
-				&::before{border-radius: $border-radius-base * 2; }
-			}
-		}
 		&.round{
 			&,&.item >*{
 				&::before{border-radius: 750px; }

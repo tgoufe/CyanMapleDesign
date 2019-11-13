@@ -12,12 +12,6 @@
 			height:0
 		}
 	}
-	&.radius{
-		border-radius: $border-radius-base;
-		&::before{
-			border-radius: $border-radius-base * 2;
-		}
-	}
 	&.border{
 		border:none;
 		&:not(.inner){
