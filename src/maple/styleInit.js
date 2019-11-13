@@ -72,7 +72,7 @@ export default (function() {
   function setPMByClass(className) {
     let PMstoreTemp = new Set()
     let match = ([...className].join(' ').match(reg) || [])
-      .concat([...className].join(' ').match(/ratio\d+\/\d+/g))
+      .concat([...className].join(' ').match(/ratio\d+\/\d+/g) || [])
     match.forEach(item => {
       if (!PMstore.has(item)) {
         PMstore.add(item)
@@ -113,7 +113,6 @@ export default (function() {
       let temp = new Set()
       let classList = new Set()
       mutations.reduce((rs, item) => {
-        console.log(item)
         if (item.type === 'attributes') {
           switch (item.attributeName) {
             case 'class':
