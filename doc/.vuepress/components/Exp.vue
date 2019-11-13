@@ -36,6 +36,7 @@ $dark:#cbd5e0;
 .exp{
 
 }
+/deep/ [ratio="2/3"]::before{padding-top:150%;}
 /deep/ .demo{
     background: $gray;
     &.flex-container,&.flex-container-col{

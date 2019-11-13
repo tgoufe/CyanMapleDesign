@@ -30,9 +30,9 @@ module.exports = {
             '/Cyan/': [
                 '',
                 'build',
-                'layout',
                 'grid',
                 'img',
+                'ratio',
                 'flex',
                 'list',
                 'layout_assist',

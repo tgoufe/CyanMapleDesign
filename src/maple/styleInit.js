@@ -3,6 +3,7 @@ let exportModule = window || {}
 let methodName = 'initCMUI'
 let checkDevice = () => /iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion) || document.scrollingElement.clientWidth < 770
 let isMobile = checkDevice()
+let isInit = false
 export default (function() {
   if (!window || !document) {
     return function() {}
@@ -109,7 +110,8 @@ export default (function() {
     setPMBySet(PMstoreTemp)
   }
   function obs() {
-    new MutationObserver(mutations => {
+    !isInit && new MutationObserver(mutations => {
+      isInit = true
       let temp = new Set()
       let classList = new Set()
       mutations.reduce((rs, item) => {
