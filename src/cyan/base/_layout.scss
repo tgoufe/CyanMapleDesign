@@ -243,17 +243,17 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&:before{
 		padding-top:100%;
 	}
-	@for $i from 1 through $layoutNumber{
-		@for $k from 1 through $layoutNumber{
-			@if($i != $k){
-				&[ratio='#{$i}/#{$k}']{
-					&:before{
-						padding-top:$k/$i *100%;
-					}
-				}
-			}
-		}
-	}
+	//@for $i from 1 through $layoutNumber{
+	//	@for $k from 1 through $layoutNumber{
+	//		@if($i != $k){
+	//			&[ratio='#{$i}/#{$k}']{
+	//				&:before{
+	//					padding-top:$k/$i *100%;
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 	.mask{
 		position: absolute;
 	}

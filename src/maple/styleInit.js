@@ -38,22 +38,17 @@ export default (function() {
   }
   function setPMBySet(set) {
     for (let item of set) {
+      // ratio
+      if (~item.indexOf('ratio')) {
+        let [, x, y] = /ratio(\d+)\/(\d+)/.exec(item)
+        insertStyle(`.ratio-container[ratio="${x}/${y}"]::before`, 'padding-top', `${y / x * 100}%`)
+        continue
+      }
       let [key, name, pos, isN, value] =
         /(padding|margin|radius)([trblvh])?(-n)?(\d+)/.exec(item) ||
         /(top|left|right|bottom)()?(-n)?(\d+)/.exec(item)
+      // radius
       if (name === 'radius') {
-      // .radius2 {
-      //     border-radius: 2px;
-      //   }
-      // .radius2.list::before, .radius2.border.light.item > * {
-      //     border-radius: 4px;
-      // }
-      // .inputGroup input.radius2:first-child, .btn-group .btn.radius2:first-child, .badge-group .badge.radius2:first-child {
-      //     border-radius: 2px 0 0 2px;
-      //   }
-      // .inputGroup input.radius2:last-child, .btn-group .btn.radius2:last-child, .badge-group .badge.radius2:last-child {
-      //     border-radius: 0 2px 2px 0;
-      //   }
         [
           [`.${key}`, 'border-radius', `${value}px`],
           [`.${key}.list::before, .${key}.border.light.item > *`, 'border-radius', `${value * 2}px`],
@@ -76,31 +71,40 @@ export default (function() {
   }
   function setPMByClass(className) {
     let PMstoreTemp = new Set()
-    let match = [...className].join(' ').match(reg)
-    match &&
-      match.forEach(item => {
-        if (!PMstore.has(item)) {
-          PMstore.add(item)
-          PMstoreTemp.add(item)
-        }
-      })
+    let match = ([...className].join(' ').match(reg) || [])
+      .concat([...className].join(' ').match(/ratio\d+\/\d+/g))
+    match.forEach(item => {
+      if (!PMstore.has(item)) {
+        PMstore.add(item)
+        PMstoreTemp.add(item)
+      }
+    })
     setPMBySet(PMstoreTemp)
   }
   function setPMByDom(dom = document) {
     let PMstoreTemp = new Set()
     let domList =
       dom.querySelectorAll(
-        '[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom],[class*=radius]'
+        '[class*=padding],[class*=margin],[class*=top],[class*=right],[class*=left],[class*=bottom],[class*=radius],.ratio-container[ratio]'
       ) || []
     ;[...domList].forEach(item => {
-      let match = item.className.match(reg)
-      match &&
-        match.forEach(item => {
-          if (!PMstore.has(item)) {
-            PMstore.add(item)
-            PMstoreTemp.add(item)
-          }
-        })
+      // ratio
+      if (item.classList.contains('ratio-container') || /\d+\/\d+/.test(item.getAttribute('ratio'))) {
+        let ratio = item.getAttribute('ratio')
+        ratio = `ratio${ratio}`
+        if (!PMstore.has(ratio)) {
+          PMstore.add(ratio)
+          PMstoreTemp.add(ratio)
+        }
+        return
+      }
+      let match = item.className.match(reg) || []
+      match.forEach(item => {
+        if (!PMstore.has(item)) {
+          PMstore.add(item)
+          PMstoreTemp.add(item)
+        }
+      })
     })
     setPMBySet(PMstoreTemp)
   }
@@ -109,10 +113,15 @@ export default (function() {
       let temp = new Set()
       let classList = new Set()
       mutations.reduce((rs, item) => {
+        console.log(item)
         if (item.type === 'attributes') {
-          ;[...item.target.classList].forEach(className =>
-            classList.add(className)
-          )
+          switch (item.attributeName) {
+            case 'class':
+              [...item.target.classList].forEach(className => classList.add(className))
+              break
+            case 'ratio':
+              classList.add('ratio' + item.target.getAttribute('ratio'))
+          }
         } else if (item.type === 'childList' && item.addedNodes.length) {
           temp.add(item.target)
         }
@@ -122,7 +131,7 @@ export default (function() {
     }).observe(document.body, {
       childList: true,
       subtree: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class', 'ratio']
     })
   }
   // set initCMUI
