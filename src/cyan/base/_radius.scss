@@ -1,4 +1,3 @@
-$border-radius-base:2px;
 @mixin setRadius($radius){
   border-radius: $radius;
   &.list::before,&.border.light.item > *{
