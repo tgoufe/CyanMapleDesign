@@ -49,7 +49,7 @@ export default {
         {name:'表单',url:'form'},
         {name:'自定义表单',url:'formCustom'},
         {name:'电商网站商品列表',url:'productList'},
-        {name:'可视化设置',url:'settingView'}
+        {name:'可视化设置',url:'settingView/settingView'}
       ].map(item => ({ name: item.name, path: `cyan/${item.url}` }))
 
     }
