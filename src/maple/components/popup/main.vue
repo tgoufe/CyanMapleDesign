@@ -132,7 +132,7 @@
 }
 </style>
 <script type="text/javascript">
-import device from '../../methods/device.js'
+// import device from '../../methods/device.js'
 let scrollRec
 export default {
   name: 'cmui-popup',
@@ -145,7 +145,7 @@ export default {
     stopPageScroll: { type: Boolean, default: true }
   },
   data: function() {
-    let isIos = device.os === 'ios'
+    let isIos = (window.navigator.userAgent.match(/iphone|ipad|ipad/ig)||[]).length//device.os === 'ios'
     let ua = /OS\s(\d+)/.exec(window.navigator.userAgent)
     return {
       useFlex: !(ua && isIos && parseInt(ua[1] < 9))
