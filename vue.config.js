@@ -1,5 +1,5 @@
 const buildConfig = require('./build/config')
-// const path = require('path')
+const path = require('path')
 module.exports = {
   publicPath: './',
   lintOnSave: !buildConfig.isProduct,
@@ -49,6 +49,26 @@ module.exports = {
     Object.keys(alias).forEach(item => {
       config.resolve.alias.set(item, alias[item])
     })
+    // config.module.rule('svg').uses.clear()
+    function resolve(dir) {
+      // 路径可能与你的项目不同
+      return path.join(__dirname, dir)
+    }
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('examples/icons/svg'))
+      .end()
+
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('examples/icons/svg'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'uifont-[name]'
+      })
     // config.plugins.delete('preload')
     // config.plugins.delete('prefetch')
     // config.extensions = buildConfig.resolve

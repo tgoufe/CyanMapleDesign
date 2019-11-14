@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>cyan备份 6</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-709.000000, -367.000000)">
+            <g id="Collapse" transform="translate(709.000000, 367.000000)">
+                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                <path d="M3.25,5 L20.75,5 C21.4403559,5 22,5.44771525 22,6 C22,6.55228475 21.4403559,7 20.75,7 L3.25,7 C2.55964406,7 2,6.55228475 2,6 C2,5.44771525 2.55964406,5 3.25,5 Z M3.25,13 L20.75,13 C21.4403559,13 22,13.4477153 22,14 C22,14.5522847 21.4403559,15 20.75,15 L3.25,15 C2.55964406,15 2,14.5522847 2,14 C2,13.4477153 2.55964406,13 3.25,13 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                <path d="M3.25,9 L20.75,9 C21.4403559,9 22,9.44771525 22,10 C22,10.5522847 21.4403559,11 20.75,11 L3.25,11 C2.55964406,11 2,10.5522847 2,10 C2,9.44771525 2.55964406,9 3.25,9 Z M3.25,17 L20.75,17 C21.4403559,17 22,17.4477153 22,18 C22,18.5522847 21.4403559,19 20.75,19 L3.25,19 C2.55964406,19 2,18.5522847 2,18 C2,17.4477153 2.55964406,17 3.25,17 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

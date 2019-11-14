@@ -15,7 +15,6 @@
     "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && node ./build/cli.build.js",
     "build:demo": "vue-cli-service build",
     "build:bate": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && gulp sass && gulp copyCyan"
-
   },
   "files": [
     "src/",
@@ -78,6 +77,7 @@
     "core-js": "^2.6.5",
     "dayjs": "^1.8.16",
     "lodash": "^4.17.15",
+    "svg-sprite-loader": "^4.1.6",
     "swiper": "^5.0.4",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
