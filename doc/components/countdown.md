@@ -14,7 +14,7 @@ countdown组件用于创建倒计时效果。
 |showMilli|Boolean|false|是否显示毫米
 
 ### Demo
-<<< @/demo/docDemo/countdown.vue
+
 ### event
 
 | 事件名称  |触发时间|参数
@@ -23,7 +23,7 @@ countdown组件用于创建倒计时效果。
 |countdownend|倒计时结束时触发|vm
 
 ### 样式接口
-<<< @/src/maple/component/countdown/_styleInterface.scss
+
 :::tip
 说明：通常情况下你可能需要xxx天xxx小时xxx分这样的展示形式，那么你可以采用下面的这种样式
   <pre style="color:white">

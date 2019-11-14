@@ -1,15 +1,15 @@
 # actions组件
 ## 函数调用
-~~~javascript
-maple.actions(options);
-//demo
-maple.actions({
-    items:[1,2,3,4,5],
-    selectFn(value,index){},
-    itemStyle:{color:'red'},
-    title:2222
-})
-~~~
+
+<Exp>
+<div slot="exp">
+<Com-Actions-1/>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Actions-1.vue
+</div>
+</Exp>
 
 ### options说明
 

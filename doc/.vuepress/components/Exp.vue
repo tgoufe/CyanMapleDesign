@@ -12,12 +12,13 @@
 </template>
 
 <script>
+import vue from 'vue'
 import '../../../src/cyan/CMUI_doc.scss'
 import '../../../src/maple/theme/default.scss'
-import CmuiTabbar from '../../../src/maple/components/tabbar/main.vue'
+import cmui from '../../../src/maple/index.js'
+cmui.install(vue)
 export default {
   name: 'Exp',
-  components:{CmuiTabbar}
 }
 </script>
 
