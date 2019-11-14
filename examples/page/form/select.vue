@@ -1,5 +1,6 @@
 <template>
     <div class="padding20" id="selectDemo">
+        <p>当前值为:{{options.value}}</p>
         <div class="example tag-container">
             <cmui-select v-bind="options" :target-class="targetClass" v-model="options.value">
              <span :class="options.align==='left'?'marginr20':'marginl20'">
@@ -75,7 +76,7 @@ export default {
     return {
       options: {
         data:_.times(10,index=>({text:'选项'+index,value:{name:index}})),
-        value:`选项1`,
+        value:{name:2},
         prepend: "前置",
         append: "后置",
         prependDisabled: false,

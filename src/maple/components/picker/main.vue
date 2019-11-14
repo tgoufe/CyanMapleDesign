@@ -99,23 +99,18 @@ function formatData(data) {
     ])
   )
 }
-function getInitData(data, selectIndex) {
+function getInitData(data, value) {
+  console.log('innit')
   let pickerData = formatData(_.every(data, _.isArray) ? data : [data])
-  let pickerSelectIndex = (function() {
-    let colLen = pickerData.length
-    if (_.isNumber(selectIndex)) {
-      return _.fill(Array(colLen), selectIndex)
-    } else if (_.isArray(selectIndex)) {
-      return _.map(selectIndex, Number)
-    } else {
-      return _.fill(Array(colLen), 0)
-    }
-  })()
+  let valueList = _.isArray(value) ? value : [value]
+  let pickerSelectIndex = []
   let wheelStore = [pickerData[0]]
   for (let index = 0; index < pickerData.length; index++) {
-    let wheelData = pickerData[index]
-    let activeIndex = _.get(pickerSelectIndex, index, 0)
-    let chiildrenData = _.get(wheelData, `[${activeIndex}].children`)
+    let item = pickerData[index]
+    let activeIndex = _.findIndex(item, item => _.isEqual(item.value, valueList[index]))
+    activeIndex = ~activeIndex ? activeIndex : 0
+    pickerSelectIndex[index] = activeIndex
+    let chiildrenData = _.get(item, `[${activeIndex}].children`)
     if (chiildrenData) {
       wheelStore[index + 1] = pickerData[index + 1] || []
       pickerData[index + 1] = chiildrenData
@@ -123,6 +118,7 @@ function getInitData(data, selectIndex) {
       wheelStore[index + 1] = pickerData[index + 1] || []
     }
   }
+
   return {
     pickerData,
     pickerSelectIndex,
@@ -143,21 +139,21 @@ export default {
   },
   props: {
     data: { type: Array, default: () => [] },
-    selectIndex: { type: Array, default: () => [] },
     visible: { type: Boolean, default: false },
     rightFn: { type: Function, default: null },
     leftFn: { type: Function, default: null },
     title: { type: String, default: '' },
     leftText: { type: String, default: '取消' },
-    rightText: { type: String, default: '确定' }
+    rightText: { type: String, default: '确定' },
+    value: { type: [String, Object, Number, Array], default: () => '' }
   },
   data: function() {
-    return getInitData(this.data, this.selectIndex)
+    return getInitData(this.data, this.value)
   },
   computed: {
     selfVisible: {
       get() {
-        this.setData(this.data)
+        this.visible && this.setData(this.data)
         return this.visible
       },
       set(value) {
@@ -254,7 +250,7 @@ export default {
     setData(data, selectIndex = 0) {
       _.delay(() => {
         this.destroyWheels()
-        _.assign(this, getInitData(data, selectIndex))
+        _.assign(this, getInitData(data, this.value))
         this.$nextTick(() => {
           _.forEach(this.pickerData, (item, index) => {
             this.initWheel(index)
@@ -271,6 +267,7 @@ export default {
       } else {
         this.selfVisible = false
       }
+      this.$emit('input', _.isArray(this.value) ? data.map(item => item.value) : data.map(item => item.value)[0])
       this.$emit('select', data, this)
     },
     _cancel() {

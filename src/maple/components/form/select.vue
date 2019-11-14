@@ -45,6 +45,7 @@
         <div v-if="picker" class="abs-full" @click="visible = !visible" />
         <cmui-picker
           v-if="picker"
+          v-model="selfValue"
           :visible.sync="visible"
           :data="data"
           @select="select"
