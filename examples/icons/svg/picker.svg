@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>cyan备份 23</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-583.000000, -743.000000)">
+            <g id="Picker" transform="translate(583.000000, 743.000000)">
+                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                <path d="M5,13 L19,13 L19,18 C19,18.5522847 18.5522847,19 18,19 L6,19 C5.44771525,19 5,18.5522847 5,18 L5,13 L5,13 Z" id="矩形" fill="#000000"></path>
+                <path d="M6.16666667,5 C5.52233446,5 5,5.52233446 5,6.16666667 L5,17.8333333 C5,18.4776655 5.52233446,19 6.16666667,19 L17.8333333,19 C18.4776655,19 19,18.4776655 19,17.8333333 L19,6.16666667 C19,5.52233446 18.4776655,5 17.8333333,5 L6.16666667,5 Z M6.375,3 L17.625,3 C19.488961,3 21,4.51103897 21,6.375 L21,17.625 C21,19.488961 19.488961,21 17.625,21 L6.375,21 C4.51103897,21 3,19.488961 3,17.625 L3,6.375 C3,4.51103897 4.51103897,3 6.375,3 Z" id="Rectangle" fill-opacity="0.3" fill="#000000" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
