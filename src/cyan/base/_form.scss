@@ -80,7 +80,6 @@ input{
             &:focus{
                 border-color: $form-color-base;
                 outline: 0;
-                font-size:16px;
             }
             &.custom:focus{
               border-color: currentColor;
