@@ -46,3 +46,17 @@ p.title{
 		}
 	}
 }
+.hoverIcon{
+	.svg-icon use:last-child{
+	  display:none;
+	}
+	&:hover,&:active{
+		.svg-icon use:first-child{
+		  display:none;
+		}
+		.svg-icon use:last-child{
+		  display:block;
+		}
+	}
+	
+}
