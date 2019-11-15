@@ -35,7 +35,7 @@ import {
   Textarea
 } from '../../../src/maple/components/form/index.js'
 import Picker from '../../../src/maple/components/picker/index.js'
-// import Img from '../../../src/maple/components/img/index.js'
+import Img from '../../../src/maple/components/img/index.js'
 import Slider from '../../../src/maple/components/slider/index.js'
 import SliderItem from '../../../src/maple/components/slider-item/index.js'
 import List from '../../../src/maple/components/list/index.js'
@@ -47,7 +47,7 @@ import Mask from '../../../src/maple/components/mask/index.js'
 import Slidebar from '../../../src/maple/components/slidebar/index.js'
 import Scroll from '../../../src/maple/components/scroll/index.js'
 import ScrollItem from '../../../src/maple/components/scroll-item/index.js'
-// import Swiper from '../../../src/maple/components/swiper/index.js'
+import Swiper from '../../../src/maple/components/swiper/index.js'
 import VirtualList from '../../../src/maple/components/virtualList/index.js'
 import Tabbar from '../../../src/maple/components/tabbar/index.js'
 const components = [
@@ -68,7 +68,7 @@ const components = [
   Select,
   Textarea, // form
   Picker,
-  // Img,
+  Img,
   Slider,
   SliderItem,
   List,
@@ -80,7 +80,7 @@ const components = [
   Slidebar,
   Scroll,
   ScrollItem,
-  // Swiper,
+  Swiper,
   VirtualList,
   Tabbar
 ]
