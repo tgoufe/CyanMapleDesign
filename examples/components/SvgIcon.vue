@@ -1,6 +1,7 @@
 <template>
   <svg :class="svgClass" aria-hidden="true">
     <use :xlink:href="iconName"></use>
+    <use :xlink:href="iconNameHover"></use>
   </svg>
 </template>
 
@@ -19,6 +20,9 @@ export default {
   computed: {
     iconName() {
       return `#uifont-${this.iconClass}`
+    },
+    iconNameHover() {
+      return `#uifont-un_${this.iconClass}`
     },
     svgClass() {
       if (this.className) {
