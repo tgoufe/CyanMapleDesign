@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>cyan备份</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-1461.000000, -243.000000)">
+            <g id="Input备份" transform="translate(1461.000000, 243.000000)">
+                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                <path d="M8.00000007,17.914818 L8.00000007,5.96685867 C8.00000007,5.56391764 8.1621145,5.17792035 8.44982616,4.89581491 L10.9657081,2.42895631 C11.5426799,1.86322706 12.4640975,1.85620904 13.0496197,2.41308409 L15.5337378,4.77566462 C15.8314605,5.05882103 16.0000001,5.45170789 16.0000001,5.8625806 L16.0000001,17.914818 C16.0000001,18.7432451 15.3284272,19.414818 14.5000001,19.414818 L9.50000007,19.414818 C8.67157295,19.414818 8.00000007,18.7432451 8.00000007,17.914818 Z" id="Path-11" fill="#000000" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "></path>
+                <rect id="Rectangle" fill="#000000" fill-rule="nonzero" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
