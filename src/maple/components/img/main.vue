@@ -9,10 +9,10 @@
 </template>
 <script>
 import imagePreView from './imagePreView'
-import { ready, isInView } from '../../methods/dom'
+import { ready, isInView } from 'dom'
 import _ from 'lodash'
 let lazyLoadList = []
-let windowHeight = window.innerHeight
+let windowHeight
 let checkFinish = true
 const checkLazyLoadImage = _.debounce(function () {
   if (checkFinish) {
@@ -31,11 +31,15 @@ const checkLazyLoadImage = _.debounce(function () {
     checkFinish = true
   }
 }, 500)
-ready(function () {
-  window.addEventListener('scroll', checkLazyLoadImage)
-  window.addEventListener('resize', function () {
-    windowHeight = window.innerHeight
-  })
+ready(function (window) {
+  if( window ){
+    window.addEventListener('scroll', checkLazyLoadImage)
+    window.addEventListener('resize', function () {
+      windowHeight = window.innerHeight
+    })
+
+    windowHeight = window.innerHeight;
+  }
 })
 const base64Data =
   'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='

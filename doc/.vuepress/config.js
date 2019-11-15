@@ -62,10 +62,13 @@ module.exports = {
     },
     configureWebpack: {
         resolve: {
-            alias: {
+            extensions: ['.js', '.vue']
+            , alias: {
                 '@components': '../../../src/maple/components'
+                , dom: '../../../../src/maple/methods/dom-ssr'
             }
         }
     }
 
 };
+          console.log(123)

@@ -78,6 +78,15 @@ module.exports = {
     // if (buildConfig.isProduct) {
     //   config.externals = buildConfig.externalMap
     // }
+    if( config.resolve.extensions && config.resolve.extensions.length ){
+      config.resolve.extensions.push('.js', '.vue');
+    }
+    else{
+      config.resolve.extensions = ['.js', '.vue'];
+    }
+
+    config.resolve.alias.dom = path.resolve(__dirname, 'src/maple/methods/dom');
+    console.log(config.resolve)
   },
   devServer: {
     port: buildConfig.examplesPort,
