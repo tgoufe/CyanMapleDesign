@@ -74,11 +74,11 @@ let isTouched
 let isScrolling
 let openedList = []
 ready(function(window) {
-    if( window ){
-        window.addEventListener('scroll', () => {
-            openedList.forEach(item => item.close())
-        })
-    }
+  if (window) {
+    window.addEventListener('scroll', () => {
+      openedList.forEach(item => item.close())
+    })
+  }
 })
 export default {
   name: 'cmui-swiper',
