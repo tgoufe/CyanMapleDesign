@@ -1,5 +1,5 @@
 <template>
-  <label class="cmui-checkbox" :class="{ 'flex-container': flex }">
+  <label class="cmui-checkbox" :class="{ 'flex-container': flex }" :for="_uid">
     <span
       v-if="align === 'left'"
       :class="{ checked: slefValue }"
@@ -9,6 +9,7 @@
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
     <input
+      :id="_uid"
       ref="checkbox"
       v-model="slefValue"
       type="checkbox"
@@ -16,6 +17,7 @@
       :readonly="readonly"
       :class="[targetClass]"
       :disabled="disabled || selfDisable"
+      :label="selflabel"
       @change="handleChange"
     >
     <span
@@ -70,6 +72,9 @@ export default {
         return !!value
       },
       set(value) {}
+    },
+    selflabel() {
+      return this.targetClass.includes('btn') ? this.label : ''
     }
   },
   watch: {

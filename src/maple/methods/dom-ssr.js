@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-function isInView(){
-	return true;
+function isInView() {
+  return true
 }
 
-function ready(fn){
-	fn( null );
+function ready(fn) {
+  fn(null)
 }
 
 export {
-	isInView
-	, ready
+  isInView
+  , ready
 }
