@@ -6,6 +6,8 @@ import CMUI from '../../src/maple/index.js'
 import styleInit from '../../src/maple/styleInit.js'
 import './font2/iconfont.css'
 import './cyan.scss'
+import './default.scss'
+import './assets/Iconfont/iconfont.css'
 styleInit()
 CMUI.install(Vue)
 

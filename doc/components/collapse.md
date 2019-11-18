@@ -15,36 +15,16 @@ collapse组件用于创建折叠面板和手风琴效果
 |default|每项的内容
 
 ### Demo
-```html
-<template>
-<cmui-collapse :onlyone="true" :activeIndex="activeIndex">
-    <cmui-collapse-item :key="key" v-for="(item,key) in items">
-        <div slot="title">
-            {{item.title}}
-        </div>
-        <div>
-            {{item.content}}
-        </div>
-    </cmui-collapse-item>
-</cmui-collapse>
-</template>
-<script>
-export default {
-    data: function () {
-        return {
-            items: _.times(5, index => {
-                return {
-                    title: index,
-                    content: `content ${index}`
-                }
-            }),
-            activeIndex: 0
-        }
-    }
-}
-</script>
 
-```
+<Exp>
+<div slot="exp">
+<Com-Collapse></Com-Collapse>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Collapse.vue
+</div>
+</Exp>
 
 ### 样式接口
 ```scss

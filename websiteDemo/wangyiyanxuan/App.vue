@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view class="paddingb100"></router-view>
-    <cfooteer class="pos-f bottom0"></cfooteer>
+    <Cfooteer class="pos-f bottom0"></Cfooteer>
   </div>
 </template>
 

@@ -3,7 +3,7 @@
 
 <Exp>
 <div slot="exp">
-<Com-Actions-1/>
+<Com-Actions-1></Com-Actions-1>
 </div>
 <div slot="code">
 

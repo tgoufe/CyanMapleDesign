@@ -25,6 +25,7 @@ module.exports = {
     dest:'../cmui',
     serviceWorker:true,
     evergreen: true,
+    cache:false,
     themeConfig:{
         sidebar: {
             '/Cyan/': [
