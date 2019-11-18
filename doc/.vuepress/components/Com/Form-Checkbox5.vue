@@ -1,24 +1,24 @@
 <template>
     <div class="form">
-        <cmui-checkbox :value="true" target-class="reverse">reverse</cmui-checkbox>
+        <cmui-checkbox target-class="reverse" label="reverse"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="square">square</cmui-checkbox>
+        <cmui-checkbox target-class="square" label="square"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="square reverse">square reverse</cmui-checkbox>
+        <cmui-checkbox target-class="square reverse" label="square reverse"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="switch">switch</cmui-checkbox>
+        <cmui-checkbox target-class="switch" label="switch"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="small">small</cmui-checkbox>
+        <cmui-checkbox target-class="small" label="small"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="big">big</cmui-checkbox>
+        <cmui-checkbox target-class="big" label="big"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="btn" label="btn">btn</cmui-checkbox>
+        <cmui-checkbox target-class="btn" label="btn"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="btn reverse" label="btn">btn reverse</cmui-checkbox>
+        <cmui-checkbox target-class="btn reverse" label="btn reverse"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="btn light" label="btn">btn light</cmui-checkbox>
+        <cmui-checkbox target-class="btn light" label="btn light"></cmui-checkbox>
         <br>
-        <cmui-checkbox :value="true" target-class="btn radius" label="btn">btn radius</cmui-checkbox>
+        <cmui-checkbox target-class="btn radius" label="btn radius"></cmui-checkbox>
         <br>
     </div>
 </template>
@@ -28,3 +28,12 @@ export default {
   name: "Form-Checkbox1"
 };
 </script>
+<style scoped type="text/scss" lang="scss">
+    /deep/ .cmui-check__label{
+        width:130px;
+        display: inline-block;
+        text-align: right;
+        margin-right:30px;
+        margin-bottom:10px;
+    }
+</style>
