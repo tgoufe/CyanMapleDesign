@@ -5,6 +5,10 @@ module.exports = {
     browser: true,
     es6: true
   },
+  "globals": {
+    "_": true,
+    "$": true
+  },
   extends: ['plugin:vue/recommended', '@vue/standard'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
