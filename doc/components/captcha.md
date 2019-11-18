@@ -12,21 +12,54 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 |activeIndex|Number|-1|当前输入的末尾索引
 
 ### Demo
-```html
+例1:默认情况下只能输入数字
 
-<!--默认的输入，只能输入数字，在移动端弹起数字键盘并且不可切换-->
-<cmui-captcha></cmui-captcha>
+<Exp>
+<div slot="exp">
+<Com-Captcha-1></Com-Captcha-1>
+</div>
+<div slot="code">
 
-<!--设置type为text可输入任何字符，在移动端弹起默认键盘-->
-<cmui-captcha type="text"></cmui-captcha>
+<<< @/doc/.vuepress/components/Com/Captcha-1.vue
+</div>
+</Exp>
 
-<!--设置hide为true，转换为隐藏输入-->
-<cmui-captcha :hide="true"></cmui-captcha>
+例2:可输入任何字符
 
-<!--调节length属性控制输入数量-->
-<cmui-captcha :length="6"></cmui-captcha>
+<Exp>
+<div slot="exp">
+<Com-Captcha-2></Com-Captcha-2>
+</div>
+<div slot="code">
 
-```
+<<< @/doc/.vuepress/components/Com/Captcha-2.vue
+</div>
+</Exp>
+
+例3:设置hide为true，转换为隐藏输入
+
+<Exp>
+<div slot="exp">
+<Com-Captcha-3></Com-Captcha-3>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Captcha-3.vue
+</div>
+</Exp>
+
+例4:可自行设置输入字符长度
+
+<Exp>
+<div slot="exp">
+<Com-Captcha-4></Com-Captcha-4>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Captcha-4.vue
+</div>
+</Exp>
+
 ### event
 
 | 事件名称  |触发时间|参数

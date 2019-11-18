@@ -15,6 +15,17 @@ countdown组件用于创建倒计时效果。
 
 ### Demo
 
+<Exp>
+<div slot="exp">
+<Com-Countdown-1></Com-Countdown-1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Countdown-1.vue
+</div>
+</Exp>
+
+
 ### event
 
 | 事件名称  |触发时间|参数
