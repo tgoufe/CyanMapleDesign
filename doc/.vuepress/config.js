@@ -18,7 +18,6 @@ function getlist(name){
         return rs;
     },['']);
 }
-console.log(getlist('components/form'))
 module.exports = {
     title: 'CyanMaple',
     description: '高效的描述型框架，简单不简单',
@@ -80,14 +79,10 @@ module.exports = {
             {text:'技术博客',link:'http://www.bingshangroup.com/blog2'}
         ]
     },
-    configureWebpack: {
-        resolve: {
-            extensions: ['.js', '.vue']
-            , alias: {
-                '@components': '../../../src/maple/components'
-                , dom: '../../../../src/maple/methods/dom-ssr'
-            }
-        }
-    }
+    configureWebpack: config => {
+        config.resolve.extensions = ['.js', '.vue']
+        config.resolve.alias.dom = path.resolve(__dirname, '../../src/maple/methods/dom-ssr')
+        config.resolve.alias['@components']=path.resolve(__dirname, '../../src/maple/components')
+    },
 
 };
