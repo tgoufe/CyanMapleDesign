@@ -1,16 +1,16 @@
 <template>
     <div style="height:1000px">
-        <div class="tag-container example">
-            <a href="javascript:void(0)" class="btn blue radius block" @click="alert">
+        <div class="tag-container example themeAlert padding15">
+            <a href="javascript:void(0)" class="btn block" @click="alert">
                 简单的案例
             </a>
-            <a href="javascript:void(0)" class="btn blue radius block" @click="alert2">
+            <a href="javascript:void(0)" class="btn block" @click="alert2">
                 同时设置标题和内容
             </a>
-            <a href="javascript:void(0)" class="btn blue radius block" @click="alert3">
+            <a href="javascript:void(0)" class="btn block" @click="alert3">
                 超长内容的DEMO
             </a>
-            <a href="javascript:void(0)" class="btn blue radius block" @click="alert4">
+            <a href="javascript:void(0)" class="btn block" @click="alert4">
                 来点另类的
             </a>
         </div>
@@ -54,3 +54,16 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .themeAlert{
+    a{
+      padding:10px 15px;
+      &.btn:nth-of-type(odd){
+        background: #003E3E !important;
+      }
+      &.btn:nth-of-type(even){
+        background: #007c7c !important;
+      }
+    }
+  }
+</style>
