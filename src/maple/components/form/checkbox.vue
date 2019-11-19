@@ -26,7 +26,7 @@
       class="cmui-check__label"
     >
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
   </label>
 </template>
@@ -50,7 +50,8 @@ export default {
   data: function() {
     return {
       indeterminate: false,
-      selfDisable: false
+      selfDisable: false,
+      isBtn: !!~this.targetClass.split(' ').indexOf('btn')
     }
   },
   computed: {
@@ -74,7 +75,7 @@ export default {
       set(value) {}
     },
     selflabel() {
-      return this.targetClass.includes('btn') ? this.label : ''
+      return this.isBtn ? this.label : ''
     }
   },
   watch: {

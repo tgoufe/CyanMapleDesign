@@ -18,6 +18,7 @@ function getlist(name){
         return rs;
     },['']);
 }
+console.log(getlist('components/form'))
 module.exports = {
     title: 'CyanMaple',
     description: '高效的描述型框架，简单不简单',
@@ -45,7 +46,25 @@ module.exports = {
                 'form',
                 'icon',
             ],
-            '/components/':getlist('components'),
+            '/components/':[
+                '',
+                {
+                    title:'弹层组件',
+                    children : ['alert','confirm','actions','notice','pick','datePicker','mask']
+                },
+                {
+                    title:'展示类组件',
+                    children : ['captcha','countdown','image','slider','progress','slidebar']
+                },
+                {
+                    title:'布局组件',
+                    children : ['list','virtualList','affix','tabbar','collapse','scroll']
+                },
+                {
+                    title:'form表单组件',
+                    children:['input','checkbox','radio','number','select','textarea'].map(i=>`form/${i}`)
+                }
+            ],
             '/methods/':getlist('methods'),
             '/': []
         },
@@ -72,4 +91,3 @@ module.exports = {
     }
 
 };
-          console.log(123)

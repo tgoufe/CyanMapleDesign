@@ -66,7 +66,7 @@ CheckBox的model需要绑定一个Boolean类型的值来表示其是否为选中
 </Exp>
 
 ## 组合Cyan样式
-为CheckBox绑定target-class属性即可直接使用Cyan的样式组合来实现各种样式
+为CheckBox绑定target-class属性即可直接使用Cyan的样式组合来实现各种样式，详见[Cyan中的表单](/Cyan/form.html#checkbox)
 
 <Exp>
 <div slot="exp">
