@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  name: "Alert-1",
+  name: "Confirm-1",
   methods:{
     alert1() {
-      this.alert({
+      this.confirm({
           title:'alert Demo',
           content:'this is a content you can use html code here'
       })
@@ -32,6 +32,7 @@ $mainColor:#00baba;
     display:block;
     padding:13px;
     font-size:16px;
+    width:100%;
   }
 }
 </style>
