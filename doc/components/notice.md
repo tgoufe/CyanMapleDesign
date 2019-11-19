@@ -15,15 +15,38 @@ maple.notice(options)
 |targetClass|String|''|整体的class
 ## 简洁用法
 通常情况下我们只需要弹出提示，一定时间后自动消失，那么使用下面的代码就可以，time的默认值为300毫秒。
-```javascript
-maple.notice(content,[time])
-```
+
+### Demo
+
+<Exp>
+<div slot="exp">
+<Com-Notice-1></Com-Notice-1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Notice-1.vue
+</div>
+</Exp>
+
 有些时候我们需要手动控制提示框。这时我们可以将运行结果保存起来，并且在必要的时候调用cancel方法。
-```javascript
+
+### Demo
+
+<Exp>
+<div slot="exp">
+<Com-Notice-2></Com-Notice-2>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Notice-2.vue
+</div>
+</Exp>
+
+<!-- ```javascript
 let vm=maple.notice('some content',0)//设置时间为0，即一直显示
 vm.content='other content'//修改弹窗内容
 vm.cancel()//必要的时候手动关闭。
-```
+``` -->
 ## 样式接口
 ```scss
 // notice

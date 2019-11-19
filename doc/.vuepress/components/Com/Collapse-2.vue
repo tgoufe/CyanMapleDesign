@@ -14,13 +14,13 @@
 <script>
 
 export default {
-    name:'Collapse',
+    name:'Collapse-1',
     data(){
         return{
             items:Array.from({length:3}).map((item,index)=>{
                 return{
                     title:"section",
-                    content:"这里是内容"
+                    content:"手风琴"
                 }
             }),
             activeIndex:3,
