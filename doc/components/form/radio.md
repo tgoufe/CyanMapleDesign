@@ -60,4 +60,8 @@
 </div>
 </Exp>
 
+## 属性列表
+
+<Propsintro path="form/radio.vue"></Propsintro>
+
 

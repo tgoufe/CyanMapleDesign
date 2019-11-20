@@ -36,12 +36,22 @@ export default {
     getDefault(item){
       if(typeof item ==='function')
         return item()
+      else if (item === null)
+        return 'null'
+      else if (item === '')
+        return '-'
       else
         return item
     }
   },
   created(){
-    import('../../../src/maple/components/'+this.path).then(data=>this.props=data.default.props)
+    import('../../../src/maple/components/'+this.path).then(data=>{
+      let {props,mixins}=data.default
+      this.props=props||{}
+      if(Array.isArray(mixins)){
+        Object.assign(this.props,...mixins.map(item=>item.props))
+      }
+    })
   }
 };
 </script>

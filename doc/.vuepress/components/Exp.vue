@@ -108,6 +108,7 @@ $dark:#cbd5e0;
     padding:10px;
     border-radius:6px;
     overflow: hidden;
+    max-width:740px;
 }
 .toogleCode{
     background-color: #00baba;

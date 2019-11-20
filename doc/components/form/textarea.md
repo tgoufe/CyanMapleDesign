@@ -51,3 +51,7 @@
 </div>
 </Exp>
 
+## 属性列表
+
+<Propsintro path="form/textarea.vue"></Propsintro>
+

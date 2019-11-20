@@ -77,3 +77,7 @@ CheckBox的model需要绑定一个Boolean类型的值来表示其是否为选中
 <<< @/doc/.vuepress/components/Com/Form-Checkbox5.vue
 </div>
 </Exp>
+
+## 属性列表
+
+<Propsintro path="form/checkbox.vue"></Propsintro>

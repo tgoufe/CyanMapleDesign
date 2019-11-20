@@ -63,3 +63,7 @@ select会将data的内容转换为{text,value}结构，如果你希望显示的�
 <<< @/doc/.vuepress/components/Com/Form-Select5.vue
 </div>
 </Exp>
+
+## 属性列表
+
+<Propsintro path="form/select.vue"></Propsintro>

@@ -76,3 +76,7 @@ number组件是用于创建数字输入框
 <<< @/doc/.vuepress/components/Com/Form-Number6.vue
 </div>
 </Exp>
+
+## 属性列表
+
+<Propsintro path="form/number.vue"></Propsintro>
