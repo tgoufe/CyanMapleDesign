@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <p class="text-white fs-18 paddingh50 paddingv30 bg-black">文字颜色与尺寸</p>
+    <div class="paddingb50">
+        <p class="text-black fs-18 padding30">文字颜色与尺寸</p>
         <p class="title paddingv20 paddingh30">彩色文本颜色</p>
         <div class="row">
             <div class="span4 fs-16 text-center" v-for="color in colors" :class="[`text-${color}`]">
@@ -13,7 +13,7 @@
                 <div class="paddingv30">text-{{color}}</div>
             </div>
         </div>
-        <p class="text-white fs-18 paddingh50 paddingv30 bg-black">下面展示的文本为两种尺寸，在375的设备上他们显示效果是相同的，但是在其他尺寸上REM会缩放而PX不会</p>
+        <p class="text-black fs-18 padding30">下面展示的文本为两种尺寸，在375的设备上他们显示效果是相同的，但是在其他尺寸上REM会缩放而PX不会</p>
         <p class="title paddingv20 paddingh30">固定PX</p>
         <div class="row">
             <div class="col3 text-center" v-for="size in 11" :class="[`fs-${size+9}`]">
@@ -26,7 +26,7 @@
                 <div class="flex-container center" style="line-height: 56px;">{{size*2+18}}rem</div>
             </div>
         </div>
-        <p class="text-white fs-18 paddingh50 paddingv30 bg-black">文本排列方式</p>
+        <p class="text-black fs-18 padding30">文本排列方式</p>
         <div v-for="name in styles">
             <p class="title paddingv20 paddingh30">{{name.replace("-", " ")}}</p>
             <div class="fs-16 paddingv30 paddingh50" :class="[name]">some text</div>
@@ -43,7 +43,7 @@
             <p class="title paddingv20 paddingh30">vbottom</p>
             <div class="fs-16 paddingh50 text-vbottom" style="height: 60px;">vbottom</div>
         </div>
-        <p class="text-white fs-18 paddingh50 paddingv30 bg-black">文本限制</p>
+        <p class="text-black fs-18 padding30">文本限制</p>
         <p class="title paddingv20 paddingh30">文本限制到两行</p>
         <div class="paddingv20 paddingh50">
             <p class="text-limit2">
