@@ -108,14 +108,9 @@ export default {
     cmuiPopup
   },
   data: function() {
-    let dom = document.documentElement
     return {
       bodyStyle: {
-        'max-height':
-          dom.clientHeight * 0.72 -
-          69 -
-          parseInt(getComputedStyle(dom).fontSize) +
-          'px'
+        'max-height': 'auto'
       }
     }
   },
@@ -128,6 +123,10 @@ export default {
         this.$emit('update:visible', value)
       }
     }
+  },
+  mounted() {
+    let dom = document.documentElement
+    this.bodyStyle['max-height'] = dom.clientHeight * 0.72 - 69 - parseInt(getComputedStyle(dom).fontSize) + 'px'
   },
   methods: {
     cancel: function() {

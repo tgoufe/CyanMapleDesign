@@ -45,7 +45,25 @@ module.exports = {
                 'form',
                 'icon',
             ],
-            '/components/':getlist('components'),
+            '/components/':[
+                '',
+                {
+                    title:'弹层组件',
+                    children : ['alert','confirm','actions','notice','pick','datePicker','mask']
+                },
+                {
+                    title:'展示类组件',
+                    children : ['captcha','countdown','image','slider','progress','slidebar']
+                },
+                {
+                    title:'布局组件',
+                    children : ['list','virtualList','affix','tabbar','collapse','scroll']
+                },
+                {
+                    title:'form表单组件',
+                    children:['input','checkbox','radio','number','select','textarea'].map(i=>`form/${i}`)
+                }
+            ],
             '/methods/':getlist('methods'),
             '/': []
         },
@@ -61,15 +79,10 @@ module.exports = {
             {text:'技术博客',link:'http://www.bingshangroup.com/blog2'}
         ]
     },
-    configureWebpack: {
-        resolve: {
-            extensions: ['.js', '.vue']
-            , alias: {
-                '@components': '../../../src/maple/components'
-                , dom: '../../../../src/maple/methods/dom-ssr'
-            }
-        }
-    }
+    configureWebpack: config => {
+        config.resolve.extensions = ['.js', '.vue']
+        config.resolve.alias.dom = path.resolve(__dirname, '../../src/maple/methods/dom-ssr')
+        config.resolve.alias['@components']=path.resolve(__dirname, '../../src/maple/components')
+    },
 
 };
-          console.log(123)

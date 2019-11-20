@@ -1,6 +1,6 @@
 <template>
     <div>
-        <cmui-countdown :end-time="+new Date()+10000"></cmui-countdown>
+        <cmui-countdown :showMilli="true" :end-time="+new Date()+10000"></cmui-countdown>
     </div>
 </template>
 <script>

@@ -7,7 +7,7 @@
       :style="labelStyle"
     >
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
     <input
       v-model="radioValue"
@@ -17,6 +17,7 @@
       :readonly="readonly"
       :class="[targetClass]"
       :disabled="disabled"
+      :label="selflabel"
       @change="handleChange"
     >
     <span
@@ -38,7 +39,8 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      radioValue: this.value
+      radioValue: this.value,
+      isBtn: !!~this.targetClass.split(' ').indexOf('btn')
     }
   },
   computed: {
@@ -48,6 +50,9 @@ export default {
         style.color = '#ccc'
       }
       return style
+    },
+    selflabel() {
+      return this.isBtn ? this.label : ''
     }
   },
   watch: {

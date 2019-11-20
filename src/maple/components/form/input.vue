@@ -139,7 +139,7 @@ export default {
   mixins: [mixin],
   props: {
     type: { type: String, default: 'text' },
-    reset: { type: Boolean, default: true },
+    reset: { type: Boolean, default: false },
     prepend: { type: String, default: '' },
     append: { type: String, default: '' },
     width: { type: [Number, String], default: 0 },
@@ -176,7 +176,7 @@ export default {
   methods: {
     resetInput: function() {
       const target = this.$refs.input
-      target.value = this.value = ''
+      target.value = ''
       target.focus()
       this.$emit('reset', target, this)
       this.$emit('input', '', target, this)

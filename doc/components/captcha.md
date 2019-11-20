@@ -1,18 +1,7 @@
 # captcha
-
 captcha组件用于创建一连续输入的区域，通常用于输入验证码，车牌号，手机号码等情景
-### props
+## 纯数字输入
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-| length  |Number|4|输入内容的长度
-|type|String|'number'|输入的类型，目前只支持string和number两种
-|hide|Boolean|true|是否隐藏输入内容
-|value|String|''|初始的内容
-|activeIndex|Number|-1|当前输入的末尾索引
-
-### Demo
-例1:默认情况下只能输入数字
 
 <Exp>
 <div slot="exp">
@@ -24,7 +13,8 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 </div>
 </Exp>
 
-例2:可输入任何字符
+## 可输入任何字符
+设置type属性为text可以转换为任何字符的输入
 
 <Exp>
 <div slot="exp">
@@ -36,7 +26,9 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 </div>
 </Exp>
 
-例3:设置hide为true，转换为隐藏输入
+
+## 隐藏输入
+设置hide为true，转换为隐藏输入
 
 <Exp>
 <div slot="exp">
@@ -48,7 +40,8 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 </div>
 </Exp>
 
-例4:可自行设置输入字符长度
+
+## 可自行设置输入字符长度
 
 <Exp>
 <div slot="exp">
@@ -60,13 +53,26 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 </div>
 </Exp>
 
-### event
+
+## props属性列表
+
+| 属性名称  |类型|默认值|说明
+|---|---|---|---|
+| length  |Number|4|输入内容的长度
+|type|String|'number'|输入的类型，目前只支持string和number两种
+|hide|Boolean|true|是否隐藏输入内容
+|value|String|''|初始的内容
+|activeIndex|Number|-1|当前输入的末尾索引
+
+
+
+## 事件列表
 
 | 事件名称  |触发时间|参数
 |---|---|---|
 | inputEnd  |全部内容输入完成时触发|value
 
-### 样式接口
+## 样式接口
 ```scss
 //层叠样式接口
 .cmui-captcha{
