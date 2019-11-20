@@ -90,6 +90,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.setTextAreaHeight()
+  },
   methods: {
     rendered () {
       this.setTextAreaHeight()

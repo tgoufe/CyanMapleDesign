@@ -1,6 +1,6 @@
 # select
-## 基础结构
 select组件用于创建下拉菜单，它的data属性可以接受一个数组来表示option选项，默认情况下会直接将data的值同时用作显示和计算
+## 基础结构
 
 <Exp>
 <div slot="exp">
@@ -52,7 +52,7 @@ select会将data的内容转换为{text,value}结构，如果你希望显示的�
 </Exp>
 
 ## 组合Cyan来设置样式
-为number绑定target-class属性即可直接使用Cyan的样式组合来实现各种样式，详见[Cyan中的表单](/Cyan/form.html#select)
+为select绑定target-class属性即可直接使用Cyan的样式组合来实现各种样式，详见[Cyan中的表单](/Cyan/form.html#select)
 
 <Exp>
 <div slot="exp">
