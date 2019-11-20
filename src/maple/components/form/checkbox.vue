@@ -6,7 +6,7 @@
       class="cmui-check__label"
     >
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
     <input
       :id="_uid"
