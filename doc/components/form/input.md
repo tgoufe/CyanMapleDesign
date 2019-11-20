@@ -124,5 +124,7 @@ label属性在初始状态下不包含任何样式，因此，如果你需要这
 </div>
 </Exp>
 
+## 属性列表
 
+<Propsintro path="form/input.vue"></Propsintro>
 
