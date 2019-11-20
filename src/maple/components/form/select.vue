@@ -29,7 +29,7 @@
           :name="name"
           :readonly="readonly"
           :placeholder="placeholder"
-          :disabled="disabled && picker"
+          :disabled="disabled"
           :class="targetClass"
           @focus="handleFocus"
           @blur="handleBlur"
@@ -42,9 +42,9 @@
             v-text="item.text"
           ></option>
         </select>
-        <div v-if="picker" class="abs-full" @click="visible = !visible" />
+        <div v-if="picker && !disabled" class="abs-full" @click="visible = !visible" />
         <cmui-picker
-          v-if="picker"
+          v-if="picker && !disabled"
           v-model="selfValue"
           :visible.sync="visible"
           :data="data"
