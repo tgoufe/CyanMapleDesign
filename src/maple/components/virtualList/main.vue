@@ -110,10 +110,12 @@ export default {
       default: 70
     },
     onScroll: {
-      type: Function
+      type: Function,
+      default: null
     },
     onScrollEnd: {
-      type: Function
+      type: Function,
+      default: null
     },
     // 预估高度
     estimatedItemSize: {
