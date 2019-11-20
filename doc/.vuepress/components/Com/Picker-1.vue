@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="btn red" @click="showPicker"> Click show picker</div>
+        <div class="btn red" @click="showPicker"> Show picker</div>
         <cmui-picker :data="baseData" :visible.sync="visible" @select="select"></cmui-picker>
     </div>
 </template>
@@ -19,7 +19,7 @@
         this.visible = true;
       },
       select(data){
-        alert(`You have been selected ${JSON.stringify(data)}`)
+        this.alert(`You have been selected ${JSON.stringify(data)}`)
       }
     }
   };
