@@ -27,7 +27,7 @@
       :style="labelStyle"
     >
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
   </label>
 </template>
