@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<div class="tag-container example">
-			<a href="javascript:void(0)" class="btn blue radius block" @click="notice">
+		<div class="tag-container example themeAlert padding15">
+			<a href="javascript:void(0)" class="btn block" @click="notice">
 				简单的案例
 			</a>
-			<a href="javascript:void(0)" class="btn blue radius block" @click="notice2">
+			<a href="javascript:void(0)" class="btn block" @click="notice2">
 				倒计时案例
 			</a>
-			<a href="javascript:void(0)" class="btn blue radius block" @click="notice3">
+			<a href="javascript:void(0)" class="btn block" @click="notice3">
 				使用JS控制
 			</a>
 		</div>
@@ -43,3 +43,16 @@
         }
 	}
 </script>
+<style lang="scss">
+  .themeAlert{
+    a{
+      padding:10px 15px;
+      &.btn:nth-of-type(odd){
+        background: #003E3E !important;
+      }
+      &.btn:nth-of-type(even){
+        background: #007c7c !important;
+      }
+    }
+  }
+</style>

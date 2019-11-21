@@ -29,7 +29,7 @@
           :name="name"
           :readonly="readonly"
           :placeholder="placeholder"
-          :disabled="disabled && picker"
+          :disabled="disabled"
           :class="targetClass"
           @focus="handleFocus"
           @blur="handleBlur"
@@ -42,9 +42,9 @@
             v-text="item.text"
           ></option>
         </select>
-        <div v-if="picker" class="abs-full" @click="visible = !visible" />
+        <div v-if="picker && !disabled" class="abs-full" @click="visible = !visible" />
         <cmui-picker
-          v-if="picker"
+          v-if="picker && !disabled"
           v-model="selfValue"
           :visible.sync="visible"
           :data="data"
@@ -155,14 +155,14 @@ export default {
   components: { cmuiPicker },
   mixins: [mixin],
   props: {
-    reset: { type: Boolean, default: true },
-    prepend: { type: String, default: '' },
-    append: { type: String, default: '' },
-    prependDisabled: { type: Boolean, default: false },
-    appendDisabled: { type: Boolean, default: false },
-    data: { type: Array, default: () => [] },
-    picker: { type: Boolean, default: false },
-    width: { type: [Number, String], default: 0 }
+    reset: { type: Boolean, default: true, intro: '是否显示充值按钮' },
+    prepend: { type: String, default: '', intro: '前置文本内容' },
+    append: { type: String, default: '', intro: '后置文本内容' },
+    prependDisabled: { type: Boolean, default: false, intro: '是否禁用前置文本' },
+    appendDisabled: { type: Boolean, default: false, intro: '是否禁用后置文本' },
+    data: { type: Array, default: () => [], intro: '需要绑定的数据' },
+    picker: { type: Boolean, default: false, intro: '是否启用picker模式' },
+    width: { type: [Number, String], default: 0, intro: '设置宽度' }
   },
   data: function() {
     return {

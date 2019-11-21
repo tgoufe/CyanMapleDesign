@@ -127,7 +127,6 @@ export default {
   },
   methods: {
     setYear(year) {
-      console.log(this.year, year)
       this.selfDate = new Date(this.selfDate).setFullYear(year)
       this.showYearList = false
     },

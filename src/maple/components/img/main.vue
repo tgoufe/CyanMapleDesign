@@ -32,13 +32,13 @@ const checkLazyLoadImage = _.debounce(function () {
   }
 }, 500)
 ready(function (window) {
-  if( window ){
+  if (window) {
     window.addEventListener('scroll', checkLazyLoadImage)
     window.addEventListener('resize', function () {
       windowHeight = window.innerHeight
     })
 
-    windowHeight = window.innerHeight;
+    windowHeight = window.innerHeight
   }
 })
 const base64Data =

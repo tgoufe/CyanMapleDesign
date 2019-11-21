@@ -1,13 +1,12 @@
 <template>
     <div class="expContainer">
-        <cmui-tabbar>
-            <cmui-tabbar-item title="Exp">
-                <slot name="exp"></slot>
-            </cmui-tabbar-item>
-            <cmui-tabbar-item title="Code">
-                <slot name="code"></slot>
-            </cmui-tabbar-item>
-        </cmui-tabbar>
+        <div class="exp">
+            <slot name="exp"></slot>
+        </div>
+        <div v-show="show" class="code">
+            <slot name="code"></slot>
+        </div>
+        <div @click="show=!show" class="toogleCode" v-text="show?'隐藏代码':'显示代码'"></div>
     </div>
 </template>
 
@@ -89,6 +88,11 @@ components.forEach(function(component) {
 })
 export default {
   name: 'Exp',
+  data(){
+    return{
+      show:false
+    }
+  }
 }
 </script>
 
@@ -99,7 +103,21 @@ $dark:#cbd5e0;
     padding:.85rem;
 }
 .expContainer{
-
+    margin:20px 0;
+    border:1px solid #00baba;
+    padding:10px;
+    border-radius:6px;
+    overflow: hidden;
+    max-width:740px;
+}
+.toogleCode{
+    background-color: #00baba;
+    text-align: center;
+    padding:10px;
+    color:white;
+    margin:-10px;
+    margin-top:10px;
+    cursor: pointer;
 }
 .code{
 

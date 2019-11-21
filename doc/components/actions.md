@@ -3,7 +3,7 @@
 
 <Exp>
 <div slot="exp">
-<Com-Actions-1/>
+<Com-Actions-1></Com-Actions-1>
 </div>
 <div slot="code">
 
@@ -75,7 +75,18 @@ maple(1,2,3,{color:'blue'})
 ## 组件调用
 
 你也可以使用组件的方式进行调用
-```javascript
+
+<Exp>
+<div slot="exp">
+<Com-Actions-2></Com-Actions-2>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Actions-2.vue
+</div>
+</Exp>
+
+<!-- ```javascript
 <template>
     <cmui-actions 
         :visible.sync="actionsVisible"
@@ -103,7 +114,7 @@ maple(1,2,3,{color:'blue'})
         }
     }
 </script>
-```
+``` -->
 ### 抛出的事件
 * select:点击任意一项的时候被调用
 * * 回调参数 ：item index
