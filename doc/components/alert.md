@@ -13,17 +13,7 @@
 
 ### options选项
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-|title|Strirng|''|标题(支持html)
-|content|String|''|内容(支持html)
-|okText|String|''|确认按钮文字
-|okFn|Function||点击确认按钮执行的事件
-|okStyle|Object|null|确认按钮样式
-|okDisable|Boolean|true|确认按钮是否可用
-|okDisableStyle|Object|null|确认按钮不可用时的样式
-|visible|Boolean|false|弹窗是否可见
-|targetClass|String|''|为组件设置额外的class，用于修改样式
+<Propsintro path="alert/main.vue"></Propsintro>
 
 ## 简洁调用
 大部分时候你只需要弹出一个对话框，这个时候可以使用简洁方式来调用,这里提供两种简洁调用方式

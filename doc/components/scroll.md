@@ -7,15 +7,9 @@ scroll组件继承于slider组件，是基于iswiper实现的，在使用的时�
 </cmui-scroll>
 ```
 ## 属性列表
-|属性名称|类型|默认值|说明
-|---|---|---|---|
-|col|String Number|auto|如果为auto则不固定列数，如果为数字类型则表示列数
-|direction|String|'h'|滚动的方向，可选值是h和v
-|watch|Object|null|要监控的内容，通常是在scroll-item中v-for对应的内容，当内容变化时会更新滚动容器
-|pullDis|Number|50|边缘滑动距离，超过这个距离将触发对应事件
-|pullEvent|Boolean|true|是否使用pull事件，如果为false，边缘滑动对应的事件不会触发
-|freeMode|Bolean|true|是否使用free模式，如果为false，将以scroll-item为组进行滑动
-|pullText|Array|[]|边缘滑动需要展示的文本，支持4种状态，通常写成'下拉刷新','释放刷新','上拉加载','释放加载'，你也可以替换成其他的文本或HTML
+
+<Propsintro path="scroll/main.vue"></Propsintro>
+
 ## 支持的事件
 |事件名称|参数|触发条件
 |---|---|---|

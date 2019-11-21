@@ -72,11 +72,11 @@ export default {
   name: 'cmui-date-picker',
   components: { cmuiList, cmuiListItem, cmuiPopup },
   props: {
-    from: { type: Number, default: 1970 },
-    to: { type: Number, default: new Date().getFullYear() },
-    now: { type: Number, default: () => +new Date() },
-    border: { type: [String, Boolean], default: true },
-    visible: { type: Boolean, default: false }
+    from: { type: Number, default: 1970, intro: '能选择的最早的时间' },
+    to: { type: Number, default: new Date().getFullYear(), intro: '能选择的最晚的时间' },
+    now: { type: Number, default: () => +new Date(), intro: '本地时间(时间戳)' },
+    border: { type: [String, Boolean], default: true, intro: '是否显示分割线，支持颜色字符串' },
+    visible: { type: Boolean, default: false, intro: '组件是否显示需要配合sync' }
   },
   data: function() {
     return {

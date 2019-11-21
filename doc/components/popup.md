@@ -10,14 +10,7 @@ popup是所有弹出层的基础类，alert confirm notice message pick等组件
 ```
 ### props选项
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-|visible|Boolean|false|弹层是否可见
-|maskEvent|Boolean|true|点击mask区域是否关闭弹层
-|position|String|'right'|弹出的方向，可以是top right bottom left center 中的任意一个或者多个
-|targetStyle|Object|null|弹层样式
-|targetClass|Object|null|额外要加入的class用于修改样式
-|stopPageScroll|Boolean|true|是否阻止页面滚动
+<Propsintro path="popup/main.vue"></Propsintro>
 
 
 ### slot

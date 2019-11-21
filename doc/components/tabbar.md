@@ -86,13 +86,8 @@ tabbar提供了position属性，用于控制nav的方向，默认为top，你可
 </Exp>
 
 ## 属性列表
-| 属性名称 | 类型   | 默认值 | 说明                               |
-| -------- | ------ | ------ | ---------------------------------- |
-|col|[String,Number]|'auto'|nav的列数,如果为数字则将nav分成对应的份数，如果item数量超过col则滚动显示|
-|activeIndex|Number|0|活动的索引|
-|nav|Array|[false,false]|是否显示左右导航|
-|watch|Array|null|要监控的对象|
-|position|String|'top'|nav栏的位置，你可以在top bottom right left中任选其一|
+<Propsintro path="tabbar/main.vue"></Propsintro>
+
 
 
 ## 支持的事件

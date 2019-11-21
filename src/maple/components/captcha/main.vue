@@ -56,10 +56,10 @@
 export default {
   name: 'cmui-captcha',
   props: {
-    length: { type: Number, default: 4 },
-    type: { type: String, default: 'number' },
-    hide: { type: Boolean, default: false },
-    value: { type: String, default: '' }
+    length: { type: Number, default: 4, intro: '允许输入的最大长度' },
+    type: { type: String, default: 'number', intro: '输入的类型，可选项为number|string' },
+    hide: { type: Boolean, default: false, intro: '是否隐藏输入文本并用点表示' },
+    value: { type: String, default: '', intro: 'v-model绑定的内容' }
   },
   data: function () {
     return {

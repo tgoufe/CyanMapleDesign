@@ -44,9 +44,9 @@ function setDisFromValue (value) {
 export default {
   name: 'cmui-slidebar',
   props: {
-    value: { type: Number, default: 0 },
-    step: { type: Number, default: 0 },
-    range: { type: Number, default: 100 }
+    value: { type: Number, default: 0, intro: '当前的值' },
+    step: { type: Number, default: 0, intro: '每次滑动的最小单位' },
+    range: { type: Number, default: 100, intro: '滑动的范围' }
   },
   data: function () {
     return {

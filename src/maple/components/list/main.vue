@@ -29,11 +29,11 @@ export default {
   name: 'cmui-list',
   mixins: [baseMixin],
   props: {
-    col: { type: [Number, Array], default: 1 },
-    space: { type: Number, default: 0 },
-    border: { type: [Boolean, String], default: false },
-    target: { type: Object, default: () => ({}) },
-    index: { type: [Boolean, Function], default: false }
+    col: { type: [Number, Array], default: 1, intro: '如果是数字代表列表的列数，如果数组，数组的长度表示列数，数组的每一项表示改该列所占的比例，如[1,2]表示两列，比例为1：2' },
+    space: { type: Number, default: 0, intro: '每一列之间的间距' },
+    border: { type: [Boolean, String], default: false, intro: '布尔类型表示每个item是否带有边框，如果space为0，则边框会自动重合，如果是string类型，表示边框的颜色值' },
+    target: { type: Object, default: () => ({}), intro: '用于存放后续需要的暂存对象' },
+    index: { type: [Boolean, Function], default: false, intro: '是否使用索引，可以和cmui-list-group联合使用' }
   },
   data: function() {
     let defaultBorderColor = '#eeeeee'

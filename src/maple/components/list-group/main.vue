@@ -20,7 +20,7 @@ export default {
     cmuiList
   },
   props: {
-    title: { type: String, default: '' }
+    title: { type: String, default: '', intro: '标题文本' }
   },
   data: function() {
     let parent = this.bus.parent

@@ -137,12 +137,12 @@ let scrollRec
 export default {
   name: 'cmui-popup',
   props: {
-    visible: { type: Boolean, default: false },
-    maskEvent: { type: Boolean, default: true },
-    position: { type: String, default: 'right' },
-    targetStyle: { type: Object, default: null },
-    targetClass: { type: String, default: '' },
-    stopPageScroll: { type: Boolean, default: true }
+    visible: { type: Boolean, default: false, intro: '弹层是否可见，需配合sync' },
+    maskEvent: { type: Boolean, default: true, intro: '点击mask区域是否关闭弹层' },
+    position: { type: String, default: 'right', intro: '弹出的方向，可以是top right bottom left center 中的任意一个或者多个' },
+    targetStyle: { type: Object, default: null, intro: '弹层样式' },
+    targetClass: { type: String, default: '', intro: '额外要加入的class用于修改样式' },
+    stopPageScroll: { type: Boolean, default: true, intro: '是否阻止页面滚动' }
   },
   data: function() {
     let userAgent = window.navigator.userAgent

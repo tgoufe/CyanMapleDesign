@@ -76,15 +76,15 @@ export default {
     cmuiPopup
   },
   props: {
-    title: { type: String, default: '' },
-    content: { type: String, default: '' },
-    okText: { type: String, default: '确定' },
-    okFn: { type: Function, default: function() {} },
-    okStyle: { type: Object, default: null },
-    okDisable: { type: Boolean, default: false },
-    okDisableStyle: { type: Object, default: null },
-    visible: { type: Boolean, default: false },
-    targetClass: { type: String, default: '' }
+    title: { type: String, default: '', intro: '标题' },
+    content: { type: String, default: '', intro: '内容' },
+    okText: { type: String, default: '确定', intro: '确定按钮文本' },
+    okFn: { type: Function, default: function() {}, intro: '点击确定触发的回调' },
+    okStyle: { type: Object, default: null, intro: '确定按钮样式' },
+    okDisable: { type: Boolean, default: false, intro: '禁用确定按钮' },
+    okDisableStyle: { type: Object, default: null, intro: '确定按钮禁用样式' },
+    visible: { type: Boolean, default: false, intro: '组件是否显示，需要使用sync' },
+    targetClass: { type: String, default: '', intro: '容器附加class' }
   },
   data: function() {
     return {

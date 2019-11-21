@@ -14,23 +14,7 @@
 
 ### options选项
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-|title|Strirng|''|标题(支持html)
-|content|String|''|内容(支持html)
-|okText|String|''|确认按钮文字
-|okFn|Function||点击确认按钮执行的事件
-|okStyle|Object|null|确认按钮样式
-|okDisable|Boolean|true|确认按钮是否可用
-|okDisableStyle|Object|null|确认按钮不可用时的样式
-|cancelText|String|''|取消按钮文本|
-|cancelStyle|Object|null|取消按钮样式|
-|cancelFn|Function||点击取消按钮触发的回调|
-|cancelDisable|Boolean|false|禁用取消按钮|
-|cancelDisableStyle|Object|null|禁用取消按钮时的样式|
-|visible|Boolean|false|弹窗是否可见
-|targetClass|String|''|为组件设置额外的class，用于修改样式
-|reverse|Boolean|false|翻转取消和确定按钮位置
+<Propsintro path="confirm/main.vue"></Propsintro>
 
 
 ## 简洁调用

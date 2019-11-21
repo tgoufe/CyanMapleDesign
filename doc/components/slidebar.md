@@ -5,11 +5,8 @@ slidebar组件用于创建一个滑动条
 <cmui-slidbar></cmui-slidbar>
 ```
 ## 属性列表
-|属性名称|类型|默认值|说明
-|---|---|---|---|
-|value|Number|0|当前的值
-|step|Number|0|每次滑动的最小单位
-|range|Number|100|滑动的范围
+<Propsintro path="slidebar/main.vue"></Propsintro>
+
 ## 支持的事件
 |事件名称|参数|触发条件
 |---|---|---|

@@ -12,11 +12,11 @@ export default {
     cmuiRender
   },
   props: {
-    col: { type: [String, Number], default: 'auto' },
-    index: { type: Number, default: 0 },
-    nav: { type: Array, default: () => [false, false] },
-    watch: { type: [Array, Object], default: () => null },
-    position: { type: String, default: 'top' }
+    col: { type: [String, Number], default: 'auto', intro: 'nav的列数,如果为数字则将nav分成对应的份数，如果item数量超过col则滚动显示' },
+    index: { type: Number, default: 0, intro: '活动的索引' },
+    nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
+    watch: { type: [Array, Object], default: () => null, intro: '要监控的对象' },
+    position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' }
   },
   data: function () {
     return {
