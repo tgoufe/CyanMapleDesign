@@ -59,78 +59,94 @@ export default {
     // 所有列表数据
     listData: {
       type: Array,
-      default: () => []
+      default: () => [],
+      intro:'列表所需要的数据'
     },
     // 列表列数
     column: {
       type: Number,
-      default: 1
+      default: 1,
+      intro:'列数'
     },
     // 是否开启下拉刷新
     topLoadMore: {
       type: Boolean,
-      default: false
+      default: false,
+      intro:'是否启用下拉刷新'
     },
     // 超过阈值的回调
     topMethod: {
       type: Function,
       default: function() {
         return function() {}
-      }
+      },
+      intro:'刷新时调用的回调函数'
     },
     topTextColor: {
       type: String,
-      default: '#000000'
+      default: '#000000',
+      intro:'刷新区域的文本颜色'
     },
     topPullText: {
       type: String,
-      default: '上拉刷新'
+      default: '上拉刷新',
+      intro:'刷新状态为pull时提示区的文字'
     },
     topDropText: {
       type: String,
-      default: '释放更新'
+      default: '释放更新',
+      intro:'刷新状态为drop时提示区的文字'
     },
     topLoadingText: {
       type: String,
-      default: '加载中...'
+      default: '加载中...',
+      intro:'刷新状态为loading时提示区的文字'
     },
     // 最大滑动距离
     maxDistance: {
       type: Number,
-      default: 0
+      default: 0,
+      intro:'组件可移动的最大距离（像素），若为 0 则不限制'
     },
     // 滑动距离与真实距离比值
     distanceScale: {
       type: Number,
-      default: 2
+      default: 2,
+      intro:'手指移动与组件移动距离的比值'
     },
     // 滑动距离阈值，超过阈值回调
     topDistance: {
       type: Number,
-      default: 70
+      default: 70,
+      intro:'触发 topMethod 的下拉距离阈值（像素）'
     },
-    onScroll: {
-      type: Function,
-      default: null
-    },
-    onScrollEnd: {
-      type: Function,
-      default: null
-    },
+    // onScroll: {
+    //   type: Function,
+    //   default: null,
+    //   intro:'列表所需要的数据'
+    // },
+    // onScrollEnd: {
+    //   type: Function,
+    //   default: null,
+    //   intro:'列表所需要的数据'
+    // },
     // 预估高度
     estimatedItemSize: {
       type: Number,
-      required: true
+      required: true,
+      intro:'列表项的预估高度，用于预先计算可视区域的显示项数'
     },
     // 缓冲区比例
     bufferScale: {
       type: Number,
-      default: 1
+      default: 1,
+      intro:'在可见区域之外的上/下方预渲染比例，避免快速滑动时出现闪烁'
     },
     // 容器高度 100px or 50vh
     height: {
       type: String,
-      default: '100%'
+      default: '100%',
+      intro:'包裹元素的高度'
     }
   },
   data() {
