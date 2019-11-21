@@ -1,8 +1,19 @@
 # Slidebar
 slidebar组件用于创建一个滑动条
 ## 使用方式
+
+<Exp>
+<div slot="exp">
+<Com-Slidebar-1></Com-Slidebar-1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Slidebar-1.vue
+</div>
+</Exp>
+
 ```html
-<cmui-slidbar></cmui-slidbar>
+<cmui-slidebar></cmui-slidebar>
 ```
 ## 属性列表
 <Propsintro path="slidebar/main.vue"></Propsintro>

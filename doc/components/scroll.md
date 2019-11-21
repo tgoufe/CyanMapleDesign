@@ -1,6 +1,18 @@
 # Scroll
 scroll组件继承于slider组件，是基于iswiper实现的，在使用的时候需要和scroll-item一起使用，主要用于制作某个容器内的滑动列表，支持横向和纵向滑动，同时封装了下拉刷新和上拉加载以及相关事件，方便使用。
 ## 使用方式
+
+### 横向展示及属性绑定
+<Exp>
+<div slot="exp">
+    <Com-Scroll-1/>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Scroll-1.vue
+</div>
+</Exp>
+
 ```html
 <cmui-scroll>
     <cmui-scroll-item></cmui-scroll-item>
@@ -8,7 +20,21 @@ scroll组件继承于slider组件，是基于iswiper实现的，在使用的时�
 ```
 ## 属性列表
 
+
 <Propsintro path="scroll/main.vue"></Propsintro>
+
+
+### 纵向展示及事件绑定
+<Exp>
+<div slot="exp">
+    <Com-Scroll-2/>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Scroll-2.vue
+</div>
+</Exp>
+
 
 ## 支持的事件
 |事件名称|参数|触发条件
