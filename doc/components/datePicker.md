@@ -2,14 +2,28 @@
 
 datePicker组件用于创建倒计时效果。
 
+### 默认使用
+
+<Exp>
+<div slot="exp">
+<Com-Data-Picker1></Com-Data-Picker1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Data-Picker1.vue
+</div>
+</Exp>
+
+
+
 ### props
 
 | 属性名称  |类型|默认值|说明
 |---|---|---|---|
-|from|Number|1970年|能选择的最早的时间
+|from|Number|1970|能选择的最早的时间
 |to|Number|当前年份|能选择的最晚的时间
-|now|[String,Number]|当前时间|本地时间
-|border|[Boolean,String]|true|是否显示分割线，如果是字符串标识分割线颜色
+|now|Number|当前时间|本地时间(时间戳)
+|border|[Boolean,String]|true|是否显示分割线，支持颜色字符串
 
 
 

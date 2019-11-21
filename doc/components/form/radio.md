@@ -22,6 +22,7 @@
 </Exp>
 
 ## 禁用状态
+使用disabled属性可以设置组件为禁用状态
 
 <Exp>
 <div slot="exp">
@@ -34,6 +35,7 @@
 </Exp>
 
 ## 分组选择
+为多个radio配置相同的name，并将v-model绑定到同一个对象上即可，label属性就是对应的值。
 
 <Exp>
 <div slot="exp">
@@ -46,6 +48,7 @@
 </Exp>
 
 ## 组合Cyan样式
+为CheckBox绑定target-class属性即可直接使用Cyan的样式组合来实现各种样式，详见[Cyan中的表单](/Cyan/form.html#radio)
 
 <Exp>
 <div slot="exp">
@@ -56,5 +59,9 @@
 <<< @/doc/.vuepress/components/Com/Form-Radio4.vue
 </div>
 </Exp>
+
+## 属性列表
+
+<Propsintro path="form/radio.vue"></Propsintro>
 
 

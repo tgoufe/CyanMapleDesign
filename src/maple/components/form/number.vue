@@ -11,8 +11,8 @@
     :label="label"
     :align="align"
     :reset="false"
-    :prepend-disabled="!canSubSelf"
-    :append-disabled="!canAddSelf"
+    :prepend-disabled="!(canSubSelf && canSub)"
+    :append-disabled="!(canAddSelf && canAdd)"
     :flex="flex"
     :width="width"
     @input="handleInput"
@@ -42,19 +42,20 @@ export default {
   },
   mixins: [mixin],
   props: {
-    max: { type: Number, default: Infinity },
-    min: { type: Number, default: -Infinity },
-    rule: RegExp,
-    canAdd: { type: Boolean, default: true },
-    canSub: { type: Boolean, default: true },
-    beforeChange: { type: Function, default: null },
-    width: { type: [Number, String], default: '' }
+    max: { type: Number, default: Infinity, intro: '允许输入的最大值' },
+    min: { type: Number, default: -Infinity, intro: '允许输入的最小值' },
+    canAdd: { type: Boolean, default: true, intro: '加号按钮是否可以点击' },
+    canSub: { type: Boolean, default: true, intro: '减号按钮是否可以点击' },
+    beforeChange: { type: Function, default: null, intro: '输入框内容发生变化前要执行的函数' },
+    width: { type: [Number, String], default: '', intro: '设置宽度' },
+    step: { type: Number, default: 1, intro: '设置步长' },
+    precision: { type: Number, default: 0, intro: '设置精度' }
   },
   data () {
     return {
       canSubSelf: this.canSub,
       canAddSelf: this.canAdd,
-      selfValue: this.value
+      selfValue: this.value.toFixed(this.precision)
     }
   },
   computed: {
@@ -76,7 +77,7 @@ export default {
   watch: {
     value (value) {
       this.setBtnState()
-      this.selfValue = value
+      this.selfValue = value.toFixed(this.precision)
       console.log(arguments)
     },
     max () {
@@ -98,12 +99,13 @@ export default {
   },
   methods: {
     changeNumber: function (num = 0) {
-      if ((!this.canAddSelf && num === 1) || (!this.canSubSelf && num === -1)) {
+      if ((!(this.canAddSelf && this.canAdd) && num === 1) || (!(this.canSubSelf && this.canSub) && num === -1)) {
         return
       }
       const value = this.selfValue
       const beforeChangeEvent = this.$listeners['before-change']
-      let targetValue = +value + num
+      let targetValue = +value + num * this.step
+      targetValue = targetValue.toFixed(this.precision)
       targetValue = _.min([this.max, targetValue])
       targetValue = _.max([this.min, targetValue])
       if (_.isFunction(beforeChangeEvent)) {

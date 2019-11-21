@@ -26,14 +26,14 @@
                     :flex="true"
                     target-class="switch"
                     class="text-white"
-                    v-model="light">light</cmui-checkbox>
+                    v-model="light">Light</cmui-checkbox>
                 </div>
                 <div class="flex1 marginl50">
                   <cmui-checkbox
                     :flex="true"
                     target-class="switch"
                     class="text-white"
-                    v-model="reverse">Flip</cmui-checkbox>
+                    v-model="reverse">Reverse</cmui-checkbox>
                 </div>
               </div>
               <div class="flex-container marginv30">
@@ -49,7 +49,7 @@
                     :flex="true"
                     target-class="switch"
                     class="text-white"
-                    v-model="block">block</cmui-checkbox>
+                    v-model="block">Block</cmui-checkbox>
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@
           <p class="title paddingv20 paddingh30">按钮组(通常开启翻转和圆角)</p>
           <div class="padding20 flex-container center">
             <div class="btn-group">
-              <div class="btn"
+              <div class="btn yellow"
               :class="[size,selectColor,{light,radius,reverse}]"
               v-for="(item,index) in colors"
               :key="item"

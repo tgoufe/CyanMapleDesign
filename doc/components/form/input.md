@@ -86,7 +86,7 @@ label属性在初始状态下不包含任何样式，因此，如果你需要这
 
 
 ## 组合Cyan来设置样式
-你可以使用slot或属性两种方式来设置前置和后置
+为input绑定target-class属性即可直接使用Cyan的样式组合来实现各种样式，详见[Cyan中的表单](/Cyan/form.html#input)
 
 <Exp>
 <div slot="exp">
@@ -124,5 +124,7 @@ label属性在初始状态下不包含任何样式，因此，如果你需要这
 </div>
 </Exp>
 
+## 属性列表
 
+<Propsintro path="form/input.vue"></Propsintro>
 

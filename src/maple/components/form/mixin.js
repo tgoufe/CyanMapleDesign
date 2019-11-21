@@ -42,15 +42,15 @@ export default {
     }
   },
   props: {
-    disabled: { type: Boolean, default: false },
-    readonly: { type: Boolean, default: false },
-    placeholder: String,
-    value: { type: [String, Boolean, Number, Array, Object], default: () => '' },
-    name: String,
-    target: Object,
-    targetClass: { type: String, default: '' },
-    label: String,
-    align: { type: String, default: 'left' },
-    flex: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false, intro: '是否禁用' },
+    readonly: { type: Boolean, default: false, intro: '是否设置为只读' },
+    placeholder: { type: String, default: '', intro: 'placeholder文字' },
+    value: { type: [String, Boolean, Number, Array, Object], default: () => '', intro: '用于v-model绑定的值' },
+    name: { type: String, default: '', intro: '表单项名称' },
+    target: { type: Object, default: null, intro: '可用于存放一个对象在后续操作中使用' },
+    targetClass: { type: String, default: '', intro: '绑定到表单项上的class，可配合Cyan使用' },
+    label: { type: String, default: '', intro: '标签文字' },
+    align: { type: String, default: 'left', intro: '标签位置，可选项为left或right' },
+    flex: { type: Boolean, default: false, intro: '是否使用flex布局' }
   }
 }

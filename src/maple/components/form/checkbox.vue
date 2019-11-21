@@ -45,7 +45,7 @@ export default {
   name: 'cmui-checkbox',
   mixins: [mixin],
   props: {
-    path: { type: String, default: '' }
+    path: { type: String, default: '', intro: '当v-model设置为数组的时候用于指定匹配项的路径' }
   },
   data: function() {
     return {

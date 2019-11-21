@@ -1,14 +1,15 @@
 <template>
 <div>
-    <p>可以使用 full flex-x flex-y round top left bottom center right border 随意组合，下面列举了几个常见的组合方式</p>
-    <p>原始图片</p>
-    <img :src="imglist[1]" alt="">
-    <div class="list list-col2">
+    <!-- <p class="text-black fs-18 padding30">可以使用 full flex-x flex-y round top left bottom center right border 随意组合，下面列举了几个常见的组合方式</p> -->
+    <p class="title paddingv20 paddingh30">默认图片</p>
+    <img :src="imgList" alt="">
+    <p class="title paddingv20 paddingh30">常见组合方式</p>
+    <div class="list list-col2 paddingh15 paddingb50">
         <div class="list-item padding20" v-for="name in classList">
-            <p class="text-center">{{name||'默认'}}</p>
+            <p class="dian pos-r text-center marginb30 fs-12">{{name||'Default'}}</p>
             <div class="ratio-container">
                 <div class="img-container" :class="name">
-                    <img :src="imglist[1]" alt="">
+                    <img :src="imgList" alt="">
                 </div>
             </div>
         </div>
@@ -17,12 +18,12 @@
 </template>
 
 <script>
-import img from '@assets/img.js'
+import img from '@assets/imgContainer_test.png'
 export default {
   name: 'imgContainer',
   data(){
     return {
-      imglist:[...img.whiteList,...img.blackList],
+      imgList:img,
       classList:[
         '',
         'flex-x',
@@ -30,7 +31,7 @@ export default {
         'flex-x right',
         'flex-y',
         'flex-y top',
-        'fex-y bottom',
+        'flex-y bottom',
         'flex-x flex-y center',
         'full',
         'round',
@@ -44,6 +45,16 @@ export default {
 
 <style scoped>
 .img-container{
-    box-shadow:0 0 2px 2px black;
+    box-shadow:0 0 0 1px black;
+}
+.dian:before{
+    content: '';
+    position: absolute;
+    left:0;
+    width: 8px;
+    height:8px;
+    border-radius: 50%;
+    background: #00BABA;
+    top: 4px;
 }
 </style>
