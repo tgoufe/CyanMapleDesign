@@ -1,6 +1,17 @@
 # Slider
 slider组件是所有滑动组件的基础类，它是基于[Swiper](https://www.swiper.com.cn/api/index.html)实现的，具体是API可以参考对应的官方文档。
 ## 使用方式
+
+<Exp>
+<div slot="exp">
+<Com-Slider-1></Com-Slider-1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Slider-1.vue
+</div>
+</Exp>
+
 ```html
 <cmui-slider>
     <cmui-slider-item></cmui-slider-item>
