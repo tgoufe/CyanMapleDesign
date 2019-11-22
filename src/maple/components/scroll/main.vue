@@ -43,13 +43,13 @@ import _ from 'lodash'
 export default {
   name: 'cmui-scroll',
   props: {
-    col: { type: [String, Number], default: 'auto' },
-    direction: { type: String, default: 'h' },
-    watch: { type: [Array, Object], default: () => null },
-    pullDis: { type: Number, default: 50 },
-    pullEvent: { type: Boolean, default: true },
-    freeMode: { type: Boolean, default: true },
-    pullText: { type: Array, default: () => ([]) }
+    col: { type: [String, Number], default: 'auto', intro: '如果为auto则不固定列数，如果为数字类型则表示列数' },
+    direction: { type: String, default: 'h', intro: '滚动的方向，可选值是h和v' },
+    watch: { type: [Array, Object], default: () => null, intro: '要监控的内容，通常是在scroll-item中v-for对应的内容，当内容变化时会更新滚动容器' },
+    pullDis: { type: Number, default: 50, intro: '边缘滑动距离，超过这个距离将触发对应事件' },
+    pullEvent: { type: Boolean, default: true, intro: '是否使用pull事件，如果为false，边缘滑动对应的事件不会触发' },
+    freeMode: { type: Boolean, default: true, intro: '是否使用free模式，如果为false，将以scroll-item为组进行滑动' },
+    pullText: { type: Array, default: () => ([]), intro: '边缘滑动需要展示的文本，支持4种状态，通常写成下拉刷新,释放刷新,上拉加载,释放加载，你也可以替换成其他的文本或HTML' }
   },
   data: function () {
     return {

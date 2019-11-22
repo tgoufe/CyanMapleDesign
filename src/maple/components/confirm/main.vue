@@ -88,21 +88,21 @@ export default {
     }
   },
   props: {
-    title: { type: String, default: '' },
-    content: { type: String, default: '' },
-    okText: { type: String, default: '确定' },
-    okFn: { type: Function, default: function() {} },
-    okStyle: { type: Object, default: null },
-    cancelText: { type: String, default: '取消' },
-    cancelStyle: { type: Object, default: null },
-    cancelFn: { type: Function, default: function() {} },
-    okDisable: { type: Boolean, default: false },
-    okDisableStyle: { type: Object, default: null },
-    cancelDisable: { type: Boolean, default: false },
-    cancelDisableStyle: { type: Object, default: null },
-    visible: { type: Boolean, default: false },
-    targetClass: { type: String, default: '' },
-    reverse: { type: Boolean, default: false }
+    title: { type: String, default: '', intro: '标题(支持html)' },
+    content: { type: String, default: '', intro: '内容(支持html)' },
+    okText: { type: String, default: '确定', intro: '确认按钮文字' },
+    okFn: { type: Function, default: function() {}, intro: '点击确认按钮执行的事件' },
+    okStyle: { type: Object, default: null, intro: '确认按钮样式' },
+    cancelText: { type: String, default: '取消', intro: '确认按钮是否可用' },
+    cancelStyle: { type: Object, default: null, intro: '确认按钮不可用时的样式' },
+    cancelFn: { type: Function, default: function() {}, intro: '取消按钮文本' },
+    okDisable: { type: Boolean, default: false, intro: '取消按钮样式' },
+    okDisableStyle: { type: Object, default: null, intro: '点击取消按钮触发的回调' },
+    cancelDisable: { type: Boolean, default: false, intro: '禁用取消按钮' },
+    cancelDisableStyle: { type: Object, default: null, intro: '禁用取消按钮时的样式' },
+    visible: { type: Boolean, default: false, intro: '弹窗是否可见' },
+    targetClass: { type: String, default: '', intro: '为组件设置额外的class，用于修改样式' },
+    reverse: { type: Boolean, default: false, intro: '翻转取消和确定按钮位置' }
   },
   compontents: {
     cmuiPopup

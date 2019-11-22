@@ -32,9 +32,9 @@ export default {
   // mixins:[baseMixin],
   inject: ['bus'],
   props: {
-    title: { type: String, default: '' },
-    bgcolor: { type: String, default: '' },
-    border: { type: Boolean, default: true }
+    title: { type: String, default: '', intro: '标题文本' },
+    bgcolor: { type: String, default: '', intro: '背景色' },
+    border: { type: Boolean, default: true, intro: '是否显示边框' }
   },
   data: function() {
     return {

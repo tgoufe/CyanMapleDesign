@@ -79,16 +79,17 @@ export default {
       type: Array,
       default: function() {
         return []
-      }
+      },
+      intro: '每一项的文本内容，用[String...]的形式表示'
     },
-    cancelText: { type: String, default: '取消' },
-    cancelFn: { type: Function, default: null },
-    cancelStyle: { type: Object, default: null },
-    itemStyle: { type: Object, default: null },
-    selectFn: { type: Function, default: null },
-    activeIndex: { type: Number, default: -1 },
-    title: { type: String, default: '' },
-    visible: { type: Boolean, default: false }
+    cancelText: { type: String, default: '取消', intro: '取消按钮的文本' },
+    cancelFn: { type: Function, default: null, intro: '取消按钮的事件' },
+    cancelStyle: { type: Object, default: null, intro: '取消按钮的样式' },
+    itemStyle: { type: Object, default: null, intro: '每一项的样式' },
+    selectFn: { type: Function, default: null, intro: '每一项被选择时的事件' },
+    activeIndex: { type: Number, default: -1, intro: '被选中项的索引' },
+    title: { type: String, default: '', intro: '标题内容' },
+    visible: { type: Boolean, default: false, intro: '是否显示组件，需要使用sync' }
   },
   compontents: {
     cmuiPopup

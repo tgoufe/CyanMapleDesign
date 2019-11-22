@@ -138,14 +138,14 @@ export default {
     cmuiPopup
   },
   props: {
-    data: { type: Array, default: () => [] },
-    visible: { type: Boolean, default: false },
-    rightFn: { type: Function, default: null },
-    leftFn: { type: Function, default: null },
-    title: { type: String, default: '' },
-    leftText: { type: String, default: '取消' },
-    rightText: { type: String, default: '确定' },
-    value: { type: [String, Object, Number, Array], default: () => '' }
+    data: { type: Array, default: () => [], intro: '要展示的数据' },
+    visible: { type: Boolean, default: false, intro: '是否可见需要配合sync使用' },
+    rightFn: { type: Function, default: null, intro: '点击右侧文字时的事件' },
+    leftFn: { type: Function, default: null, intro: '点击左侧文字时的事件' },
+    title: { type: String, default: '', intro: '标题文字' },
+    leftText: { type: String, default: '取消', intro: '左侧文字' },
+    rightText: { type: String, default: '确定', intro: '右侧文字' },
+    value: { type: [String, Object, Number, Array], default: () => '', intro: 'v-model绑定的值' }
   },
   data: function() {
     return getInitData(this.data, this.value)

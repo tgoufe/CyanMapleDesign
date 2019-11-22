@@ -125,6 +125,14 @@ $dark:#cbd5e0;
 .exp{
 
 }
+/deep/ .cmui-list-item{
+    .list-item-demo{
+        background: $gray;
+    }
+    &:nth-child(odd) .list-item-demo{
+        background: $dark;
+    }
+}
 /deep/ [ratio="2/3"]::before{padding-top:150%;}
 /deep/ .demo{
     background: $gray;

@@ -89,14 +89,14 @@
 export default {
   name: 'cmui-progress',
   props: {
-    value: { type: Number, default: 0 },
-    color: { type: String, default: 'red' },
-    bgcolor: { type: String, default: '#cccccc' },
-    lineWidth: { type: Number, default: 2 },
-    type: { type: String, default: 'line' }, // line top circle
-    radius: { type: Boolean, default: true },
-    text: { type: String, default: '' },
-    size: { type: Number, default: 20 }
+    value: { type: Number, default: 0, intro: '进度条数值范围为0-100' },
+    color: { type: String, default: 'red', intro: '进度条颜色，如果需要使用渐变色可以使用数组，数组的每一项为一个表示颜色的字符串' },
+    bgcolor: { type: String, default: '#cccccc', intro: '背景色' },
+    lineWidth: { type: Number, default: 2, intro: '线宽' },
+    type: { type: String, default: 'line', intro: '进度条样式可选项：line top circle' }, // line top circle
+    radius: { type: Boolean, default: true, intro: '进度条是否使用圆角' },
+    text: { type: String, default: '', intro: '内容文字' },
+    size: { type: Number, default: 20, intro: '环形进度条尺寸，仅在type为circle时生效' }
   },
   computed: {
     warpStyle () {

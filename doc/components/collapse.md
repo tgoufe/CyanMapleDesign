@@ -28,11 +28,11 @@ collapse组件用于创建折叠面板和手风琴效果
 </Exp>
 
 ## props属性列表
+cmui-collapse属性
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-| onlyone  |Boolean|false|是否只能打开一个选项
-|activeIndex|Number,Array|[]|需要打开的索引，使用数组可以打开多个
+<Propsintro path="collapse/main.vue"></Propsintro>
+cmui-collapse-item属性
+<Propsintro path="collapse-item/main.vue"></Propsintro>
 ## slot说明
 
 | name  |说明

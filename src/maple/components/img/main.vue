@@ -46,24 +46,14 @@ const base64Data =
 export default {
   name: 'cmui-img',
   props: {
-    src: { type: String, default: base64Data },
-    lazyLoad: { type: Boolean, default: false },
-    lazySrc: { type: String, default: base64Data },
-    errorSrc: { type: String, default: base64Data },
-    preView: { type: Boolean, default: false },
-    preViewList: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    preViewIndex: { type: Number, default: 0 },
-    preViewOptions: {
-      type: Object,
-      default () {
-        return {}
-      }
-    }
+    src: { type: String, default: base64Data, intro: '图片地址' },
+    lazyLoad: { type: Boolean, default: false, intro: '是否启用延迟加载' },
+    lazySrc: { type: String, default: base64Data, intro: '延迟加载时所用的展位图' },
+    errorSrc: { type: String, default: base64Data, intro: '图片加载失败后使用的图片' },
+    preView: { type: Boolean, default: false, intro: '是否开启图片预览' },
+    preViewList: { type: Array, default: () => [], intro: '预览图地址列表' },
+    preViewIndex: { type: Number, default: 0, intro: '预览索引' },
+    preViewOptions: { type: Object, default: () => ({}), intro: '预览选项，和slider组件相同' }
   },
   data () {
     return {

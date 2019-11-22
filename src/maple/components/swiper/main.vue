@@ -83,14 +83,8 @@ ready(function(window) {
 export default {
   name: 'cmui-swiper',
   props: {
-    right: {
-      type: Array,
-      default: () => []
-    },
-    left: {
-      type: Array,
-      default: () => []
-    }
+    right: { type: Array, default: () => [], intro: '右侧滑动列表项' },
+    left: { type: Array, default: () => [], intro: '左侧滑动列表项' }
   },
   data: function() {
     return {

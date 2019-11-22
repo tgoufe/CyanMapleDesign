@@ -1,23 +1,57 @@
 # list
-list组件是非常强大的布局组件，你可以用这个组件来创建任意比例的网格布局。包含两个部分cmui-list和cmui-list-item，其中cmui-list表示外部容器，cmui-list-item表示列表的每一项。
+list组件是非常强大的布局组件，你可以用这个组件来创建任意比例的网格布局。包含三个部分
+1. cmui-list:外部容器
+2. cmui-list-group:内容分组
+3. cmui-list-item:内容项
+## 基础结构
+```html
+<cmui-list>
+	<cmui-list-item></cmui-list-item>
+</cmui-list>
+```
+
+## 创建N列的列表
+使用col属性可以设置列表的列数，它支持数字和数组两种形式，如果为数字，表示列数，所有列宽度平均分配，如果是数组，数组的长度表示列数，数组中的每个数字表示对应列所比例，即【2，3】表示以2：3的宽度分成两列
+
+<Exp>
+<div slot="exp">
+<Com-List1></Com-List1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/List1.vue
+</div>
+</Exp>
+
+## 调整间距
+
+<Exp>
+<div slot="exp">
+<Com-List2></Com-List2>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/List2.vue
+</div>
+</Exp>
+
 ### props(cmui-list)
 
-|属性|类型|默认值|说明|
-|---|---|---|---|
-|col|Number Array |1 | 如果是数字代表列表的列数，如果数组，数组的长度表示列数，数组的每一项表示改该列所占的比例，如\[1,2]表示两列，比例为1：2|
-|space| Number|0 |每一列之间的间距 |
-|border| Boolean String| false| 布尔类型表示每个item是否带有边框，如果space为0，则边框会自动重合，如果是string类型，表示边框的颜色值|
-|target|Object |null | |
-|index|Boolean |false | 是否使用索引，可以和cmui-list-group联合使用|
+<Propsintro path="list/main.vue"></Propsintro>
 
 
 ### props(cmui-list-item)
 
-|属性|类型|默认值|说明|
-|---|---|---|---|
-|title|String |'' | 每一个item的标题|
-|bgcolor| String|'' |每一个item的背景色 |
-|border| Boolean String| false| 布尔类型表示每个item是否带有边框，如果space为0，则边框会自动重合，如果是string类型，表示边框的颜色值|
+<Propsintro path="list-item/main.vue"></Propsintro>
+
+### props(cmui-list-group)
+
+<Propsintro path="list-group/main.vue"></Propsintro>
+
+
+
+
+
 ### demo
 <list-demo></list-demo>
 <<< @/doc/.vuepress/components/listDemo.vue

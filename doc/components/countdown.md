@@ -45,12 +45,7 @@ countdown组件用于创建倒计时效果。
 :::
 ## props列表
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-|nowTime|Number|new Date|用于设置当前的时间，通常取服务器时间，默认取本地时间
-|endTime|Number|0|倒计时的结束时间
-|showDay|Boolean|false|是否显示天
-|showMilli|Boolean|false|是否显示毫米
+<Propsintro path="countdown/main.vue"></Propsintro>
 
 
 ## event列表

@@ -49,11 +49,11 @@ module.exports = {
                 '',
                 {
                     title:'弹层组件',
-                    children : ['alert','confirm','actions','notice','pick','datePicker','mask']
+                    children : ['alert','confirm','actions','notice','pick','datePicker','mask','popup']
                 },
                 {
                     title:'展示类组件',
-                    children : ['captcha','countdown','image','slider','progress','slidebar']
+                    children : ['captcha','countdown','image','slider','progress','scroll','slidebar','swiper']
                 },
                 {
                     title:'布局组件',

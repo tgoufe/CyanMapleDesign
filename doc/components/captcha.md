@@ -56,13 +56,7 @@ captcha组件用于创建一连续输入的区域，通常用于输入验证码�
 
 ## props属性列表
 
-| 属性名称  |类型|默认值|说明
-|---|---|---|---|
-| length  |Number|4|输入内容的长度
-|type|String|'number'|输入的类型，目前只支持string和number两种
-|hide|Boolean|true|是否隐藏输入内容
-|value|String|''|初始的内容
-|activeIndex|Number|-1|当前输入的末尾索引
+<Propsintro path="captcha/main.vue"></Propsintro>
 
 
 

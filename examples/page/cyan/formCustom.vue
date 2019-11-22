@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <p class="text-white fs-18 paddingh50 paddingv30 bg-black">自定义色彩：请修改色彩查看变化</p>
+        <p class="text-black fs-18 padding30">自定义色彩：请修改色彩查看变化</p>
         <div :style="{color:formColor}">
           <p class="title paddingv20 paddingh30">checkbox</p>
           <div class="list border">
@@ -68,7 +68,7 @@ export default {
   name: 'form',
   data(){
     return{
-        formColor:'#50d246',
+        formColor:'#FF4C47',
         checkboxData:[
             '','reverse','square','square reverse','switch','btn','btn radius','btn light','btn light radius','btn reverse','btn reverse radius'
         ],

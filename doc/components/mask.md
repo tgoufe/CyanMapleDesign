@@ -5,13 +5,8 @@ maple.mask(options)
 ```
 ### options
 
-|属性名称|类型|默认值|说明
-|---|---|---|---|
-| position|String|center|内容的位置，继承于flex-container，可以使用top，left，bottom，right，center，between中的任意一项或两项配合
-| content|HTML|空|遮罩内部的内容
-| closeFn|Function|空|关闭遮罩时的事件
-| callback|function|空|遮罩渲染完成后的回调
-| contentStyle|Object|null|内容样式
+<Propsintro path="mask/main.vue"></Propsintro>
+
 ## 简洁用法
 ```javascript
 maple.mask(content,[position,callback,options])

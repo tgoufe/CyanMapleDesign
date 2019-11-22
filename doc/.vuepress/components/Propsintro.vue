@@ -40,8 +40,9 @@ export default {
         return 'null'
       else if (item === '')
         return '-'
-      else
-        return item
+      else if(typeof item === 'string' && /data:image/.test(item))
+        return 'CyanMaple占位图'
+      return item
     }
   },
   created(){

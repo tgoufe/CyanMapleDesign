@@ -13,16 +13,7 @@ pick组件用于创建类似于在IOS上的select原生效果。
 </Exp>
 
 ### 属性列表
-|属性名|类型|默认值|说明
-|---|---|---|---|
-|data|Array|[]|要展示的数据|
-|selectIndex|Array|[]|被选定的项|
-|visible|Boolean|false|是否可见需要配合sync使用|
-|rightFn|Function|null|点击右侧文字时的事件|
-|leftFn|Function|null|点击左侧文字时的事件|
-|title|String|空|标题文字|
-|leftText|String|取消|左侧文字|
-|rightText|String|确定|右侧文字|
+<Propsintro path="picker/main.vue"></Propsintro>
 > data详细描述：传入的data必须为一个数组
 > * 只有一列选项:可以传入一个一维数组，数组的每一项可以是字符串，也可以是{text,value}结构的对象
 > * 有多列选项:可以传入二维数组，每一个数组项代表一列
