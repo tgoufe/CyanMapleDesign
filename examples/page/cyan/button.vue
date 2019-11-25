@@ -105,7 +105,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .badgeCurrent{
     width:100%;
     border:2px solid white !important;

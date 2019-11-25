@@ -1,6 +1,6 @@
 <template>
 	<div class="padding20">
-		<div class="tag-container example">
+		<!-- <div class="tag-container example">
 			<p>使用方式</p>
 			<p>简介方式：maple.mask(content,position,callback)</p>
 			<p>完整方式：maple.mask(options)</p>
@@ -22,18 +22,26 @@ callback
 contentStyle
 				</cmui-list-item><cmui-list-item> 弹窗内容容器样式</cmui-list-item>
 			</cmui-list>
+		</div> -->
+		<div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1">
+			<div class="btn-group flex-container paddingv20">
+              	<span class="text-white left" style="min-width: 55px;">纵向</span>
+              	<div class="flex-container flex1" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
+                  <div class="flex1 flex-container center" style="padding:3px;" v-for="item in pos1"><div class="badge blue pill" @click="pos1rs=item" :class="pos1rs==item?'badgeCurrent':'badgeDefault'">{{item}}</div></div>
+                  <!-- <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="pos1rs='small'" :class="size=='small'?'badgeCurrent':'badgeDefault'">Small</div></div>
+                  <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="pos1rs='big'" :class="size=='big'?'badgeCurrent':'badgeDefault'">Big</div></div> -->
+              	</div>
+            </div>
+            <div class="btn-group flex-container paddingv20">
+              <span class="text-white left" style="min-width: 55px;">横向</span>
+              <div class="flex-container flex1" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
+                  	<div class="flex1 flex-container center" style="padding:3px;" v-for="item in pos2"><div class="badge blue pill" @click="pos2rs=item" :class="pos2rs==item?'badgeCurrent':'badgeDefault'">{{item}}</div></div>
+              </div>
+            </div>
 		</div>
-		<div class="tag-container config">
-			<cmui-input v-model="text">
-				<span style="width:100px" class="dis-i">弹出的内容</span>
-			</cmui-input>
-			<div class="flex-container margint20">
-				<span style="width:100px" class="dis-i">内容位置</span>
-				<cmui-select v-model="pos1rs" class="flex1" :data="pos1" />
-				<cmui-select v-model="pos2rs" class="flex1" :data="pos2" />
-			</div>
-			<a href="javascript:void(0)" class="btn radius blue block margint20" @click="showMask">
-				show mask
+		<div class="pos-f top0 left0 right0 flex-container center" style="height:calc(100% - 90px)">
+			<a href="javascript:void(0)" class="" @click="showMask">
+				<img :src="imgUrl" alt="">
 			</a>
 		</div>
 	</div>
@@ -47,6 +55,7 @@ let contentStyle = {
   width: '80%',
   textAlign: 'center'
 }
+import img from '@assets/img-mask_test.png'
 export default {
   data: function() {
     return {
@@ -54,7 +63,8 @@ export default {
       pos2: ['left', 'right', 'center'],
       pos1rs: ['center'],
       pos2rs: ['center'],
-      text: 'mask content'
+      text: 'mask content',
+      imgUrl:img
     }
   },
   mounted() {
