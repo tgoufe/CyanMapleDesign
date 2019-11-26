@@ -64,7 +64,7 @@ export default {
       let col = this.bus.parent.realCol
       let colCount = (_.isArray(col) ? col.length : col) || 1
       let clear = this.index % colCount === 0 ? 'left' : undefined
-      let padding = this.bus.parent.realSpace / 2 + 'rem'
+      let padding = this.bus.parent.realSpace
       let boxShadow = this.bus.parent.boxShadow
       let backgroundColor = this.bgcolor
       if (_.isNumber(col) && col !== 1) {

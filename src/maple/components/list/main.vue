@@ -25,6 +25,7 @@
 <script>
 import baseMixin from '../mixin.js'
 import _ from 'lodash'
+import { window } from '../../methods/ssr-window.js'
 export default {
   name: 'cmui-list',
   mixins: [baseMixin],
@@ -45,7 +46,8 @@ export default {
       activeIndex: 0,
       indexItemHeight: 0,
       startIndex: 0,
-      listEventStartY: 0
+      listEventStartY: 0,
+      useRem: !!/iphone|ipad|android|micromessenger/i.test(window.navigator.userAgent)
     }
   },
   provide() {
@@ -58,13 +60,8 @@ export default {
   },
   computed: {
     realSpace: function() {
-      var value = parseInt(this.space)
-      if (_.isNumber(value)) {
-        if (_.inRange(value, -1, 51)) {
-          return value / 75 || 0
-        }
-      }
-      return 0
+      let value = parseInt(this.space) / (this.useRem ? 150 : 2) || 0
+      return value ? (value + (this.useRem ? 'rem' : 'px')) : 0
     },
     realCol() {
       var value = this.col
@@ -82,11 +79,11 @@ export default {
     },
     containerStyle() {
       return {
-        margin: this.realSpace ? '-' + this.realSpace / 2 + 'rem' : undefined
+        margin: this.realSpace ? `-${this.realSpace}` : undefined
       }
     },
     boxShadow() {
-      if (this.border && this.realSpace === 0) {
+      if (this.border && !this.realSpace) {
         return '0px 0px 0px 1px ' + this.borderColor
       }
       return ''
