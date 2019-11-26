@@ -39,7 +39,7 @@ contentStyle
               </div>
             </div>
 		</div>
-		<div class="pos-f top0 left0 right0 flex-container center" style="height:calc(100% - 90px)">
+		<div class="pos-f left0 right0 flex-container center" style="height:calc(100% - 135px);top:45px;">
 			<a href="javascript:void(0)" class="" @click="showMask">
 				<img :src="imgUrl" alt="">
 			</a>

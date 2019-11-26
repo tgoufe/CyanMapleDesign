@@ -1,7 +1,7 @@
 <template>
 <div id="popupDemo" style="height:1000px;">
   <div class="fixed-bottom bg-black paddingv20 paddingh50 fs-16" style="z-index:1">
-    <div class="padding20 text-white">
+    <div class="paddingv20 text-white">
       弹出方向
     </div>
     <div class="btn-group flex-container paddingv20">
@@ -38,7 +38,7 @@
     >
       <a href="javascript:void(0)" class="btn red radius" @click="visible=!visible">关闭</a>
     </cmui-popup>
-    <div class="pos-f top0 left0 right0 flex-container center" style="height:calc(100% - 90px)">
+    <div class="pos-f left0 right0 flex-container center" style="height:calc(100% - 135px);top:45px;">
       <a href="javascript:void(0)" @click="visible=!visible">
         <img :src="imgUrl" alt="">
       </a>
