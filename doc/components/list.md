@@ -35,6 +35,19 @@ list组件是非常强大的布局组件，你可以用这个组件来创建任�
 </div>
 </Exp>
 
+## 设置边框
+设置border属性可以为每个单元格设置边框，如果是布尔类型则使用默认边框颜色，如果是字符串，则使用字符串对应的颜色。
+
+<Exp>
+<div slot="exp">
+<Com-List3></Com-List3>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/List3.vue
+</div>
+</Exp>
+
 ### props(cmui-list)
 
 <Propsintro path="list/main.vue"></Propsintro>
