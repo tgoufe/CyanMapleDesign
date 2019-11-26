@@ -74,7 +74,7 @@ export default {
       this.dotInfo = this.$refs.dot.getBoundingClientRect()
     },
     moveHandle (e) {
-      if(!this.barInfo || !this.dotInfo){
+      if (!this.barInfo || !this.dotInfo) {
         return
       }
       let dis = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX
