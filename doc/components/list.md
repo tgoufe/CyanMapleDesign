@@ -35,6 +35,19 @@ list组件是非常强大的布局组件，你可以用这个组件来创建任�
 </div>
 </Exp>
 
+## 设置边框
+设置border属性可以为每个单元格设置边框，如果是布尔类型则使用默认边框颜色，如果是字符串，则使用字符串对应的颜色。
+
+<Exp>
+<div slot="exp">
+<Com-List3></Com-List3>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/List3.vue
+</div>
+</Exp>
+
 ### props(cmui-list)
 
 <Propsintro path="list/main.vue"></Propsintro>
@@ -48,14 +61,7 @@ list组件是非常强大的布局组件，你可以用这个组件来创建任�
 
 <Propsintro path="list-group/main.vue"></Propsintro>
 
-
-
-
-
-### demo
-<list-demo></list-demo>
-<<< @/doc/.vuepress/components/listDemo.vue
 ### listGroup的使用
-cmui-list组件支持分组操作，并提供索引功能，借助这一特性，你可以很方便的创建诸如音乐播放列表，手机通讯录，城市选择等形式的列表，并在屏幕右侧提供索引
+cmui-list组件支持分组操作，并提供索引功能，借助这一特性，你可以很方便的创建诸如音乐播放列表，手机通讯录，城市选择等形式的列表，并在屏幕右侧提供索引，下面的案例请在移动端使用
 
 <<< @/doc/.vuepress/components/listGroup.vue
