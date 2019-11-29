@@ -1,5 +1,5 @@
 <template>
-    <div class="text-darker">
+    <div class="text-darker paddingb120">
         <cmui-slider page="number">
             <cmui-slider-item v-for="i in images">
                 <img :src="i" alt="">
@@ -84,6 +84,18 @@
         </div>
         <div class="padding15 margint10 bg-white flex-container">
             图文详情
+        </div>
+        <div class="fixed-bottom flex-container bg-white vfull">
+            <div class="text-center padding10">
+                <i class="iconfont icon-warehouse-delivery"></i>
+                <p>店铺</p>
+            </div>
+            <div class="text-center padding10">
+                <i class="iconfont icon-cart"></i>
+                <p>购物车</p>
+            </div>
+            <div class="bg-red flex-container center text-white light flex1">加入购物车</div>
+            <div class="bg-red flex-container center text-white flex1">立即购买</div>
         </div>
     </div>
 </template>
