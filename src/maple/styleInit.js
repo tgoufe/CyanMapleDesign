@@ -90,7 +90,7 @@ export default (function() {
       ) || []
     ;[...domList].forEach(item => {
       // ratio
-      if (item.classList.contains('ratio-container') || /\d+\/\d+/.test(item.getAttribute('ratio'))) {
+      if (item.classList.contains('ratio-container') && /\d+\/\d+/.test(item.getAttribute('ratio'))) {
         let ratio = item.getAttribute('ratio')
         ratio = `ratio${ratio}`
         if (!PMstore.has(ratio)) {

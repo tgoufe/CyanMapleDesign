@@ -4,7 +4,7 @@ import router from './router.js'
 import 'lodash'
 import CMUI from '../../src/maple/index.js'
 import styleInit from '../../src/maple/styleInit.js'
-import './font2/iconfont.css'
+import '../font/iconfont.css'
 import './cyan.scss'
 import './default.scss'
 styleInit()

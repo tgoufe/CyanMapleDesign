@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "List2"
+  name: "List3"
 };
 </script>
 

@@ -19,7 +19,7 @@
       </div>
       <!-- 主体 -->
       <div
-        class="cmui-input__main pos-r"
+        class="cmui-input__main pos-r flex-container"
         :class="{ flex1: !label || !$slots.default }"
       >
         <input
@@ -41,14 +41,14 @@
           v-if="type === 'search'"
           class="input-search"
           :style="{ display: type === 'search' ? 'block' : 'none' }"
-        />
+        ></div>
         <!-- <div class="input-changeType" style="display:block"></div> -->
         <div
           v-if="reset === true && !disabled"
           class="input-reset"
           :style="{ display: value.length ? 'block' : 'none' }"
           @click="resetInput()"
-        />
+        ></div>
       </div>
       <!-- 后置 -->
       <div
