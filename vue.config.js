@@ -24,6 +24,11 @@ module.exports = {
       entry: 'websiteDemo/elem/main.js',
       template: 'public/index.html',
       filename: 'elem.html'
+    },
+    ctrip: {
+      entry: 'websiteDemo/ctrip/main.js',
+      template: 'public/index.html',
+      filename: 'ctrip.html'
     }
   },
   css: {
