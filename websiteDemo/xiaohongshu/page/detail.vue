@@ -85,6 +85,49 @@
         <div class="padding15 margint10 bg-white flex-container">
             图文详情
         </div>
+        <img src="//qimg.xiaohongshu.com/items/ae15dc825dde260d5e9c73ce717144be?imageView2/2/w/750" alt="">
+
+        <div class="padding15 margint10 bg-white flex-container">
+            价格说明
+        </div>
+        <div class="bg-white padding15 fs-13">
+            <p>
+                <span class="text-bolder">
+                    划线价格：
+                </span>
+                <span>
+                    指商品的专柜价、吊牌价、正品零售价、厂商指导价或该商品的曾经展示过的销售价等，并非原价，仅供参考。
+                </span>
+            </p>
+            <p class="paddingt20">
+                <span class="text-bolder">
+                    未划线价格：
+                </span>
+                <span>
+                    指商品的销售价，是您最终决定是否购买商品的依据。
+                </span>
+            </p>
+            <p class="paddingt20">
+                国家药监局提示您：请合理预期化妆品功效，化妆品不能替代药品，不能治疗皮肤病等疾病。
+            </p>
+        </div>
+
+        <div class="bg-white padding15 margint10">
+            <p>小红薯们怎么说</p>
+        </div>
+        <div class="bg-white">
+            <notes></notes>
+            <div class="padding15 text-center">
+                更多相关笔记
+            </div>
+        </div>
+
+
+        <div class="padding15 margint10 bg-white flex-container">
+            相关商品
+        </div>
+        <good class="padding10"></good>
+
         <div class="fixed-bottom flex-container bg-white vfull">
             <div class="text-center padding10">
                 <i class="iconfont icon-warehouse-delivery"></i>
@@ -101,8 +144,11 @@
 </template>
 
 <script>
+import good from '../component/product'
+import notes from '../component/notes'
 export default {
   name: "detail",
+  components:{good , notes},
   data(){
     return{
       images:[

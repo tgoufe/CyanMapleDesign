@@ -24,6 +24,16 @@ module.exports = {
       entry: 'websiteDemo/elem/main.js',
       template: 'public/index.html',
       filename: 'elem.html'
+    },
+    wangyi: {
+      entry: 'websiteDemo/163/main.js',
+      template: 'public/index.html',
+      filename: '163.html'
+    },
+    ximalaya: {
+      entry: 'websiteDemo/ximalaya/main.js',
+      template: 'public/index.html',
+      filename: 'ximalaya.html'
     }
   },
   css: {

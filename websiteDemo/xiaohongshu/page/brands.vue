@@ -59,48 +59,23 @@
           </div>
         </cmui-tabbar-item>
         <cmui-tabbar-item title="商品">
-          <div class="list list-col2 padding10">
-            <div v-for="item in good" :key="item.id" class="list-item padding6">
-              <div class="bg-white shadow radius">
-                <div class="ratio-container img-container">
-                  <img :src="item.image" alt="">
-                </div>
-                <div class="padding20">
-                  <p class="text-darker marginb10 fs-13">{{item.title}}</p>
-                  <p class="text-light marginb10 fs-13 text-limit2">{{item.desc}}</p>
-                  <template v-if="item.tags.length" >
-                    <div v-for="tag in item.tags" :key="tag.index" class="badge red small">{{tag.name}}</div>
-                  </template>
-                  <div v-else style="visibility: hidden"><div class="badge">0</div></div>
-                  <div>
-                    <span class="text-red">￥{{item.itemPrice[0].price}}</span>
-                    <span class="text-delete text-light marginl20 fs-12" v-if="item.itemPrice[1]">￥{{item.itemPrice[1].price}}</span>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
+          <good class="padding10"></good>
         </cmui-tabbar-item>
       </cmui-tabbar>
     </div>
 </div>
 </template>
 <script>
-import _ from 'lodash'
 import biji from '../component/biji'
-import goodData from '../data/goods.json'
-let good=_.uniqWith(goodData.data,(a,b)=>a.title===b.title)
-console.log(good)
 import { imageGrid } from '../data/img.json'
+import good from '../component/product'
 export default {
   name: 'brands',
-  components: { biji },
+  components: { biji ,good},
   data() {
     return {
       showmore: true,
-      imageGrid,
-      good
+      imageGrid
     }
   }
 }
