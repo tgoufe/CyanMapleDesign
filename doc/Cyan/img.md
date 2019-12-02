@@ -119,7 +119,7 @@ flex-x/flex-y是一个有待商榷的命名，如果你有更好的建议欢迎�
 <div slot="code">
 
 ```html
-<div class="img-container flex-x right" style="height:200px;width:200px">
+<div class="img-container border" style="height:200px;width:200px">
     <img src="https://via.placeholder.com/150/FFFFFF/"/>
 </div>
 ```
