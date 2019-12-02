@@ -34,6 +34,11 @@ module.exports = {
       entry: 'websiteDemo/ximalaya/main.js',
       template: 'public/index.html',
       filename: 'ximalaya.html'
+    },
+    ctrip: {
+      entry: 'websiteDemo/ctrip/main.js',
+      template: 'public/index.html',
+      filename: 'ctrip.html'
     }
   },
   css: {
