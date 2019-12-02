@@ -1,25 +1,18 @@
 <template>
-  <div>
-    <div class="bg-blue form paddingh150 paddingt150 paddingb50">
+  <div class="marginb300">
+    <div class="bg-blue form paddingt100 paddingh50">
       <p class="text-white fs-24 paddingv20 text-limit1">中国邮政储蓄银行(大连分行营业部)</p>
-      <input type="text" placeholder="搜索饿了么商家、商品名称" />
     </div>
+    <cmui-affix class="bg-blue paddingh50 paddingt20 paddingb50 pos-r">
+      <i class="iconfont icon-faxian pos-a text-gray marginl200"></i>
+      <a href class="bg-white paddingv40 paddingh300 text-light">搜索饿了么商家，商品名称</a>
+    </cmui-affix>
     <cmui-slider>
       <cmui-slider-item>
         <div class="list list-col5">
           <div v-for="(item,i) in elemSlider1" :key="i" class="list-item text-center paddingh50">
             <img :src="item.src" alt />
             <p class="text-dark fs-12">{{ item.name }}</p>
-          </div>
-        </div>
-      </cmui-slider-item>
-      <cmui-slider-item>
-        <div class="list list-col5">
-          <div v-for="i in 10" :key="i" class="list-item text-center paddingh30">
-            <img
-              src="https://cube.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?x-oss-process=image/format,webp/resize,w_90,h_90,m_fixed"
-            />
-            <p class="text-light fs-14" style="width:45px">美食</p>
           </div>
         </div>
       </cmui-slider-item>
@@ -47,15 +40,38 @@
       <p class="text-black line">推荐商家</p>
       <!-- <i class="iconfont icon-faxian"></i> -->
     </div>
-    <cmui-tabbar>
+    <cmui-tabbar @item-click="Tanchuang">
       <cmui-tabbar-item :title="item" v-for="(item, index) in items" :key="index"></cmui-tabbar-item>
     </cmui-tabbar>
-    <!-- <div class="btn-group flex-container round ">
-          <a href class="btn">a</a>
-          <a href class="btn">b</a>
-          <a href class="btn">c</a>
-          <a href class="btn">d</a>
-    </div>-->
+
+    <cmui-popup position="top" :visible.sync="visible">
+      <div style="height:500px">
+        <cmui-affix class="bg-blue padding50 pos-r">
+          <i class="iconfont icon-faxian pos-a text-gray marginl280"></i>
+          <a href class="bg-white paddingv40 paddingh300 marginl80 text-light">搜索饿了么商家，商品名称</a>
+        </cmui-affix>
+        <cmui-tabbar @item-click="checkFirst">
+          <cmui-tabbar-item :title="item" v-for="(item, index) in items2" :key="index"></cmui-tabbar-item>
+        </cmui-tabbar>
+        <ul class="flex-container-col left marginl100">
+          <li :class="{'text-blue':index === colorBlue}" class="pos-r" v-for="(item, index) in items3" :key="index" @click="check(index)">
+            {{item}}
+          </li>
+        </ul>
+      </div>
+    </cmui-popup>
+    <div >
+      <div class="img-container">
+        <img src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png">
+      </div>
+      <div class="text-center">
+        <h3 class="text-lighter paddingv30">没有搜索结果</h3>
+        <p class="text-lighter fs-12">登录后查看更多商家</p>
+        <router-link to="/login">
+          <button class="text-white paddingv30 paddingh180 margint30 fs-14" style="background-color:#56d176">登录</button>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -67,15 +83,20 @@ import {
   name,
   cube,
   elemSlider1
-} from "../data/img.json"
+} from "../data/img.json";
+
 // import cmuiProgress from '../../../src/maple/components/progress/main.vue'
-import "../../../src/cyan/CMUI_doc.scss"
+import "../../../src/cyan/CMUI_doc.scss";
 
 export default {
   name: "home",
   components: {},
   data: function() {
     return {
+      top: 20,
+      visible: false,
+      zonghe:true,
+      colorBlue:'',
       props: {
         value: 80,
         style: {
@@ -112,10 +133,30 @@ export default {
         "跑腿代购",
         "汉堡披萨",
         "厨房生鲜"
-      ]
+      ],
+      items2: ["综合排序", "距离最近", "品质联盟", "筛选"],
+      items3:["综合排序","好评优先","销量最高","起送价最低","配送最快","配送费最低","人均从高到低","人均从低到高","通用排序"]
     };
+  },
+  methods: {
+    Tanchuang(vm, item, index) {
+      if (index === 0) {
+        this.visible = true;
+      }
+    },
+    checkFirst(vm, item, index){
+      if(index === 0){
+        this.zonghe = true;
+      }else{
+        this.zonghe = false;
+      }
+    },
+    check(i){
+      this.colorBlue = i;
+      this.visible = false;
+    }
   }
-}
+};
 </script>
 <style lang="scss">
 .line::before {
@@ -136,5 +177,12 @@ export default {
   display: inline-block;
   margin-left: 24px;
   margin-bottom: 6px;
+} 
+ul{
+  li {
+    padding-top: 20px;
+    color:#333;
+    font-size: 14px;
+  }
 }
 </style>
