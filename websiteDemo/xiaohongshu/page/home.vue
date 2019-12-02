@@ -31,35 +31,18 @@
       <p class="fs-15 marginb30">
 热门笔记
 </p>
-      <div class="row">
-        <div v-for="(span, iout) in 2" class="span6" :key="iout">
-          <div v-for="(item,index) in span==1?imgL:imgR" :key="index" class="shadow marginb20 radius">
-            <img :src="item" alt="">
-            <div class="padding20">
-              <p class=" fs-13 marginb20">
-{{ intro[(iout)*10+index] }}
-</p>
-              <div class="flex-container">
-                <div class="img-container round full" style="width:25px">
-                  <img :src="avatar[(iout)*10+index]" alt="">
-                </div>
-                <span class="marginl10 fs-12 text-light left text-limit1">{{ name[(iout)*10+index] }}</span>
-                <i class="iconfont icon-favorites text-light"></i>
-                <span class="text-light fs-11 marginl10">4224</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <biji></biji>
     </div>
 </div>
 </template>
 
 <script>
 import { index, intro, avatar, name, cube } from '../data/img.json'
+import biji from '../component/biji.vue'
 export default {
   name: 'home',
   components: {
+    biji
   },
   data: function () {
     return {
