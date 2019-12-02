@@ -162,7 +162,7 @@ export default {
   name: 'cmui-slider',
   props: {
     id: { type: String, default: _.uniqueId('cmui-slider_'), intro: '默认ID' },
-    watch: { type: Object, default: () => ({}), intro: '要监控的对象，当对象改变时slider将重新渲染' },
+    watch: { type: [Object,Array], default: () => ({}), intro: '要监控的对象，当对象改变时slider将重新渲染' },
     theme: { type: Number, default: 0, intro: '' },
     options: { type: Object, default: null, intro: 'Swiper初始化传递的选项详见官方文档' },
     loop: { type: Boolean, default: false, intro: '是否循环播放' },

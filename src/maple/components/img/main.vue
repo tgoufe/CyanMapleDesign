@@ -83,3 +83,19 @@ export default {
   }
 }
 </script>
+<style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+
+  .slide-enter-active, .slide-leave-active {
+    transition: all .5s;
+  }
+  .slide-enter, .slide-leave-to{
+    transform: translateY(100%);
+    opacity: 0;
+  }
+</style>
