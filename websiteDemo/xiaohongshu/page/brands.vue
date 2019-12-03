@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="">
-      <cmui-tabbar class="" col="flex">
+      <cmui-tabbar class="" col="flex" @item-click="tabbarchange">
         <cmui-tabbar-item title="首页">
           <div class="padding20">
             <biji></biji>
@@ -48,7 +48,7 @@
           <div class="list list-col3">
             <div v-for="item in imageGrid" class="list-item padding2">
               <div class="ratio-container">
-                <img :src="item" alt="">
+                <cmui-img :src="item" :lazy-load="true" lazy-src="//image.cyanmaple.design/160f714f64e98ee8341185207981cf19%20%281%29.gif"></cmui-img>
               </div>
             </div>
           </div>
@@ -76,6 +76,12 @@ export default {
     return {
       showmore: true,
       imageGrid
+    }
+  },
+  methods:{
+    tabbarchange(){
+      window.scrollBy(0,1)
+      window.scrollBy(0,-1)
     }
   }
 }
