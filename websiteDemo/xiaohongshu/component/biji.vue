@@ -1,7 +1,7 @@
 <template>
   <div class="row">
             <div v-for="(span, iout) in 2" :key="iout" class="span6">
-              <div v-for="(item,index) in span==1?imgL:imgR" :key="index" class="shadow marginb20 radius">
+              <div v-for="(item,index) in span==1?imgL:imgR" :key="index" class="shadow marginb20 radius" @click="change()">
                 <img :src="item" alt="">
                 <div class="padding20">
                   <p class=" fs-13 marginb20">
@@ -34,6 +34,15 @@ export default {
       name,
       cube,
       imageGrid
+    }
+  },
+  methods:{
+    change(){
+      if(this.$route.name==='discover'){
+        maple.alert('Demo页面，仅有一个详情页面，点击确定回到顶部',()=>window.scrollTo(0,0))
+      }else{
+        this.$router.push('discover')
+      }
     }
   }
 }

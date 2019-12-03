@@ -20,4 +20,5 @@ export default {
 </script>
 
 <style lang='scss' type="text/scss">
+  
 </style>

@@ -1,13 +1,13 @@
 <template>
   <div class="padding20">
     <div class="list list-col2">
-      <div class="list-item padding10" v-for="(item,index) in cube" :key="index">
+      <div class="list-item padding10" v-for="item in data" :key="item.page_id" @click="$router.push('brands')">
         <div class="shadow radius">
-          <img :src="item" alt="">
+          <img :src="item.page_info.banner" alt="">
           <div class="padding20">
-            <p>乐敦 Rohto</p>
+            <p>{{item.page_info.name}}</p>
             <p class="text-light fs-11 margint10">
-              品牌·8174人在讨论
+              品牌·{{item.page_info.discuss_num}}人在讨论
             </p>
           </div>
         </div>
@@ -16,12 +16,12 @@
   </div>
 </template>
 <script>
-import { cube } from '../data/img.json'
+import {data} from '../data/hot.json'
 export default {
   name: 'hot',
   data () {
     return {
-      cube
+      data
     }
   }
 }
