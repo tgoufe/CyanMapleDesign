@@ -120,7 +120,7 @@ export default {
       return ret
     },
     itemStyle() {
-      if(this.cmuiForm.itemSpace) {
+      if (this.cmuiForm.itemSpace) {
         return { marginBottom: this.cmuiForm.itemSpace }
       }
       return {}

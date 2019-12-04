@@ -16,4 +16,4 @@ function install(vue) {
   formList.forEach(Component => Component.install(vue))
 }
 
-export { install, Checkbox, Input, Number, Radio, Select, Textarea, Form, FormItem}
+export { install, Checkbox, Input, Number, Radio, Select, Textarea, Form, FormItem }
