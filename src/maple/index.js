@@ -15,7 +15,9 @@ import {
   Number,
   Radio,
   Select,
-  Textarea
+  Textarea,
+  Form,
+  FormItem
 } from './components/form/index.js'
 import Picker from './components/picker/index.js'
 import Img from './components/img/index.js'
@@ -57,7 +59,9 @@ const components = [
   Number,
   Radio,
   Select,
-  Textarea, // form
+  Textarea,
+  Form,
+  FormItem, // form
   Picker,
   Img,
   Slider,
@@ -105,7 +109,9 @@ export default {
   Number,
   Radio,
   Select,
-  Textarea, // form
+  Textarea,
+  Form,
+  FormItem, // form
   Picker,
   Img,
   Slider,

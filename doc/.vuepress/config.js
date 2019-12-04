@@ -61,7 +61,7 @@ module.exports = {
                 },
                 {
                     title:'form表单组件',
-                    children:['input','checkbox','radio','number','select','textarea'].map(i=>`form/${i}`)
+                    children:['input','checkbox','radio','number','select','textarea','form'].map(i=>`form/${i}`)
                 }
             ],
             '/methods/':getlist('methods'),

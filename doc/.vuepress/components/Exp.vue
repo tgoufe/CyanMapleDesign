@@ -31,7 +31,9 @@ import {
   Number,
   Radio,
   Select,
-  Textarea
+  Textarea,
+  Form,
+  FormItem
 } from '../../../src/maple/components/form/index.js'
 import Picker from '../../../src/maple/components/picker/index.js'
 import Img from '../../../src/maple/components/img/index.js'
@@ -65,7 +67,9 @@ const components = [
   Number,
   Radio,
   Select,
-  Textarea, // form
+  Textarea,
+  Form,
+  FormItem, // form
   Picker,
   Img,
   Slider,

@@ -6,6 +6,7 @@ export default {
       let target = evt.target || evt.srcElement
       let value = target.value
       this.$emit('focus', value, this)
+      this.cmuiFormItem && this.cmuiFormItem.$emit('form.focus')
     },
     handleInput(event) {
       console.log(`base handleInput`)
@@ -14,6 +15,7 @@ export default {
       let value = target.value
       this.$emit('input', value, this)
       this.$nextTick(this.rendered)
+      this.cmuiFormItem && this.cmuiFormItem.$emit('form.input')
     },
     handleChange(event) {
       console.log(`base handleChange`)
@@ -22,6 +24,7 @@ export default {
       let value = target.value
       this.$emit('change', value, this)
       this.$emit('input', value, this)
+      this.cmuiFormItem && this.cmuiFormItem.$emit('form.change')
     },
     handleBlur(event) {
       console.log(`base handleBlur`)
@@ -29,6 +32,7 @@ export default {
       let target = evt.target || evt.srcElement
       let value = target.value
       this.$emit('blur', value, this)
+      this.cmuiFormItem && this.cmuiFormItem.$emit('form.blur')
     },
     rendered(event) {
       console.log(`base rendered`)
@@ -52,5 +56,13 @@ export default {
     label: { type: String, default: '', intro: '标签文字' },
     align: { type: String, default: 'left', intro: '标签位置，可选项为left或right' },
     flex: { type: Boolean, default: false, intro: '是否使用flex布局' }
+  },
+  inject: {
+    cmuiForm: {
+      default: ''
+    },
+    cmuiFormItem: {
+      default: ''
+    }
   }
 }
