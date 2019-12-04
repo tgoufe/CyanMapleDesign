@@ -37,7 +37,6 @@ ready(function (window) {
     window.addEventListener('resize', function () {
       windowHeight = window.innerHeight
     })
-
     windowHeight = window.innerHeight
   }
 })
