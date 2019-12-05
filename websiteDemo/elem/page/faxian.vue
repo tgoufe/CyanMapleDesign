@@ -36,7 +36,7 @@
             <p class="text-center text-gray fs-10">你的口味我都懂得</p>
         </div>
         <div class="list list-col2 paddingl20">
-            <div class="list-item" v-for="(item, index) in produces" :key="index">
+            <div class="list-item" v-for="(item, index) in produces" :key="index" @click="discover">
                 <div class="border margin20">
                     <img :src="item.src" alt="">
                     <p class="text-center fs-10" style="width:100%;color:white;background-color:rgba(0,0,0,.6)">您可能感兴趣的美食</p>
@@ -103,6 +103,11 @@ export default {
                     store:"无限创作鸡肉饭（胜利店）"
                 },
             ]
+        }
+    },
+    methods:{
+        discover(){
+            this.$router.push('/discover')
         }
     }
 }
