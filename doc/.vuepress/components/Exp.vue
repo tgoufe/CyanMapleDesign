@@ -27,6 +27,7 @@ import CollapseItem from '../../../src/maple/components/collapse-item/index.js'
 import Countdown from '../../../src/maple/components/countdown/index.js'
 import {
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
@@ -63,6 +64,7 @@ const components = [
   CollapseItem,
   Countdown,
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,

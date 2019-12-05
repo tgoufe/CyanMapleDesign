@@ -11,6 +11,7 @@ import CollapseItem from './components/collapse-item/index.js'
 import Countdown from './components/countdown/index.js'
 import {
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
@@ -55,6 +56,7 @@ const components = [
   CollapseItem,
   Countdown,
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
@@ -105,6 +107,7 @@ export default {
   CollapseItem,
   Countdown,
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
