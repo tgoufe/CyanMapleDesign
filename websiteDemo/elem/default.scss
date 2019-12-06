@@ -433,10 +433,11 @@ $innerRadius: 0px;
   &.cmui-tabbar-left{
     .cmui-tabbar__head-item{
       &::after{
-        width: 2px;
+        width: 2px !important;
         height: 0;
         right: 0;
         top: 100%;
+        left:auto !important;
       }
       &.active{
         &::after{

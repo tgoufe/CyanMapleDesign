@@ -11,11 +11,14 @@ import CollapseItem from './components/collapse-item/index.js'
 import Countdown from './components/countdown/index.js'
 import {
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
   Select,
-  Textarea
+  Textarea,
+  Form,
+  FormItem
 } from './components/form/index.js'
 import Picker from './components/picker/index.js'
 import Img from './components/img/index.js'
@@ -53,11 +56,14 @@ const components = [
   CollapseItem,
   Countdown,
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
   Select,
-  Textarea, // form
+  Textarea,
+  Form,
+  FormItem, // form
   Picker,
   Img,
   Slider,
@@ -101,11 +107,14 @@ export default {
   CollapseItem,
   Countdown,
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
   Select,
-  Textarea, // form
+  Textarea,
+  Form,
+  FormItem, // form
   Picker,
   Img,
   Slider,

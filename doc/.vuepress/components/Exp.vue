@@ -27,11 +27,14 @@ import CollapseItem from '../../../src/maple/components/collapse-item/index.js'
 import Countdown from '../../../src/maple/components/countdown/index.js'
 import {
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
   Select,
-  Textarea
+  Textarea,
+  Form,
+  FormItem
 } from '../../../src/maple/components/form/index.js'
 import Picker from '../../../src/maple/components/picker/index.js'
 import Img from '../../../src/maple/components/img/index.js'
@@ -61,11 +64,14 @@ const components = [
   CollapseItem,
   Countdown,
   Checkbox,
+  CheckboxGroup,
   Input,
   Number,
   Radio,
   Select,
-  Textarea, // form
+  Textarea,
+  Form,
+  FormItem, // form
   Picker,
   Img,
   Slider,

@@ -21,7 +21,8 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     'vue/name-property-casing': 'off',
     'vue/no-v-html': 'off',
-    'vue/html-self-closing':'off'
+    'vue/html-self-closing':'off',
+    'no-callback-literal': 0
   },
   parserOptions: {
     parser: 'babel-eslint'

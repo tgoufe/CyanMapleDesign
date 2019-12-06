@@ -74,6 +74,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
+    "async-validator": "^3.2.2",
     "core-js": "^2.6.5",
     "dayjs": "^1.8.16",
     "lodash": "^4.17.15",
