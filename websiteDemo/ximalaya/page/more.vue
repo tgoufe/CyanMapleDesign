@@ -14,7 +14,7 @@
 
         </div>
 
-        <div class="flex-container paddingt110">
+        <div class="flex-container paddingt110 text-ligthgray">
 
             <div class="fixed-left scroll-container-y paddingt110" style="z-index:999;">
                 <div class="" v-for="(item, idx) in titleList" :key="idx">
@@ -39,10 +39,8 @@
                         <i class="paddingh40 iconfont icon-more text-light"></i>
                     </div>
 
-                    <div class="row">
-                        <div class="col3 text-center" v-for="label in item.childrenLabels">
-                            <a class="flex-container center padding15">{{label.name}}</a>
-                        </div>
+                    <div class="row paddingh30 text-ligthgray" style="display:flex;flex-wrap:wrap">
+                        <a class="flex-container center padding15" v-for="label in item.childrenLabels">{{label.name}}</a>
                     </div>
                 </div>
 
@@ -82,7 +80,7 @@
 			return {
 				titleList: [
 					{
-						isActive: false,
+						isActive: true,
 						title: '有声书',
 						count: 496195,
 						childrenLabels: [
@@ -243,7 +241,7 @@
 		}
 	}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
 
     .active {
