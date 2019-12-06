@@ -11,26 +11,19 @@
                 <cmui-select :data="form.sexData" v-model="form.sex"></cmui-select>
             </cmui-form-item>
             <cmui-form-item label="兴趣爱好" prop="interest">
-                <cmui-checkbox v-for="item in form.interest" :label="item.text" v-model="item.value"></cmui-checkbox>
+                <cmui-checkbox-group v-model="form.interestValue">
+                    <cmui-checkbox v-for="item in form.interest" :label="item"></cmui-checkbox>
+                </cmui-checkbox-group>
             </cmui-form-item>
             <cmui-form-item label="来源">
-                <cmui-radio v-for="item in form.comeFromData" :label="item" name="comefrom" v-model="form.comeFrom"></cmui-radio>
+                <cmui-radio label="互联网搜索" v-model="form.comeFrom"></cmui-radio>
+                <cmui-radio label="熟人介绍" v-model="form.comeFrom"></cmui-radio>
             </cmui-form-item>
-
-
-
-            <cmui-checkbox-group :max="3" v-model="form.interestValue">
-                <cmui-checkbox v-for="item in form.interest" :label="item.text"></cmui-checkbox>
-            </cmui-checkbox-group>
-
-            <p>{{form.interestValue}}</p>
-
         </cmui-form>
         <div class="flex-container center">
             <button class="btn blue marginr20" @click="submitForm('ruleForm')">注册</button>
             <button class="btn reverse" @click="resetForm">重置</button>
         </div>
-
     </div>
 </template>
 <script>
@@ -43,16 +36,9 @@ export default {
         password:'',
         sex:'',
         sexData:['男','女'],
-        interest:[
-          {text:'音乐',value:false},
-          {text:'电影',value:false},
-          {text:'球类运动',value:false},
-          {text:'游泳',value:false},
-          {text:'旅游',value:false}
-        ],
+        interest:['音乐', '电影', '球类运动', '游泳', '旅游'],
         interestValue:['音乐'],
-        comeFrom:'朋友介绍',
-        comeFromData:['朋友介绍','自行搜索']
+        comeFrom:'朋友介绍'
       },
       rules:{
         name: [
