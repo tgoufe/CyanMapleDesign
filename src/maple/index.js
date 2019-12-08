@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import components from './components/index.js'
+import pageComponents from './pageComponent/index.js'
 // methods
 import methods from './methods/index.js'
 function Maple() {
@@ -10,6 +11,7 @@ Maple.prototype.Init.prototype = Maple.prototype
 const install = function(Vue) {
   if (install.installed) return
   _.forEach(components, component => component.install(Vue, Maple))
+  _.forEach(pageComponents, component => component.install(Vue))
   _.assign(Maple, methods)
 }
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
