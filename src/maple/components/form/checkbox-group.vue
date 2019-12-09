@@ -25,7 +25,6 @@ export default {
   },
   watch: {
     value(value) {
-      console.log(222222)
       this.cmuiFormItem && this.cmuiFormItem.$emit('form.change', value)
     }
   }

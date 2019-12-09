@@ -12,86 +12,11 @@
 
 <script>
 import vue from 'vue'
+import _ from 'lodash'
 import '../../../src/cyan/CMUI_doc.scss'
 import '../../../src/maple/theme/default.scss'
-
-import Alert from '../../../src/maple/components/alert/index.js'
-import Popup from '../../../src/maple/components/popup/index.js'
-import Actions from '../../../src/maple/components/actions/index.js'
-import Confirm from '../../../src/maple/components/confirm/index.js'
-import Notice from '../../../src/maple/components/notice/index.js'
-import Affix from '../../../src/maple/components/affix/index.js'
-import Captcha from '../../../src/maple/components/captcha/index.js'
-import Collapse from '../../../src/maple/components/collapse/index.js'
-import CollapseItem from '../../../src/maple/components/collapse-item/index.js'
-import Countdown from '../../../src/maple/components/countdown/index.js'
-import {
-  Checkbox,
-  CheckboxGroup,
-  Input,
-  Number,
-  Radio,
-  Select,
-  Textarea,
-  Form,
-  FormItem
-} from '../../../src/maple/components/form/index.js'
-import Picker from '../../../src/maple/components/picker/index.js'
-import Img from '../../../src/maple/components/img/index.js'
-import Slider from '../../../src/maple/components/slider/index.js'
-import SliderItem from '../../../src/maple/components/slider-item/index.js'
-import List from '../../../src/maple/components/list/index.js'
-import ListItem from '../../../src/maple/components/list-item/index.js'
-import ListGroup from '../../../src/maple/components/list-group/index.js'
-import Progress from '../../../src/maple/components/progress/index.js'
-import DatePicker from '../../../src/maple/components/date-picker/index.js'
-import Mask from '../../../src/maple/components/mask/index.js'
-import Slidebar from '../../../src/maple/components/slidebar/index.js'
-import Scroll from '../../../src/maple/components/scroll/index.js'
-import ScrollItem from '../../../src/maple/components/scroll-item/index.js'
-import Swiper from '../../../src/maple/components/swiper/index.js'
-import VirtualList from '../../../src/maple/components/virtualList/index.js'
-import Tabbar from '../../../src/maple/components/tabbar/index.js'
-const components = [
-  Alert,
-  Popup,
-  Actions,
-  Confirm,
-  Notice,
-  Affix,
-  Captcha,
-  Collapse,
-  CollapseItem,
-  Countdown,
-  Checkbox,
-  CheckboxGroup,
-  Input,
-  Number,
-  Radio,
-  Select,
-  Textarea,
-  Form,
-  FormItem, // form
-  Picker,
-  Img,
-  Slider,
-  SliderItem,
-  List,
-  ListItem,
-  ListGroup,
-  Progress,
-  DatePicker,
-  Mask,
-  Slidebar,
-  Scroll,
-  ScrollItem,
-  Swiper,
-  VirtualList,
-  Tabbar
-]
-components.forEach(function(component) {
-  component.install(vue, {})
-})
+import components from '../../../src/maple/components/index.js'
+_.forEach(components,component=>component.install(vue, {}))
 export default {
   name: 'Exp',
   data(){

@@ -1,0 +1,67 @@
+$isPC:false !default;
+$colorList:(
+				'red':#ff6767,
+				'purple':#8a90fa,
+				'blue':#4dc6ee,
+				'cyan':#00d3be,
+				'pink':#ff80c2,
+				'yellow':#FFBD00,
+				'orange':#fd9d21,
+				'green':#6bbd00
+);
+$grayList:(
+	'black': #000,
+	'darker': #222,
+	'dark': #666,
+	'gray':#f0efed,
+	'light': #999,
+	'lighter': #ccc,
+	'white': #fff
+);
+$container_padding:10px;//on pc
+$container_width:800px;//on pc
+@if(not $isPC){
+	$container_padding:.133333333rem;
+	$container_width:10rem;
+};
+//layout step number
+$layoutNumber:5;
+//base padding
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+//font
+$font-family-base: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif !default;
+$font-size-base:     14px !default;
+$line-height-base:   20/14 !default;
+//border
+$border-radius-base:        4px !default;
+$border-color-default:      #eee !default;
+//button
+$btn-size-list:(//$height, $padding-horizontal, $font-size
+	'base':(30px,10px,14px),
+	'bigger':(40px,16px,20px),
+	'big':(33px,16px,13px)
+);
+//badge
+$badge-size-list:(//$height, $padding-horizontal, $font-size
+	'base':(20px,10px,12px),
+	'small':(16px,5px,10px),
+	'big':(24px,10px,13px)
+);
+//form
+$form-color-base : #00baba !default;
+@import "../../src/cyan/lib/function";
+@import "../../src/cyan/base/normalize";
+@import "../../src/cyan/base/baseIcon";
+@import "../../src/cyan/base/layout";
+@import "../../src/cyan/base/type";
+@import "../../src/cyan/base/button";
+@import "../../src/cyan/base/badge";
+@import "../../src/cyan/base/border";
+@import "../../src/cyan/base/form";
+@import "../../src/cyan/base/animate";
+@import "../../src/cyan/base/listGroup";
+@import "../../src/cyan/base/swiper";
+@import "../../src/cyan/ui/notice";
+@import "../../src/cyan/ui/mask";
+@import "../../src/cyan/ui/popup";

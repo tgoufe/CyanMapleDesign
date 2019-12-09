@@ -48,6 +48,34 @@ CheckBox的model需要绑定一个Boolean类型的值来表示其是否为选中
 </div>
 </Exp>
 
+
+## 分组
+直接使用checkbox需要手动计算结果，因此CMUI提供了CheckBox分组来简化这一过程，只需要将CheckBox包含在checkboxGroup中即可，checkboxGroup接收一个数组作为v-model
+
+<Exp>
+<div slot="exp">
+<Com-Form-Checkbox6></Com-Form-Checkbox6>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Form-Checkbox6.vue
+</div>
+</Exp>
+
+## 分组限制
+为checkboxGroup设置max和min属性可设置最大或最小的选择数量
+
+<Exp>
+<div slot="exp">
+<Com-Form-Checkbox7></Com-Form-Checkbox7>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Form-Checkbox7.vue
+</div>
+</Exp>
+
+
 ## 关联选择和indeterminate 状态
 为checbox的v-model绑定一个数组，即可关联数组下所有的值从而快速完成全选，反选，以及不确定状态的切换。
 
