@@ -226,6 +226,5 @@
     .logo {
         width: 50px;
         height: 50px;
-        background: url('../data/logo.svg');
     }
 </style>
