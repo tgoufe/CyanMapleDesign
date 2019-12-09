@@ -55,7 +55,7 @@ export default {
     return {
       canSubSelf: this.canSub,
       canAddSelf: this.canAdd,
-      selfValue: this.value.toFixed(this.precision)
+      selfValue: (+this.value).toFixed(this.precision)
     }
   },
   computed: {
@@ -77,7 +77,7 @@ export default {
   watch: {
     value (value) {
       this.setBtnState()
-      this.selfValue = value.toFixed(this.precision)
+      this.selfValue = (+value).toFixed(this.precision)
       console.log(arguments)
     },
     max () {
@@ -126,7 +126,6 @@ export default {
       } else {
         this.selfValue = targetValue
         this.setBtnState()
-        console.log(this.selfValue)
         this.$emit('input', this.selfValue, this)
       }
     },
