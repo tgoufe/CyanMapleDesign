@@ -7,6 +7,7 @@
             @max="maxHandle"
             @min="minHandle"
             @input="inputHandle"
+            @before-change="demoBefore"
             v-model="options.value">
                 <span :class="(options.align==='left')?'marginr20':'marginl20'">
                     数字输入
@@ -39,16 +40,10 @@
                     </div>
                 </cmui-list-item>
             </cmui-list>
-        </div> -->
-<!--         <div class="otherExp tag-container">
-            <p>带有延时的按钮，例如点击加减号的时候需要通过ajax的状态判断是否增加，下面的案例用setTimeout来模拟</p>
-            <cmui-number @before-change="demoBefore"  v-model="demoValue" :max="22" :min="18">
-                <span class="marginr20">异步按钮</span>
-            </cmui-number>
         </div>
         <div class="otherExp tag-container">
-            <p>通过设置flex属性为true可以修改为两端对齐的样式，如果想调整输入框宽度可以使用width属性，可以是数字，也可以是字符串</p>
-            <cmui-number v-model="demoValue" :flex="true" :width="100">
+            <p>带有延时的按钮，例如点击加减号的时候需要通过ajax的状态判断是否增加，下面的案例用setTimeout来模拟</p>
+            <cmui-number @before-change="demoBefore"  v-model="demoValue" :max="22" :min="18">
                 <span class="marginr20">异步按钮</span>
             </cmui-number>
         </div> -->
@@ -74,7 +69,7 @@
                         :flex="true"
                         target-class="switch"
                         class="text-white"
-                        v-model="demoValue">异步操作</cmui-checkbox>
+                        v-model="demoBeforeTime">异步操作</cmui-checkbox>
                     </div>
                 </div>
             </div>
@@ -107,10 +102,11 @@ export default {
         flex:false,
         align:'left'
       },
+      demoBeforeTime:false,
       targetClassList:['small','big','radius','reverse'].map(item=>({text:item,value:false})),
-        demoBefore(newValue,resolve,reject){
-            _.delay(resolve,200)
-        },
+        // demoBefore(newValue,resolve,reject){
+        //     _.delay(resolve,1000)
+        // },
       demoValue:20
     };
 
@@ -128,7 +124,10 @@ export default {
         maple.alert('最小值为'+value)
     },
     inputHandle(name){
-      console.log(name)
+        console.log(name)
+    },
+    demoBefore(newValue,resolve,reject){
+        return _.delay(resolve,this.demoBeforeTime ? 1000 : 0)
     }
   }
 };
