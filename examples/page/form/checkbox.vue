@@ -86,6 +86,7 @@
                 </cmui-list-item>
             </cmui-list>
         </div> -->
+        <p class="title paddingv20 paddingh30">全选</p>
         <div class="example tag-container form">
             <div class="paddingh40 paddingt20">
                 <cmui-checkbox
