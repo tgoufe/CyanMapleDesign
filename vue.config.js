@@ -39,6 +39,11 @@ module.exports = {
       entry: 'websiteDemo/ctrip/main.js',
       template: 'public/index.html',
       filename: 'ctrip.html'
+    },
+    meituan: {
+      entry: 'websiteDemo/meituan/main.js',
+      template: 'public/index.html',
+      filename: 'meituan.html'
     }
   },
   css: {
