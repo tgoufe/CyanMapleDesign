@@ -1048,47 +1048,6 @@
     "distance": "3.1km"
   },
   {
-    "avgPrice": 98,
-    "avgScore": 4,
-    "cateName": "烧烤",
-    "channel": "food",
-    "showType": "",
-    "frontImg": "https://img.meituan.net/180.180/msmerchant/f90232312f82b55467214aee8d00dc0586270.jpg",
-    "lat": 39.042434,
-    "lng": 121.758848,
-    "name": "曼听小寨海鲜烧烤（开发区店）",
-    "poiid": "193928649",
-    "areaName": "",
-    "reportMessage": {
-      "adsClickUrl": "https://mlog.dianping.com/api/cpv/billing?ad_cj=83Ytp3Xw4QrgFi5tO3uv-872P5ScY3DhQVcrOAPtf-CbAl2wwvfNz9Zl0Lo5Cl-9bdXHKJh9cb61tzfgL6ki03uH1oKalnTpV2mpiSv4vh1sWODUGQzLSCe37F5U1iTkOfv-oDckbWKu0DWi9BWj-t0Deqmc82dKLSyw-phIozPQnI3duVHhWc4CXsOJj-k2UGMvzyozjQVFkTDTpb4er14cry5APup0eN3u0kaeIPm_6YhtClFIXMn7vd8wKcbtiD0yZTx_8Aelqv3lZhhgkR_H8cgIAPStadsXc1tZz_PSbLWvGyB8ZwcnPoMSgjT43lZK-OWI1jGv4Ti8kG69eXp194Scg2l66xLch-L6CEvmmRNsrDM6PMkAqzBG3nTvistPJynHkEgWY_riC0VxHRu0cNwuYQ&sver=2&ad_v=1&ad_ci=83Ytp3XiPbawPvBvfzjf-7fFiv2sNFvk84OTo-PDamEao8xYucyOJjdZYzMBvhFa6t7GV2UseNHeD6qxlSAwHQj92LDDUxqwK_LiHDUkf3Ai&act=2",
-      "adsImpressionUrl": "https://mlog.dianping.com/api/cpv/action?ad_cj=83Ytp3Xw4QrgFi5tO3uv-872P5ScY3DhQVcrOAPtf-CbAl2wwvfNz9Zl0Lo5Cl-9bdXHKJh9cb61tzfgL6ki03uH1oKalnTpV2mpiSv4vh1sWODUGQzLSCe37F5U1iTkOfv-oDckbWKu0DWi9BWj-t0Deqmc82dKLSyw-phIozPQnI3duVHhWc4CXsOJj-k2UGMvzyozjQVFkTDTpb4er14cry5APup0eN3u0kaeIPm_6YhtClFIXMn7vd8wKcbtiD0yZTx_8Aelqv3lZhhgkR_H8cgIAPStadsXc1tZz_PSbLWvGyB8ZwcnPoMSgjT43lZK-OWI1jGv4Ti8kG69eXp194Scg2l66xLch-L6CEvmmRNsrDM6PMkAqzBG3nTvistPJynHkEgWY_riC0VxHRu0cNwuYQ&sver=2&ad_v=1&ad_ci=83Ytp3XiPbawPvBvfzjf-7fFiv2sNFvk84OTo-PDamEao8xYucyOJjdZYzMBvhFa6t7GV2UseNHeD6qxlSAwHQj92LDDUxqwK_LiHDUkf3Ai&act=3"
-    },
-    "poiImgExtra": {
-      "topRight": {
-        "icon": "",
-        "text": {
-          "content": "广告",
-          "color": "",
-          "backgroundColor": ""
-        }
-      }
-    },
-    "extraServiceTags": [
-      {
-        "icon": "",
-        "text": {
-          "content": "支持买单",
-          "color": "#6cbab2",
-          "backgroundColor": ""
-        }
-      }
-    ],
-    "rotationTags": [],
-    "ctPoi": "037394642443400868502015357435565536266_a193928649_c2_e5148668115207218525_v4813315760330908986__1000",
-    "extraServiceIcons": [],
-    "distance": "10km"
-  },
-  {
     "avgPrice": 67,
     "avgScore": 5,
     "cateName": "韩式烤肉",
@@ -1936,34 +1895,6 @@
     "ctPoi": "034340736904805235629598701897392450211_a195191428_c14_e5148668115207218525",
     "extraServiceIcons": [],
     "distance": "5.7km"
-  },
-  {
-    "avgPrice": 60,
-    "avgScore": 4.2,
-    "cateName": "特色火锅",
-    "channel": "food",
-    "showType": "",
-    "frontImg": "https://img.meituan.net/msmerchant/44fc1befe4e48951547da0bba0337031125340.jpg",
-    "lat": 39.016344,
-    "lng": 121.639225,
-    "name": "鹏贺火锅鸡",
-    "poiid": "187861632",
-    "areaName": "",
-    "poiImgExtra": {},
-    "extraServiceTags": [
-      {
-        "icon": "",
-        "text": {
-          "content": "支持买单",
-          "color": "#6cbab2",
-          "backgroundColor": ""
-        }
-      }
-    ],
-    "rotationTags": [],
-    "ctPoi": "034340736904805235629598701897392450211_a187861632_c0_e5148668115207218525",
-    "extraServiceIcons": [],
-    "distance": "960m"
   },
   {
     "avgPrice": 54,

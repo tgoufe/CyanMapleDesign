@@ -16,7 +16,7 @@
     </head>
 
     <div class="list list-col5 paddingb10">
-      <div class="list-item text-center flex-container-col paddingt20" v-for="i in nav">
+      <div class="list-item text-center flex-container-col paddingt20" v-for="i in nav" @click="$router.push('/list')">
         <div class="ratio-container radius40" style="width:40px" :class="[`bg-${i.color}`]">
           <i class="iconfont icon-process text-white" style="font-size:25px;line-height:40px"></i>
         </div>
