@@ -74,7 +74,7 @@ export default {
         align:'left'
       },
       targetClassList:['small','big','radius','reverse'].map(item=>({text:item,value:false})),
-        demoBefore(newValue,oldValue,resolve,reject){
+        demoBefore(newValue,resolve,reject){
             _.delay(resolve,200)
         },
       demoValue:20
