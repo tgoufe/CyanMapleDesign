@@ -1,5 +1,5 @@
 <template>
-	<div class="example tag-container">
+	<div class="example tag-container themeAlert padding15">
         <router-link to="slider/config" class="btn block radius blue">
             基础的slider
         </router-link>
