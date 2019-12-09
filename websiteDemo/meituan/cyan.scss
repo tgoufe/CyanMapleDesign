@@ -1,19 +1,19 @@
 $isPC:false !default;
 $colorList:(
-	'red': #ff4c48,
-	'orange': #ff9800,
-	'yellow': #ff6705,
-	'green': #2eb252,
-	'coffee': #853f3a,
-	'blue': #25aaff,
-	'purple': #7000C8,
-	'ligthgray': #72727b
+				'red':#ff6767,
+				'purple':#8a90fa,
+				'blue':#4dc6ee,
+				'cyan':#00d3be,
+				'pink':#ff80c2,
+				'yellow':#FFBD00,
+				'orange':#fd9d21,
+				'green':#6bbd00
 );
 $grayList:(
 	'black': #000,
 	'darker': #222,
 	'dark': #666,
-	'gray':#8a8a8a,
+	'gray':#f0efed,
 	'light': #999,
 	'lighter': #ccc,
 	'white': #fff
@@ -38,9 +38,9 @@ $border-radius-base:        4px !default;
 $border-color-default:      #eee !default;
 //button
 $btn-size-list:(//$height, $padding-horizontal, $font-size
-	'base':(36px,15px,16px),
-	'small':(28px,15px,14px),
-	'big':(44px,15px,16px)
+	'base':(30px,10px,14px),
+	'bigger':(40px,16px,20px),
+	'big':(33px,16px,13px)
 );
 //badge
 $badge-size-list:(//$height, $padding-horizontal, $font-size

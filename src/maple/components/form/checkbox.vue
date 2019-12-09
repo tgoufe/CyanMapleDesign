@@ -86,8 +86,6 @@ export default {
           this.isExceedLimit = !_.inRange(value.length, min - 1, max + 1)
           this.isExceedLimit === false &&
           this.cmuiCheckboxGroup.$emit('input', value)
-        } else {
-          // this.$emit('input', value)
         }
       }
     },

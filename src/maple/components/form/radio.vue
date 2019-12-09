@@ -1,5 +1,5 @@
 <template>
-  <label class="cmui-radio" :class="{ 'flex-container': flex }">
+  <label class="cmui-radio" :class="{ 'flex-container': flex ,'cmui-checkbox__disabled':isDisabled}">
     <span
       v-if="align === 'left'"
       :class="{ checked: label === radioValue }"
@@ -10,13 +10,14 @@
       <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
     <input
+      ref="radio"
       v-model="radioValue"
       type="radio"
       :name="name"
       :value="label"
       :readonly="readonly"
       :class="[targetClass]"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :label="selflabel"
       @change="handleChange"
     >
@@ -37,6 +38,11 @@ import mixin from './mixin.js'
 export default {
   name: 'cmui-radio',
   mixins: [mixin],
+  inject: {
+    cmuiRadioGroup: {
+      default: ''
+    }
+  },
   data() {
     return {
       radioValue: this.value,
@@ -44,9 +50,30 @@ export default {
     }
   },
   computed: {
+    isDisabled() {
+      return this.disabled ||
+              (this.cmuiForm || {}).disabled ||
+              (this.cmuiRadioGroup || {}).disabled
+    },
+    inGroup() {
+      return !!this.cmuiRadioGroup
+    },
+    model: {
+      get() {
+        return this.inGroup ? this.cmuiRadioGroup.value : !!this.value
+      },
+      set(value) {
+        if (this.inGroup) {
+          this.cmuiRadioGroup.$emit('input', value)
+        } else {
+          this.$emit('input', value)
+        }
+        this.$refs.radio && (this.$refs.radio.checked = this.model === this.label)
+      }
+    },
     labelStyle() {
       let style = {}
-      if (this.disabled) {
+      if (this.isDisabled) {
         style.color = '#ccc'
       }
       return style

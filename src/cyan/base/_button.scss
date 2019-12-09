@@ -79,6 +79,9 @@
   &.light{
     @include button-variant(#666, #f7f7f7, #f7f7f7);
   }
+  &.radius{
+    border-radius:$border-radius-base;
+  }
   @if($isPC){
     &:hover,
     &:focus,
