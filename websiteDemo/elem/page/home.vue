@@ -10,9 +10,9 @@
     <cmui-slider>
       <cmui-slider-item>
         <div class="list list-col5">
-          <div v-for="(item,i) in elemSlider1" :key="i" class="list-item text-center paddingh50">
-            <img :src="item.src" alt />
-            <p class="text-dark fs-12">{{ item.name }}</p>
+          <div v-for="(item,i) in elemSlider1" :key="i" class="list-item text-center">
+            <img :src="item.src" width="45" class="margint50">
+            <p class="text-dark fs-12 margint20">{{ item.name }}</p>
           </div>
         </div>
       </cmui-slider-item>
@@ -61,8 +61,8 @@
       </div>
     </cmui-popup>
     <div >
-      <div class="img-container">
-        <img src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png">
+      <div class="img-container center">
+        <img src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png" width="200px">
       </div>
       <div class="text-center">
         <h3 class="text-lighter paddingv30">没有搜索结果</h3>
