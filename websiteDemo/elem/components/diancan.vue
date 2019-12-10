@@ -19,18 +19,16 @@
         <cmui-tabbar-item class="fs-10 text-light" v-for="(item,index) in scrolldata" :key="index" :title="item.title"></cmui-tabbar-item>
       </cmui-tabbar>
       <div class="flex-container-col">
-        <div class="flex1 flex-container marginl30 left" v-for="(item, index) in list" :key="index">
-            <div class="img-container marginb50" style="width:80px;">
-                <img :src="item.imageUrl" alt/>
+            <div class="flex1 flex-container marginl30 left" v-for="(item, index) in list" :key="index">
+                <div class="img-container marginb50" style="width:80px;">
+                    <img :src="item.imageUrl" alt/>
+                </div>
+                <div class="marginh50">
+                    <div>{{item.name}}</div>
+                    <div class="fs-10 text-light">{{item.dis}}</div>
+                    <div class="fs-16" style="color:rgb(255, 83, 57)">¥ {{item.price}}</div>
+                </div>
             </div>
-        <div class="marginh50">
-            <div>{{item.name}}</div>
-            <div class="fs-10 text-light">{{item.dis}}</div>
-            <div class="flex-container left">
-                <div class="fs-16" style="color:rgb(255, 83, 57)">¥ {{item.price}}</div>
-            </div>
-        </div>
-      </div>
       </div>
       
     </div>
