@@ -30,11 +30,11 @@ module.exports = {
       template: 'public/index.html',
       filename: '163.html'
     },
-    ximalaya: {
-      entry: 'websiteDemo/ximalaya/main.js',
-      template: 'public/index.html',
-      filename: 'ximalaya.html'
-    },
+//    ximalaya: {
+//      entry: 'websiteDemo/ximalaya/main.js',
+//      template: 'public/index.html',
+//      filename: 'ximalaya.html'
+//    },
     ctrip: {
       entry: 'websiteDemo/ctrip/main.js',
       template: 'public/index.html',
