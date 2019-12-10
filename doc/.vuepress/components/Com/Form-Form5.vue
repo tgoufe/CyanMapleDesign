@@ -7,17 +7,19 @@
             <cmui-form-item label="密码" prop="password">
                 <cmui-input v-model="form.password" type="password"></cmui-input>
             </cmui-form-item>
-            <cmui-form-item label="性别">
+            <cmui-form-item label="性别" prop="sex">
                 <cmui-select :data="form.sexData" v-model="form.sex"></cmui-select>
             </cmui-form-item>
-            <cmui-form-item label="兴趣爱好" prop="interest">
+            <cmui-form-item label="兴趣爱好" prop="interestValue">
                 <cmui-checkbox-group v-model="form.interestValue">
                     <cmui-checkbox v-for="item in form.interest" :label="item"></cmui-checkbox>
                 </cmui-checkbox-group>
             </cmui-form-item>
-            <cmui-form-item label="来源">
-                <cmui-radio label="互联网搜索" v-model="form.comeFrom"></cmui-radio>
-                <cmui-radio label="熟人介绍" v-model="form.comeFrom"></cmui-radio>
+            <cmui-form-item label="来源" prop="comeFrom">
+                <cmui-radio-group v-model="form.comeFrom">
+                    <cmui-radio label="互联网搜索"></cmui-radio>
+                    <cmui-radio label="朋友介绍"></cmui-radio>
+                </cmui-radio-group>
             </cmui-form-item>
         </cmui-form>
         <div class="flex-container center">
@@ -38,7 +40,7 @@ export default {
         sexData:['男','女'],
         interest:['音乐', '电影', '球类运动', '游泳', '旅游'],
         interestValue:['音乐'],
-        comeFrom:'朋友介绍'
+        comeFrom:''
       },
       rules:{
         name: [
@@ -49,8 +51,14 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        interest:[
-          { required: true, type:'array',message:'请至少选择一项',trigger:'change' ,validator: (rule, value) =>value.filter(item=>item.value)},
+        interestValue:[
+          { required: true, type:'array',message:'请至少选择一项',trigger:'change'},
+        ],
+        sex:[
+          { required: true, message: '请选择性别', trigger: 'change' },
+        ],
+        comeFrom:[
+          { required: true, message: '请选择性别', trigger: 'change' },
         ]
       }
     }
