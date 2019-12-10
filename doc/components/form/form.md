@@ -72,6 +72,24 @@ Form组件的表单验证功能基于[async-validator](https://github.com/yiming
 </div>
 </Exp>
 
+## 自定义校验
+你可以根据需求需要，依据进行自定义的校验
+
+:::tip
+自定义校验 callback 必须被调用。 用法可参考[async-validator](https://github.com/yiminghe/async-validator)。
+:::
+
+<Exp>
+<div slot="exp">
+<Com-Form-Form6></Com-Form-Form6>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Form-Form6.vue
+</div>
+</Exp>
+
+
 ## form属性列表
 
 <Propsintro path="form/form.vue"></Propsintro>

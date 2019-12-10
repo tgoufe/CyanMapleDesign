@@ -2,7 +2,7 @@
   <label class="cmui-radio" :class="{ 'flex-container': flex ,'cmui-checkbox__disabled':isDisabled}">
     <span
       v-if="align === 'left'"
-      :class="{ checked: label === radioValue }"
+      :class="{ checked: model === label }"
       class="cmui-radio__label"
       :style="labelStyle"
     >
@@ -11,7 +11,7 @@
     </span>
     <input
       ref="radio"
-      v-model="radioValue"
+      v-model="model"
       type="radio"
       :name="name"
       :value="label"
@@ -23,7 +23,7 @@
     >
     <span
       v-if="align === 'right'"
-      :class="{ checked: label === radioValue }"
+      :class="{ checked: label === model }"
       class="cmui-radio__label"
       :style="labelStyle"
     >
@@ -60,7 +60,7 @@ export default {
     },
     model: {
       get() {
-        return this.inGroup ? this.cmuiRadioGroup.value : !!this.value
+        return this.inGroup ? this.cmuiRadioGroup.value : this.value
       },
       set(value) {
         if (this.inGroup) {
@@ -81,11 +81,11 @@ export default {
     selflabel() {
       return this.isBtn ? this.label : ''
     }
-  },
-  watch: {
-    value(newValue) {
-      this.radioValue = newValue
-    }
   }
+  // watch: {
+  //   value(newValue) {
+  //     this.radioValue = newValue
+  //   }
+  // }
 }
 </script>
