@@ -3,7 +3,6 @@
         <div v-for="(item, index) in eleItems" :key="index" :class="{'text-blue':hasIndex === index }" @click="change(index,item.url)">
             <i :class="item.icon"></i>
             <p class="fs-10">{{item.name}}</p>
-            <i class="iconfont icon-email"></i>
         </div>
     </div>
 </template>
