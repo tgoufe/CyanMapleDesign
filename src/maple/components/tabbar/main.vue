@@ -1,26 +1,25 @@
-
 <script>
 import cmuiTabbarNav from '../tabbar/nav.vue'
-import cmuiTabbarPane from '../tabbar/pane.vue'
-import cmuiRender from '../base/render'
 import _ from 'lodash'
 export default {
   name: 'cmui-tabbar',
   components: {
-    cmuiTabbarNav,
-    cmuiTabbarPane,
-    cmuiRender
+    cmuiTabbarNav
+  },
+  provide() {
+    return {
+      cmuiTabbar: this
+    }
   },
   props: {
     col: { type: [String, Number], default: 'auto', intro: 'nav的列数,如果为数字则将nav分成对应的份数，如果item数量超过col则滚动显示' },
     index: { type: Number, default: 0, intro: '活动的索引' },
     nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
-    watch: { type: [Array, Object], default: () => null, intro: '要监控的对象' },
     position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' }
   },
   data: function () {
     return {
-      items: this.getItems(),
+      items: [],
       activeIndex: this.index
     }
   },
@@ -73,9 +72,6 @@ export default {
     }
   },
   watch: {
-    watch () {
-      this.updata()
-    },
     activeIndex (index) {
       this.$emit('update:index', index)
     }
@@ -126,7 +122,7 @@ export default {
         item => item.tag === 'cmui-tabbar-item'
       )
     },
-    updata () {
+    update () {
       this.items = []
       this.$nextTick(() => {
         this.items = this.getItems()
@@ -160,15 +156,7 @@ export default {
           flex1: position === 'left' || position === 'right'
         }
       },
-      [
-        h('cmui-tabbar-pane', {
-          props: {
-            items: items,
-            activeIndex: activeIndex
-          },
-          ref: 'pane'
-        })
-      ]
+      this.$slots.default
     )
     const pre = h(
       'div',
