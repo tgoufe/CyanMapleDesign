@@ -1,21 +1,19 @@
 <template>
     <div>
-        <div class="borderb" v-for="(item, index) in items" :key="index">
+        <div class="borderb" v-for="(item, index) in items" :key="index" @click="$router.push('/discover')">
             <div class="flex-container">
-                <div class=" margin30 marginl5ß0 top">
+                <div class=" margin30 marginl50 top">
                     <img :src="item.frontImg" style="width:65px;height:65px;" alt="">
                 </div>
                 <div class="flex1 vfull paddingb20 margin20">
                     <span class="fs-15 text-limit1 text-bloder">{{item.name}}</span>
-                    <div class="flex-container fs-11 vfull" style="color: #777777;">
-                        <div>
-                            <span>
+                    <div class="flex-container fs-11 left" style="color: #777777;">
+                            <div>
                                 <i class="iconfont icon-favoritesfilling fs-12 marginr10" style="color: lightgray;" :style="star(item.avgScore, es)" v-for="es in 5" :key="es"></i>
-                            </span>
-                            <span> ¥{{item.avgPrice}}/人</span>
-                            <span class="marginl30 fs-10">月售{{item.number || 60}}单</span>
-                            <span class="badge small blue marginl350 radius2">蜂鸟转送</span>
-                        </div>
+                            </div>
+                            <div class="marginl20"> ¥{{item.avgPrice}}/人</div>
+                            <div class="marginl30 fs-10">月售{{item.number || 60}}单</div>
+                            <div class="badge mini blue radius2 right">蜂鸟转送</div>
                     </div>
                     <div class="flex-container margin20 fs-11 paddingb20" style="color: #777777;">
                         <div class="left">
