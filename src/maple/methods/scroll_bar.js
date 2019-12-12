@@ -1,5 +1,30 @@
 import log from './log'
 import _ from 'lodash'
+function scrollTo(target, dom = document.documentElement) {
+  let { top, left } = target
+  if (_.isNumber(top)) {
+    let domPos = dom.scrollTop
+    if (Math.abs(top - domPos) <= 3) {
+      dom.scrollTop = top
+    } else {
+      let t = dom.scrollTop
+      dom.scrollTop = top < domPos ? (domPos - domPos / 8) : (domPos + (top - domPos) / 8 + 1)
+      if (dom.scrollTop === t) return
+      requestAnimationFrame(() => scrollTo({ top }, dom))
+    }
+  }
+  if (_.isNumber(left)) {
+    let domPos = dom.scrollLeft
+    if (Math.abs(left - domPos) <= 3) {
+      dom.scrollLeft = left
+    } else {
+      let t = dom.scrollLeft
+      dom.scrollLeft = left < domPos ? (domPos - domPos / 8) : (domPos + (left - domPos) / 8 + 1)
+      if (dom.scrollLeft === t) return
+      requestAnimationFrame(() => scrollTo({ left }, dom))
+    }
+  }
+}
 export default function(...arg) {
   let dom = _.remove(arg, _.isElement)[0] || document.documentElement
   let domScrollTop = dom.scrollTop || document.body.scrollTop
@@ -52,7 +77,8 @@ export default function(...arg) {
             // 屏数
             curr = curr * dom.clientHeight
           }
-          dom.scrollTop = curr
+          scrollTo({ top: curr }, dom)
+          // dom.scrollTop = curr
           break
         case 'bottom':
           curr = parseFloat(temp[1])
@@ -69,7 +95,8 @@ export default function(...arg) {
           } else {
             curr = dom.scrollHeight - curr
           }
-          dom.scrollTop = curr
+          scrollTo({ top: curr }, dom)
+          // dom.scrollTop = curr
           break
         case 'left':
           curr = parseFloat(temp[1])
@@ -80,7 +107,8 @@ export default function(...arg) {
             // 屏数
             curr = curr * dom.clientWidth
           }
-          dom.scrollLeft = curr
+          scrollTo({ left: curr }, dom)
+          // dom.scrollLeft = curr
           break
         case 'right':
           curr = parseFloat(temp[1])
@@ -93,7 +121,8 @@ export default function(...arg) {
           } else {
             curr = dom.scrollWidth - curr
           }
-          dom.scrollLeft = curr
+          scrollTo({ left: curr }, dom)
+          // dom.scrollLeft = curr
           break
         default:
           log('scrollBar反向设置错误，请使用"left right top bottom" 中的值')

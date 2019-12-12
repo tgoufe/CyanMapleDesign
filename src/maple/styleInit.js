@@ -156,7 +156,7 @@ export default (function() {
         let { style } = rule
         let len = style.length
         while (len--) {
-          let name = style[len].replace(/-(\w)/, (word, $1) => $1.toUpperCase())
+          let name = style[len].replace(/-(\w)/g, (word, $1) => $1.toUpperCase())
           let value = style[name].match(/\d+(\.\d+)?/g)[0]
           if (isMobile) {
             style[name] = value / 75 + 'rem'

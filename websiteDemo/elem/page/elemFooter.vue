@@ -11,10 +11,10 @@ export default {
     data(){
         return {
             eleItems:[
-                {icon:'iconfont icon-lvsefenkaicankaoxianban-',name:'首页',url:'/'},
-                {icon:'iconfont icon-faxian',name:'发现',url:'/faxian'},
-                {icon:'iconfont icon-dingdan',name:'订单',url:'/order'},
-                {icon:'iconfont icon-wode',name:'我的',url:'/wode'}
+                {icon:'iconfont icon-all',name:'首页',url:'/'},
+                {icon:'iconfont icon-compass',name:'发现',url:'/faxian'},
+                {icon:'iconfont icon-form',name:'订单',url:'/order'},
+                {icon:'iconfont icon-account',name:'我的',url:'/wode'}
             ],
             hasIndex:0,
         }

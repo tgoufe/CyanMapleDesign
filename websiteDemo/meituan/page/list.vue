@@ -8,7 +8,7 @@
         <div class="margint100 padding20 bg-white" style="position: relative;">
             <div class="list list-col4">
                 <div class="list-item text-center fs-11 padding10" style="font-weight: 300;" v-for="(e, i) in navList" :key="i" >
-                    <img :src="e.img" alt=""style="width: 60%;" class="marginb10">
+                    <img :src="e.img" alt=""style="width: 55%;" class="marginb10">
                     <p>{{e.title}}</p>
                 </div>
             </div>
@@ -116,9 +116,9 @@
                     </div>
                 </div>
                 <div class="flex-container">
-                    <div class="marginh20 paddingh20 text-left flex1">
+                    <div class="margin10 paddingh20 text-left flex1">
                         <div class="marginb10 text-limit1" v-if="e.preferentialInfo.maidan" v-for="(intro, introIndex) in e.preferentialInfo.maidan.entries" :key="introIndex">
-                            <span class="badge reverse orange marginl36">新客减{{Math.floor(Math.random()*9)}}</span>
+                            <span class="badge reverse orange marginl40">新客减{{Math.floor(Math.random()*9)}}</span>
                             <img style="width: 16px;" class="marginl40" :src="intro.icon" alt="">
                             <span class="fs-12 marginl10 " style="color: #777777">
                                 {{intro.content}}
@@ -142,7 +142,7 @@ export default {
     peo: [],
     timeList:['8:00','91:00','101:00','11:00','12:00','13:00'],
     timeServer:['不限','早餐','午餐','下午茶','晚餐','夜宵'],
-    peoples: [1,2,3,4,5,6,7,8],
+    peoples: ['1','2','4','5','6','7','8'],
     navList: [
       {title:'火锅',img:'https://p0.meituan.net/codeman/050ce6754d32482c75273e292407f2b312356.png'},
       {title:'甜点饮品',img:'https://p0.meituan.net/codeman/e5277d18a450c1fe51c6cda9cff6a9e016621.png'},

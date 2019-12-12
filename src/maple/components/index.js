@@ -14,6 +14,7 @@ import {
   Input,
   Number,
   Radio,
+  RadioGroup,
   Select,
   Textarea,
   Form,
@@ -34,6 +35,7 @@ import Scroll from './scroll/index.js'
 import ScrollItem from './scroll-item/index.js'
 import Swiper from './swiper/index.js'
 import Tabbar from './tabbar/index.js'
+import TabbarItem from './tabbar-item/index.js'
 import VirtualList from './virtualList/index.js'
 export default {
   Alert,
@@ -51,6 +53,7 @@ export default {
   Input,
   Number,
   Radio,
+  RadioGroup,
   Select,
   Textarea,
   Form,
@@ -70,5 +73,6 @@ export default {
   ScrollItem,
   Swiper,
   Tabbar,
+  TabbarItem,
   VirtualList
 }
