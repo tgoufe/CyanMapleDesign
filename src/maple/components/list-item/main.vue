@@ -32,9 +32,9 @@ export default {
   // mixins:[baseMixin],
   inject: ['bus'],
   props: {
-    title: { type: String, default: '' },
-    bgcolor: { type: String, default: '' },
-    border: { type: Boolean, default: true }
+    title: { type: String, default: '', intro: '标题文本' },
+    bgcolor: { type: String, default: '', intro: '背景色' },
+    border: { type: Boolean, default: true, intro: '是否显示边框' }
   },
   data: function() {
     return {
@@ -64,7 +64,7 @@ export default {
       let col = this.bus.parent.realCol
       let colCount = (_.isArray(col) ? col.length : col) || 1
       let clear = this.index % colCount === 0 ? 'left' : undefined
-      let padding = this.bus.parent.realSpace / 2 + 'rem'
+      let padding = this.bus.parent.realSpace
       let boxShadow = this.bus.parent.boxShadow
       let backgroundColor = this.bgcolor
       if (_.isNumber(col) && col !== 1) {

@@ -37,14 +37,8 @@ function getOffset (element) {
 export default {
   name: 'cmui-affix',
   props: {
-    top: {
-      type: Number,
-      default: 0
-    },
-    bottom: {
-      type: Number,
-      default: 0
-    }
+    top: { type: Number, default: 0, intro: '触发时距离顶部的距离，用PX表示' },
+    bottom: { type: Number, default: -Infinity, intro: '触发时距离底部的距离，用PX表示' }
   },
   data () {
     return {
@@ -55,11 +49,7 @@ export default {
   },
   computed: {
     offsetType () {
-      let type = 'top'
-      if (this.bottom >= 0) {
-        type = 'bottom'
-      }
-      return type
+      return this.bottom >= 0 ? 'bottom' : 'top'
     }
   },
   mounted () {

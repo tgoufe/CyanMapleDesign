@@ -67,28 +67,24 @@
 }
 </style>
 <script>
-import { ready } from '../../methods/dom'
+import { ready } from 'dom'
 import _ from 'lodash'
 const touchesStart = {}
 let isTouched
 let isScrolling
 let openedList = []
-ready(function() {
-  window.addEventListener('scroll', () => {
-    openedList.forEach(item => item.close())
-  })
+ready(function(window) {
+  if (window) {
+    window.addEventListener('scroll', () => {
+      openedList.forEach(item => item.close())
+    })
+  }
 })
 export default {
   name: 'cmui-swiper',
   props: {
-    right: {
-      type: Array,
-      default: () => []
-    },
-    left: {
-      type: Array,
-      default: () => []
-    }
+    right: { type: Array, default: () => [], intro: '右侧滑动列表项' },
+    left: { type: Array, default: () => [], intro: '左侧滑动列表项' }
   },
   data: function() {
     return {

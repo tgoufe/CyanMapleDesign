@@ -161,26 +161,21 @@ let sliderObserve = new (class {
 export default {
   name: 'cmui-slider',
   props: {
-    id: { type: String, default: _.uniqueId('cmui-slider_') },
-    watch: {
-      type: Object,
-      default () {
-        return {}
-      }
-    },
-    theme: { type: Number, default: 0 },
-    options: { type: Object, default: null },
-    loop: { type: Boolean, default: false },
-    autoplay: { type: Boolean, default: false },
-    col: { type: Number, default: 1 },
-    page: { type: [Boolean, String, Number], default: false },
-    direction: { type: String, default: 'horizontal' },
-    height: { type: String, default: '' },
-    nav: { type: Boolean, default: false },
-    space: { type: Number, default: 0 },
-    freeMode: { type: Boolean, default: false },
-    scrollbar: { type: Boolean, default: false },
-    control: { type: String, default: '' }
+    id: { type: String, default: _.uniqueId('cmui-slider_'), intro: '默认ID' },
+    watch: { type: [Object, Array], default: () => ({}), intro: '要监控的对象，当对象改变时slider将重新渲染' },
+    theme: { type: Number, default: 0, intro: '' },
+    options: { type: Object, default: null, intro: 'Swiper初始化传递的选项详见官方文档' },
+    loop: { type: Boolean, default: false, intro: '是否循环播放' },
+    autoplay: { type: Boolean, default: false, intro: '是否自动播放' },
+    col: { type: Number, default: 1, intro: '列数' },
+    page: { type: [Boolean, String, Number], default: false, intro: '是否显示page' },
+    direction: { type: String, default: 'horizontal', intro: '水平轮播还是垂直轮播' },
+    height: { type: String, default: '', intro: '固定轮播的高度' },
+    nav: { type: Boolean, default: false, intro: '是否显示左右箭头' },
+    space: { type: Number, default: 0, intro: '两个item之间的距离' },
+    freeMode: { type: Boolean, default: false, intro: '是否使用自由模式' },
+    scrollbar: { type: Boolean, default: false, intro: '是否显示滚动条' },
+    control: { type: String, default: '', intro: '控制器对应的ref' }
   },
   data: function () {
     return {

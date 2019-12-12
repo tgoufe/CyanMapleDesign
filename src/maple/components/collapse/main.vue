@@ -29,12 +29,8 @@ export default {
   name: 'cmui-collapse',
   componentName: 'CMUICollapse',
   props: {
-    onlyone: Boolean,
-    activeIndex: {
-      type: [Array, Number],
-      default() {
-        return []
-      }
+    onlyone: { type: Boolean, default: false, intro: '是否只打开一个菜单' },
+    activeIndex: { type: [Array, Number], default() { return [] }, intro: '需要打开的索引，使用数组可以打开多个'
     }
   },
   data() {

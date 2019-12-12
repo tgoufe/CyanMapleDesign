@@ -50,12 +50,12 @@ export default {
   },
 
   props: {
-    content: { type: String, default: '' },
-    className: { type: String, default: '' },
-    timeout: { type: Number, default: 3000 },
-    closeFn: { type: Function, default: function () { } },
-    targetClass: { type: String, default: '' },
-    visible: { type: Boolean, default: false }
+    content: { type: String, default: '', intro: '弹出的内容' },
+    className: { type: String, default: '', intro: '内容区域的class' },
+    timeout: { type: Number, default: 3000, intro: '展示时间设置为0则不展示' },
+    closeFn: { type: Function, default: function () { }, intro: '关闭时的回调' },
+    targetClass: { type: String, default: '', intro: '整体的class' },
+    visible: { type: Boolean, default: false, intro: '是否可见需要配合sync' }
   },
   data: function () {
     let dom = document.documentElement
@@ -75,7 +75,6 @@ export default {
         return this.visible
       },
       set (value) {
-        this.visible = value
         this.$emit('update:visible', value)
       }
     }

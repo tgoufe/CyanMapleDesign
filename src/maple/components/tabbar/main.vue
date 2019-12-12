@@ -1,53 +1,33 @@
-
 <script>
 import cmuiTabbarNav from '../tabbar/nav.vue'
-import cmuiTabbarPane from '../tabbar/pane.vue'
-import cmuiRender from '../base/render'
 import _ from 'lodash'
 export default {
   name: 'cmui-tabbar',
   components: {
-    cmuiTabbarNav,
-    cmuiTabbarPane,
-    cmuiRender
+    cmuiTabbarNav
+  },
+  provide() {
+    return {
+      cmuiTabbar: this
+    }
   },
   props: {
-    col: { type: [String, Number], default: 'auto' },
-    index: { type: Number, default: 0 },
-    nav: { type: Array, default: () => [false, false] },
-    watch: { type: [Array, Object], default: () => null },
-    position: { type: String, default: 'top' }
+    col: { type: [String, Number], default: 'auto', intro: 'nav的列数,如果为数字则将nav分成对应的份数，如果item数量超过col则滚动显示' },
+    index: { type: Number, default: 0, intro: '活动的索引' },
+    nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
+    position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' }
   },
   data: function () {
     return {
-      items: this.getItems(),
+      items: [],
       activeIndex: this.index
     }
   },
   computed: {
-    realCol () {
-      if (_.isString(this.col)) {
-        if (this.col === 'auto' || this.col === 'flex') {
-          return this.col
-        } else {
-          return 'auto'
-        }
-      } else if (_.isNumber(this.col)) {
-        return this.col
-      } else {
-        return 'auto'
-      }
-    },
     itemStyle () {
       let rs = {}
-      let number
       if (_.isNumber(this.col)) {
-        number = 100 / this.col + '%'
-        if (this.isVertical) {
-          rs.height = number
-        } else {
-          rs.width = number
-        }
+        rs[this.isVertical ? 'height' : 'width'] = 100 / this.col + '%'
       }
       return rs
     },
@@ -57,9 +37,11 @@ export default {
     headContainerClass () {
       return {
         'scroll-container': !this.isVertical,
-        'flex-container': this.realCol === 'flex' && !this.isVertical,
-        'flex-container-col': this.realCol === 'flex' && this.isVertical,
-        'scroll-container-y': this.isVertical
+        'scroll-container-y': this.isVertical,
+        'flex-container': this.col === 'flex' && !this.isVertical,
+        'flex-container-col': this.col === 'flex' && this.isVertical,
+        'flex-container center': this.col === 'center' && !this.isVertical,
+        'flex-container-col center': this.col === 'center' && this.isVertical
       }
     },
     showPreNav () {
@@ -73,12 +55,16 @@ export default {
     }
   },
   watch: {
-    watch () {
-      this.updata()
-    },
     activeIndex (index) {
       this.$emit('update:index', index)
     }
+  },
+  mounted() {
+    this.update()
+  },
+
+  updated() {
+    this.update()
   },
   methods: {
     scrollAcitveIntoViewIfNeeded (isStart = true) {
@@ -126,17 +112,22 @@ export default {
         item => item.tag === 'cmui-tabbar-item'
       )
     },
-    updata () {
-      this.items = []
-      this.$nextTick(() => {
-        this.items = this.getItems()
-      })
-    },
     extraEvent (event, item, index) {
       this.$emit('extra-click', this, item, index)
     },
     navItem () {
       this.$emit('item-click', this, ...arguments)
+    },
+    update(force = false) {
+      if (this.$slots.default) {
+        const items = _.filter(this.$slots.default, vnode => _.get(vnode, 'componentOptions.Ctor.options.name') === 'cmui-tabbar-item').map(({ componentInstance }) => componentInstance)
+        const changed = !(items.length === this.items.length && items.every((pane, index) => pane === this.items[index]))
+        if (force || changed) {
+          this.items = items
+        }
+      } else {
+        this.items = []
+      }
     }
   },
   render (h) {
@@ -160,15 +151,7 @@ export default {
           flex1: position === 'left' || position === 'right'
         }
       },
-      [
-        h('cmui-tabbar-pane', {
-          props: {
-            items: items,
-            activeIndex: activeIndex
-          },
-          ref: 'pane'
-        })
-      ]
+      this.$slots.default
     )
     const pre = h(
       'div',

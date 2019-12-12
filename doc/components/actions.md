@@ -1,29 +1,19 @@
 # actions组件
 ## 函数调用
-~~~javascript
-maple.actions(options);
-//demo
-maple.actions({
-    items:[1,2,3,4,5],
-    selectFn(value,index){},
-    itemStyle:{color:'red'},
-    title:2222
-})
-~~~
+
+<Exp>
+<div slot="exp">
+<Com-Actions-1></Com-Actions-1>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Actions-1.vue
+</div>
+</Exp>
 
 ### options说明
 
-| 参数          | 说明                | 类型       | 默认值  |    |
-|:------------|:------------------|:---------|:-----|:---|
-| items       | 表示内容的数组           | array    | 空    |    |
-| title       | 标题           | String    | 空    |    |
-| cancelText  | 取消按钮的文本           | string   | 取消   |    |
-| cancelFn    | 点击取消按钮要运行的函数      | function | null |    |
-| cancelStyle | 取消按钮的样式           | object   | null |    |
-| itemStyle   | 每一个Item的样式        | object   | null |    |
-| selectFn      | 点击item时触发的函数      | function | null |  回调函数接收两个参数，点击的文本内容和索引  |
-| activeIndex | 添加active类的item的索引 | number   | -1   |    |
-| visible| 是否可见|Boolean|true|通常情况不需要设置
+<Propsintro path="actions/main.vue"></Propsintro>
 
 ### items结构:
 
@@ -75,7 +65,18 @@ maple(1,2,3,{color:'blue'})
 ## 组件调用
 
 你也可以使用组件的方式进行调用
-```javascript
+
+<Exp>
+<div slot="exp">
+<Com-Actions-2></Com-Actions-2>
+</div>
+<div slot="code">
+
+<<< @/doc/.vuepress/components/Com/Actions-2.vue
+</div>
+</Exp>
+
+<!-- ```javascript
 <template>
     <cmui-actions 
         :visible.sync="actionsVisible"
@@ -103,7 +104,7 @@ maple(1,2,3,{color:'blue'})
         }
     }
 </script>
-```
+``` -->
 ### 抛出的事件
 * select:点击任意一项的时候被调用
 * * 回调参数 ：item index

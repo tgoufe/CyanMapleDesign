@@ -16,7 +16,7 @@ function ready(fn) {
       'DOMContentLoaded',
       function() {
         // document.removeEventListener('DOMContentLoaded',arguments.callee, false);
-        fn()
+        fn(window)
       },
       false
     )
@@ -24,7 +24,7 @@ function ready(fn) {
     document.attachEvent('onreadystatechange', function() {
       if (document.readyState === 'complete') {
         // document.detachEvent('onreadystatechange', arguments.callee);
-        fn()
+        fn(window)
       }
     })
   }

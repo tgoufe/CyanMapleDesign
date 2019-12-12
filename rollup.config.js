@@ -7,6 +7,8 @@ import replace from 'rollup-plugin-replace'// 可在源码中通过process.env.N
 import { terser } from 'rollup-plugin-terser'// 压缩bundle文件
 import postcss from 'rollup-plugin-postcss'
 
+import alias from 'rollup-plugin-alias'
+
 // PostCSS plugins
 import simplevars from 'postcss-simple-vars'
 import nested from 'postcss-nested'
@@ -69,6 +71,13 @@ export default {
       exclude: 'node_modules/**',
       ENV: JSON.stringify(process.env.NODE_ENV || 'production')
     }),
-    terser()
+    terser(),
+
+    alias({
+      resolve: ['.vue'],
+      entries: {
+        dom: 'src/maple/methods/dom.js'
+      }
+    })
   ]
 }

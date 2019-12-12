@@ -1,0 +1,62 @@
+@import "variables";
+@import "lib/function";
+@import "base/normalize";
+@import "base/baseIcon";
+@import "base/layout";
+@import "base/type";
+@import "base/button";
+@import "base/badge";
+@import "base/border";
+@import "base/form";
+@import "base/animate";
+@import "base/listGroup";
+@import "base/radius";
+@import "base/swiper";
+@import "ui/notice";
+@import "ui/mask";
+@import "ui/popup";
+
+p.title{
+    font-size: 14px;
+    background: rgba(0,0,0,0.04);
+    color: #666666;
+    line-height: 20px;
+}
+.form{
+	&.NewStyle{
+		input[type=checkbox].switch {
+			&:before{
+				height: 24px;
+				background: rgba(102,102,102,0.60);
+
+			}
+			&:checked:before{
+				background-color: #00BABA !important;
+			}
+			&:after{
+				width: 18px;
+				height: 18px;
+			    left: 5px;
+    			top: 4px;
+    			background: #fff;
+			}
+		}
+		.cmui-check__label.checked {
+		    color: #fff;
+		}
+	}
+}
+.hoverIcon{
+	.svg-icon use:last-child{
+	  display:none;
+	}
+	&:hover,&:active{
+		.svg-icon use:first-child{
+		  display:none;
+		}
+		.svg-icon use:last-child{
+		  display:block;
+		}
+	}
+	
+}

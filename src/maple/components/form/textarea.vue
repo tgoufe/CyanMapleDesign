@@ -59,10 +59,10 @@ export default {
   name: 'cmui-textarea',
   mixins: [mixin],
   props: {
-    auto: { type: Boolean, default: false },
-    max: { type: Number, default: -1 },
-    space: { type: Number, default: 20 },
-    width: { type: [Number, String], default: 0 }
+    auto: { type: Boolean, default: false, intro: '是否自动调整高度' },
+    max: { type: Number, default: -1, intro: '设置允许输入字符串的长度，-1表示不限制' },
+    // space: { type: Number, default: 20 ,intro:''},
+    width: { type: [Number, String], default: 0, intro: '设置输入框宽度' }
   },
   computed: {
     targetStyle () {
@@ -89,6 +89,9 @@ export default {
         this.$emit('input', value, this.$refs.textarea, this)
       }
     }
+  },
+  mounted() {
+    this.setTextAreaHeight()
   },
   methods: {
     rendered () {

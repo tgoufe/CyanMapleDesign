@@ -15,10 +15,13 @@ gulp.task('sass', async () => {
   // copy font
   gulp.src('src/cyan/font/*').pipe(gulp.dest('CMUI/style/font'))
   // compile sass
-  compile('src/cyan/CMUI.scss')
+  compile('src/cyan/cmui.scss')
   compile('src/cyan/cmuiMobile.scss')
   compile('src/cyan/cmuiPC.scss')
   compile('src/cyan/cmuiAnimate.scss')
+})
+gulp.task('copyCyan', async () => {
+  gulp.src('src/cyan/**/*').pipe(gulp.dest('CMUI/cyan'))
 })
 gulp.task('theme', async () => {
   compile('src/maple/theme.scss')

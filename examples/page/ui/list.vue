@@ -1,12 +1,12 @@
 <template>
-    <div class="example tag-container">
-        <router-link to="list/config/" class="btn block radius blue">
+    <div class="example tag-container themeAlert padding15">
+        <router-link to="list/config/" class="btn block">
             基础的列表
         </router-link>
-        <router-link to="list/music" class="btn block radius blue">
+        <router-link to="list/music" class="btn block">
             分组列表
         </router-link>
-        <router-link to="list/loop" class="btn block radius blue">
+        <router-link to="list/loop" class="btn block">
             循环嵌套列表
         </router-link>
     </div>

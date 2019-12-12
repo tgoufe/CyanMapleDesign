@@ -23,59 +23,43 @@
         </div>
       </div>
     </div>
+    <div class="bg-white">
+      <div class="padding30 borderb flex-container">
+        <i class="iconfont icon-account marginr10"></i>
+        <span class="left">CLIO珂莱欧</span>
+        <span class="text-light">2601个粉丝</span>
+        <div class="iconfont icon-more text-light"></div>
+      </div>
 
-    <div class="paddingh30 margint30 borderb flex-container paddingb20">
-      <i class="iconfont icon-account marginr10"></i>
-      <span class="left">CLIO珂莱欧</span>
-      <span class="text-light">2601个粉丝</span>
-      <div class="iconfont icon-more text-light"></div>
+      <div class="padding30 pos-r text-dark borderb">
+        <p :class="{'text-limit2':showmore}" @click="showmore=!showmore">
+          来自韩国的品牌。珂莱欧将多年专业的彩妆经验，创新性的融入高品质的产品中，让各肤质类型和各年龄段的人群都能轻松搞定如专业彩妆师级别精致妆容，打造更时髦的都市女性；菲丽菲拉针对妙龄少女，提供更具时尚潮流、个性化需求的魅力彩妆；果达儿专注寻找对肌肤有益的自然原料，研究改善肌肤的配方让皮肤更活力健康。
+        </p>
+      </div>
     </div>
-
-    <div class="padding30 pos-r text-dark borderb">
-      <p :class="{'text-limit2':showmore}" @click="showmore=!showmore">
-        来自韩国的品牌。珂莱欧将多年专业的彩妆经验，创新性的融入高品质的产品中，让各肤质类型和各年龄段的人群都能轻松搞定如专业彩妆师级别精致妆容，打造更时髦的都市女性；菲丽菲拉针对妙龄少女，提供更具时尚潮流、个性化需求的魅力彩妆；果达儿专注寻找对肌肤有益的自然原料，研究改善肌肤的配方让皮肤更活力健康。
-      </p>
-    </div>
-
     <div class="">
-      <cmui-tabbar class="">
+      <cmui-tabbar class="" col="flex" @item-click="tabbarchange">
         <cmui-tabbar-item title="首页">
-          <biji></biji>
+          <div class="padding20">
+            <biji></biji>
+          </div>
         </cmui-tabbar-item>
         <cmui-tabbar-item title="图集">
           <div class="list list-col3">
             <div v-for="item in imageGrid" class="list-item padding2">
               <div class="ratio-container">
-                <img :src="item" alt="">
+                <cmui-img :src="item" :lazy-load="true" lazy-src="//image.cyanmaple.design/160f714f64e98ee8341185207981cf19%20%281%29.gif"></cmui-img>
               </div>
             </div>
           </div>
         </cmui-tabbar-item>
         <cmui-tabbar-item title="笔记">
-          <biji></biji>
+          <div class="padding20">
+            <biji></biji>
+          </div>
         </cmui-tabbar-item>
         <cmui-tabbar-item title="商品">
-          <div class="list list-col2 padding20">
-            <div v-for="item in imageGrid" class="list-item padding6">
-              <div class="bg-white shadow radius">
-                <div class="ratio-container img-container">
-                  <img :src="item" alt="">
-                </div>
-                <div class="padding20">
-<p class="text-darker marginb10 fs-13">
-  韩国·不泛油光女神肌
-  </p>
-                  <p class="text-light marginb10 fs-13">
-  CLIO珂莱欧 遮瑕气垫粉底液+替换装 15g #2自然偏白
-  </p>
-                  <div class="badge red small">
-立减5
-</div>
-                  <span class="text-red dis-b">￥38</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <good class="padding10"></good>
         </cmui-tabbar-item>
       </cmui-tabbar>
     </div>
@@ -84,14 +68,24 @@
 <script>
 import biji from '../component/biji'
 import { imageGrid } from '../data/img.json'
+import good from '../component/product'
 export default {
   name: 'brands',
-  components: { biji },
+  components: { biji ,good},
   data() {
     return {
       showmore: true,
       imageGrid
     }
+  },
+  methods:{
+    tabbarchange(){
+      window.scrollBy(0,1)
+      window.scrollBy(0,-1)
+    }
   }
 }
 </script>
+<style type="text/scss" lang="scss">
+  .cmui-tabbar__head{background-color: white;position: sticky;top:0;z-index: 1}
+</style>

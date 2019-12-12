@@ -19,7 +19,7 @@
       </div>
       <!-- 主体 -->
       <div
-        class="cmui-input__main pos-r"
+        class="cmui-input__main pos-r flex-container"
         :class="{ flex1: !label || !$slots.default }"
       >
         <input
@@ -41,14 +41,14 @@
           v-if="type === 'search'"
           class="input-search"
           :style="{ display: type === 'search' ? 'block' : 'none' }"
-        />
+        ></div>
         <!-- <div class="input-changeType" style="display:block"></div> -->
         <div
           v-if="reset === true && !disabled"
           class="input-reset"
           :style="{ display: value.length ? 'block' : 'none' }"
           @click="resetInput()"
-        />
+        ></div>
       </div>
       <!-- 后置 -->
       <div
@@ -138,14 +138,14 @@ export default {
   name: 'cmui-input',
   mixins: [mixin],
   props: {
-    type: { type: String, default: 'text' },
-    reset: { type: Boolean, default: true },
-    prepend: { type: String, default: '' },
-    append: { type: String, default: '' },
-    width: { type: [Number, String], default: 0 },
-    prependDisabled: { type: Boolean, default: false },
-    appendDisabled: { type: Boolean, default: false },
-    changeType: { type: Boolean, default: false }
+    type: { type: String, default: 'text', intro: '设置输入框类型' },
+    reset: { type: Boolean, default: false, intro: '是否显示清除的icon' },
+    prepend: { type: String, default: '', intro: '前置文本内容' },
+    append: { type: String, default: '', intro: '后置文本内容' },
+    width: { type: [Number, String], default: 0, intro: '设置输入框的宽度，单位为PX' },
+    prependDisabled: { type: Boolean, default: false, intro: '禁用前置文本' },
+    appendDisabled: { type: Boolean, default: false, intro: '禁用后置文本' },
+    changeType: { type: Boolean, default: false, intro: '在类型为password的时候是否显示切换类型按钮' }
   },
   computed: {
     inputStyle() {
@@ -176,7 +176,7 @@ export default {
   methods: {
     resetInput: function() {
       const target = this.$refs.input
-      target.value = this.value = ''
+      target.value = ''
       target.focus()
       this.$emit('reset', target, this)
       this.$emit('input', '', target, this)

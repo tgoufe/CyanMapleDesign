@@ -108,9 +108,6 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
     &.flex-y img{
     	max-height: none;
     }
-    &.radius{
-    	border-radius:$border-radius-base;
-    }
     &.round{
     	border-radius:$container_width;
     }
@@ -138,6 +135,9 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 		display: inline-block;
 		font-size: initial;
 	}
+	&.top>*{vertical-align: top}
+	&.center>*{vertical-align: middle}
+	&.bottom>*{vertical-align: bottom}
 	@extend .hide-scrollBar;
 }
 .flex-container{
@@ -153,16 +153,16 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.bottom{@include align-items(flex-end) }
 	&.vfull{@include align-items(stretch) }
 	&.hfull{&>*{@include flex(); } }
-	&.leftCenter{@include justify-content(flex-start);}
-	&.leftTop{@include justify-content(flex-start);@include align-items(flex-start);}
-	&.leftBottom{@include justify-content(flex-start);@include align-items(flex-end)}
-	&.leftLine{@include justify-content(flex-start);@include align-items(baseline);}
-	&.rightCenter{@include justify-content(flex-end);}
-	&.rightTop{@include justify-content(flex-end);@include align-items(flex-start);}
-	&.rightBottom{@include justify-content(flex-end);@include align-items(flex-end);}
-	&.rightLine{@include justify-content(flex-end);@include align-items(baseline);}
-	&.topRound{@include justify-content(space-around);@include align-items(flex-start);}
-	&.bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
+	//&.leftCenter{@include justify-content(flex-start);}
+	//&.leftTop{@include justify-content(flex-start);@include align-items(flex-start);}
+	//&.leftBottom{@include justify-content(flex-start);@include align-items(flex-end)}
+	//&.leftLine{@include justify-content(flex-start);@include align-items(baseline);}
+	//&.rightCenter{@include justify-content(flex-end);}
+	//&.rightTop{@include justify-content(flex-end);@include align-items(flex-start);}
+	//&.rightBottom{@include justify-content(flex-end);@include align-items(flex-end);}
+	//&.rightLine{@include justify-content(flex-end);@include align-items(baseline);}
+	//&.topRound{@include justify-content(space-around);@include align-items(flex-start);}
+	//&.bottomRound{@include justify-content(space-around);@include align-items(flex-end);}
 	&.reverse{@include flex-direction(row-reverse);}
 }
 .flex-container-col{
@@ -178,12 +178,12 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&.round{@include justify-content(space-around); }
 	&.vfull{&>*{@include flex(); } }
 	&.hfull{@include align-items(stretch) }
-	&.leftCenter{@include align-items(flex-start);@include justify-content(center);}
-	&.leftTop{@include align-items(flex-start);@include justify-content(flex-start);}
-	&.leftBottom{@include align-items(flex-start);@include justify-content(flex-end);}
-	&.rightCenter{@include align-items(flex-end);@include justify-content(center);}
-	&.rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
-	&.rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
+	//&.leftCenter{@include align-items(flex-start);@include justify-content(center);}
+	//&.leftTop{@include align-items(flex-start);@include justify-content(flex-start);}
+	//&.leftBottom{@include align-items(flex-start);@include justify-content(flex-end);}
+	//&.rightCenter{@include align-items(flex-end);@include justify-content(center);}
+	//&.rightTop{@include align-items(flex-end);@include justify-content(flex-start);}
+	//&.rightBottom{@include align-items(flex-end);@include justify-content(flex-end);}
 	&.reverse{@include flex-direction(column-reverse);}
 	&>span{
 		display:block;
@@ -211,7 +211,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 %ratioStyle{
 	position: relative;
 	&:before{
-		content:"";
+		content: '';
 		display:block;
 		height:0;
 		font-size: 0;
@@ -243,30 +243,25 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	&:before{
 		padding-top:100%;
 	}
-}
-@for $i from 1 through $layoutNumber{
-	@for $k from 1 through $layoutNumber{
-		@if($i != $k){
-			.ratio-container-#{$i}x#{$k}{
-				@extend %ratioStyle;
-				&:before{
-					padding-top:$k/$i *100%;
-				}
-			}
-		}
+	//@for $i from 1 through $layoutNumber{
+	//	@for $k from 1 through $layoutNumber{
+	//		@if($i != $k){
+	//			&[ratio='#{$i}/#{$k}']{
+	//				&:before{
+	//					padding-top:$k/$i *100%;
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	.mask{
+		position: absolute;
 	}
 }
-@each $name,$key in ('top':'t','left':'l','right':'r','bottom':'b','base':''){
-	@if $name!="base" {
-		.margin#{$key}a{margin-#{$name}:auto;}
-		.padding#{$key}a{padding-#{$name}:auto;}
-	}
-	@else{
-		.margina{margin:auto}
-		.paddinga{padding:auto}
-	}
+.mask{
+	@extend .flex-container;
+	@extend .fixed-full;
 }
-
 .float-right{float:right}
 .float-left{float:left}
 .pos-r{position: relative}
@@ -334,4 +329,15 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 }
 .dis-n{
 	display:none;
+}
+@each $name,$key in ('top':'t','left':'l','right':'r','bottom':'b','base':''){
+	@if $name!="base" {
+		.margin#{$key}-a{margin-#{$name}:auto;}
+		.padding#{$key}-a{padding-#{$name}:auto;}
+		.#{$name}-a{#{$name}:auto}
+	}
+	@else{
+		.margin-a{margin:auto}
+		.padding-a{padding:auto}
+	}
 }

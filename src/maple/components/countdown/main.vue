@@ -32,10 +32,10 @@ import _ from 'lodash'
 export default {
   name: 'cmui-countdown',
   props: {
-    nowTime: { type: Number, default: +new Date() },
-    endTime: { type: Number, default: 0 },
-    showMilli: { type: Boolean, default: false }, // 是否显示毫秒数，默认不显示
-    showDay: { type: Boolean, default: false }
+    nowTime: { type: Number, default: +new Date(), intro: '用于设置当前的时间，通常取服务器时间，默认取本地时间' },
+    endTime: { type: Number, default: 0, intro: '倒计时的结束时间' },
+    showMilli: { type: Boolean, default: false, intro: '是否显示毫秒数，默认不显示' },
+    showDay: { type: Boolean, default: false, intro: '是否显示天' }
   },
   data () {
     return {

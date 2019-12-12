@@ -40,7 +40,7 @@ export default {
   },
   mixins: [mixin],
   props: {
-    title: { type: String, default: '' }
+    title: { type: String, default: '', intro: '标题文本' }
   },
   data() {
     return {

@@ -54,9 +54,6 @@
     padding-left:0;
     padding-right:0;
   }
-  &.radius{
-    border-radius: 3px;
-  }
   &.pill{
     border-radius:500px;
   }
@@ -114,16 +111,8 @@
         margin-left:initial;
       }
     }
-    &.radius{
+    &[class*=radius]{
       border-radius:0;
-      &:first-child{
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-      }
-      &:last-child{
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
-      }
     }
   }
 }

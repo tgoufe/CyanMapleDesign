@@ -1,6 +1,4 @@
-<style lang="scss"></style>
 <script>
-import _ from 'lodash'
 export default {
   name: 'cmui-tabbar-nav',
   props: {
@@ -8,49 +6,31 @@ export default {
     activeIndex: { type: Number, default: 0 },
     itemStyle: { type: Object, default: () => ({}) }
   },
+  inject: ['cmuiTabbar'],
   methods: {
-    itemEvent(event, item, index) {
-      const oldIndex = this.$parent.activeIndex
-      const model = _.get(item, 'data.model.value')
-      this.$emit('nav-item', item, index, oldIndex, model)
-      this.$parent.changeToIndex(index)
+    itemEvent(item, index) {
+      const oldIndex = this.cmuiTabbar.activeIndex
+      this.$emit('nav-item', item, index, oldIndex)
+      this.cmuiTabbar.changeToIndex(index)
     }
   },
   render(h) {
-    let { activeIndex, itemStyle, itemEvent } = this
-    let items = this.items.map((item, index) => {
-      return h(
-        'div',
-        {
-          class: [
-            'cmui-tabbar__head-item flex1',
-            _.get(item, 'data.staticClass'),
-            index === activeIndex ? 'active' : ''
-          ],
-          style: itemStyle,
-          on: {
-            click: _.partialRight(itemEvent, item, index)
-          },
-          key: index
-        },
-        _.get(item, 'data.attrs.title') ||
-          _.filter(
-            item.children,
-            inner => _.get(inner, 'data.attrs.slot') === 'title'
-          ) ||
-          ''
-      )
-    })
-    return h(
-      'div',
-      {
-        class: {
-          'cmui-tabbar__nav': true,
-          flex1: true
+    this.cmuiTabbar.items.forEach((item, index) => (item.index = index))
+    let items = this.cmuiTabbar.items.map((item, index) => h('div', {
+      class: ['cmui-tabbar__head-item', {
+        active: index === this.cmuiTabbar.activeIndex,
+        flex1: this.cmuiTabbar.col !== 'center'
+      }],
+      style: this.itemStyle,
+      on: {
+        click: () => {
+          this.itemEvent(item, index)
         }
-      },
-      items
-    )
+      }
+    }, item.$slots.title || [h('div', {}, item.$attrs.title)]))
+    return h('div', {
+      class: 'cmui-tabbar__nav flex1'
+    }, items)
   }
 }
 </script>

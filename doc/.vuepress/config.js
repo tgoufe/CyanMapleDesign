@@ -21,14 +21,49 @@ function getlist(name){
 module.exports = {
     title: 'CyanMaple',
     description: '高效的描述型框架，简单不简单',
-    base:'/cmui/',
+    base:'/cyanMapleDoc/',
     dest:'../cmui',
     serviceWorker:true,
     evergreen: true,
+    cache:false,
     themeConfig:{
         sidebar: {
-            '/Cyan/': getlist('Cyan'),
-            '/components/':getlist('components'),
+            '/Cyan/': [
+                '',
+                'build',
+                'grid',
+                'img',
+                'ratio',
+                'flex',
+                'list',
+                'layout_assist',
+                'offset',
+                'color_and_size',
+                'type',
+                'border',
+                'button',
+                'form',
+                'icon',
+            ],
+            '/components/':[
+                '',
+                {
+                    title:'弹层组件',
+                    children : ['alert','confirm','actions','notice','pick','datePicker','mask','popup']
+                },
+                {
+                    title:'展示类组件',
+                    children : ['captcha','countdown','image','slider','progress','scroll','slidebar','swiper']
+                },
+                {
+                    title:'布局组件',
+                    children : ['list','virtualList','affix','tabbar','collapse','scroll']
+                },
+                {
+                    title:'form表单组件',
+                    children:['input','checkbox','radio','number','select','textarea','form'].map(i=>`form/${i}`)
+                }
+            ],
             '/methods/':getlist('methods'),
             '/': []
         },
@@ -44,12 +79,10 @@ module.exports = {
             {text:'技术博客',link:'http://www.bingshangroup.com/blog2'}
         ]
     },
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@components': '../../../src/maple/components'
-            }
-        }
-    }
+    configureWebpack: config => {
+        config.resolve.extensions = ['.js', '.vue']
+        config.resolve.alias.dom = path.resolve(__dirname, '../../src/maple/methods/dom-ssr')
+        config.resolve.alias['@components']=path.resolve(__dirname, '../../src/maple/components')
+    },
 
 };

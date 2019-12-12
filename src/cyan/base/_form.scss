@@ -80,13 +80,11 @@ input{
             &:focus{
                 border-color: $form-color-base;
                 outline: 0;
-                font-size:16px;
             }
             &.custom:focus{
               border-color: currentColor;
             }
-            &.radius{
-                border-radius: $border-radius-base;
+            &[class*=radius]{
                 &.reverse{
                     border-radius:0;
                 }
@@ -124,10 +122,12 @@ input{
                 width:auto !important;
                 display: inline-flex;
                 align-items: center;
+                //height:36px;
                 &::after{
                     content:attr(label);
                     margin-left:.133333333rem;
                     font-size:$font-size-base;
+                    position: static;
                 }
                 &.flex-container{
                     &::after{
@@ -163,6 +163,7 @@ input{
                 }
             }
             &.btn{
+                height:nth(map-get($btn-size-list,'base'),1);
                 &:not(:checked){
                   color:#666;
                   background-color: #ccc;
@@ -191,8 +192,9 @@ input{
                    &:checked{
                         color:$form-color-base;
                         border-color:$form-color-base;
-                    } 
+                    }
                 }
+
             }
             &.custom{
               position: relative;
@@ -404,6 +406,7 @@ input{
                 }
                 &.btn{
                     &.#{$btnSizeName}{
+                        height:nth($btnSizeValue,1);
                         &::after{
                             font-size:nth($btnSizeValue,3);
                         }
@@ -510,29 +513,21 @@ input{
             display: block;
         }
         .input_addon{
-            @extend .btn;
+            @extend %btn;
             display: block;
             min-width:nth(map-get($btn-size-list,'base'),1);
         }
         >*{
             margin-left:-1px;
         }
-        &.radius{
-            >*{
-                &:first-child{
-                    border-radius:$border-radius-base 0 0 $border-radius-base;
-                }
-                &:last-child{
-                    border-radius:0 $border-radius-base $border-radius-base 0;
-                }
-            }
+        &[class*=radius]{
             input{
                 @extend .flex1;
             }
         }
         &.reverse{
             .input_addon{
-                @extend .btn,.reverse;
+                @extend %btn,%reverse;
             }
         }
     }
@@ -563,14 +558,14 @@ input{
                         &:checked{
                             color:$colorValue;
                             border-color:$colorValue;
-                        } 
+                        }
                     }
                     &.light{
                       &:checked{
                         color:$colorValue;
                         background-color:scale-color($colorValue,$lightness: 70%);
                         border-color:transparent;
-                      } 
+                      }
                     }
                 }
                 &:not([class*=btn]):not(.switch):checked::after{

@@ -1,30 +1,33 @@
 <template>
-  <label class="cmui-checkbox" :class="{ 'flex-container': flex }">
+  <label class="cmui-checkbox" :class="{ 'flex-container': flex ,'cmui-checkbox__disabled':isDisabled}" :for="_uid">
     <span
       v-if="align === 'left'"
-      :class="{ checked: slefValue }"
+      :class="{ checked: isChecked }"
       class="cmui-check__label"
     >
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
     <input
+      :id="_uid"
       ref="checkbox"
-      v-model="slefValue"
+      v-model="model"
       type="checkbox"
       :name="name"
       :readonly="readonly"
       :class="[targetClass]"
-      :disabled="disabled"
+      :disabled="isDisabled"
+      :label="selflabel"
+      :value="label"
       @change="handleChange"
     >
     <span
       v-if="align === 'right'"
-      :class="{ checked: slefValue }"
+      :class="{ checked: isChecked }"
       class="cmui-check__label"
     >
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
   </label>
 </template>
@@ -43,15 +46,23 @@ export default {
   name: 'cmui-checkbox',
   mixins: [mixin],
   props: {
-    path: { type: String, default: '' }
+    path: { type: String, default: '', intro: '当v-model设置为数组的时候用于指定匹配项的路径' }
+  },
+  inject: {
+    cmuiCheckboxGroup: {
+      default: ''
+    }
   },
   data: function() {
     return {
-      indeterminate: false
+      indeterminate: false,
+      innerDisabled: false,
+      isBtn: !!~this.targetClass.split(' ').indexOf('btn'),
+      isExceedLimit: false
     }
   },
   computed: {
-    slefValue: {
+    model: {
       get() {
         let value = this.value
         if (_.isArray(value)) {
@@ -65,15 +76,51 @@ export default {
           )
           this.indeterminate = !(allTrue || allFalse)
           return allTrue
+        } else {
+          return this.inGroup ? this.cmuiCheckboxGroup.value : !!value
         }
-        return !!value
       },
-      set(value) {}
+      set(value) {
+        if (this.inGroup) {
+          let { min, max } = this.cmuiCheckboxGroup
+          this.isExceedLimit = !_.inRange(value.length, min - 1, max + 1)
+          this.isExceedLimit === false &&
+          this.cmuiCheckboxGroup.$emit('input', value)
+        }
+      }
+    },
+    selflabel() {
+      return this.isBtn ? this.label : ''
+    },
+    inGroup() {
+      return !!this.cmuiCheckboxGroup
+    },
+    isLimitDisabled() {
+      if (!this.inGroup) {
+        return false
+      } else {
+        const { max, min } = this.cmuiCheckboxGroup
+        return !!(max || min) && ((this.model.length >= max && !this.isChecked) || (this.model.length <= min && this.isChecked))
+      }
+    },
+    isDisabled() {
+      return this.disabled ||
+              this.innerDisabled ||
+              this.isLimitDisabled ||
+              (this.cmuiForm || {}).disabled ||
+              (this.cmuiCheckboxGroup || {}).disabled
+    },
+    isChecked() {
+      if (_.isBoolean(this.model)) {
+        return this.model
+      } else if (_.isArray(this.model)) {
+        return _.includes(this.model, this.label)
+      }
+      return false
     }
   },
   watch: {
     indeterminate(value) {
-      console.log(value)
       let dom = this.$refs.checkbox
       if (dom) {
         dom.indeterminate = value
@@ -82,11 +129,12 @@ export default {
   },
   methods: {
     handleChange(event) {
+      if (this.isExceedLimit) return
       const target = event.target
       const value = target.checked
       const beforeChangeEvent = this.$listeners['before-change']
       if (_.isFunction(beforeChangeEvent)) {
-        this.disabled = true
+        this.innerDisabled = true
         new Promise((resolve, reject) => {
           beforeChangeEvent(value, resolve, reject, this)
         }).then(
@@ -103,11 +151,11 @@ export default {
             }
             this.$emit('input', value, this)
             this.$emit('change', value, this)
-            this.disabled = false
+            this.innerDisabled = false
           },
           () => {
             target.checked = !target.checked
-            this.disabled = false
+            this.innerDisabled = false
           }
         )
       } else {
@@ -125,6 +173,7 @@ export default {
         }
         this.$emit('change', value, this)
       }
+      this.cmuiFormItem && this.cmuiFormItem.$emit('form.change')
     }
   }
 }

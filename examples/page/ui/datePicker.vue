@@ -7,8 +7,6 @@
         </label>
       </div>
         <cmui-date-picker @select="select" :visible.sync="visible"></cmui-date-picker>
-
-        </cmui-date-picker>
     </div>
 </template>
 
@@ -25,7 +23,6 @@ export default {
     select(day){
       this.visible=false;
       this.inputValue=day.format('YYYY-MM-DD')
-      console.log(day)
     },
     focus(){
       this.visible=true;

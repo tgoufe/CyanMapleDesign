@@ -27,10 +27,10 @@ export default {
     options.callback = _.find(args, _.isFunction)
   },
   props: {
-    position: { type: String, default: 'center' },
-    content: { type: String, default: '' },
-    closeFn: { type: Function, default: null },
-    contentStyle: { type: Object, default: null }
+    position: { type: String, default: 'center', intro: '内容的位置，继承于flex-container，可以使用top，left，bottom，right，center，between中的任意一项或两项配合' },
+    content: { type: String, default: '', intro: '遮罩内部的内容' },
+    closeFn: { type: Function, default: null, intro: '关闭遮罩时的事件' },
+    contentStyle: { type: Object, default: null, intro: '遮罩渲染完成后的回调' }
   },
   data: function() {
     return {

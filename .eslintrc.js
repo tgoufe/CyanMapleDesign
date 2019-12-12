@@ -5,6 +5,10 @@ module.exports = {
     browser: true,
     es6: true
   },
+  "globals": {
+    "_": true,
+    "$": true
+  },
   extends: ['plugin:vue/recommended', '@vue/standard'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -17,7 +21,8 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     'vue/name-property-casing': 'off',
     'vue/no-v-html': 'off',
-    'vue/html-self-closing':'off'
+    'vue/html-self-closing':'off',
+    'no-callback-literal': 0
   },
   parserOptions: {
     parser: 'babel-eslint'

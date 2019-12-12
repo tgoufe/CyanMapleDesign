@@ -1,6 +1,8 @@
 @import "variables";
 @import "lib/function";
 $isPC:true;
+$container_padding:10px;//on pc
+$container_width:800px;//on pc
 //@import "base/normalize";
 @import "base/baseIcon";
 @import "base/layout";
@@ -12,7 +14,10 @@ th, td {
 }
 a:hover{text-underline: none}
 html,body{overflow-x: hidden;font-size:16px !important;}
-.cmui-list-index span{margin:20 px}
+.cmui-list-index span{margin:20px}
+.container{
+  max-width:inherit;
+}
 @import "base/type";
 @import "base/button";
 @import "base/badge";
@@ -20,3 +25,6 @@ html,body{overflow-x: hidden;font-size:16px !important;}
 @import "base/form";
 @import "base/pm";
 @import "base/listGroup";
+@import "base/radius";
+@import "ui/mask";
+@import "base/swiper";

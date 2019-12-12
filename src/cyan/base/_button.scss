@@ -2,32 +2,31 @@
   border-color: $border;
   color: $color;
   background-color: $background;
-
   @if ($isPC){
     &:focus,
     &.focus {
       color: $color;
       background-color: rgba($background, .5);
-          border-color: rgba($border, .75);
+          //border-color: rgba($border, .75);
     }
     &:hover {
       color: $color;
       background-color: rgba($background, .5);
-          border-color: rgba($border, .62);
+          //border-color: rgba($border, .62);
     }
     &:active,
     &.active
     {
       color: $color;
       background-color: rgba($background, .5);
-          border-color: rgba($border, .62);
+          //border-color: rgba($border, .62);
 
       &:hover,
       &:focus,
       &.focus {
         color: $color;
         background-color: rgba($background, .67);
-            border-color: rgba($border, .75);
+            //border-color: rgba($border, .75);
       }
     }
     &:active,
@@ -36,20 +35,6 @@
       background-image: none;
     }
   }
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
-      background-color: $background;
-          border-color: $border;
-    }
-  }
-
   .badge {
     color: $background;
     background-color: $color;
@@ -65,13 +50,13 @@
 }
 .btn {
   display: inline-block;
-  margin-bottom: 0; 
+  margin-bottom: 0;
   font-weight: 400;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
-  background-image: none; 
+  background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
   line-height:26px;
@@ -88,14 +73,14 @@
       }
     }
   }
-  &.radius{
-    border-radius: $border-radius-base;
-  }
   &.reverse{
     @include button-variant(#666, white, #cccccc);
   }
   &.light{
     @include button-variant(#666, #f7f7f7, #f7f7f7);
+  }
+  &.radius{
+    border-radius:$border-radius-base;
   }
   @if($isPC){
     &:hover,
@@ -130,7 +115,7 @@
 a.btn {
   &.disabled,
   fieldset[disabled] & {
-    pointer-events: none; 
+    pointer-events: none;
   }
 }
 @each $colorName,$colorValue in $colorList{
@@ -166,14 +151,8 @@ input[type="button"] {
     position: relative;
     float: left;
     margin-left:-1px;
-    &.radius{
+    &[class*=radius]{
       border-radius:0;
-      &:first-child{
-        border-radius: $border-radius-base 0 0 $border-radius-base;
-      }
-      &:last-child{
-        border-radius: 0 $border-radius-base  $border-radius-base 0;
-      }
     }
   }
 }

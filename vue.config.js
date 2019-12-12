@@ -1,5 +1,5 @@
 const buildConfig = require('./build/config')
-// const path = require('path')
+const path = require('path')
 module.exports = {
   publicPath: './',
   lintOnSave: !buildConfig.isProduct,
@@ -17,8 +17,33 @@ module.exports = {
     },
     wangyiyanxuan: {
       entry: 'websiteDemo/wangyiyanxuan/main.js',
-      template: 'public/index.html',
+      template: 'websiteDemo/wangyiyanxuan/index.html',
       filename: 'wangyiyanxuan.html'
+    },
+    elem: {
+      entry: 'websiteDemo/elem/main.js',
+      template: 'public/index.html',
+      filename: 'elem.html'
+    },
+    wangyi: {
+      entry: 'websiteDemo/163/main.js',
+      template: 'public/index.html',
+      filename: '163.html'
+    },
+    ximalaya: {
+      entry: 'websiteDemo/ximalaya/main.js',
+      template: 'public/index.html',
+      filename: 'ximalaya.html'
+    },
+    ctrip: {
+      entry: 'websiteDemo/ctrip/main.js',
+      template: 'public/index.html',
+      filename: 'ctrip.html'
+    },
+    meituan: {
+      entry: 'websiteDemo/meituan/main.js',
+      template: 'public/index.html',
+      filename: 'meituan.html'
     }
   },
   css: {
@@ -44,6 +69,26 @@ module.exports = {
     Object.keys(alias).forEach(item => {
       config.resolve.alias.set(item, alias[item])
     })
+    // config.module.rule('svg').uses.clear()
+    function resolve(dir) {
+      // 路径可能与你的项目不同
+      return path.join(__dirname, dir)
+    }
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('examples/icons/svg'))
+      .end()
+
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('examples/icons/svg'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'uifont-[name]'
+      })
     // config.plugins.delete('preload')
     // config.plugins.delete('prefetch')
     // config.extensions = buildConfig.resolve
@@ -53,6 +98,14 @@ module.exports = {
     // if (buildConfig.isProduct) {
     //   config.externals = buildConfig.externalMap
     // }
+    if (config.resolve.extensions && config.resolve.extensions.length) {
+      config.resolve.extensions.push('.js', '.vue')
+    } else {
+      config.resolve.extensions = ['.js', '.vue']
+    }
+
+    config.resolve.alias.dom = path.resolve(__dirname, 'src/maple/methods/dom')
+    console.log(config.resolve)
   },
   devServer: {
     port: buildConfig.examplesPort,

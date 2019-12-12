@@ -1,5 +1,5 @@
 <template>
-    <div style="padding:0;">
+    <div class="music" style="padding:0;">
         <cmui-list :border="true" :index="true">
             <cmui-list-group v-for="(item,key) in listData" :key="key" :title="item.name">
                 <cmui-list-item v-for="(inner,key2) in item.items" :key="key2">
@@ -24,3 +24,8 @@ export default {
   }
 }
 </script>
+<style>
+    .music .cmui-list-item-title{
+        color:#666;
+    }
+</style>

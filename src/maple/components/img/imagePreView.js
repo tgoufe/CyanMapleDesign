@@ -6,8 +6,8 @@ function ImagePreView(ImageList, index = 0, options) {
   const id = _.uniqueId('preView_')
   const tpl = `
         <transition name="fade" id="${id}">
-		    <div class="fixed-full flex-container cmui-image-preView" v-if="show" @click="preViewListClick($event)" @touchmove.stop.prevent="function(){}">
-		        <cmui-slider :watch="preViewList_temp" :page="true" :auto="0" :loop="preViewList_temp.length>1" :options="options">
+		    <div class="fixed-full cmui-image-preView flex-container" v-if="show" @click="preViewListClick($event)" @touchmove.stop.prevent="function(){}">
+		        <cmui-slider :watch="preViewList_temp" :page="true" :auto="0" :loop="preViewList_temp.length>1" :options="options" style="width:100%">
 		            <cmui-slider-item v-for="item in preViewList_temp" >
 		                <img :src="item" alt="" style="max-height: 100vh">
 		            </cmui-slider-item>
@@ -45,7 +45,6 @@ function ImagePreView(ImageList, index = 0, options) {
           this.show = false
           this.$nextTick(function() {
             vm.$emit('preview', false)
-            document.body.removeChild(dom)
           })
         }
       }

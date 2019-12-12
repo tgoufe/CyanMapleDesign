@@ -1,0 +1,26 @@
+@mixin setRadius($radius){
+  border-radius: $radius;
+  &.list::before,&.border.light.item > *{
+    border-radius: $radius * 2;
+  }
+  @at-root{
+    .form .inputGroup#{&} , .btn-group .btn#{&}, .badge-group .badge#{&}{
+      >*{
+        &:first-child{
+          border-radius:$radius 0 0 $radius;
+        }
+        &:last-child{
+          border-radius:0 $radius $radius 0;
+        }
+      }
+    }
+  }
+}
+.radius{
+  @include setRadius($border-radius-base);
+}
+@for $i from 2 through 10{
+  .radius#{$i}{
+    @include setRadius(1px * $i);
+  }
+}

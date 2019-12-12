@@ -42,6 +42,7 @@ function dialogInstall(Component) {
         CURRENT[key] = value
       })
       CURRENT.visible = true
+      CURRENT.$on('update:visible', function(value) { CURRENT.visible = value })
       if (typeof options.callback === 'function') {
         CURRENT.$nextTick(function() {
           options.callback(CURRENT.$el)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>cyan备份 25</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iconb" transform="translate(-833.000000, -743.000000)">
+            <g id="Progress" transform="translate(845.000000, 755.000000) rotate(-180.000000) translate(-845.000000, -755.000000) translate(833.000000, 743.000000)">
+                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                <rect id="Rectangle-7-Copy" fill="#000000" fill-rule="nonzero" x="1" y="8" width="22" height="8" rx="4"></rect>
+                <path d="M5,8 L10,8 L10,8 L10,16 L5,16 C2.790861,16 1,14.209139 1,12 C1,9.790861 2.790861,8 5,8 Z" id="Rectangle-7-Copy备份-4" fill="#00BABA" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
