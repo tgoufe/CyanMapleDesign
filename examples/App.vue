@@ -68,4 +68,49 @@ export default {
   -webkit-transform: translate(-30px, 0);
   transform: translate(-30px, 0);
 }
+
+p.title{
+    font-size: 14px;
+    background: rgba(0,0,0,0.04);
+    color: #666666;
+    line-height: 20px;
+}
+.form{
+  &.NewStyle{
+    input[type=checkbox].switch {
+      &:before{
+        height: 24px;
+        background: rgba(102,102,102,0.60);
+
+      }
+      &:checked:before{
+        background-color: #00BABA !important;
+      }
+      &:after{
+        width: 18px;
+        height: 18px;
+          left: 5px;
+          top: 4px;
+          background: #fff;
+      }
+    }
+    .cmui-check__label.checked {
+        color: #fff;
+    }
+  }
+}
+.hoverIcon{
+  .svg-icon use:last-child{
+    display:none;
+  }
+  &:hover,&:active{
+    .svg-icon use:first-child{
+      display:none;
+    }
+    .svg-icon use:last-child{
+      display:block;
+    }
+  }
+  
+}
 </style>
