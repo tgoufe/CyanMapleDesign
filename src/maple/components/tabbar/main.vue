@@ -24,29 +24,10 @@ export default {
     }
   },
   computed: {
-    realCol () {
-      if (_.isString(this.col)) {
-        if (this.col === 'auto' || this.col === 'flex') {
-          return this.col
-        } else {
-          return 'auto'
-        }
-      } else if (_.isNumber(this.col)) {
-        return this.col
-      } else {
-        return 'auto'
-      }
-    },
     itemStyle () {
       let rs = {}
-      let number
       if (_.isNumber(this.col)) {
-        number = 100 / this.col + '%'
-        if (this.isVertical) {
-          rs.height = number
-        } else {
-          rs.width = number
-        }
+        rs[this.isVertical ? 'height' : 'width'] = 100 / this.col + '%'
       }
       return rs
     },
@@ -56,9 +37,11 @@ export default {
     headContainerClass () {
       return {
         'scroll-container': !this.isVertical,
-        'flex-container': this.realCol === 'flex' && !this.isVertical,
-        'flex-container-col': this.realCol === 'flex' && this.isVertical,
-        'scroll-container-y': this.isVertical
+        'scroll-container-y': this.isVertical,
+        'flex-container': this.col === 'flex' && !this.isVertical,
+        'flex-container-col': this.col === 'flex' && this.isVertical,
+        'flex-container center': this.col === 'center' && !this.isVertical,
+        'flex-container-col center': this.col === 'center' && this.isVertical
       }
     },
     showPreNav () {
@@ -75,6 +58,13 @@ export default {
     activeIndex (index) {
       this.$emit('update:index', index)
     }
+  },
+  mounted() {
+    this.update()
+  },
+
+  updated() {
+    this.update()
   },
   methods: {
     scrollAcitveIntoViewIfNeeded (isStart = true) {
@@ -122,17 +112,22 @@ export default {
         item => item.tag === 'cmui-tabbar-item'
       )
     },
-    update () {
-      this.items = []
-      this.$nextTick(() => {
-        this.items = this.getItems()
-      })
-    },
     extraEvent (event, item, index) {
       this.$emit('extra-click', this, item, index)
     },
     navItem () {
       this.$emit('item-click', this, ...arguments)
+    },
+    update(force = false) {
+      if (this.$slots.default) {
+        const items = _.filter(this.$slots.default, vnode => _.get(vnode, 'componentOptions.Ctor.options.name') === 'cmui-tabbar-item').map(({ componentInstance }) => componentInstance)
+        const changed = !(items.length === this.items.length && items.every((pane, index) => pane === this.items[index]))
+        if (force || changed) {
+          this.items = items
+        }
+      } else {
+        this.items = []
+      }
     }
   },
   render (h) {

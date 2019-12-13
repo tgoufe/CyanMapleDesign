@@ -1,8 +1,6 @@
 <script>
-import cmuiRender from '../base/render'
 export default {
   name: 'cmui-tabbar-nav',
-  components: { cmuiRender },
   props: {
     items: { type: Array, default: () => [] },
     activeIndex: { type: Number, default: 0 },
@@ -19,8 +17,9 @@ export default {
   render(h) {
     this.cmuiTabbar.items.forEach((item, index) => (item.index = index))
     let items = this.cmuiTabbar.items.map((item, index) => h('div', {
-      class: ['cmui-tabbar__head-item flex1', {
-        active: index === this.cmuiTabbar.activeIndex
+      class: ['cmui-tabbar__head-item', {
+        active: index === this.cmuiTabbar.activeIndex,
+        flex1: this.cmuiTabbar.col !== 'center'
       }],
       style: this.itemStyle,
       on: {
