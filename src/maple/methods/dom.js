@@ -1,4 +1,5 @@
-function isInView(dom) {
+const ssr = typeof document === 'undefined' || typeof window === 'undefined'
+const isInView = ssr ? () => {} : (dom) => {
   let { top, left, bottom, right } = dom.getBoundingClientRect()
   let { innerHeight, innerWidth } = window
   // let offsetY = top - (document.body.scrollTop || document.documentElement.scrollTop)
@@ -7,7 +8,7 @@ function isInView(dom) {
   // let inX = offsetX >= 0 && offsetX < width
   return top < innerHeight && bottom > 0 && left < innerWidth && right > 0
 }
-function ready(fn) {
+const ready = ssr ? () => {} : (fn) => {
   if (!window || !document) {
     return
   }

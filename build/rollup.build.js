@@ -44,16 +44,9 @@ inquirer.prompt(inquirerInput).then(({ format }) => {
   format.forEach(item => {
     rollupFormatTypes.push({
       format: item,
-      min: false,
+      min: item === 'umd',
       suffix: `.${item === 'cjs' ? 'common' : item}.js`
     })
-    if (item === 'umd') {
-      rollupFormatTypes.push({
-        format: item,
-        min: true,
-        suffix: `.${item}.min.js`
-      })
-    }
   })
   rollupFormatTypes.forEach(({ format, min, suffix } = {}) => {
     [...componentsList, ...addons].forEach(item => {

@@ -67,7 +67,7 @@
 }
 </style>
 <script>
-import { ready } from 'dom'
+import { ready } from '../../methods/dom.js'
 import _ from 'lodash'
 const touchesStart = {}
 let isTouched

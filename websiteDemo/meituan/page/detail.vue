@@ -4,12 +4,16 @@
             <i class="iconfont icon-back text-white fs-20 text-bolder" @click="$router.back()"></i>
             <span class="text-white fs-20 ">团购详情</span>
             <div class="flex-container">
-                <div class="text-center">
-                    <i class="iconfont icon-favorite text-white fs20"></i>
+                <div class="text-center" @click="notice" v-if="!isStar">
+                    <i class="iconfont icon-favorite text-white fs-20"></i>
                     <p class="fs-10 text-white">收藏</p>
                 </div>
+                <div class="text-center" @click="notice" v-else>
+                    <i class="iconfont icon-favoritesfilling text-white fs-20"></i>
+                    <p class="fs-10 text-white">取消</p>
+                </div>
                 <div class="text-center marginl40">
-                    <i class="iconfont icon-navlist text-white fs20"></i>
+                    <i class="iconfont icon-navlist text-white fs-20"></i>
                     <p class="fs-10 text-white">导航</p>
                 </div>
             </div>
@@ -26,7 +30,7 @@
             <span class="text-cyan" style="font-size: 33px">39.9</span>
             <span class="text-cyan">元</span>
             <span class="left marginl10 text-light">门市价：40元</span>
-            <button class="btn orange bigger radius6">立即抢购</button>
+            <button class="btn orange bigger radius6" @click="$router.push('/buy')">立即抢购</button>
         </div>
         <div class="padding20 bordert">
             <div class="list list-col2">
@@ -75,8 +79,8 @@
             </div>
         </div>
         <div class="padding20 borderb">
-            <div class="flex-container">
-                <span class="text-cyan fs-15">查看全部8家适用分店</span>
+            <div class="flex-container" @click="joke">
+                <span class="text-cyan fs-15" >查看全部8家适用分店</span>
                 <i class="iconfont icon-more text-cyan text-bolder"></i>
             </div>
         </div>
@@ -94,7 +98,7 @@
                 <li> 2 - 店内部分菜品价格参考：鸡公煲（中煲）（ 30.00 元/份）鲜虾煲（中煲）（ 50.00 元/份）茄汁沙丁鱼（ 18.00 元/份）排骨煲（中煲）（ 40.00 元/份）酸梅汁（ 12.00 元/份）</li>
             </ul>
             <div class="padding20">
-                <div class="flex-container">
+                <div class="flex-container" @click="viewMoreImg">
                     <span class="text-cyan fs-15">查看图文详情</span>
                     <i class="iconfont icon-more text-cyan text-bolder"></i>
                 </div>
@@ -129,14 +133,15 @@
                 歪嘴香鸡公煲的味道很好，跟同事经常去吃。 #鸡公煲# #宽粉# #油豆皮#
             </div>
             <div class="flex-container padding20 left">
-                <img style="width: 50px;" class="marginr10" src="//p0.meituan.net/shaitu/c47317edf9881a66912fca49464fe29d2250224.jpg@220w_220h_1e_1c" alt="">
-                <img style="width: 50px;" class="marginr10" src="//p0.meituan.net/shaitu/dac2145c86e6a8da4b3bd88fa5fb23d62282659.jpg@220w_220h_1e_1c" alt="">
-                <img style="width: 50px;" src="//p0.meituan.net/shaitu/a4e56a79dc0ae9944c5a274a2cdc135e3273643.jpg@220w_220h_1e_1c" alt="">
+                <cmui-img style="width: 50px;" class="marginl10" v-for="(i, index) in imgList" :src="i" :pre-view="true" :pre-view-list="imgLists" :pre-view-index="index"></cmui-img>
+                <!--<img style="width: 50px;" class="marginr10" src="//p0.meituan.net/shaitu/c47317edf9881a66912fca49464fe29d2250224.jpg@220w_220h_1e_1c" alt="">-->
+                <!--<img style="width: 50px;" class="marginr10" src="//p0.meituan.net/shaitu/dac2145c86e6a8da4b3bd88fa5fb23d62282659.jpg@220w_220h_1e_1c" alt="">-->
+                <!--<img style="width: 50px;" src="//p0.meituan.net/shaitu/a4e56a79dc0ae9944c5a274a2cdc135e3273643.jpg@220w_220h_1e_1c" alt="">-->
             </div>
             <p class="padding20 text-dark">歪嘴香重庆鸡公煲（福佳新天地店）</p>
         </div>
         <div class="padding20 borderb">
-            <div class="flex-container">
+            <div class="flex-container" @click="joke">
                 <span class="text-cyan fs-15">查看全部评价</span>
                 <i class="iconfont icon-more text-cyan text-bolder"></i>
             </div>
@@ -170,8 +175,29 @@ export default {
   name: '',
   data () {
     return {
+      imgList: ['//p0.meituan.net/shaitu/c47317edf9881a66912fca49464fe29d2250224.jpg@220w_220h_1e_1c',
+        '//p0.meituan.net/shaitu/dac2145c86e6a8da4b3bd88fa5fb23d62282659.jpg@220w_220h_1e_1c',
+        '//p0.meituan.net/shaitu/a4e56a79dc0ae9944c5a274a2cdc135e3273643.jpg@220w_220h_1e_1c'
+      ],
+      imgLists: ['//p1.meituan.net/shaitu/cce4e77e2fc1a90c5183d23e685fdc42396412.jpg',
+        '//p1.meituan.net/shaitu/f6e55f82f5c0ece4ad2d52df69f05a1c410115.jpg',
+        '//p0.meituan.net/deal/2a9219fbc23dfe1b2f9fca2a94c51b98139026.jpg'
+      ],
       tags: ['回头客300','上菜快132','菜品精致89','肉类好78','主食赞43','朋友聚餐31','工作餐18','现做现卖6','海鲜棒6','闺蜜聚会3'],
-      foot: ['首页','订单','客户端','电脑版','帮助']
+      foot: ['首页','订单','客户端','电脑版','帮助'],
+      isStar: false
+    }
+  },
+  methods: {
+    notice(){
+      this.isStar ? maple.notice('取消收藏', 1000) : maple.notice('收藏成功', 1000)
+      this.isStar = !this.isStar
+    },
+    viewMoreImg () {
+      maple.confirm('团购详情图片较多，可能会消耗较多流量。是否继续访问？')
+    },
+    joke () {
+      maple.confirm('这个页面太简单了，就不写了...')
     }
   }
 }

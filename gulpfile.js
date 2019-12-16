@@ -24,5 +24,5 @@ gulp.task('copyCyan', async () => {
   gulp.src('src/cyan/**/*').pipe(gulp.dest('CMUI/cyan'))
 })
 gulp.task('theme', async () => {
-  compile('src/maple/theme.scss')
+  compile('src/maple/theme/default.scss')
 })

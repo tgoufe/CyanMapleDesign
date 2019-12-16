@@ -3,9 +3,10 @@ module.exports = {
   esDir: 'es',
   examplesPort: '8090',
   addons: [
-    { folderName: 'index', path: 'src/maple/indexBate.js' },
+    { folderName: 'index', path: 'src/maple/index.js' },
     { folderName: 'styleInit', path: 'src/maple/styleInit.js' }
   ],
+  rollupFormatTypes: [{ format: 'umd', min: true, suffix: '.umd.js' }],
   isProduct: ['production', 'prod'].includes(process.env.NODE_ENV),
   env: process.env.NODE_ENV,
   alias: {

@@ -7,7 +7,10 @@ $colorList:(
 	'coffee': #853f3a,
 	'blue': #25aaff,
 	'purple': #7000C8,
-	'ligthgray': #72727b
+	'ligthgray': #72727b,
+	'orangetitle': #ff8b70,
+	'orangespan': #F86442,
+	'white': #fff
 );
 $grayList:(
 	'black': #000,
@@ -16,7 +19,9 @@ $grayList:(
 	'gray':#8a8a8a,
 	'light': #999,
 	'lighter': #ccc,
-	'white': #fff
+	'white': #fff,
+	'graybage': #F3F4F5
+
 );
 $container_padding:10px;//on pc
 $container_width:800px;//on pc
