@@ -47,9 +47,7 @@ export default {
         {name:'按钮',url:'button'},
         {name:'徽标',url:'badge'},
         {name:'表单',url:'form'},
-        {name:'自定义表单',url:'formCustom'},
-        {name:'电商网站商品列表',url:'productList'},
-        {name:'可视化设置',url:'settingView/settingView'}
+        {name:'自定义表单',url:'formCustom'}
       ].map(item => ({ name: item.name,icon: item.url, path: `cyan/${item.url}` }))
 
     }
