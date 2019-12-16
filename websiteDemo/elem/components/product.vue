@@ -49,7 +49,6 @@ export default {
         }
     },
     created(){
-        console.log(productList)
         this.items = productList
     },
     methods:{

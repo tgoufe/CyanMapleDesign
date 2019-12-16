@@ -3,13 +3,13 @@
     <div class="bg-blue form paddingt100 paddingh50">
       <p class="text-white fs-24 paddingv20 text-limit1">中国邮政储蓄银行(大连分行营业部)</p>
     </div>
-    <cmui-affix >
+    <cmui-affix>
       <div class="bg-blue paddingh50  paddingv50 pos-r" style="z-index:99">
         <i class="iconfont icon-faxian pos-a text-gray marginl200"></i>
         <a href class="bg-white paddingv40 paddingh300 text-light">搜索饿了么商家，商品名称</a>
       </div>
     </cmui-affix>
-    <cmui-slider :loop="true" :page="true" :autoplay="true">
+    <cmui-slider :loop="true" :page="true" :autoplay="true" @touchEnd="touchEnd">
       <cmui-slider-item>
         <div class="list list-col5 paddingb100">
           <div v-for="(item,i) in elemSlider1" :key="i" class="list-item text-center">
@@ -166,6 +166,9 @@ export default {
     check(i) {
       this.colorBlue = i;
       this.visible = false;
+    },
+    touchEnd(event){
+      this.$router.push('/discover')
     }
   },
   components: {
