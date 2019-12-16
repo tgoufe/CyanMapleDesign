@@ -13,8 +13,7 @@
     "theme": "gulp theme",
     "doc": "vuepress dev doc",
     "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && npm run cyan && npm run theme",
-    "build:demo": "vue-cli-service build",
-    "build:bate": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && gulp sass && gulp copyCyan"
+    "build:demo": "vue-cli-service build"
   },
   "files": [
     "src/",

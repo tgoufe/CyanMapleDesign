@@ -1,4 +1,4 @@
-@import '../extend';
+
 $from-control-size:nth(map-get($btn-size-list,'base'),1) - $border-radius-base * 2;
 input,select,textarea {
     // font-family: 'Helvetica Neue',Helvetica,sans-serif;
@@ -49,12 +49,6 @@ input{
 }
 .form{
     input{
-        // &[type=search] {
-        //     text-align: center;
-        //     &:focus {
-        //         text-align: left
-        //     }
-        // };
         @at-root .form textarea,.form select,.from textarea,
         &[type=color],
         &[type=date],
@@ -513,7 +507,7 @@ input{
             display: block;
         }
         .input_addon{
-            @extend %btn;
+            @extend .btn;
             display: block;
             min-width:nth(map-get($btn-size-list,'base'),1);
         }
@@ -527,7 +521,7 @@ input{
         }
         &.reverse{
             .input_addon{
-                @extend %btn,%reverse;
+                @extend .btn,.reverse;
             }
         }
     }
