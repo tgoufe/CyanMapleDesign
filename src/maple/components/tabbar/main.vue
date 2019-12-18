@@ -1,6 +1,16 @@
 <script>
 import cmuiTabbarNav from '../tabbar/nav.vue'
+import scrollBar from '../../methods/scroll_bar.js'
 import _ from 'lodash'
+let contentScrollEvent = _.throttle(function() {
+  if (this.stopScrollEvent) return
+  let contentTop = this.$refs.content.getBoundingClientRect().top
+  let findIndex = _.findIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top > contentTop)
+  if (~findIndex) this.activeIndex = findIndex - 1
+}, {
+  wait: 200,
+  trailing: false
+})
 export default {
   name: 'cmui-tabbar',
   components: {
@@ -15,12 +25,14 @@ export default {
     col: { type: [String, Number], default: 'auto', intro: 'nav的列数,如果为数字则将nav分成对应的份数，如果item数量超过col则滚动显示' },
     index: { type: Number, default: 0, intro: '活动的索引' },
     nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
-    position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' }
+    position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' },
+    screen: { type: Boolean, default: false }
   },
   data: function () {
     return {
       items: [],
-      activeIndex: this.index
+      activeIndex: this.index,
+      stopScrollEvent: false
     }
   },
   computed: {
@@ -95,7 +107,13 @@ export default {
     },
     changeToIndex (index = 0) {
       if (_.inRange(index, this.items.length)) {
+        let _this = this
+        let targetContent = this.$refs.content.childNodes[index]
         this.activeIndex = index
+        this.stopScrollEvent = true
+        scrollBar(this.$refs.content, 'top', targetContent.offsetTop, this.animate, function() {
+          _this.stopScrollEvent = false
+        })
         this.$nextTick(() => {
           this.scrollAcitveIntoViewIfNeeded(true)
         })
@@ -138,6 +156,7 @@ export default {
       changeToPre,
       changeToNext,
       headContainerClass,
+      isVertical,
       itemStyle,
       navItem,
       extras,
@@ -147,9 +166,13 @@ export default {
       'div',
       {
         class: {
-          'cmui-tabbar__content': true,
-          flex1: position === 'left' || position === 'right'
-        }
+          'cmui-tabbar__content pos-r': true,
+          'flex1 scroll-container-y': this.screen
+        },
+        on: {
+          scroll: contentScrollEvent.bind(this)
+        },
+        ref: 'content'
       },
       this.$slots.default
     )
@@ -166,7 +189,7 @@ export default {
       },
       [
         h('i', {
-          class: `baseIcon baseIcon-${this.isVertical ? 'fold' : 'back'}`
+          class: `baseIcon baseIcon-${isVertical ? 'fold' : 'back'}`
         })
       ]
     )
@@ -183,7 +206,7 @@ export default {
       },
       [
         h('i', {
-          class: `baseIcon baseIcon-${this.isVertical ? 'unfold' : 'right'}`
+          class: `baseIcon baseIcon-${isVertical ? 'unfold' : 'right'}`
         })
       ]
     )
@@ -217,7 +240,7 @@ export default {
       {
         class: {
           'cmui-tabbar__extra': true,
-          'flex-container': !this.isVertical
+          'flex-container': !isVertical
         }
       },
       extraList
@@ -227,8 +250,8 @@ export default {
       {
         class: {
           'cmui-tabbar__head': true,
-          'flex-container': !this.isVertical,
-          'flex-container-col': this.isVertical
+          'flex-container': !isVertical,
+          'flex-container-col': isVertical
         }
       },
       [
@@ -241,16 +264,12 @@ export default {
     return h(
       'div',
       {
-        class: {
-          'cmui-tabbar': true,
+        class: [`cmui-tabbar cmui-tabbar-${this.position}`, {
           'flex-container vfull': this.isVertical,
-          'cmui-tabbar-top': this.position === 'top',
-          'cmui-tabbar-left': this.position === 'left',
-          'cmui-tabbar-bottom': this.position === 'bottom',
-          'cmui-tabbar-right': this.position === 'right'
-        },
+          'flex-container-col hfull': this.screen && !this.isVertical
+        }],
         style: {
-          'max-height': this.isVertical ? '100%' : 'none'
+          height: this.screen ? '100vh' : ''
         }
       },
       _.includes(['right', 'bottom'], position)
