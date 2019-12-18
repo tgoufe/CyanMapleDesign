@@ -14,8 +14,10 @@
 
         </div>
 
-        <div class="flex-container paddingt110 text-ligthgray">
+        <!--<div class="flex-container paddingt110 text-ligthgray">-->
+        <div class="abs-full flex-container vfull paddingt110 text-ligthgray">
 
+            <!--<div class="fixed-left scroll-container-y paddingt110" style="z-index:999;">-->
             <div class="fixed-left scroll-container-y paddingt110" style="z-index:999;">
                 <div class="" v-for="(item, idx) in titleList" :key="idx">
                     <div class="list_item pos-r flex-x text-center text-vcenter"
@@ -27,8 +29,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="paddingl180 row" style="width: 98%">
+            <div style="width: 90px;">&nbsp;</div>
+            <div class="flex1 row">
+            <!--<div class="flex6">-->
                 <div class="row" v-for="(item, idx) in titleList" :key="idx">
                     <div class="flex-container left marginl30">
                         <div class="flex-container left text-red" style="height: 50px;">

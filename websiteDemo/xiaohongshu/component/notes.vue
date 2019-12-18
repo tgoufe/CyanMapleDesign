@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white paddingl15 fs-13">
         <div v-for="item in notes" class="borderb flex-container top paddingv20">
-            <div class="ratio-container" style="width:32px">
+            <div class="ratio-container" style="width:32px" @click="$router.push('user')">
                 <div class="img-contianer round border" >
                     <img :src="item.image" alt="">
                 </div>
@@ -15,9 +15,9 @@
                 </p>
                 <p class="marginb20 text-limit2">{{item.desc}}</p>
                 <cmui-list class="paddingr20" :col="4" :space="20">
-                    <cmui-list-item v-for="i in item.images.slice(0,4)">
+                    <cmui-list-item v-for="(i,k) in item.images.slice(0,4)">
                         <div class="ratio-container">
-                            <img :src="i" alt="">
+                            <cmui-img :src="i" :pre-view="true" :pre-view-list="item.images" :pre-view-index="k"></cmui-img>
                         </div>
                     </cmui-list-item>
                 </cmui-list>

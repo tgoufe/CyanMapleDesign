@@ -18,8 +18,7 @@
             <p>9315篇笔记</p>
           </div>
         </div>
-        <div class="badge big red bottom pill">
-        关注
+        <div class="badge big red bottom pill" :class="{reverse:guanzhu}" v-text="guanzhu?'已关注':'关注'" @click="guanzhu=!guanzhu">
         </div>
       </div>
     </div>
@@ -71,17 +70,18 @@ import { imageGrid } from '../data/img.json'
 import good from '../component/product'
 export default {
   name: 'brands',
-  components: { biji ,good},
+  components: { biji, good },
   data() {
     return {
       showmore: true,
-      imageGrid
+      imageGrid,
+      guanzhu:false
     }
   },
-  methods:{
-    tabbarchange(){
-      window.scrollBy(0,1)
-      window.scrollBy(0,-1)
+  methods: {
+    tabbarchange() {
+      window.scrollBy(0, 1)
+      window.scrollBy(0, -1)
     }
   }
 }

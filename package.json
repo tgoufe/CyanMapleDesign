@@ -9,12 +9,11 @@
     "precommit": "vue-cli-service lint",
     "lint:prettier": "cross-env prettier --write \"src/maple/**/*.js\" \"src/maple/**/*.vue\" --loglevel warn",
     "cyan": "gulp sass",
-    "maple": "cross-env NODE_ENV=production && node ./build/rollup.maple",
+    "maple": "cross-env NODE_ENV=production && node ./build/rollup.maple && npm run theme",
     "theme": "gulp theme",
     "doc": "vuepress dev doc",
-    "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && node ./build/cli.build.js",
-    "build:demo": "vue-cli-service build",
-    "build:bate": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && gulp sass && gulp copyCyan"
+    "build": "cross-env NODE_ENV=production rimraf ./CMUI && node ./build/rollup.build && npm run cyan && npm run theme",
+    "build:demo": "vue-cli-service build"
   },
   "files": [
     "src/",

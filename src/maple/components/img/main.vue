@@ -9,7 +9,7 @@
 </template>
 <script>
 import imagePreView from './imagePreView'
-import { ready, isInView } from 'dom'
+import { ready, isInView } from '../../methods/dom.js'
 import _ from 'lodash'
 let lazyLoadList = []
 let windowHeight
