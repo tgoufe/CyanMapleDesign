@@ -5,7 +5,7 @@
                 <div class="text-left text-white ly-title marginh20" style="height: 1.2rem;" @click="goHome">
                 </div>
                 <div class="flex1 borderl paddingl10 text-white fs-16" style="line-height: 1.2rem">
-                    新闻频道
+                    体育频道
                 </div>
                 <div class="flex1 text-left flex-container">
                     <div>
@@ -23,10 +23,13 @@
         <div>
             <div class="margint120 paddingh20">
                 <div class="text-left fs-20">
-                    <h1 style="font-weight: bold">山东"海霸"组织扇贝养殖失败 搞海上"碰瓷"遭团灭</h1>
+                    <h1 style="font-weight: bold">卡鲁索：我们只输了4场球 我们会努力在下场比赛争胜</h1>
                 </div>
                 <div class="margint15 fs-14" style="color: #888">
-                    <span>2019-12-10 13:55</span><span class="marginl20">澎湃新闻</span>
+                    <span>2019-12-10 13:55</span><span class="marginl20">直播吧</span>
+                </div>
+                <div class="marginv30">
+                    <img :src="src" alt="">
                 </div>
                 <div class="fs-20">
                     <p class="margint15" style="text-indent:2em">
@@ -87,24 +90,20 @@
         data() {
             return {
                 yuanchuang: wangyiData.yuanchuang,
-                first:'一黑社会性质组织长期披着合法经营的企业外衣，在山东省东营辖区某深海海域形成非法控制，向在此捕捞的渔民强收钱财。日前，经山东省东营市河口区检察院提起公诉，一起涉及21名被告人的黑社会性质组织案公开开庭审理。这个曾经“风光一时”的“海霸”涉黑组织最终难逃法律制裁。',
-                secend:'2016年10月15日凌晨，东营某深海海域，一艘黑色的摩托艇在黑漆漆的海面上疾驰。“别动，都老实点！”正睡得迷迷糊糊的船长孟某还没反应过来怎么回事，一束强光就照在了他的脸上，同时脖子上架了一把砍刀，胸口上顶了一把猎枪。“你们是什么人？”孟某刚问了一句，身上就挨了好几棍子，他不由得心惊胆战：“坏了，遇上海盗了！”当天凌晨遭遇同样险情的还有杜某等其他三名船长，他们都在挨打后被警告：“在附近的海域里捕捞生产，要么交钱，要么滚蛋！”',
+                first:'直播吧12月18日讯 今天，湖人输给了步行者。赛后，卡鲁索接受了记者的采访。',
+                secend:'谈到今天输掉本赛季的第一场客场比赛，他表示：“无论是在主场还是在客场，输球总是难受的，我们打球就是为了赢球，我们有很多求胜欲强的球员。没人愿意输球，不幸的是我们今晚输球了，我们会从中学习，努力变得更好。这只是82场比赛的其中一场而已，这也只是我们本赛季输的第4场球，所以我们需要调整心态，努力拿下下一场比赛的胜利。”',
+                src:'http://crawl.ws.126.net/img/4765e9812ba17527e237ba135c9ad285.jpg?imageView&thumbnail=750x0&quality=85&type=jpg&interlace=1'
             }
         },
         methods:{
             goDetail() {
-                this.$router.push('/detail2')
+                this.$router.push('/detail')
             },
             goHome() {
                 this.$router.push('/home')
             }
-        },
-        watch: {
-            '$router':function (to, from) {
-                console.log('dsasdsa');
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            }
+
+
         }
     }
 </script>
