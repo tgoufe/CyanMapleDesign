@@ -4,9 +4,15 @@ import scrollBar from '../../methods/scroll_bar.js'
 import _ from 'lodash'
 let contentScrollEvent = _.throttle(function() {
   if (this.stopScrollEvent) return
-  let contentTop = this.$refs.content.getBoundingClientRect().top
-  let findIndex = _.findIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top > contentTop)
-  if (~findIndex) this.activeIndex = findIndex - 1
+  if (this.isVertical) {
+    let contentTop = this.$refs.content.getBoundingClientRect().top
+    let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= contentTop)
+    if (~findIndex) this.activeIndex = findIndex
+  } else {
+    let { top, height } = this.$refs.head.getBoundingClientRect()
+    let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= top + height)
+    if (~findIndex) this.activeIndex = findIndex
+  }
 }, {
   wait: 200,
   trailing: false
@@ -26,7 +32,8 @@ export default {
     index: { type: Number, default: 0, intro: '活动的索引' },
     nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
     position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' },
-    screen: { type: Boolean, default: false }
+    screen: { type: Boolean, default: false, intro: '是否使用筛选模式' },
+    top: { type: String, default: '0', intro: '粘贴距顶部的位置' }
   },
   data: function () {
     return {
@@ -73,6 +80,9 @@ export default {
   },
   mounted() {
     this.update()
+    if (this.screen) {
+      document.addEventListener('scroll', contentScrollEvent.bind(this))
+    }
   },
 
   updated() {
@@ -92,17 +102,13 @@ export default {
     changeToNext () {
       if (this.activeIndex < this.items.length - 1) {
         this.activeIndex++
-        this.$nextTick(() => {
-          this.scrollAcitveIntoViewIfNeeded(false)
-        })
+        this.changeToIndex(this.activeIndex)
       }
     },
     changeToPre () {
       if (this.activeIndex > 0) {
         this.activeIndex--
-        this.$nextTick(() => {
-          this.scrollAcitveIntoViewIfNeeded(true)
-        })
+        this.changeToIndex(this.activeIndex)
       }
     },
     changeToIndex (index = 0) {
@@ -110,10 +116,19 @@ export default {
         let _this = this
         let targetContent = this.$refs.content.childNodes[index]
         this.activeIndex = index
-        this.stopScrollEvent = true
-        scrollBar(this.$refs.content, 'top', targetContent.offsetTop, this.animate, function() {
-          _this.stopScrollEvent = false
-        })
+        if (this.screen) {
+          this.stopScrollEvent = true
+          if (this.isVertical) {
+            scrollBar(this.$refs.content, 'top', targetContent.offsetTop, this.animate, function() {
+              _this.stopScrollEvent = false
+            })
+          } else {
+            let t = targetContent.getBoundingClientRect().top + targetContent.ownerDocument.defaultView.pageYOffset - this.$refs.head.getBoundingClientRect().height
+            scrollBar('top', t, this.animate, function() {
+              _this.stopScrollEvent = false
+            })
+          }
+        }
         this.$nextTick(() => {
           this.scrollAcitveIntoViewIfNeeded(true)
         })
@@ -122,6 +137,7 @@ export default {
     changeByStep (num = 1) {
       if (_.inRange(this.activeIndex + num, this.items.length)) {
         this.activeIndex += num
+        this.changeToIndex(this.activeIndex)
       }
     },
     getItems () {
@@ -159,6 +175,7 @@ export default {
       isVertical,
       itemStyle,
       navItem,
+      screen,
       extras,
       extraEvent
     } = this
@@ -167,7 +184,8 @@ export default {
       {
         class: {
           'cmui-tabbar__content pos-r': true,
-          'flex1 scroll-container-y': this.screen
+          'flex1': screen || isVertical,
+          'scroll-container-y': this.screen
         },
         on: {
           scroll: contentScrollEvent.bind(this)
@@ -251,8 +269,14 @@ export default {
         class: {
           'cmui-tabbar__head': true,
           'flex-container': !isVertical,
-          'flex-container-col': isVertical
-        }
+          'flex-container-col': isVertical,
+          'pos-s': screen
+        },
+        style: {
+          top: screen ? this.top : undefined,
+          'z-index': 1
+        },
+        ref: 'head'
       },
       [
         this.nav[0] ? pre : undefined,
@@ -269,7 +293,7 @@ export default {
           'flex-container-col hfull': this.screen && !this.isVertical
         }],
         style: {
-          height: this.screen ? '100vh' : ''
+          height: (this.screen && isVertical) ? '100vh' : ''
         }
       },
       _.includes(['right', 'bottom'], position)
