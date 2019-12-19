@@ -2,7 +2,7 @@
 import cmuiTabbarNav from '../tabbar/nav.vue'
 import scrollBar from '../../methods/scroll_bar.js'
 import _ from 'lodash'
-let contentScrollEvent = _.throttle(function() {
+let contentScrollEvent = _.throttle(function(e) {
   if (this.stopScrollEvent) return
   if (this.isVertical) {
     let contentTop = this.$refs.content.getBoundingClientRect().top
