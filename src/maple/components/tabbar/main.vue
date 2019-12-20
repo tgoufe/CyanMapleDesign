@@ -5,16 +5,32 @@ import _ from 'lodash'
 let contentScrollEvent = _.throttle(function(e) {
   if (this.stopScrollEvent) return
   if (this.isVertical) {
-    let contentTop = this.$refs.content.getBoundingClientRect().top
-    let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= contentTop)
-    if (~findIndex) this.activeIndex = findIndex
+    let { top: contentTop, bottom: contentBottom } = this.$refs.content.getBoundingClientRect()
+    switch (e.target) {
+      case this.$refs.content:
+        let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= contentTop)
+        if (~findIndex) this.activeIndex = findIndex
+        break
+      case document:
+        this.disableContent = !(
+          contentTop <= this.top ||
+          contentBottom <= document.documentElement.clientHeight
+        )
+        if (!this.disableContent) {
+          document.body.classList.add('overflow-h')
+          _.delay(function(){
+            document.body.classList.remove('overflow-h')
+          })
+        }
+        break
+    }
   } else {
     let { top, height } = this.$refs.head.getBoundingClientRect()
     let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= top + height)
     if (~findIndex) this.activeIndex = findIndex
   }
 }, {
-  wait: 200,
+  wait: 50,
   trailing: false
 })
 export default {
@@ -33,16 +49,20 @@ export default {
     nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
     position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' },
     screen: { type: Boolean, default: false, intro: '是否使用筛选模式' },
-    top: { type: String, default: '0', intro: '粘贴距顶部的位置' }
+    top: { type: Number, default: 0, intro: '粘贴距顶部的位置，单位：像素' }
   },
   data: function () {
     return {
       items: [],
       activeIndex: this.index,
-      stopScrollEvent: false
+      stopScrollEvent: false,
+      disableContent: true
     }
   },
   computed: {
+    stopContentScroll() {
+      return this.isVertical && this.disableContent
+    },
     itemStyle () {
       let rs = {}
       if (_.isNumber(this.col)) {
@@ -81,10 +101,14 @@ export default {
   mounted() {
     this.update()
     if (this.screen) {
-      document.addEventListener('scroll', contentScrollEvent.bind(this))
+      document.addEventListener('scroll', contentScrollEvent.bind(this), true)
     }
   },
-
+  destroyed() {
+    if (this.screen) {
+      document.removeEventListener('scroll', contentScrollEvent.bind(this), true)
+    }
+  },
   updated() {
     this.update()
   },
@@ -185,7 +209,8 @@ export default {
         class: {
           'cmui-tabbar__content pos-r': true,
           'flex1': screen || isVertical,
-          'scroll-container-y': this.screen
+          'scroll-container-y': this.screen,
+          'overflow-h': this.stopContentScroll
         },
         on: {
           scroll: contentScrollEvent.bind(this)
@@ -273,7 +298,7 @@ export default {
           'pos-s': screen
         },
         style: {
-          top: screen ? this.top : undefined,
+          top: screen ? (+this.top) + 'px' : undefined,
           'z-index': 1
         },
         ref: 'head'
@@ -293,7 +318,7 @@ export default {
           'flex-container-col hfull': this.screen && !this.isVertical
         }],
         style: {
-          height: (this.screen && isVertical) ? '100vh' : ''
+          height: (this.screen && isVertical) ? '100vh' : undefined// vnode.data.staticStyle.height
         }
       },
       _.includes(['right', 'bottom'], position)
