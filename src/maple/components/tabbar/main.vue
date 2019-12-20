@@ -18,7 +18,7 @@ let contentScrollEvent = _.throttle(function(e) {
         )
         if (!this.disableContent) {
           document.body.classList.add('overflow-h')
-          _.delay(function(){
+          _.delay(function() {
             document.body.classList.remove('overflow-h')
           })
         }
