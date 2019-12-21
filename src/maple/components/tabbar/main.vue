@@ -43,14 +43,16 @@ export default {
     nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
     position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' },
     screen: { type: Boolean, default: false, intro: '是否使用筛选模式' },
-    top: { type: Number, default: 0, intro: '粘贴距顶部的位置，单位：像素' }
+    top: { type: Number, default: 0, intro: '粘贴距顶部的位置，单位：像素' },
+    throttle: { type: Number, default: 100, intro: 'screen模式下节流函数的间隔时间' }
   },
   data: function () {
     return {
       items: [],
       activeIndex: this.index,
       stopScrollEvent: false,
-      disableContent: true
+      disableContent: true,
+      contentScrollEvent: contentScrollEvent.bind(this)
     }
   },
   computed: {
@@ -95,12 +97,12 @@ export default {
   mounted() {
     this.update()
     if (this.screen) {
-      document.addEventListener('scroll', contentScrollEvent.bind(this), true)
+      document.addEventListener('scroll', this.contentScrollEvent, true)
     }
   },
   destroyed() {
     if (this.screen) {
-      document.removeEventListener('scroll', contentScrollEvent)
+      document.removeEventListener('scroll', this.contentScrollEvent)
     }
   },
   updated() {
@@ -137,13 +139,13 @@ export default {
         if (this.screen) {
           this.stopScrollEvent = true
           if (this.isVertical) {
-            scrollBar(this.$refs.content, 'top', targetContent.offsetTop, false, function() {
-              _this.stopScrollEvent = false
+            scrollBar(this.$refs.content, 'top', targetContent.offsetTop, true, function() {
+              _.delay(function() { _this.stopScrollEvent = false }, 100)
             })
           } else {
             let t = targetContent.getBoundingClientRect().top + targetContent.ownerDocument.defaultView.pageYOffset - this.$refs.head.getBoundingClientRect().height
-            scrollBar('top', t, false, function() {
-              _this.stopScrollEvent = false
+            scrollBar('top', t, true, function() {
+              _.delay(function() { _this.stopScrollEvent = false }, 100)
             })
           }
         }
