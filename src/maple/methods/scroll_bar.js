@@ -36,7 +36,7 @@ export default function(...arg) {
   let domScrollTop = dom.scrollTop || document.body.scrollTop
   let domScrollLeft = dom.scrollLeft || document.body.scrollLeft
   let argLen = arg.length
-  let regexp = /^(\d+(?:\.\d+)?)(%|view)?$/
+  let regexp = /^-?(\d+(?:\.\d+)?)(%|view)?$/
   let curr, total, view, temp
   if (argLen === 1) {
     // 读操作

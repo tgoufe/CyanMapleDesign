@@ -6,9 +6,9 @@
             </div>
         </div>
         <cmui-tabbar :screen="true" position="left">
-            <cmui-tabbar-item v-for="item in data" :title="item.title">
-                <div class="list border">
-                    <div class="list-item padding20" v-for="i in item.content">
+            <cmui-tabbar-item v-for="(item,index) in data" :title="item.title">
+                <div class="list border inner">
+                    <div class="list-item padding40" v-for="i in item.content">
                         {{i}}
                     </div>
                 </div>

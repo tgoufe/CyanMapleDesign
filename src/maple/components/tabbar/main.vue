@@ -16,12 +16,6 @@ let contentScrollEvent = _.throttle(function(e) {
           contentTop <= this.top ||
           contentBottom <= document.documentElement.clientHeight
         )
-        if (!this.disableContent) {
-          document.body.classList.add('overflow-h')
-          _.delay(function() {
-            document.body.classList.remove('overflow-h')
-          })
-        }
         break
     }
   } else {
@@ -106,7 +100,7 @@ export default {
   },
   destroyed() {
     if (this.screen) {
-      document.removeEventListener('scroll', contentScrollEvent.bind(this), true)
+      document.removeEventListener('scroll', contentScrollEvent)
     }
   },
   updated() {
@@ -143,12 +137,12 @@ export default {
         if (this.screen) {
           this.stopScrollEvent = true
           if (this.isVertical) {
-            scrollBar(this.$refs.content, 'top', targetContent.offsetTop, this.animate, function() {
+            scrollBar(this.$refs.content, 'top', targetContent.offsetTop, false, function() {
               _this.stopScrollEvent = false
             })
           } else {
             let t = targetContent.getBoundingClientRect().top + targetContent.ownerDocument.defaultView.pageYOffset - this.$refs.head.getBoundingClientRect().height
-            scrollBar('top', t, this.animate, function() {
+            scrollBar('top', t, false, function() {
               _this.stopScrollEvent = false
             })
           }
