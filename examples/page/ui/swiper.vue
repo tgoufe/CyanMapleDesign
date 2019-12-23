@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<p class="padding20">左右滑动列表项，查看swiper效果</p>
 		<cmui-list :border="true">
 			<cmui-list-item v-for="(item,index) in imgList" class="bg-white" :key="index">
 				<cmui-swiper :right="item.control" @swiper="handle(index, item,$event)">
@@ -40,7 +41,7 @@
 						},()=>{
 							arg.vm.close();
 						})
-						
+
 						break;
 					};
 					case '收藏':{
