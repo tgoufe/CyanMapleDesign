@@ -44,6 +44,7 @@ module.exports = {
                 'button',
                 'form',
                 'icon',
+                'custom'
             ],
             '/components/':[
                 '',

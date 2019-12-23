@@ -1,16 +1,6 @@
 <template>
     <div>
         <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1">
-<!--             <div class="flex-container paddingb20">
-                <span class="text-white marginr30">Color</span>
-                <div class="flex1 flex-container">
-                    <div class="colorSelect" v-for="item in colors"
-                    :key="item"
-                    :class="'bg-'+item+' '+(selectColor==item ? 'current' : '')"
-                    @click="selectColor=item"
-                    ></div>
-                </div>
-            </div> -->
             <div class="btn-group flex-container">
               <span class="text-white left" style="min-width: 55px;">Size</span>
               <div class="flex-container flex1" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
@@ -28,7 +18,7 @@
                     class="text-white"
                     v-model="radius">Radius</cmui-checkbox>
                 </div>
-                
+
                 <div class="flex1 marginl50">
                   <cmui-checkbox
                     :flex="true"
@@ -91,7 +81,7 @@
             :key="item"
             >badge</div>
         </div>
-        
+
 
 
 
@@ -124,9 +114,7 @@
         <p class="title paddingv20 paddingh30">组</p>
         <div class="badge-group paddingh30 padding20">
             <div class="badge yellow" :class="[size,selectColor,{light,radius,reverse}]">上一页</div>
-            <div class="badge yellow" v-for="i in 3" :class="[size,selectColor,{light,radius,reverse}]"
-              :key="item"
-              >{{i}}</div>
+            <div class="badge yellow" v-for="i in 3" :class="[size,selectColor,{light,radius,reverse}]">{{i}}</div>
             <div class="badge yellow" :class="[size,selectColor,{light,radius,reverse}]">下一页</div>
         </div>
     </div>
@@ -189,7 +177,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     font-weight: bolder;
     color:#fff;
-    
+
 }
 .themeBadge .badge.round,.themeBadge .badge.square{
     text-indent: -9999px;

@@ -1,6 +1,32 @@
 <script>
 import cmuiTabbarNav from '../tabbar/nav.vue'
+import scrollBar from '../../methods/scroll_bar.js'
 import _ from 'lodash'
+let contentScrollEvent = _.throttle(function(e) {
+  if (this.stopScrollEvent) return
+  if (this.isVertical) {
+    let { top: contentTop, bottom: contentBottom } = this.$refs.content.getBoundingClientRect()
+    switch (e.target) {
+      case this.$refs.content:
+        let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= contentTop)
+        if (~findIndex) this.activeIndex = findIndex
+        break
+      case document:
+        this.disableContent = !(
+          contentTop <= this.top ||
+          contentBottom <= document.documentElement.clientHeight
+        )
+        break
+    }
+  } else {
+    let { top, height } = this.$refs.head.getBoundingClientRect()
+    let findIndex = _.findLastIndex(this.$refs.content.childNodes, item => item.getBoundingClientRect().top <= top + height)
+    if (~findIndex) this.activeIndex = findIndex
+  }
+}, {
+  wait: 50,
+  trailing: false
+})
 export default {
   name: 'cmui-tabbar',
   components: {
@@ -15,15 +41,24 @@ export default {
     col: { type: [String, Number], default: 'auto', intro: 'nav的列数,如果为数字则将nav分成对应的份数，如果item数量超过col则滚动显示' },
     index: { type: Number, default: 0, intro: '活动的索引' },
     nav: { type: Array, default: () => [false, false], intro: '是否显示左右导航' },
-    position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' }
+    position: { type: String, default: 'top', intro: 'nav栏的位置，你可以在top bottom right left中任选其一' },
+    screen: { type: Boolean, default: false, intro: '是否使用筛选模式' },
+    top: { type: Number, default: 0, intro: '粘贴距顶部的位置，单位：像素' },
+    throttle: { type: Number, default: 100, intro: 'screen模式下节流函数的间隔时间' }
   },
   data: function () {
     return {
       items: [],
-      activeIndex: this.index
+      activeIndex: this.index,
+      stopScrollEvent: false,
+      disableContent: true,
+      contentScrollEvent: contentScrollEvent.bind(this)
     }
   },
   computed: {
+    stopContentScroll() {
+      return this.isVertical && this.disableContent
+    },
     itemStyle () {
       let rs = {}
       if (_.isNumber(this.col)) {
@@ -61,8 +96,15 @@ export default {
   },
   mounted() {
     this.update()
+    if (this.screen) {
+      document.addEventListener('scroll', this.contentScrollEvent, true)
+    }
   },
-
+  destroyed() {
+    if (this.screen) {
+      document.removeEventListener('scroll', this.contentScrollEvent)
+    }
+  },
   updated() {
     this.update()
   },
@@ -80,22 +122,33 @@ export default {
     changeToNext () {
       if (this.activeIndex < this.items.length - 1) {
         this.activeIndex++
-        this.$nextTick(() => {
-          this.scrollAcitveIntoViewIfNeeded(false)
-        })
+        this.changeToIndex(this.activeIndex)
       }
     },
     changeToPre () {
       if (this.activeIndex > 0) {
         this.activeIndex--
-        this.$nextTick(() => {
-          this.scrollAcitveIntoViewIfNeeded(true)
-        })
+        this.changeToIndex(this.activeIndex)
       }
     },
     changeToIndex (index = 0) {
       if (_.inRange(index, this.items.length)) {
+        let _this = this
+        let targetContent = this.$refs.content.childNodes[index]
         this.activeIndex = index
+        if (this.screen) {
+          this.stopScrollEvent = true
+          if (this.isVertical) {
+            scrollBar(this.$refs.content, 'top', targetContent.offsetTop, true, function() {
+              _.delay(function() { _this.stopScrollEvent = false }, 100)
+            })
+          } else {
+            let t = targetContent.getBoundingClientRect().top + targetContent.ownerDocument.defaultView.pageYOffset - this.$refs.head.getBoundingClientRect().height
+            scrollBar('top', t, true, function() {
+              _.delay(function() { _this.stopScrollEvent = false }, 100)
+            })
+          }
+        }
         this.$nextTick(() => {
           this.scrollAcitveIntoViewIfNeeded(true)
         })
@@ -104,6 +157,7 @@ export default {
     changeByStep (num = 1) {
       if (_.inRange(this.activeIndex + num, this.items.length)) {
         this.activeIndex += num
+        this.changeToIndex(this.activeIndex)
       }
     },
     getItems () {
@@ -138,8 +192,10 @@ export default {
       changeToPre,
       changeToNext,
       headContainerClass,
+      isVertical,
       itemStyle,
       navItem,
+      screen,
       extras,
       extraEvent
     } = this
@@ -147,9 +203,15 @@ export default {
       'div',
       {
         class: {
-          'cmui-tabbar__content': true,
-          flex1: position === 'left' || position === 'right'
-        }
+          'cmui-tabbar__content pos-r': true,
+          'flex1': screen || isVertical,
+          'scroll-container-y': this.screen,
+          'overflow-h': this.stopContentScroll
+        },
+        on: {
+          scroll: contentScrollEvent.bind(this)
+        },
+        ref: 'content'
       },
       this.$slots.default
     )
@@ -166,7 +228,7 @@ export default {
       },
       [
         h('i', {
-          class: `baseIcon baseIcon-${this.isVertical ? 'fold' : 'back'}`
+          class: `baseIcon baseIcon-${isVertical ? 'fold' : 'back'}`
         })
       ]
     )
@@ -183,7 +245,7 @@ export default {
       },
       [
         h('i', {
-          class: `baseIcon baseIcon-${this.isVertical ? 'unfold' : 'right'}`
+          class: `baseIcon baseIcon-${isVertical ? 'unfold' : 'right'}`
         })
       ]
     )
@@ -217,7 +279,7 @@ export default {
       {
         class: {
           'cmui-tabbar__extra': true,
-          'flex-container': !this.isVertical
+          'flex-container': !isVertical
         }
       },
       extraList
@@ -227,9 +289,15 @@ export default {
       {
         class: {
           'cmui-tabbar__head': true,
-          'flex-container': !this.isVertical,
-          'flex-container-col': this.isVertical
-        }
+          'flex-container': !isVertical,
+          'flex-container-col': isVertical,
+          'pos-s': screen
+        },
+        style: {
+          top: screen ? (+this.top) + 'px' : undefined,
+          'z-index': 1
+        },
+        ref: 'head'
       },
       [
         this.nav[0] ? pre : undefined,
@@ -241,16 +309,12 @@ export default {
     return h(
       'div',
       {
-        class: {
-          'cmui-tabbar': true,
+        class: [`cmui-tabbar cmui-tabbar-${this.position}`, {
           'flex-container vfull': this.isVertical,
-          'cmui-tabbar-top': this.position === 'top',
-          'cmui-tabbar-left': this.position === 'left',
-          'cmui-tabbar-bottom': this.position === 'bottom',
-          'cmui-tabbar-right': this.position === 'right'
-        },
+          'flex-container-col hfull': this.screen && !this.isVertical
+        }],
         style: {
-          'max-height': this.isVertical ? '100%' : 'none'
+          height: (this.screen && isVertical) ? '100vh' : undefined// vnode.data.staticStyle.height
         }
       },
       _.includes(['right', 'bottom'], position)

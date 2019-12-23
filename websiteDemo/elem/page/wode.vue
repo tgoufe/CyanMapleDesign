@@ -8,9 +8,7 @@
                <p class="marginr650" style="font-size:24px;color:white;">hanson</p>
                <p class="marginr650" style="font-size:10px;color:white;">13942047342</p>
             </div>
-            <div >
-                <p style="color:white" class="fs-20 marginr30">></p>
-            </div>
+            <i class="iconfont icon-more text-white"></i>
         </div>
         <div class="flex-container round borderb  vfull bg-white">
             <div class="flex1 flex-container-col paddingv120  borderr">

@@ -22,25 +22,19 @@ CyanMaple包含三个部分：[**Cyan**](/cyan/)、[**Maple方法**](/methods/)�
 * Cyan可以解决但是结构复杂的UI问题
 * 需要调用JS来处理事件的UI问题
 
-:::warning 使用CyanMaple的注意事项与解决方案
+:::warning 使用cyan的盒模型注意事项
 Cyan采用的盒模型为box-border,并且是全局使用，如果你的项目使用其他形式的盒模型可能会受到影响。
 
     解决方案：
-    删除src/cyan/base/_layout.scss顶部的盒模型代码，代码如下
+    在项目中添加如下代码重置盒模型
     *,*:before,*:after{
-      box-sizing: border-box;
+      box-sizing: content-box;
     }
     为需要使用到Cyan的外层容器的class增加cmuiBox
+:::
 
-Maple中的组件依赖于lodash，因此你需要保证你的项目在全局环境下引入lodash。
-
-    解决方案：
-    删除webpack中externals的lodash属性，
-    externals:{
-        'lodash':'window._',
-    },
-    
-删除externals会将lodash打包到生成的JS文件内，导致文件的增大。
+:::warning 使用Maple的依赖注意事项
+Maple中的组件依赖于lodash，因此你需要保证你的项目引入lodash。
 :::
 
 ## 接下来请选择你需要了解和学习的内容(建议从Cyan开始)：

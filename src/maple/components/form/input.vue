@@ -86,8 +86,6 @@
     }
     & > * {
       line-height: 26px;
-      padding: (nth(map-get($btn-size-list, "base"), 1) - 26px - 2) / 2
-        $padding-base-horizontal;
       &:not(:first-child) {
         border-left: 1px solid map-get($grayList, "lighter");
         padding-left: 10px;
@@ -100,15 +98,6 @@
       padding: 0;
       padding-right: 16px !important;
       background-position-x: right;
-    }
-    @each $btnSizeName, $btnSizeValue in $btn-size-list {
-      @if (#{$btnSizeName}!= "base") {
-        &.#{$btnSizeName} > * {
-          padding: (nth($btnSizeValue, 1) - 26px - 2) /
-            2
-            $padding-base-horizontal;
-        }
-      }
     }
   }
   .cmui-input__prepend {

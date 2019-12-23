@@ -1,7 +1,7 @@
 <template>
 	<div style="background: #f5f5f5;">
 		<div class="tag-container example">
-			<cmui-scroll ref="xxx" direction="v" style="height:600px" :pull-text="['下拉刷新','释放刷新','上拉加载','释放加载']" :free-mode="true" :watch="imageList" @pullStart="start" @pullEnd="end" @rendered="rendered">
+			<cmui-scroll ref="xxx" direction="v" style="height:600px" :pull-text="['下拉刷新','释放刷新','上拉加载','释放加载']" :free-mode="true"  @pullStart="start" @pullEnd="end">
 				<cmui-scroll-item key="1">
 					<div class="paddingh40 paddingb30 bg-white">
 						<div class="paddingv30 fs-16">
@@ -44,28 +44,16 @@
 								<img :src="imageList" height="32" alt="" style="transform: rotate(180deg);">
 							</div>
 						</div>
-						
+
 						<div class="fs-12 text-light paddingv20"><span class="marginr20">SHAYI</span><span class="marginr20">1075评论</span>5小时前</div>
 					</div>
 				</cmui-scroll-item>
-				<!-- <cmui-scroll-item v-for="(k,i) in imageList" :key="i">
-					<div class="flex-container padding10">
-						<div class="ratio-container" style="width:100px">
-							<div class="img-container border marginr10 round flex-x">
-								<img :src="imageList[i]" alt="">
-							</div>
-						</div>
-						<div class="flex1">
-							this is image {{ i }}
-						</div>
-					</div>
-				</cmui-scroll-item> -->
 			</cmui-scroll>
 		</div>
 	</div>
 </template>
 <style>
-	
+
 </style>
 <script type="text/javascript">
 import img from '@assets/scroll.png'
@@ -75,18 +63,12 @@ export default {
       imageList: img
     }
   },
-  mounted() {
-
-  },
   methods: {
     start() {
       maple.alert('下拉刷新事件被触发')
     },
     end() {
-      // this.imageList = this.imageList.concat([...img.whiteList, ...img.blackList])
-    },
-    rendered(vm) {
-      console.log(vm.swiper)
+		maple.alert('上拉加载事件被触发')
     }
   }
 }

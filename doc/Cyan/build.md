@@ -33,7 +33,7 @@ npm run cyan
 如需进行动态样式的支持，需在项目中引入动态样式文件。
 ### 浏览器引入
 ```html
-<script src="https://unpkg.com/cyanmaple/CMUI/lib/styleInit.umd.min.js"></script>
+<script src="https://unpkg.com/cyanmaple/CMUI/lib/styleInit.umd.js"></script>
 <script>
 styleInit()
 </script>
@@ -41,6 +41,6 @@ styleInit()
 ```
 ### 项目导入
 ```console
-import styleInit from 'cyanMaple/src/maple/styleInit.js'
+import styleInit from 'cyanMaple/src/maple/methods/styleInit.js'
 styleInit()
 ```

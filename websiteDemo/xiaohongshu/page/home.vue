@@ -8,7 +8,6 @@
         <i class="iconfont icon-more text-light"></i>
       </router-link>
 </div>
-
     <div class="scroll-container bg-white paddingh30 paddingb30 marginb30">
         <div style="width:165px;" v-for="(item,i) in cube" class="marginr20" :key="i">
       <router-link to="hot">
@@ -56,6 +55,4 @@ export default {
   }
 }
 </script>
-<style lang="scss">
 
-</style>

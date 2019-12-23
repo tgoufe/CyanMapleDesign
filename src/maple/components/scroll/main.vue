@@ -16,7 +16,7 @@
       <p
         class="text-center"
         v-text="pullStartText"
-      />
+      ></p>
     </div>
     <div class="swiper-wrapper">
       <slot />
@@ -33,7 +33,7 @@
       <p
         class="text-center"
         v-text="pullEndText"
-      />
+      ></p>
     </div>
   </div>
 </template>
