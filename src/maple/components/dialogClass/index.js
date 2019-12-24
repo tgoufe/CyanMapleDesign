@@ -8,17 +8,11 @@ function dialogInstall(Component) {
   let id = `${name}-` + _.uniqueId()
   let CURRENT = null
   let setCurrent = _.once(function(Vue) {
-    let dom = document.createElement(name)
+    let dom = document.createElement('div')
     dom.id = id
     document.body.appendChild(dom)
     let Dialog = Vue.extend(Component)
     CURRENT = new Dialog().$mount(dom)
-    // let dom = document.createElement(name)
-    // dom.id = id
-    // document.body.appendChild(dom)
-    // CURRENT = new Vue({
-    //   el: '#' + id
-    // }).$children[0]
   })
   Component.install = function(Vue, Maple) {
     Vue.component(name, Component)
