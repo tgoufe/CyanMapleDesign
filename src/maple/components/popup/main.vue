@@ -181,7 +181,7 @@ export default {
     },
     selfVisible: {
       get() {
-        if (this.stopPageScroll) {
+        if (this.stopPageScroll && typeof document !== 'undefined') {
           if (this.visible) {
             scrollRec = document.documentElement.scrollTop || document.body.scrollTop
             document.body.style.top = -scrollRec + 'px'
