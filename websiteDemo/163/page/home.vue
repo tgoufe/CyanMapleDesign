@@ -48,7 +48,7 @@
                             <div v-for="(v, i) in yuanchuang.slice(0,7)" :key="i" @click="goDetail">
                                 <div class="paddingb10">
                                     <div class="flex-container bg-white padding10">
-                                        <div class="flex2">
+                                        <div class="flex2 marginr10">
                                             <p class="paddingv20 fs-17">{{v.title}}</p>
                                             <p style="color: #b4b4b4" class="fs-14"><span>{{v.source}}</span><span class="marginl20">{{v.pubtime}}</span><span
                                                     class="marginl20">{{v.reply}}</span></p>
@@ -84,7 +84,7 @@
                             <div v-for="(v, i) in yuanchuang.slice(0,7)" :key="i" @click="goDetail">
                                 <div class="paddingb10">
                                     <div class="flex-container bg-white padding10">
-                                        <div class="flex2">
+                                        <div class="flex2 marginr10">
                                             <p class="paddingv20 fs-17">{{v.title}}</p>
                                             <p style="color: #b4b4b4" class="fs-14"><span>{{v.source}}</span><span class="marginl20">{{v.pubtime}}</span><span
                                                     class="marginl20">{{v.reply}}</span></p>
@@ -112,7 +112,7 @@
                         <div v-for="(v, i) in tuijian" :key="i" @click="goDetail">
                             <div class="paddingh20 paddingv15">
                                 <div class="flex-container bg-white">
-                                    <div class="flex2">
+                                    <div class="flex2 marginr10">
                                         <p class="paddingv20 fs-17">{{v.title}}</p>
                                         <p style="color: #b4b4b4" class="fs-14"><span>{{v.source}}</span><span class="marginl20">{{v.pubtime}}</span><span
                                                 class="marginl20">{{v.reply}}</span></p>
@@ -128,7 +128,7 @@
                 </cmui-tabbar-item>
                 <cmui-tabbar-item class="frs-40" title="原创">
                     <div class="margint10">
-                        <div v-for="(v, i) in yuanchuang" :key="i">
+                        <div v-for="(v, i) in yuanchuang" :key="i" @click="goDetail">
                             <div>
                                 <div class="bg-white paddingh20 paddingv15">
                                     <p class="paddingv20 fs-20">{{v.title}}</p>
@@ -143,7 +143,31 @@
                     </div>
                 </cmui-tabbar-item>
             </cmui-tabbar>
+        </div>
 
+        <div class="paddingh20 paddingv20 borderb">
+            <div class="fs-20" style="font-weight: bold">
+                推荐栏目
+            </div>
+            <div class="list list-col6 paddingh20 paddingv20 pos-r overflow-h">
+                <div class="list-item fs-16 padding10 text-center " style="font-weight: 300;" v-for="(v, i) in secondtitle" :key="i">
+                    <p>{{v}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container text-center" style="height: 4rem;background-color:rgba(245,247,249) " >
+            <div class="flex1 fs-20">
+                <i class="baseIcon fs-20 baseIcon-questionfill"></i>
+                反馈
+            </div>
+            <div class="flex1 fs-20">
+                <i class="baseIcon fs-20 baseIcon-barcode"></i>
+                合作
+            </div>
+            <div class="flex1 fs-20">
+                <i class="baseIcon fs-20 baseIcon-peoplefill"></i>
+                登录
+            </div>
         </div>
     </div>
 </template>

@@ -1,6 +1,6 @@
 {
   "name": "cyanmaple",
-  "version": "2.0.3",
+  "version": "2.1.1",
   "description": "A library based on lodash and vue 2.6+",
   "private": false,
   "main": "CMUI/lib/index.common.js",

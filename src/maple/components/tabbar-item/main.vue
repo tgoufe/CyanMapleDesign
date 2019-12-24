@@ -12,7 +12,7 @@ export default {
   }),
   computed: {
     active() {
-      return this.index === this.cmuiTabbar.activeIndex
+      return this.cmuiTabbar.screen || this.index === this.cmuiTabbar.activeIndex
     }
   },
   updated() {

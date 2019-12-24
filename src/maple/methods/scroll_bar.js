@@ -1,36 +1,42 @@
 import log from './log'
 import _ from 'lodash'
-function scrollTo(target, dom = document.documentElement) {
+let timer
+function scrollTo(target, dom = document.documentElement, callback = function() {}, animate = true) {
+  timer && cancelAnimationFrame(timer)
   let { top, left } = target
   if (_.isNumber(top)) {
     let domPos = dom.scrollTop
-    if (Math.abs(top - domPos) <= 3) {
+    if (Math.abs(top - domPos) <= 3 || !animate) {
       dom.scrollTop = top
+      _.isFunction(callback) && callback()
     } else {
       let t = dom.scrollTop
       dom.scrollTop = top < domPos ? (domPos - domPos / 8) : (domPos + (top - domPos) / 8 + 1)
       if (dom.scrollTop === t) return
-      requestAnimationFrame(() => scrollTo({ top }, dom))
+      timer = requestAnimationFrame(() => scrollTo({ top }, dom, callback))
     }
   }
   if (_.isNumber(left)) {
     let domPos = dom.scrollLeft
-    if (Math.abs(left - domPos) <= 3) {
+    if (Math.abs(left - domPos) <= 3 || !animate) {
       dom.scrollLeft = left
+      _.isFunction(callback) && callback()
     } else {
       let t = dom.scrollLeft
       dom.scrollLeft = left < domPos ? (domPos - domPos / 8) : (domPos + (left - domPos) / 8 + 1)
       if (dom.scrollLeft === t) return
-      requestAnimationFrame(() => scrollTo({ left }, dom))
+      timer = requestAnimationFrame(() => scrollTo({ left }, dom, callback))
     }
   }
 }
 export default function(...arg) {
   let dom = _.remove(arg, _.isElement)[0] || document.documentElement
+  let animate = _.remove(arg, _.isBoolean)[0]
+  let callback = _.remove(arg, _.isFunction)[0]
   let domScrollTop = dom.scrollTop || document.body.scrollTop
   let domScrollLeft = dom.scrollLeft || document.body.scrollLeft
   let argLen = arg.length
-  let regexp = /^(\d+(?:\.\d+)?)(%|view)?$/
+  let regexp = /^-?(\d+(?:\.\d+)?)(%|view)?$/
   let curr, total, view, temp
   if (argLen === 1) {
     // 读操作
@@ -77,7 +83,7 @@ export default function(...arg) {
             // 屏数
             curr = curr * dom.clientHeight
           }
-          scrollTo({ top: curr }, dom)
+          scrollTo({ top: curr }, dom, callback, animate)
           // dom.scrollTop = curr
           break
         case 'bottom':
@@ -95,7 +101,7 @@ export default function(...arg) {
           } else {
             curr = dom.scrollHeight - curr
           }
-          scrollTo({ top: curr }, dom)
+          scrollTo({ top: curr }, dom, callback, animate)
           // dom.scrollTop = curr
           break
         case 'left':
@@ -107,7 +113,7 @@ export default function(...arg) {
             // 屏数
             curr = curr * dom.clientWidth
           }
-          scrollTo({ left: curr }, dom)
+          scrollTo({ left: curr }, dom, callback, animate)
           // dom.scrollLeft = curr
           break
         case 'right':
@@ -121,7 +127,7 @@ export default function(...arg) {
           } else {
             curr = dom.scrollWidth - curr
           }
-          scrollTo({ left: curr }, dom)
+          scrollTo({ left: curr }, dom, callback, animate)
           // dom.scrollLeft = curr
           break
         default:

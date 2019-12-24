@@ -93,6 +93,20 @@
             </cmui-tabbar>
 
         </div>
+        <div class="flex-container text-center" style="height: 4rem;background-color:rgba(245,247,249) " >
+            <div class="flex1 fs-20">
+                <i class="baseIcon fs-20 baseIcon-questionfill"></i>
+                反馈
+            </div>
+            <div class="flex1 fs-20">
+                <i class="baseIcon fs-20 baseIcon-barcode"></i>
+                合作
+            </div>
+            <div class="flex1 fs-20">
+                <i class="baseIcon fs-20 baseIcon-peoplefill"></i>
+                登录
+            </div>
+        </div>
     </div>
 </template>
 
