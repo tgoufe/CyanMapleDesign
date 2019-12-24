@@ -8,13 +8,13 @@ npm i cyanmaple -S
 可以通过 unpkg.com/cyanmaple 获取到最新版本的资源，在页面上css文件即可开始使用。我们提供了4个样式文件，请根据你的需要选择其中之一
 ```html
 <!--完整的样式库，基于移动端，使用rem作为单位，包括基础样式，动画，组件样式，通常是配合maple组件使用-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmui.css">
+<link rel="stylesheet" href="http://cdn.cyanmaple.design/style/cmui.css">
 <!--仅包含基础样式库，基于移动端，使用rem作为单位-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmuiMobile.css">
+<link rel="stylesheet" href="http://cdn.cyanmaple.design/style/cmuiMobile.css">
 <!--仅包含基础样式库，基于PC端，使用PX作为单位-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmuiPc.css">
+<link rel="stylesheet" href="http://cdn.cyanmaple.design/style/cmuiPc.css">
 <!--动画样式库-->
-<link rel="stylesheet" href="https://unpkg.com/cyanmaple/CMUI/style/cmuiAnimate.css">
+<link rel="stylesheet" href="http://cdn.cyanmaple.design/style/cmuiAnimate.css">
 
 ```
 ## 本地编译
@@ -33,7 +33,7 @@ npm run cyan
 如需进行动态样式的支持，需在项目中引入动态样式文件。
 ### 浏览器引入
 ```html
-<script src="https://unpkg.com/cyanmaple/CMUI/lib/styleInit.umd.js"></script>
+<script src="http://cdn.cyanmaple.design/lib/styleInit.umd.js"></script>
 <script>
 styleInit()
 </script>
