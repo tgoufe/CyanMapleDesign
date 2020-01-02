@@ -181,11 +181,8 @@ export default {
     },
     selfVisible: {
       get() {
-        return this.visible
-      },
-      set(value) {
-        if (this.stopPageScroll) {
-          if (value) {
+        if (this.stopPageScroll && typeof document !== 'undefined') {
+          if (this.visible) {
             scrollRec = document.documentElement.scrollTop || document.body.scrollTop
             document.body.style.top = -scrollRec + 'px'
             document.body.classList.add('fixed-full')
@@ -195,6 +192,9 @@ export default {
             document.documentElement.scrollTop = scrollRec
           }
         }
+        return this.visible
+      },
+      set(value) {
         this.$emit('update:visible', value)
         // this.visible = value
         return value

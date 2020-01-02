@@ -25,11 +25,11 @@
             </cmui-tabbar>
         </div>
         <!--banner-->
-       <!-- <cmui-slider :loop="true" :page="true" :autoplay="true" :space="20" class="paddingt40">
+        <cmui-slider :loop="true" :page="true" :autoplay="true" :space="20" class="paddingt40">
             <cmui-slider-item v-for="(e, i) in banner" :key="i">
                 <img :src="e" alt="">
             </cmui-slider-item>
-        </cmui-slider>-->
+        </cmui-slider>
         <!--tip-->
         <!--<div class="flex-container padding20 fs-10">
             <p v-for="(e, i) in ['网易自营品牌', '30天无忧退货', '48小时快速退款']" class="text-container lh-1" >
@@ -180,8 +180,8 @@
 				banner: [
 					'http://fdfs.xmcdn.com/group68/M04/D4/7D/wKgMeF3iWD_QmhDDAAImWh6UzPA853.jpg',
 					'http://fdfs.xmcdn.com/group67/M00/6D/68/wKgMbV3czZ-i4OqtAAEqbyyOp6w497.jpg',
-					'http://fdfs.xmcdn.com/group68/M04/D4/7D/wKgMeF3iWD_QmhDDAAImWh6UzPA853.jpg',
-					'http://fdfs.xmcdn.com/group67/M00/6D/68/wKgMbV3czZ-i4OqtAAEqbyyOp6w497.jpg'
+					'http://fdfs.xmcdn.com/group53/M04/15/56/wKgLfF3_UkrTZTLCAAIQti_FUxM968.jpg',
+					'http://fdfs.xmcdn.com/group64/M08/D3/82/wKgMaV38hGPS1cbYAAEt0lm2P98224.jpg'
                     /*'https://yanxuan.nosdn.127.net/a2e0f844d3b10277d18ac81544f0086c.jpg?imageView&quality=75&thumbnail=750x0',
                      'https://yanxuan.nosdn.127.net/f1683e8ec39b6ff8ef121265269af6c0.jpg?imageView&quality=75&thumbnail=750x0',
                      'https://yanxuan.nosdn.127.net/aa860e44fbd468a7804c1a84796c4827.jpg?imageView&quality=75&thumbnail=750x0',
