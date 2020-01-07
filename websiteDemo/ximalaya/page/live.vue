@@ -8,13 +8,13 @@
 
         <div class="paddingv120 paddingh20 ">
             <div class="list list-col2">
-                <div class="list-item padding10" v-for="item in data" :key="item.page_id" @click="$router.push('brands')">
+                <div class="list-item padding10" v-for="item in liveData" :key="item.chatId" @click="$router.push('detail')">
                     <div class="shadow radius">
-                        <img :src="item.page_info.banner" alt="">
+                        <img :src="item.coverLarge" alt="">
                         <div class="padding20">
-                            <p>{{item.page_info.name}}</p>
-                            <p class="text-light fs-11 margint10">
-                                品牌·{{item.page_info.discuss_num}}人在讨论
+                            <p>{{item.nickname}}</p>
+                            <p class="text-light fs-11 margint10 text-limit1">
+                                {{item.name}}
                             </p>
                         </div>
                     </div>
@@ -25,13 +25,16 @@
 
 </template>
 <script>
-	import {data} from '../data/hot.json'
+	import data from '../data/liveData.json'
 	export default {
 		name: 'hot',
 		data () {
 			return {
-				data
+				liveData: data.data.lives
 			}
+		},
+		created() {
+			console.log(data)
 		}
 	}
 </script>

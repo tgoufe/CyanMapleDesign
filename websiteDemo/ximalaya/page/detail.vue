@@ -13,7 +13,7 @@
                 <div class=" paddingv60 paddingh40 text-white flex-container ">
                     <div class="flex2">
                         <img width="95" height="95"
-                             src="//imagev2.xmcdn.com/group62/M08/57/04/wKgMZ1z7asCSSAR8AAFp44juMnc336.jpg" alt="">
+                             src="//imagev2.xmcdn.com/group31/M07/0E/5B/wKgJX1mAQgyi9-IfAAAw0CICWi8961.jpg!op_type=3&columns=144&rows=144&magick=webp" alt="">
                     </div>
 
                     <div class="flex4">
@@ -56,26 +56,21 @@
         <!--节目-->
         <div class="paddingh30 paddingt30">
             <div class="flex-container">
-                <span class="fs-18 text-bolder">节目({{153}})</span>
+                <span class="fs-18 text-bolder">节目({{bodyData.titles.length}})</span>
                 <span class="text-orangespan">批量下载<i class="iconfont icon-more"></i></span>
             </div>
 
             <div class="list list-col1">
-                <div class="list-item" v-for="item in data" :key="item.page_id"
-                     @click="$router.push('brands')">
-                    <div class="shadow radius">
-
-                        <div class="padding20">
-                            <p>{{item.page_info.name}}</p>
-                            <p class="text-light fs-11 margint10">
-                                品牌·{{item.page_info.discuss_num}}人在讨论
-                            </p>
-                        </div>
+                <div class="list-item" v-for="(item,$index) in bodyDataTexts" :key="$index">
+                    <div class="flex-container shadow radius padding20" >
+                        <i class="iconfont icon-home"></i>
+                        <p class="padding20" @click="$router.push('home')">{{item}}</p>
+                        <i class="iconfont icon-more right" @click="$router.push('more')"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="fs-15 paddingv34 text-center text-orangespan text-bolder">加载更多<i class="iconfont icon-more"></i></div>
+            <div class="fs-15 paddingv34 text-center text-orangespan text-bolder" @click="pushMore()">加载更多<i class="iconfont icon-more"></i></div>
         </div>
 
         <!--大咖来了-->
@@ -94,12 +89,12 @@
             </div>
 
             <div class="list list-col3">
-                <div class="list-item padding10" v-for="item in data" :key="item.page_id"
-                     @click="$router.push('brands')">
+                <div class="list-item padding10" v-for="item in bodyDataList.slice(0, 6)" :key=""
+                     @click="$router.push('home')">
                     <div class="paddingv12 img-container" style="width: 103px;height: 103px;">
-                        <img class="radius5" width="103" :src="item.page_info.banner" alt="">
+                        <img class="radius5" width="103" :src="item.img" alt="">
                     </div>
-                    <p class="text-limit2 fs-13">{{item.page_info.name}}</p>
+                    <p class="text-limit2 fs-13">{{item.title}}</p>
                 </div>
             </div>
 
@@ -127,12 +122,12 @@
                 </div>
             </div>
             <div class="flex-container paddingt56 paddingb22">
-                <div>
-                    <img width="91" src="//imagev2.xmcdn.com/group68/M07/FD/8F/wKgMbl3WPWCTUMRBAAJGX3kaaLY681.jpg!op_type=3&columns=144&rows=144&magick=webp" alt="">
+                <div v-for="item in bodyDataList.slice(6, 9)">
+                    <img width="91" :src="item.img" alt="item.title">
                     <img width="11" height="64" src="//s1.xmcdn.com/yx/ximalaya-mobile-resource/last/dist/images/album_disc_bg@2x_71be49d.png" alt="">
-                    <span class="text-limit2 paddingt12 paddingr44">2019郭德纲从艺30周年相声专场</span>
+                    <span class="text-limit2 paddingt12 paddingr44">{{item.title}}</span>
                 </div>
-                <div>
+                <!--<div>
                     <img  width="91" src="//imagev2.xmcdn.com/group68/M07/FD/8F/wKgMbl3WPWCTUMRBAAJGX3kaaLY681.jpg!op_type=3&columns=144&rows=144&magick=webp" alt="">
                     <img  width="11" height="64" src="//s1.xmcdn.com/yx/ximalaya-mobile-resource/last/dist/images/album_disc_bg@2x_71be49d.png" alt="">
                     <span class="text-limit2 paddingt12 paddingr44">2019郭德纲从艺30周年相声专场</span>
@@ -141,7 +136,7 @@
                     <img width="91" src="//imagev2.xmcdn.com/group68/M07/FD/8F/wKgMbl3WPWCTUMRBAAJGX3kaaLY681.jpg!op_type=3&columns=144&rows=144&magick=webp" alt="">
                     <img width="11" height="64" src="//s1.xmcdn.com/yx/ximalaya-mobile-resource/last/dist/images/album_disc_bg@2x_71be49d.png" alt="">
                     <span class="text-limit2 paddingt12 paddingr44">2019郭德纲从艺30周年相声专场</span>
-                </div>
+                </div>-->
             </div>
             <div class="text-center paddingt20">
                 进入主页 >
@@ -226,12 +221,15 @@
 
 </template>
 <script>
-	import {data} from '../data/hot.json'
+	import bodyData from '../data/hot.json'
 	import dataList from '../data/index.json';
 	export default {
 		data () {
 			return {
-				data,
+				bodyData,
+				bodyDataTextsIndex: 8,
+				bodyDataTexts: bodyData.titles.slice(0, 8),
+				bodyDataList: bodyData.body,
 				opsList: dataList,
                 tips: ['相声', '于谦', '郭德纲', '专辑'],
 				isTextShow: false
@@ -243,7 +241,15 @@
 		methods: {
 	        deTextShow() {
 	        	this.isTextShow = !this.isTextShow;
-            }
+            },
+			pushMore() {
+				this.bodyDataTextsIndex += 5;
+				if (this.bodyDataTextsIndex < bodyData.titles.length) return this.bodyDataTexts = bodyData.titles.slice(0, this.bodyDataTextsIndex);
+				if (this.bodyDataTextsIndex > bodyData.titles.length) return this.bodyDataTexts = bodyData.titles;
+            },
+            goDetail () {
+				this.$router.push(`/fenlei`)
+			}
         }
 	}
 </script>
