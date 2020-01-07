@@ -130,11 +130,11 @@ export default {
   },
   methods: {
     cancel: function() {
-      this.visible = false
+      this.selfVisible = false
       typeof this.cancelFn === 'function' && this.cancelFn()
     },
     ok: function() {
-      this.visible = false
+      this.selfVisible = false
       typeof this.okFn === 'function' && this.okFn()
     }
   }

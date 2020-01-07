@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="row paddingh30 text-ligthgray" style="display:flex;flex-wrap:wrap">
-                        <a class="flex-container center padding15" v-for="label in item.childrenLabels">{{label.name}}</a>
+                        <a class="flex-container center padding15" v-for="label in item.childrenLabels" @click="$router.push('live')">{{label.name}}</a>
                     </div>
                 </div>
 
