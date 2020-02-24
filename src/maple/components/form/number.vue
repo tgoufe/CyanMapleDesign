@@ -130,15 +130,22 @@ export default {
       }
     },
     setBtnState (isFirst = false) {
-      console.log(`number setBtnState`, this.selfValue)
       this.canAddSelf = this.canSubSelf = true
-      if (+this.selfValue === this.max) {
-        this.canAddSelf = false
-        !isFirst && this.$emit('max', this.selfValue, this)
-      }
-      if (+this.selfValue === this.min) {
-        !isFirst && this.$emit('min', this.selfValue, this)
-        this.canSubSelf = false
+      switch (true) {
+        case this.selfValue === this.max:
+          this.canAddSelf = false
+          !isFirst && this.$emit('max', this.selfValue, this)
+          break
+        case this.selfValue === this.min:
+          this.canSubSelf = false
+          !isFirst && this.$emit('min', this.selfValue, this)
+          break
+        case this.selfValue > this.max:
+          this.selfValue = this.max
+          break
+        case this.selfValue < this.min:
+          this.selfValue = this.min
+          break
       }
     },
     handleBlur () {
