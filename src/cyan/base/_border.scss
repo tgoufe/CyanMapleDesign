@@ -40,7 +40,9 @@
 				border: 1px solid transparent;
 				transform: scale(.5);
 				transform-origin: 0 0;
-				content:'';
+        content:'';
+        top:0;
+        left:0;
 			}
 		}
 		&, &.item >*{
