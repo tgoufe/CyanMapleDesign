@@ -63,7 +63,7 @@ body{
 	    text-overflow: ellipsis;
 		white-space: initial;
 }
-@for $i from 1 through $layoutNumber{
+@for $i from 1 through 5{
 	.text-limit#{$i}{
 		@extend %text-limit;
 		 -webkit-line-clamp: $i;
