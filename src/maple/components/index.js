@@ -1,4 +1,5 @@
 import Alert from './alert/index.js'
+import Backtop from './backtop/index.js'
 import Popup from './popup/index.js'
 import Actions from './actions/index.js'
 import Confirm from './confirm/index.js'
@@ -39,6 +40,7 @@ import TabbarItem from './tabbar-item/index.js'
 import VirtualList from './virtualList/index.js'
 export default {
   Alert,
+  Backtop,
   Popup,
   Actions,
   Confirm,
