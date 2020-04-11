@@ -30,7 +30,7 @@
     </div>
   </div>
 </template>
-<style type="text/css">
+<style lang="scss" type="text/scss" scoped>
 .swiper-scrollbar:empty {
   display: none;
 }

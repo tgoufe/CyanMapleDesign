@@ -11,7 +11,7 @@
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" type="text/scss" scoped>
 .cmui-list-item {
   float: left;
   position: relative;

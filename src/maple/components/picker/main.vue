@@ -35,7 +35,7 @@
         </div>
     </cmui-popup>
 </template>
-<style lang="scss">
+<style lang="scss" type="text/scss" scoped>
 $pickerHeight: 200px;
 $pickerItemSize: 20px;
 .cmui-picker__wrapper {

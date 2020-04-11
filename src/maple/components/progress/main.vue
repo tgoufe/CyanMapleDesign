@@ -69,7 +69,7 @@
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" type="text/scss" scoped>
 .cmui-progress_warp {
   overflow: hidden;
   .cmui-progress_bar {

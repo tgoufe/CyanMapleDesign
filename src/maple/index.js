@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import components from './components/index.js'
 import pageComponents from './pageComponent/index.js'
+
 // methods
 import methods from './methods/index.js'
 function Maple() {

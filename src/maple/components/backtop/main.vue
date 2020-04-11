@@ -110,7 +110,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" type="text/scss" scoped>
 .cmui-fade-in-linear-enter-active,
 .cmui-fade-in-linear-leave-active {
   transition: opacity 200ms linear;
