@@ -182,7 +182,7 @@ blockquote,  dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, pre
 	>*.right{margin-left:auto;}
 	>*.bottom{margin-top:auto;}
 }
-@for $i from 1 through $layoutNumber{
+@for $i from 1 through 5{
 	.flex-grow#{$i}{flex-grow:$i}
 	.flex#{$i}{flex:$i}
 }

@@ -1,5 +1,5 @@
 @each $name,$key in ('top':'t','left':'l','right':'r','bottom':'b','base':''){
-  @for $i from 0 through $layoutNumber{
+  @for $i from 0 through 5{
     @each $prop in ('margin','padding'){
       @if $name!='base'{
         .#{$prop}#{$key}#{$i * 10}{#{$prop}-#{$name}:getLayoutSize($i,1);}
