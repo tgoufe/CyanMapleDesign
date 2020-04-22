@@ -503,7 +503,9 @@ export default {
 }
 </script>
 
-<style lang="scss" type="text/scss" scoped>
+
+<style lang="scss" type="text/scss">
+
 
 .infinite-top-content{
   height: 100%;

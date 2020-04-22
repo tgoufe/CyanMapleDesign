@@ -21,7 +21,7 @@
     </div>
   </div>
 </template>
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" type="text/scss">
 .cmui-slidebar__dot {
   position: absolute;
   left: 0;
