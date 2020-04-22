@@ -18,7 +18,7 @@
         </div>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" type="text/scss">
 .cmui-swiper {
   transform-style: preserve-3d;
   overflow: hidden;

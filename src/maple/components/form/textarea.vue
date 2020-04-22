@@ -47,7 +47,7 @@
     </span>
   </div>
 </template>
-<style>
+<style lang="scss" type="text/scss" scoped>
 .cmui-textarea textarea {
   min-height: 100px;
 }

@@ -69,6 +69,6 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss" type="text/scss" scoped>
     .cmui-form-item__label {padding-right:12px}
 </style>

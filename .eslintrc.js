@@ -13,6 +13,8 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-sequences':'off',
+    'no-useless-escape':'off',
     'no-tabs': 'off',
     'space-before-function-paren': 'off',
     'vue/no-side-effects-in-computed-properties': 'off',
