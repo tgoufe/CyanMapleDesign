@@ -292,7 +292,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" type="text/scss">
+<style lang="scss" type="text/scss" scoped>
     .cmui-form-item{
         &.is-error{
             input{border-color:#F56C6C}

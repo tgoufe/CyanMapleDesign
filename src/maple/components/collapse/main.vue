@@ -3,7 +3,7 @@
     <slot />
   </div>
 </template>
-<style lang="scss" type="text/scss">
+<style lang="scss" type="text/scss" scoped>
 .cmui-collapse-item__body,
 .cmui-collapse-item__header {
   border: 1px solid transparent;

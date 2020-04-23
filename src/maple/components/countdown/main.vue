@@ -10,7 +10,7 @@
     </div>
   </div>
 </template>
-<style>
+<style lang="scss" type="text/scss" scoped>
 .countdown-container {
   background-color: #232323;
   color: #ffffff;

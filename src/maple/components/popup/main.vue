@@ -29,7 +29,7 @@
     </div>
   </transition>
 </template>
-<style type="text/css" lang="scss">
+<style lang="scss" type="text/scss" scoped>
 .cmui-popup {
   z-index: 1000;
   .cmui-popup__mask {

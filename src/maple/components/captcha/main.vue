@@ -35,7 +35,7 @@
     </form>
   </div>
 </template>
-<style type="text/css" lang="scss">
+<style lang="scss" type="text/scss" scoped>
 .cmui-captcha__input {
   position: absolute;
   left: -99.99rem;

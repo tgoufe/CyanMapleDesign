@@ -71,7 +71,7 @@
     </span>
   </div>
 </template>
-<style type="text/css" lang="scss">
+<style lang="scss" type="text/scss" scoped>
 @import "../../../cyan/variables";
 .cmui-select {
   .cmui-select__prepend,

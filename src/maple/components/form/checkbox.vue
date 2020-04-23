@@ -31,7 +31,7 @@
     </span>
   </label>
 </template>
-<style type="text/css" lang="scss">
+<style lang="scss" type="text/scss" scoped>
 @import "../../../cyan/variables";
 .cmui-check__label {
   &.checked {

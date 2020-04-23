@@ -32,7 +32,6 @@
     </span>
   </label>
 </template>
-<style type="text/css" lang="scss"></style>
 <script type="text/javascript">
 import mixin from './mixin.js'
 export default {
