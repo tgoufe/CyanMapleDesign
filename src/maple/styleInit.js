@@ -1,4 +1,20 @@
-import _ from 'lodash'
+import uigradients from './uigradients.json'
+const debounce = (fn, ms = 0) => {
+  let timeoutId
+  return function(...args) {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => fn.apply(this, args), ms)
+  }
+}
+const toCamelCase = str => {
+  let s =
+    str &&
+    str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+      .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+      .join('')
+  return s.slice(0, 1).toLowerCase() + s.slice(1)
+}
+let uigradientsData = uigradients.reduce((rs, item) => { rs[toCamelCase(item.name)] = item.colors; return rs }, {})
 let exportModule = window || {}
 let methodName = 'initCMUI'
 let checkDevice = () => /iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion) || document.scrollingElement.clientWidth < 770
@@ -26,6 +42,17 @@ export default (function() {
     name = name.replace(/[A-Z]/g, i => `-${i.toLowerCase()}`)
     cmuiStyle.sheet.insertRule(`${selector}{${name}:${value}}`, cssRulesLen)
   }
+  // set gradient
+  function setGradient() {
+    let index = 1
+    for (let key in uigradientsData) {
+      ['', 'top', 'bottom', 'left'].forEach(pos => {
+        insertStyle(`.gradient_${key}${pos ? '_' + pos : ''},.gradient_${index}${pos ? '_' + pos : ''}`, `background`, `linear-gradient(to ${pos || 'right'}, ${uigradientsData[key].join(',')})`)
+      })
+      index++
+    }
+  }
+  setGradient()
   // set pm
   let PMstore = new Set()
   let reg = /\b((padding|margin|radius)[trblvh]?|top|bottom|right|left)(-n)?\d+\b/g
@@ -148,20 +175,23 @@ export default (function() {
   addMethod(methodName, initByAuto)
   addMethod(methodName, initByNumber)
   addMethod(methodName, initByRange)
-  let resetRule = _.debounce(() => {
+  let resetRule = debounce(() => {
     if (checkDevice() !== isMobile) {
       isMobile = checkDevice()
       setFontSize()
-      _.forEach(cmuiStyle.sheet.rules, rule => {
+      Array.prototype.slice.call(cmuiStyle.sheet.rules).forEach(rule => {
         let { style } = rule
         let len = style.length
         while (len--) {
           let name = style[len].replace(/-(\w)/g, (word, $1) => $1.toUpperCase())
-          let value = style[name].match(/\d+(\.\d+)?/g)[0]
-          if (isMobile) {
-            style[name] = value / 75 + 'rem'
-          } else {
-            style[name] = value * 75 + 'px'
+          let matchs = style[name].match(/\d+(\.\d+)?/g)
+          if (matchs) {
+            let value = matchs[0]
+            if (isMobile) {
+              style[name] = value / 75 + 'rem'
+            } else {
+              style[name] = value * 75 + 'px'
+            }
           }
         }
       })
