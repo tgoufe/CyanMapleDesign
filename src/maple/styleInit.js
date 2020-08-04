@@ -162,32 +162,34 @@ export default (function() {
       attributeFilter: ['class', 'ratio']
     })
   }
-  function initStyle(options){
-    let {auto=true,startNumber=0,endNumber=50,step=10}=options;
-    if(auto){
+  /* eslint-disable */
+  function initStyle(options) {
+    let { auto = true, startNumber = 0, endNumber = 50, step = 10 } = options
+    if (auto) {
       if (document.body) {
         obs()
         setPMByDom()
       } else {
         document.addEventListener('DOMContentLoaded', initStyle, false)
       }
-    }else if(startNumber<endNumber&&step>0){
-      let numberList=[];
-      while(startNumber<endNumber){
-        numberList.push(startNumber);
-        startNumber+=step|0
+    } else if (startNumber < endNumber && step > 0) {
+      let numberList = []
+      while (startNumber < endNumber) {
+        numberList.push(startNumber)
+        startNumber += step | 0
       }
       let data = new Set()
-      numberList.forEach(num=>{
-        num&&['padding', 'margin','radius'].forEach(prop=>{
-          ['','t', 'r', 'b', 'l', 'h', 'v'].forEach(pos=>{
-            data.add(`${prop}${pos}${num>=0?num:num.toString().replace('-','-n')}`);
+      numberList.forEach(num => {
+        num && ['padding', 'margin', 'radius'].forEach(prop => {
+          ['', 't', 'r', 'b', 'l', 'h', 'v'].forEach(pos => {
+            data.add(`${prop}${pos}${num >= 0 ? num : num.toString().replace('-', '-n')}`)
           })
         })
       })
       setPMBySet(data)
     }
   }
+  /* eslint-enable */
   // set initCMUI
   function addMethod(name, fn) {
     let oldObject = exportModule[name]

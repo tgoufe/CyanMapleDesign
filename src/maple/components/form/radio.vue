@@ -78,7 +78,7 @@ export default {
       return style
     },
     selflabel() {
-      return this.isBtn ? this.label : ''
+      return this.isBtn ? _.get(this, '$slots.default[0].text', this.label) : ''
     }
   }
   // watch: {
