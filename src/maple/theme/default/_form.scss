@@ -1,0 +1,13 @@
+.cmui-radio{
+  .cmui-radio__label{
+    &.checked{
+      color:$mainColor
+    }
+  }
+  &:not(.flex-container){
+    margin-right:.4rem;
+    &:last-child{
+      margin-right:0;
+    }
+  }
+}

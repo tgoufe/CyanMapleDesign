@@ -1,26 +1,26 @@
 .border{
-	border:1px solid $border-color-default;
+	border-width:1px;
 	overflow: hidden;
-	&t,&v{border-top:1px solid $border-color-default; }
-	&b,&v{border-bottom:1px solid $border-color-default; }
-	&l,&h{border-left:1px solid $border-color-default; }
-	&r,&h{border-right:1px solid $border-color-default; }
+	&t,&v{border-top-width:1px; }
+	&b,&v{border-bottom-width:1px; }
+	&l,&h{border-left-width:1px; }
+	&r,&h{border-right-width:1px; }
 	&.item,&.itemv,&.itemh{
 		border:none;
 	}
 	&.item{
 		>*{
-			border:1px solid $border-color-default;
+			border-width:1px;
 		}
 	}
 	&.itemv{
 		>*:not(:first-child){
-			border-top:1px solid $border-color-default;
+			border-top-width:1px;
 		}
 	}
 	&.itemh{
 		>*:not(:first-child){
-			border-left:1px solid $border-color-default;
+			border-left-width:1px;
 		}
 	}
 	&.round{
@@ -28,9 +28,8 @@
 			border-radius:375px;
 		}
 	}
-	//light
-	&.light{
-		&, &t, &r, &b, &l, &.item >*, &.itemh >*, &.itemv >*{
+  //light
+	&.light,&t.light, &r.light, &b.light, &l.light, &.item.light >*, &.itemh.light >*, &.itemv.light >*{
 			position:relative;
 			border:none;
 			&::before{
@@ -44,7 +43,8 @@
         top:0;
         left:0;
 			}
-		}
+  }
+  &.light {
 		&, &.item >*{
 			&::before{border-color:$border-color-default; }
 		}

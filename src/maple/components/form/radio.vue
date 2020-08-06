@@ -1,12 +1,12 @@
 <template>
-  <label class="cmui-radio" :class="{ 'flex-container': flex ,'cmui-checkbox__disabled':isDisabled}">
+  <label class="cmui-radio" :class="{ 'flex-container': flex&&!isBtn ,'dis-i':!flex||isBtn,'cmui-checkbox__disabled':isDisabled}">
     <span
       v-if="align === 'left'"
       :class="{ checked: model === label }"
       class="cmui-radio__label"
       :style="labelStyle"
     >
-      <slot />
+      <slot v-if="!isBtn" />
       <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
     <input
@@ -16,7 +16,7 @@
       :name="name"
       :value="label"
       :readonly="readonly"
-      :class="[targetClass]"
+      :class="[cmuiRadioGroup.targetClass,targetClass]"
       :disabled="isDisabled"
       :label="selflabel"
       @change="handleChange"
@@ -27,7 +27,7 @@
       class="cmui-radio__label"
       :style="labelStyle"
     >
-      <slot />
+      <slot v-if="!isBtn" />
       <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
   </label>
@@ -38,14 +38,13 @@ export default {
   name: 'cmui-radio',
   mixins: [mixin],
   inject: {
-    cmuiRadioGroup: {
-      default: ''
-    }
+    cmuiRadioGroup: { default: '' },
+    cmuiForm: { default: '' }
   },
   data() {
     return {
       radioValue: this.value,
-      isBtn: !!~this.targetClass.split(' ').indexOf('btn')
+      isBtn: !!~(this.cmuiRadioGroup.targetClass || this.targetClass).split(' ').indexOf('btn')
     }
   },
   computed: {
@@ -78,13 +77,8 @@ export default {
       return style
     },
     selflabel() {
-      return this.isBtn ? this.label : ''
+      return this.isBtn ? _.get(this, '$slots.default[0].text', this.label) : ''
     }
   }
-  // watch: {
-  //   value(newValue) {
-  //     this.radioValue = newValue
-  //   }
-  // }
 }
 </script>
