@@ -1,56 +1,45 @@
 <template>
     <div id="radioDemo">
-        <p class="title paddingv20 paddingh30">请选择性别</p>
-        <div class="example tag-container form">
-            <div class="paddingt30 paddingb10 paddingh40 flex-container formNewStyle">
-                <div class="fs-16">男</div>
-                <cmui-radio name="sex" label="男" v-model="options.value" v-bind="options" :target-class="targetClass"/>
-            </div>
-            <div class="paddingt30 paddingb10 paddingh40 flex-container formNewStyle">
-                <div class="fs-16">女</div>
-                <cmui-radio name="sex" label="女" v-model="options.value" v-bind="options" :target-class="targetClass"/>
-            </div>
-<!--             <cmui-radio name="sex" label="人妖(不可选)" v-model="options.value" v-bind="options" :target-class="targetClass" :disabled="true"/>
-            <p>
-                你的选择是：{{options.value}}
-            </p> -->
-        </div>
-<!--         <div class="form tag-container config">
-            <cmui-list :space="10">
-                <cmui-list-item>
-                    <div class="flex-container">
-                        <label>文本显示位置</label>
-                        <div class="">
-                            <cmui-radio name="align" v-model="options.align" label="left">
-                                左侧
-                            </cmui-radio>
-                            <cmui-radio name="align" v-model="options.align" label="right">
-                                右侧
-                            </cmui-radio>
-                        </div>
-                    </div>
-                </cmui-list-item>
-                <cmui-list-item>
-                    <cmui-checkbox v-model="options.flex" target-class="switch" :flex="true">
-                        是否使用flex布局
-                    </cmui-checkbox>
-                </cmui-list-item>
-                <cmui-list-item>
-                    <cmui-checkbox v-model="options.disabled" target-class="switch" :flex="true">
-                        disabled
-                    </cmui-checkbox>
-                </cmui-list-item>
-                <cmui-list-item>
-                    <p>target-class</p>
-                    <div class="flex-container">
-                        <cmui-checkbox :key="key" v-for="(item,key) in targetClassList" v-model="item.value">
-                            {{item.text}}
-                        </cmui-checkbox>
-                    </div>
-                </cmui-list-item>
-            </cmui-list>
-        </div> -->
-        <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1">
+        <!-- <p class="title paddingv20 paddingh30">通用样式</p>
+        <cmui-radio-group v-model="options.value" :target-class="targetClass">
+          <cmui-radio label="男" :flex="options.flex" :disabled="options.disabled"></cmui-radio>
+          <cmui-radio label="女" :flex="options.flex" :disabled="options.disabled"></cmui-radio>
+        </cmui-radio-group>
+        <p class="title paddingv20 paddingh30">按钮样式</p>
+        <cmui-radio-group v-model="options.value" :target-class="targetClass+' btn'">
+          <cmui-radio label="男" :flex="options.flex" :disabled="options.disabled"></cmui-radio>
+          <cmui-radio label="女" :flex="options.flex" :disabled="options.disabled"></cmui-radio>
+        </cmui-radio-group> -->
+        <p>通用类</p>
+        <p>常见展示方式</p>
+        <cmui-radio-group v-model="options.value">
+          <cmui-radio label="默认" target-class=""></cmui-radio>
+          <cmui-radio label="翻转" target-class="reverse"></cmui-radio>
+          <cmui-radio label="方形" target-class="square"></cmui-radio>
+          <cmui-radio label="方形翻转" target-class="square reverse"></cmui-radio>
+        </cmui-radio-group>
+        <p>小尺寸</p>
+        <cmui-radio-group v-model="options.value" target-class="small">
+          <cmui-radio label="默认" target-class=""></cmui-radio>
+          <cmui-radio label="翻转" target-class="reverse"></cmui-radio>
+          <cmui-radio label="方形" target-class="square"></cmui-radio>
+          <cmui-radio label="方形翻转" target-class="square reverse"></cmui-radio>
+        </cmui-radio-group>
+        <p>右侧展示文字</p>
+        <cmui-radio-group v-model="options.value">
+          <cmui-radio align="right" label="默认" target-class=""></cmui-radio>
+          <cmui-radio align="right" label="翻转" target-class="reverse"></cmui-radio>
+          <cmui-radio align="right" label="方形" target-class="square"></cmui-radio>
+          <cmui-radio align="right" label="方形翻转" target-class="square reverse"></cmui-radio>
+        </cmui-radio-group>
+        <p>按钮展示</p>
+        <cmui-radio-group v-model="options.value" target-class="btn">
+          <cmui-radio label="默认" target-class=""></cmui-radio>
+          <cmui-radio label="清淡" target-class="light"></cmui-radio>
+          <cmui-radio label="翻转" target-class="reverse"></cmui-radio>
+          <cmui-radio label="方形翻转" target-class="square reverse"></cmui-radio>
+        </cmui-radio-group>
+        <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1;display:none">
             <div class="btn-group flex-container">
               <span class="text-white left flex2" style="min-width: 55px;">位置</span>
               <div class="flex-container flex3" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
@@ -118,10 +107,10 @@
                 options:{
                     align:'left',
                     disabled:false,
-                    value:'',
+                    value:'默认',
                     flex:false
                 },
-                targetClassList:['small','big','square','reverse'].map(item=>({text:item,value:false})),
+                targetClassList:['small','big','square','reverse','light'].map(item=>({text:item,value:false})),
             }
         },
         computed:{

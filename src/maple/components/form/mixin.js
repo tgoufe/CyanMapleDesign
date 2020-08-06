@@ -53,7 +53,7 @@ export default {
     name: { type: String, default: '', intro: '表单项名称' },
     target: { type: Object, default: null, intro: '可用于存放一个对象在后续操作中使用' },
     targetClass: { type: String, default: '', intro: '绑定到表单项上的class，可配合Cyan使用' },
-    label: { type: String, default: '', intro: '标签文字' },
+    label: { type: [String, Number], default: '', intro: '标签文字' },
     align: { type: String, default: 'left', intro: '标签位置，可选项为left或right' },
     flex: { type: Boolean, default: false, intro: '是否使用flex布局' }
   },
