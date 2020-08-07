@@ -35,3 +35,27 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.cmui-radio-group{
+  &.group{
+    .cmui-radio{
+      margin-right:0;
+      &:not(:first-child):not(:last-child){
+        input{border-radius: 0;}
+      }
+      &:first-child{
+        input{
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+      &:last-child{
+        input{
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+  }
+}
+</style>
