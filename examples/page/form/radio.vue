@@ -31,8 +31,8 @@
             <div class="btn-group flex-container">
               <span class="text-white left flex2" style="min-width: 55px;">位置</span>
               <div class="flex-container flex3" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
-                  <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="options.align='left'" :class="options.align=='left'?'badgeCurrent':'badgeDefault'">Left</div></div>
-                  <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="options.align='right'" :class="options.align=='right'?'badgeCurrent':'badgeDefault'">Right</div></div>
+                  <div class="flex1 flex-container center" style="padding:3px;"><div class="badge pill blue" @click="options.align='left'" :class="options.align=='left'?'badgeCurrent':'badgeDefault'">Left</div></div>
+                  <div class="flex1 flex-container center" style="padding:3px;"><div class="badge pill blue" @click="options.align='right'" :class="options.align=='right'?'badgeCurrent':'badgeDefault'">Right</div></div>
               </div>
             </div>
             <div class="form NewStyle">
@@ -68,23 +68,6 @@
         .form{
             .cmui-list-item-container{
                 padding:1px;
-            }
-        }
-    }
-    .formNewStyle{
-        .cmui-radio span{
-            display:none
-        }
-        .btn{
-            border-radius:32px;
-            border:2px solid #fff;
-            background:none;
-            padding: 1px 10px;
-            margin:0 2px;
-            font-size:12px;
-            &.current{
-                color:#fff;
-                background:#00baba;
             }
         }
     }
