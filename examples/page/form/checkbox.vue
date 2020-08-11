@@ -12,7 +12,7 @@
         <p class="title paddingv20 paddingh30">全选</p>
         <div class="paddingh40 paddingt20 form">
             <cmui-checkbox v-model="demoList" label="全选" path="value" :targetClass="targetClass"></cmui-checkbox>
-            <cmui-checkbox-group v-model="btnValue" :targetClass="targetClass">
+            <cmui-checkbox-group :targetClass="targetClass">
               <cmui-checkbox v-for="(item,index) in demoList" :flex="options.flex" :align="options.align" :key="index" v-model="item.value" :label="item.label"></cmui-checkbox>
             </cmui-checkbox-group>
         </div>

@@ -49,6 +49,12 @@ input{
 }
 .form{
     input{
+        &[type=color],
+        &[type=date],
+        &[type=datetime-local],
+        &[type=datetime],
+        &[type=month],
+        &[type=time]{min-height:nth(map-get($btn-size-list, "base"), 1);}
         @at-root .form textarea,.form select,.from textarea,
         &[type=color],
         &[type=date],
@@ -382,6 +388,14 @@ input{
         }
         @each $btnSizeName,$btnSizeValue in $btn-size-list{
           @if $btnSizeName!='base'{
+            &.#{$btnSizeName}{
+              &[type=color],
+              &[type=date],
+              &[type=datetime-local],
+              &[type=datetime],
+              &[type=month],
+              &[type=time]{min-height:nth($btnSizeValue, 1);}
+            }
             &.#{$btnSizeName}:not([type=checkbox]):not([type=radio]){
               padding: (nth($btnSizeValue,1) - 26px - 2) / 2 $padding-base-horizontal;
               &~{
@@ -425,6 +439,7 @@ input{
                     @include translate((nth($btnSizeValue,1) - $border-radius-base * 2 - 7),0px )
                 }
             }
+            
           }
         }
     }
@@ -591,20 +606,24 @@ input{
         }
     }
     //use in cmui-component
-    .cmui-input__prepend,.cmui-input__append,.cmui-select__prepend,.cmui-select__append{
-        line-height:26px;
-        & > *{
-            padding: (nth(map-get($btn-size-list, "base"), 1) - 26px - 2) / 2
-            $padding-base-horizontal;
+    .cmui-input,.cmui-select{
+      &__prepend,&__append{
+        line-height: 26px;
+        padding: (nth(map-get($btn-size-list, "base"), 1) - 26px - 2) / 2 $padding-base-horizontal;
+        .cmui-select{
+          margin:(nth(map-get($btn-size-list, "base"), 1) - 26px) / -2  $padding-base-horizontal * -1 - 1px;
         }
-        @each $btnSizeName, $btnSizeValue in $btn-size-list {
-            @if (#{$btnSizeName}!= "base") {
-                &.#{$btnSizeName} > * {
-                    padding: (nth($btnSizeValue, 1) - 26px - 2) / 2
-                    $padding-base-horizontal;
-                }
+        select{
+          border-color:transparent;
+        }
+        @each $btnSizeName, $btnSizeValue in $btn-size-list{
+          @if (#{$btnSizeName}!= "base"){
+            &.#{$btnSizeName}{
+              padding: (nth($btnSizeValue, 1) - 26px - 2) / 2 $padding-base-horizontal;
             }
+          }
         }
+      }
     }
 }
 

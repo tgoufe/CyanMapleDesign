@@ -78,7 +78,7 @@ export default {
           this.indeterminate = !(allTrue || allFalse)
           return allTrue
         } else {
-          return this.inGroup ? this.cmuiCheckboxGroup.value : !!value
+          return !!value// this.inGroup ? this.cmuiCheckboxGroup.value : !!value
         }
       },
       set(value) {
