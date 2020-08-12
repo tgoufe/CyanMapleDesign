@@ -5,7 +5,7 @@
   "private": false,
   "main": "CMUI/lib/index.common.js",
   "scripts": {
-    "start": "vue-cli-service serve --open",
+    "start": "node autoRouter.js && vue-cli-service serve --open",
     "precommit": "vue-cli-service lint",
     "lint:prettier": "cross-env prettier --write \"src/maple/**/*.js\" \"src/maple/**/*.vue\" --loglevel warn",
     "cyan": "gulp sass",

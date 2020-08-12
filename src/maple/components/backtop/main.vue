@@ -30,7 +30,7 @@ export default {
       type: Number,
       default: 200
     },
-    target: [String],
+    target: { type: String, default: '' },
     right: {
       type: Number,
       default: 40

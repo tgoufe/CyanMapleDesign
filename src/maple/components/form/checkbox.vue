@@ -1,11 +1,12 @@
 <template>
-  <label class="cmui-checkbox" :class="{ 'flex-container': flex ,'cmui-checkbox__disabled':isDisabled}" :for="_uid">
+  <label class="cmui-checkbox" :class="{ 'flex-container': flex&&!isBtn,'dis-i':!flex||isBtn ,'cmui-checkbox__disabled':isDisabled}" :for="_uid">
+
     <span
       v-if="align === 'left'"
       :class="{ checked: isChecked }"
       class="cmui-check__label"
     >
-      <slot />
+      <slot v-if="!isBtn" />
       <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
     <input
@@ -15,7 +16,7 @@
       type="checkbox"
       :name="name"
       :readonly="readonly"
-      :class="[targetClass]"
+      :class="[cmuiCheckboxGroup.targetClass,targetClass]"
       :disabled="isDisabled"
       :label="selflabel"
       :value="label"
@@ -26,7 +27,7 @@
       :class="{ checked: isChecked }"
       class="cmui-check__label"
     >
-      <slot />
+      <slot v-if="!isBtn" />
       <template v-if="!$slots.default && !isBtn">{{ label }}</template>
     </span>
   </label>
@@ -57,7 +58,7 @@ export default {
     return {
       indeterminate: false,
       innerDisabled: false,
-      isBtn: !!~this.targetClass.split(' ').indexOf('btn'),
+      isBtn: !!~(this.cmuiCheckboxGroup.targetClass || this.targetClass).split(' ').indexOf('btn'),
       isExceedLimit: false
     }
   },
@@ -77,7 +78,7 @@ export default {
           this.indeterminate = !(allTrue || allFalse)
           return allTrue
         } else {
-          return this.inGroup ? this.cmuiCheckboxGroup.value : !!value
+          return !!value// this.inGroup ? this.cmuiCheckboxGroup.value : !!value
         }
       },
       set(value) {
