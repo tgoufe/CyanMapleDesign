@@ -12,9 +12,12 @@
         <p class="title paddingv20 paddingh30">全选</p>
         <div class="paddingh40 paddingt20 form">
             <cmui-checkbox v-model="demoList" label="全选" path="value" :targetClass="targetClass"></cmui-checkbox>
-            <cmui-checkbox-group :targetClass="targetClass">
-              <cmui-checkbox v-for="(item,index) in demoList" :flex="options.flex" :align="options.align" :key="index" v-model="item.value" :label="item.label"></cmui-checkbox>
+            <cmui-checkbox-group v-model="btnValue2" :targetClass="targetClass">
+              <cmui-checkbox v-for="(item,index) in demoList" :flex="options.flex" :align="options.align" :key="index" 
+              v-model="demoList[index]"
+              ></cmui-checkbox>
             </cmui-checkbox-group>
+            {{btnValue2}}
         </div>
         <p class="title paddingv20 paddingh30">按钮样式</p>
         <div class="paddingh40 paddingv20">
@@ -70,7 +73,8 @@ export default {
     let cityList = ['北京', '上海', '广州', '深圳']
     return {
       t:'',
-      btnValue:[],
+      btnValue:['北京'],
+       btnValue2:[],
       options: {
         align: 'left',
         disabled: false,

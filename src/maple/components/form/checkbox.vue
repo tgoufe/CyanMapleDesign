@@ -47,7 +47,8 @@ export default {
   name: 'cmui-checkbox',
   mixins: [mixin],
   props: {
-    path: { type: String, default: '', intro: '当v-model设置为数组的时候用于指定匹配项的路径' }
+    path: { type: String, default: '', intro: '当v-model设置为数组的时候用于指定匹配项的路径' },
+    value: { type: [Array, Boolean, Object], default: false }
   },
   inject: {
     cmuiCheckboxGroup: {
@@ -78,7 +79,7 @@ export default {
           this.indeterminate = !(allTrue || allFalse)
           return allTrue
         } else {
-          return !!value// this.inGroup ? this.cmuiCheckboxGroup.value : !!value
+          return this.inGroup ? this.cmuiCheckboxGroup.value : !!value
         }
       },
       set(value) {
