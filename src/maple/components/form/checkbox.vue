@@ -2,12 +2,12 @@
   <label class="cmui-checkbox" :class="{ 'flex-container': flex&&!isBtn,'dis-i':!flex||isBtn ,'cmui-checkbox__disabled':isDisabled}" :for="_uid">
 
     <span
-      v-if="align === 'left'"
+      v-if="align === 'left' && !isBtn"
       :class="{ checked: isChecked }"
       class="cmui-check__label"
     >
-      <slot v-if="!isBtn" />
-      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
+      <slot></slot>
+      <template v-if="!$slots.default ">{{ selfLabel }}</template>
     </span>
     <input
       :id="_uid"
@@ -18,17 +18,17 @@
       :readonly="readonly"
       :class="[cmuiCheckboxGroup.targetClass,targetClass]"
       :disabled="isDisabled"
-      :label="selflabel"
-      :value="label"
+      :label="isBtn?selfLabel:''"
+      :value="selfValue"
       @change="handleChange"
     >
     <span
-      v-if="align === 'right'"
+      v-if="align === 'right' && !isBtn"
       :class="{ checked: isChecked }"
       class="cmui-check__label"
     >
-      <slot v-if="!isBtn" />
-      <template v-if="!$slots.default && !isBtn">{{ label }}</template>
+      <slot></slot>
+      <template v-if="!$slots.default">{{ selfLabel }}</template>
     </span>
   </label>
 </template>
@@ -47,7 +47,9 @@ export default {
   name: 'cmui-checkbox',
   mixins: [mixin],
   props: {
-    path: { type: String, default: '', intro: '当v-model设置为数组的时候用于指定匹配项的路径' }
+    path: { type: String, default: '', intro: '当v-model设置为数组的时候用于指定匹配项的路径' },
+    value: { type: [Object, String, Number, Boolean, Array], default: false },
+    label: { type: [String, Number, Boolean], default: '' }
   },
   inject: {
     cmuiCheckboxGroup: {
@@ -78,7 +80,7 @@ export default {
           this.indeterminate = !(allTrue || allFalse)
           return allTrue
         } else {
-          return !!value// this.inGroup ? this.cmuiCheckboxGroup.value : !!value
+          return this.inGroup ? this.cmuiCheckboxGroup.value : !!value
         }
       },
       set(value) {
@@ -90,8 +92,17 @@ export default {
         }
       }
     },
-    selflabel() {
-      return this.isBtn ? this.label : ''
+    selfValue() {
+      let { value, label } = this.$options.propsData
+      return value
+        ? _.isPlainObject(value) && value.value ? value.value : value
+        : label || this.label
+    },
+    selfLabel() {
+      let { value, label } = this.$options.propsData
+      return _.isPlainObject(value) && value.label
+        ? value.label
+        : label || this.label
     },
     inGroup() {
       return !!this.cmuiCheckboxGroup
@@ -163,11 +174,9 @@ export default {
         if (_.isArray(this.value)) {
           let length = this.value.length
           if (_.every(this.value, _.isBoolean)) {
-            this.value = new Array(length).fill(value)
+            this.$emit('input', new Array(length).fill(value), this)
           } else {
-            _.forEach(this.value, item => {
-              _.set(item, this.path, value)
-            })
+            this.value.forEach(item => _.set(item, this.path, value))
           }
         } else {
           this.$emit('input', value, this)

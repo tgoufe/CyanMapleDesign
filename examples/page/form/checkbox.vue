@@ -11,9 +11,11 @@
         </div>
         <p class="title paddingv20 paddingh30">全选</p>
         <div class="paddingh40 paddingt20 form">
-            <cmui-checkbox v-model="demoList" label="全选" path="value" :targetClass="targetClass"></cmui-checkbox>
-            <cmui-checkbox-group :targetClass="targetClass">
-              <cmui-checkbox v-for="(item,index) in demoList" :flex="options.flex" :align="options.align" :key="index" v-model="item.value" :label="item.label"></cmui-checkbox>
+            <cmui-checkbox v-model="checkall" label="全选" path="value" :targetClass="targetClass"></cmui-checkbox>
+            <cmui-checkbox-group v-model="btnValue2" :targetClass="targetClass">
+              <cmui-checkbox v-for="(item,index) in demoList" :flex="options.flex" :align="options.align" :key="index" 
+              :label="item.value"
+              >{{item.label}}</cmui-checkbox>
             </cmui-checkbox-group>
         </div>
         <p class="title paddingv20 paddingh30">按钮样式</p>
@@ -70,21 +72,30 @@ export default {
     let cityList = ['北京', '上海', '广州', '深圳']
     return {
       t:'',
-      btnValue:[],
+      btnValue:['北京'],
+       btnValue2:[],
       options: {
         align: 'left',
         disabled: false,
         flex: false
       },
       cityList,
-      targetClassList: ['small', 'big', 'square', 'reverse'].map(item => ({ text: item, value: false })),
-      demoList: cityList.map(item => ({ label: item, value: false }))
+      targetClassList: ['small', 'big', 'square', 'reverse','light','text'].map(item => ({ text: item, value: false })),
+      demoList: cityList.map((item,index) => ({ label: item, value: index }))
     }
   },
   computed: {
     targetClass() {
       return this.targetClassList.filter(item => item.value).map(item => item.text).join(' ')
     },
+    checkall:{
+      get(){
+        return this.demoList.map(i=>this.btnValue2.includes(i.value))
+      },
+      set(value){
+        this.btnValue2=value.every(Boolean)?this.demoList.map(i=>i.value):[]
+      }
+    }
   }
 }
 </script>
