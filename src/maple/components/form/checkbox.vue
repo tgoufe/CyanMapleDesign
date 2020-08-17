@@ -89,7 +89,6 @@ export default {
           this.isExceedLimit = !_.inRange(value.length, min - 1, max + 1)
           this.isExceedLimit === false &&
           this.cmuiCheckboxGroup.$emit('input', value)
-          console.log(value)
         }
       }
     },
@@ -175,7 +174,7 @@ export default {
         if (_.isArray(this.value)) {
           let length = this.value.length
           if (_.every(this.value, _.isBoolean)) {
-            this.value = new Array(length).fill(value)
+            this.$emit('input', new Array(length).fill(value), this)
           } else {
             this.value.forEach(item => _.set(item, this.path, value))
           }

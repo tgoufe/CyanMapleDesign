@@ -1,7 +1,7 @@
 export default {
   methods: {
     handleFocus(event) {
-      console.log(`base handleFocus`)
+      // console.log(`base handleFocus`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
       let value = target.value
@@ -9,7 +9,7 @@ export default {
       this.cmuiFormItem && this.cmuiFormItem.$emit('form.focus')
     },
     handleInput(event) {
-      console.log(`base handleInput`)
+      // console.log(`base handleInput`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
       let value = target.value
@@ -18,7 +18,7 @@ export default {
       this.cmuiFormItem && this.cmuiFormItem.$emit('form.input')
     },
     handleChange(event) {
-      console.log(`base handleChange`)
+      // console.log(`base handleChange`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
       let value = target.value
@@ -27,7 +27,7 @@ export default {
       this.cmuiFormItem && this.cmuiFormItem.$emit('form.change')
     },
     handleBlur(event) {
-      console.log(`base handleBlur`)
+      // console.log(`base handleBlur`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
       let value = target.value
@@ -35,7 +35,7 @@ export default {
       this.cmuiFormItem && this.cmuiFormItem.$emit('form.blur')
     },
     rendered(event) {
-      console.log(`base rendered`)
+      // console.log(`base rendered`)
       let evt = window.event || event
       let target = evt.target || evt.srcElement
       let value = target.value

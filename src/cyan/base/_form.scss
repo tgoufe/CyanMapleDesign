@@ -167,7 +167,7 @@ input{
                 height:nth(map-get($btn-size-list,'base'),1);
                 &:not(:checked){
                   color:#666;
-                  background-color: #ccc;
+                  background-color: #eee;
                   border-color:#ccc;
                 }
                 &:not(.reverse){
@@ -180,11 +180,11 @@ input{
                     &:checked{
                         color:white;
                         background-color:$form-color-base;
-                        border-color:$form-color-base;
+                        border-color:scale-color($form-color-base,$lightness: -8%);
                         &.light{
                           color:$form-color-base;
                           background-color:scale-color($form-color-base,$lightness: 70%);
-                          border-color:transparent;
+                          border-color:scale-color($form-color-base,$lightness: 8%);
                         }
                     }
                 }
