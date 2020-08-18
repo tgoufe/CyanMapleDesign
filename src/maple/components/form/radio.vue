@@ -1,7 +1,5 @@
 <template>
-  <label class="cmui-radio" :class="{ 'flex-container': flex&&!isBtn ,'dis-i':!flex||isBtn,'cmui-checkbox__disabled':isDisabled}"
-  :style="{marginRight:cmuiRadioGroup.space}"
-  >
+  <label class="cmui-radio" :class="{ 'flex-container': flex&&!isBtn ,'dis-i':!flex||isBtn,'cmui-checkbox__disabled':isDisabled}">
     <span
       v-if="align === 'left'"
       :class="{ checked: model === label }"

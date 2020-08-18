@@ -26,7 +26,6 @@ export default {
     isBtn() {
       return _.includes(this.targetClass, 'btn')
     }
-
   },
   watch: {
     value(value) {

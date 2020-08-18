@@ -1,24 +1,42 @@
 <template>
-    <div id="checkboxDemo">
+    <div id="checkboxDemo" class="paddingb600">
         <p class="title paddingv20 paddingh30">热门城市</p>
         <div class="paddingh40 paddingv20">
-            <div class="example tag-container form ">
-                
-                <cmui-checkbox class="marginr20"
-                v-for="(value,key) in cityList"
-                :key="value"
-                v-model="checkedIndex[key]"
-                :label="value"
-                v-bind="options"
-                :target-class="targetClass"
-                @before-change="xxx"
-                ></cmui-checkbox>
-                <p class="paddingt20">
-                    你的选择是：<span class="marginr20" v-for="item in checkedCity" v-text="item"></span>
-                </p>
-            </div>
+          <cmui-checkbox-group v-model="btnValue" :targetClass="targetClass">
+            <cmui-checkbox v-for="(item,index) in cityList" :flex="options.flex" :align="options.align" :key="index" :label="item"></cmui-checkbox>
+          </cmui-checkbox-group>
+          <p class="paddingt20">
+            你的选择是：{{btnValue}}
+          </p>
         </div>
-        <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:1">
+        <p class="title paddingv20 paddingh30">全选</p>
+        <div class="paddingh40 paddingt20 form">
+            <cmui-checkbox v-model="checkall" label="全选" path="value" :targetClass="targetClass"></cmui-checkbox>
+            <cmui-checkbox-group v-model="btnValue2" :targetClass="targetClass">
+              <cmui-checkbox v-for="(item,index) in demoList" :flex="options.flex" :align="options.align" :key="index" 
+              :label="item.value"
+              >{{item.label}}</cmui-checkbox>
+            </cmui-checkbox-group>
+        </div>
+        <p class="title paddingv20 paddingh30">按钮样式</p>
+        <div class="paddingh40 paddingv20">
+          <cmui-checkbox-group v-model="btnValue" :targetClass="targetClass+' btn radius4'">
+            <cmui-checkbox v-for="(item,index) in cityList" :flex="options.flex" :align="options.align" :key="index" :label="item"></cmui-checkbox>
+          </cmui-checkbox-group>  
+        </div>
+        <p class="title paddingv20 paddingh30">按钮合并组</p>
+        <div class="paddingh40 paddingv20">
+          <cmui-checkbox-group v-model="btnValue" :targetClass="targetClass+' btn radius4'" class="group">
+            <cmui-checkbox v-for="(item,index) in cityList" :flex="options.flex" :align="options.align" :key="index" :label="item"></cmui-checkbox>
+          </cmui-checkbox-group>
+        </div>
+        <p class="title paddingv20 paddingh30">switch样式</p>
+        <div class="paddingh40 paddingv20">
+          <cmui-checkbox-group v-model="btnValue" :targetClass="targetClass+' switch'">
+            <cmui-checkbox v-for="(item,index) in cityList" :flex="options.flex" :align="options.align" :key="index" :label="item"></cmui-checkbox>
+          </cmui-checkbox-group>
+        </div>
+        <div class="fixed-bottom bg-black paddingv25 paddingh50 fs-16" style="z-index:10">
             <div class="btn-group flex-container">
                 <span class="text-white left flex2" style="min-width: 55px;">文本位置</span>
                 <div class="flex-container flex3" style="background: rgba(102,102,102,0.60);border-radius: 16px;border-radius: 16px;">
@@ -26,52 +44,16 @@
                     <div class="flex1 flex-container center" style="padding:3px;"><div class="badge blue pill" @click="options.align='right'" :class="options.align=='right'?'badgeCurrent':'badgeDefault'">Right</div></div>
                 </div>
             </div>
-            <div class="form NewStyle">
-                <div class="flex-container marginv30">
-                    <div class="flex1 marginr50">
-                        <cmui-checkbox
-                        :flex="true"
-                        target-class="switch"
-                        class="text-white"
-                        v-model="options.flex">flex布局</cmui-checkbox>
-                    </div>
-                    <div class="flex1 marginl50">
-                        <cmui-checkbox
-                        :flex="true"
-                        target-class="switch"
-                        class="text-white"
-                        v-model="options.disabled">Disabled</cmui-checkbox>
-                    </div>
-                </div>
+            <div class="form NewStyle flex-container marginv30">
+              <cmui-checkbox :flex="true" target-class="switch" class="text-white flex1 marginr50" v-model="options.flex">flex布局</cmui-checkbox>
+              <cmui-checkbox :flex="true" target-class="switch" class="text-white flex1 marginl50" v-model="options.disabled">Disabled</cmui-checkbox>
             </div>
             <div class="form NewStyle">
                 <div class="paddingv20 text-white">Target-Class</div>
                 <div class="flex-container paddingv40 formNewStyle" style="margin:0 -2px;">
-                    <div class="btn flex1" v-for="(item,key) in targetClassList" :class="item.value && 'current'" @click="item.value = !item.value" v-text="item.text"></div>
+                    <div class="btn flex1" v-for="(item,key) in targetClassList" :class="item.value && 'current'" @click="item.value = !item.value" v-text="item.text" :key="key"></div>
                 </div>
             </div>
-        </div>
-        <p class="title paddingv20 paddingh30">全选</p>
-        <div class="example tag-container form">
-            <div class="paddingh40 paddingt20">
-                <cmui-checkbox
-                v-model="demoList"
-                label="全选"
-                path="value"
-                target-class="square reverse"
-                ></cmui-checkbox>
-            </div>
-            
-            <div class="paddingv20 paddingh40">
-                <cmui-checkbox
-                    class="marginr20"
-                    v-for="item in demoList"
-                    v-model="item.value"
-                    :label="item.label"
-                    target-class="small square reverse"
-                ></cmui-checkbox>
-            </div>
-            
         </div>
     </div>
 </template>
@@ -89,31 +71,30 @@ export default {
   data: function() {
     let cityList = ['北京', '上海', '广州', '深圳']
     return {
+      t:'',
+      btnValue:['北京'],
+       btnValue2:[],
       options: {
         align: 'left',
         disabled: false,
-        value: '',
-        flex: false,
-        switch: false
+        flex: false
       },
       cityList,
-      checkedIndex: _.fill(Array(cityList.length), false),
-      targetClassList: ['small', 'big', 'square', 'reverse', 'switch'].map(item => ({ text: item, value: false })),
-      demoList: ['北京', '上海', '广州', '深圳'].map(item => ({ label: item, value: false }))
+      targetClassList: ['small', 'big', 'square', 'reverse','light','text'].map(item => ({ text: item, value: false })),
+      demoList: cityList.map((item,index) => ({ label: item, value: index }))
     }
   },
   computed: {
     targetClass() {
       return this.targetClassList.filter(item => item.value).map(item => item.text).join(' ')
     },
-    checkedCity() {
-      return this.cityList.filter((item, index) => this.checkedIndex[index] === true)
-    }
-
-  },
-  methods: {
-    xxx(value, resolve, reject) {
-      _.delay(resolve, 1000)
+    checkall:{
+      get(){
+        return this.demoList.map(i=>this.btnValue2.includes(i.value))
+      },
+      set(value){
+        this.btnValue2=value.every(Boolean)?this.demoList.map(i=>i.value):[]
+      }
     }
   }
 }

@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from './components/home'
 import page from './page/index'
+let autoRaouter=page.map(i=>({
+  path:i.path.slice(13,-4),
+  component: ()=>import(`.${i.path.slice(8)}`),
+}))
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -10,12 +14,6 @@ export default new Router({
       name: 'home',
       component: home
     },
-    ...page.routerAdd.map(e => {
-      return {
-        path: e.path,
-        name: e.name,
-        component: () => import(`./page/${e.fullPath}`)
-      }
-    })
+    ...autoRaouter
   ]
 })
