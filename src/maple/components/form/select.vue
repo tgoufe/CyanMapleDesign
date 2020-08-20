@@ -24,6 +24,7 @@
         :class="{ flex1: !label || !$slots.default }"
       >
         <select
+          ref="select"
           v-model="selfValue"
           :style="inputStyle"
           :name="name"
@@ -33,7 +34,6 @@
           :class="targetClass"
           @focus="handleFocus"
           @blur="handleBlur"
-          @change="handleChange"
         >
           <option
             v-for="(item,index) in selfData"
@@ -154,8 +154,7 @@ export default {
   },
   data: function() {
     return {
-      visible: false,
-      selfValue: this.value
+      visible: false
     }
   },
   computed: {
@@ -182,16 +181,21 @@ export default {
     },
     selfData() {
       return formateData(this.data)
+    },
+    selfValue: {
+      get() {
+        return this.value
+      },
+      set(value) {
+        let target = this.$refs.select
+        this.$emit('change', value, target, this)
+        this.$emit('input', value, target, this)
+      }
     }
   },
   methods: {
     select(data) {
-      this.$emit('input', data[0].value)
-    },
-    handleChange() {
-      const target = event.target
-      this.$emit('change', this.selfValue, target, this)
-      this.$emit('input', this.selfValue, target, this)
+      this.selfValue = data[0].value
     }
   }
 }
