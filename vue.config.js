@@ -9,42 +9,42 @@ module.exports = {
       entry: 'examples/main.js',
       template: 'public/index.html',
       filename: 'index.html'
-    },
-    xiaohongshu: {
-      entry: 'websiteDemo/xiaohongshu/main.js',
-      template: 'public/index.html',
-      filename: 'xiaohongshu.html'
-    },
-    wangyiyanxuan: {
-      entry: 'websiteDemo/wangyiyanxuan/main.js',
-      template: 'websiteDemo/wangyiyanxuan/index.html',
-      filename: 'wangyiyanxuan.html'
-    },
-    elem: {
-      entry: 'websiteDemo/elem/main.js',
-      template: 'public/index.html',
-      filename: 'elem.html'
-    },
-    wangyi: {
-      entry: 'websiteDemo/163/main.js',
-      template: 'public/index.html',
-      filename: '163.html'
-    },
-    ximalaya: {
-      entry: 'websiteDemo/ximalaya/main.js',
-      template: 'public/index.html',
-      filename: 'ximalaya.html'
-    },
-    ctrip: {
-      entry: 'websiteDemo/ctrip/main.js',
-      template: 'public/index.html',
-      filename: 'ctrip.html'
-    },
-    meituan: {
-      entry: 'websiteDemo/meituan/main.js',
-      template: 'public/index.html',
-      filename: 'meituan.html'
     }
+    // xiaohongshu: {
+    //   entry: 'websiteDemo/xiaohongshu/main.js',
+    //   template: 'public/index.html',
+    //   filename: 'xiaohongshu.html'
+    // },
+    // wangyiyanxuan: {
+    //   entry: 'websiteDemo/wangyiyanxuan/main.js',
+    //   template: 'websiteDemo/wangyiyanxuan/index.html',
+    //   filename: 'wangyiyanxuan.html'
+    // },
+    // elem: {
+    //   entry: 'websiteDemo/elem/main.js',
+    //   template: 'public/index.html',
+    //   filename: 'elem.html'
+    // },
+    // wangyi: {
+    //   entry: 'websiteDemo/163/main.js',
+    //   template: 'public/index.html',
+    //   filename: '163.html'
+    // },
+    // ximalaya: {
+    //   entry: 'websiteDemo/ximalaya/main.js',
+    //   template: 'public/index.html',
+    //   filename: 'ximalaya.html'
+    // },
+    // ctrip: {
+    //   entry: 'websiteDemo/ctrip/main.js',
+    //   template: 'public/index.html',
+    //   filename: 'ctrip.html'
+    // },
+    // meituan: {
+    //   entry: 'websiteDemo/meituan/main.js',
+    //   template: 'public/index.html',
+    //   filename: 'meituan.html'
+    // }
   },
   css: {
     extract: true,

@@ -101,22 +101,14 @@
     }
   }
   .cmui-input__prepend {
-    &.radius {
-      border-radius: $border-radius-base 0 0 $border-radius-base;
-      &.reverse {
-        border-radius: 0;
-      }
-    }
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     margin-right: -1px;
   }
   .cmui-input__append {
     margin-left: -1px;
-    &.radius {
-      border-radius: 0 $border-radius-base $border-radius-base 0;
-      &.reverse {
-        border-radius: 0;
-      }
-    }
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 </style>

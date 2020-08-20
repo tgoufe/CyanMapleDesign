@@ -99,6 +99,23 @@ p.title{
     }
   }
 }
+.formNewStyle{
+    .cmui-radio span{
+        display:none
+    }
+    .btn{
+        border-radius:32px;
+        border:2px solid #fff;
+        background:none;
+        padding: 1px 10px;
+        margin:0 2px;
+        font-size:12px;
+        &.current{
+            color:#fff;
+            background:#00baba;
+        }
+    }
+}
 .hoverIcon{
   .svg-icon use:last-child{
     display:none;
