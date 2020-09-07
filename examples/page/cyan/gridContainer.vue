@@ -37,12 +37,12 @@
             </div>
         </div>
     </div>
-
-    <div class="response-container">
-      <div class="box-row">
-        <div class="box-span4 gridDemo"><div class="gridDemo" style="background: #003E3E;">Col3</div></div>
-        <div class="box-span4 gridDemo"><div class="gridDemo" style="background: #003E3E;">Col3</div></div>
-        <div class="box-span4 gridDemo"><div class="gridDemo" style="background: #003E3E;">Col3</div></div>
+    <p class="title paddingv20 paddingh30">response container</p>
+    <div class="response-container padding30" style="color: #00F8F8;">
+      <div class="row">
+        <div class="span4 gridDemo"><div class="gridDemo" style="background: #00baba;">Span4</div></div>
+        <div class="span4 gridDemo"><div class="gridDemo" style="background: #00baba;">Span4</div></div>
+        <div class="span4 gridDemo"><div class="gridDemo" style="background: #00baba;">Span4</div></div>
       </div>
     </div>
 </div>
