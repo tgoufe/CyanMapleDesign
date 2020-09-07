@@ -1,4 +1,4 @@
-$isPC:false !default;
+$isPC:true !default;
 $colorList:(
 	'red': #ff4c48,
 	'orange': #ff9800,
@@ -18,7 +18,14 @@ $grayList:(
 	'white': #fff
 ) !default;
 $container_padding:10px !default;//on pc
-$container_width:800px !default;//on pc
+$container_width:1200px !default;//on pc
+//max-width,min-width-point,gutter-padding
+$responseContainer:(
+  sm:(540px,576px,10px),
+  md:(720px,768px,10px),
+  lg:(960px,1024px,10px),
+  xl:(1200px,1280px,10px)
+)!default;
 @if(not $isPC){
 	$container_padding:.133333333rem;
 	$container_width:10rem;

@@ -37,6 +37,14 @@
             </div>
         </div>
     </div>
+
+    <div class="response-container">
+      <div class="box-row">
+        <div class="box-span4 gridDemo"><div class="gridDemo" style="background: #003E3E;">Col3</div></div>
+        <div class="box-span4 gridDemo"><div class="gridDemo" style="background: #003E3E;">Col3</div></div>
+        <div class="box-span4 gridDemo"><div class="gridDemo" style="background: #003E3E;">Col3</div></div>
+      </div>
+    </div>
 </div>
 </template>
 

@@ -1,0 +1,46 @@
+@mixin make-container($gutter: $container_padding) {
+  width: 100%;
+  padding-right: $gutter;
+  padding-left: $gutter;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin mack-container-media(){
+  @each $name,$values in $responseContainer{
+    $max-width:nth($values,1);
+    $min-width:nth($values,2);
+    $gutter:nth($values,3);
+    @media (min-width: $min-width){
+      max-width:$max-width;
+      padding-left:$gutter;
+      padding-right:$gutter;
+      @at-root .row{
+        margin-left:$gutter / -1;
+        margin-right:$gutter / -1;
+      }
+    }
+  }
+}
+.response-container {
+  @include make-container();
+  @include mack-container-media();
+  @media (max-width: 540px){
+    @for $i from 1 through 15{
+      @if($i<13){
+        .span#{$i},.box-span#{$i}{
+          width:100%;
+        }
+        .span#{$i}:not(:last-child){
+          margin-bottom:$container_padding;
+        }
+      }
+      .col#{$i},.box-col#{$i}{
+        width:100%;
+      }
+      .col#{$i}:not(:last-child){
+        margin-bottom:$container_padding;
+      }
+    }
+  }
+}
+

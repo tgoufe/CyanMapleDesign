@@ -17,7 +17,7 @@ const toCamelCase = str => {
 let uigradientsData = uigradients.reduce((rs, item) => { rs[toCamelCase(item.name)] = item.colors; return rs }, {})
 let exportModule = window || {}
 let methodName = 'initCMUI'
-let checkDevice = () => /iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion) || document.scrollingElement.clientWidth < 770
+let checkDevice = () => /iphone|ipad|android|micromessenger/i.test(window.navigator.appVersion) || document.scrollingElement.clientWidth < 768
 let isMobile = checkDevice()
 let isInit = false
 export default (function() {
