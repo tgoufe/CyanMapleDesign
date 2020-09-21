@@ -98,6 +98,11 @@ i{
 		background-color:$colorValue;
 	}
 }
+.text-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
 /*title with line at left and right*/
 .lineTitle{
 	text-align:center;
